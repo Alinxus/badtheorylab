@@ -32,6 +32,24 @@ export const metadata: Metadata = {
     shortcut: "/btl-favicon.svg",
     apple: "/btl-favicon.svg",
   },
+  openGraph: {
+    title: "Bad Theory Labs",
+    description: "Building the infrastructure and products for the next interface to computing",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Bad Theory Labs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bad Theory Labs",
+    description: "Building the infrastructure and products for the next interface to computing",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
