@@ -684,25 +684,91 @@ body::before {
 }
 
 /* ─── RESPONSIVE ─── */
+/* hamburger */
+.nav-burger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  width: 36px; height: 36px; background: none; border: none; cursor: pointer;
+  padding: 6px; border-radius: 6px; transition: background .15s;
+}
+.nav-burger:hover { background: var(--surface); }
+.nav-burger span {
+  display: block; height: 1.5px; background: var(--ink); border-radius: 2px;
+  transition: transform .22s ease, opacity .22s ease, width .22s ease;
+  transform-origin: center;
+}
+.nav-burger span:nth-child(1) { width: 20px; }
+.nav-burger span:nth-child(2) { width: 14px; }
+.nav-burger span:nth-child(3) { width: 20px; }
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); width: 20px; }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 20px; }
+
+/* mobile drawer */
+.nav-drawer {
+  position: fixed; top: 56px; left: 0; right: 0; z-index: 999;
+  background: rgba(250,250,249,.97); backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  padding: 8px 0 20px;
+  animation: drawer-in .2s ease;
+}
+@keyframes drawer-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nav-drawer-link {
+  padding: 14px 20px; font-size: 15px; color: var(--body);
+  text-decoration: none; transition: color .12s, background .12s;
+  font-family: 'DM Sans', sans-serif;
+}
+.nav-drawer-link:hover { color: var(--ink); background: var(--surface); }
+.nav-drawer-divider { height: 1px; background: var(--border); margin: 8px 0; }
+.nav-drawer-cta {
+  margin: 8px 20px 0; padding: 12px 20px; border-radius: 8px;
+  background: var(--ink); color: var(--bg) !important;
+  text-align: center; font-size: 14px; font-weight: 500;
+  text-decoration: none; font-family: 'DM Sans', sans-serif;
+  transition: opacity .12s;
+}
+.nav-drawer-cta:hover { opacity: .84; }
+
+/* hack banner mobile */
+@media (max-width: 640px) {
+  .hack-banner { padding: 12px 16px; gap: 8px; }
+  .hack-banner-copy { display: none; }
+  .hack-banner-sep  { display: none; }
+}
+
 @media (max-width: 900px) {
-  .nav { padding: 0 20px; }
+  .nav { padding: 0 16px; }
   .nav-links { display: none; }
+  .nav-burger { display: flex; }
+
+  /* hero */
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-left { padding: 48px 20px 44px; border-right: none; border-bottom: 1px solid var(--border); }
-  .hero-right { min-height: 360px; }
-  .section-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 56px 20px 40px; }
+  .hero-right { min-height: 340px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-hero-p,.btn-hero-g { text-align: center; justify-content: center; }
+  .hero-stats { flex-direction: column; gap: 20px; padding-top: 24px; }
+  .stat + .stat { padding-left: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 20px; }
+
+  /* products / sections */
+  .section-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 48px 20px 36px; }
   .section-desc { text-align: left; max-width: 100%; }
+  .products-section { max-width: 100%; }
   .marrow-section,.retaindb-section,.research-inner,.footer-cta,.footer-main,.btl-everywhere { grid-template-columns: 1fr; }
   .marrow-left,.rdb-left,.research-left,.footer-cta-left,.btl-ev-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 20px 40px; }
   .btl-ev-right { padding: 44px 20px 48px; }
   .marrow-right,.rdb-right,.research-right { padding: 40px 20px 44px; }
-  .marrow-right { min-height: 320px; }
+  .marrow-right { min-height: 280px; }
   .footer-cta-right { padding: 44px 20px; }
   .footer-main { padding: 44px 20px 40px; gap: 36px; }
   .footer-brand { padding-right: 0; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
-  .hero-actions { flex-direction: column; align-items: stretch; }
-  .btn-hero-p,.btn-hero-g { text-align: center; justify-content: center; }
+
+  /* marquee */
+  .marquee-wrap { border-top: none; }
 }
 
 /* ── THESIS SECTION ── */
@@ -831,32 +897,32 @@ body::before {
 .email-link:hover { opacity: 0.7; }
 
 @media (max-width: 860px) {
-  .thesis-statement { padding: 64px 20px 56px; }
-  .what-grid, .not-section { grid-template-columns: 1fr; }
+  .thesis-statement { padding: 56px 20px 48px; }
+  .what-grid,.not-section { grid-template-columns: 1fr; }
   .what-left { padding: 44px 20px 40px; border-right: none; border-bottom: 1px solid var(--border); }
   .what-right { padding: 40px 20px 44px; }
   .capabilities-label { padding: 24px 20px 20px; }
   .capabilities-grid { grid-template-columns: 1fr; }
-  .cap-cell { padding: 40px 20px; border-right: none !important; }
-  .cap-cell:nth-child(3), .cap-cell:nth-child(4) { border-bottom: 1px solid var(--border); }
+  .cap-cell { padding: 36px 20px; border-right: none !important; }
+  .cap-cell:nth-child(3),.cap-cell:nth-child(4) { border-bottom: 1px solid var(--border); }
   .cap-cell:last-child { border-bottom: none; }
   .not-left { padding: 44px 20px 40px; border-right: none; border-bottom: 1px solid var(--border); }
   .not-right { padding: 40px 20px 44px; }
-  .closing { padding: 56px 20px; }
-}
-@media (max-width: 900px) {
-  .raise-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 60px 20px 44px; }
+  .closing { padding: 48px 20px; }
+  .raise-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 52px 20px 40px; }
   .raise-header-right { text-align: left; max-width: 100%; }
   .raise-grid { grid-template-columns: 1fr; }
   .raise-left { padding: 44px 20px 40px; border-right: none; border-bottom: 1px solid var(--border); }
   .raise-right { padding: 40px 20px 44px; }
-  .need-section { padding: 56px 20px; }
-  .need-grid { grid-template-columns: 1fr; gap: 0; }
+  .need-section { padding: 48px 20px; }
+  .need-grid { grid-template-columns: 1fr; }
   .need-cell { padding: 24px 0; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .need-cell + .need-cell { padding-left: 0; }
   .need-cell:last-child { border-bottom: none; }
   .email-strip { flex-direction: column; align-items: flex-start; gap: 12px; padding: 28px 20px; }
   .field-row-2 { grid-template-columns: 1fr; }
+  .btl-ev-left { padding: 48px 20px 40px; }
+  .btl-ev-right { padding: 40px 20px 52px; }
 }
 `;
 
@@ -1659,6 +1725,8 @@ function RaiseSection() {
    MAIN LANDING PAGE
 ───────────────────────────────────────────── */
 export default function BTLLanding() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <style>{css}</style>
@@ -1666,12 +1734,14 @@ export default function BTLLanding() {
 
       {/* NAV */}
       <nav className="nav">
-        <Link className="nav-logo" href="/">
+        <Link className="nav-logo" href="/" onClick={() => setMenuOpen(false)}>
           <span className="nav-logo-mark"><OrbitalMark size={26} color="#0E0D0C"/></span>
           <span className="nav-logo-text">
             Bad Theory <span className="nav-logo-tag">LABS</span>
           </span>
         </Link>
+
+        {/* desktop centre links */}
         <div className="nav-links">
           <a className="nav-link" href="#research">Research</a>
           <a className="nav-link" href="#products">Products</a>
@@ -1680,11 +1750,37 @@ export default function BTLLanding() {
           <a className="nav-link" href="/hackathon">Hackathon</a>
           <a className="nav-link" href="/contact">Contact</a>
         </div>
+
+        {/* desktop right */}
         <div className="nav-right">
           <a className="btn-ghost" href="https://discord.gg/eEKNE5M8W" target="_blank" rel="noreferrer">Join community</a>
           <a className="btn-solid" href="https://cal.com/alameenpd/quick-chat" target="_blank" rel="noreferrer">Schedule call</a>
         </div>
+
+        {/* mobile hamburger */}
+        <button
+          className={`nav-burger${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* mobile drawer */}
+      {menuOpen && (
+        <div className="nav-drawer">
+          <a href="#research" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Research</a>
+          <a href="#products" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Products</a>
+          <a href="/papers"   className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Papers</a>
+          <a href="/brief"    className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Brief</a>
+          <a href="/hackathon" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Hackathon</a>
+          <a href="/contact"  className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Contact</a>
+          <div className="nav-drawer-divider" />
+          <a href="https://discord.gg/eEKNE5M8W" target="_blank" rel="noreferrer" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Join community</a>
+          <a href="https://cal.com/alameenpd/quick-chat" target="_blank" rel="noreferrer" className="nav-drawer-cta" onClick={() => setMenuOpen(false)}>Schedule call</a>
+        </div>
+      )}
 
       {/* ── HERO ── */}
       <div className="hero">
