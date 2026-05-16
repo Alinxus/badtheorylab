@@ -221,6 +221,35 @@ body::before {
   line-height: 1.65; max-width: 340px;
 }
 
+/* ─── HACKATHON BANNER ─── */
+.hack-banner {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 13px 52px; border-bottom: 1px solid var(--border);
+  background: var(--ink); text-decoration: none;
+  transition: opacity 0.15s;
+}
+.hack-banner:hover { opacity: 0.88; }
+.hack-banner-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(168,94,26,0.9);
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+.hack-banner-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(250,250,249,0.9);
+}
+.hack-banner-sep { color: rgba(250,250,249,0.2); font-size: 12px; }
+.hack-banner-copy {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300;
+  color: rgba(250,250,249,0.45); flex: 1;
+}
+.hack-banner-cta {
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  letter-spacing: 0.06em; color: rgba(168,94,26,0.9);
+  margin-left: auto; white-space: nowrap;
+}
+
 /* ─── MARQUEE ─── */
 .marquee-wrap {
   overflow: hidden;
@@ -455,6 +484,70 @@ body::before {
   color: rgba(250,250,249,0.35); line-height: 1.65;
 }
 
+/* ─── BTL EVERYWHERE ─── */
+.btl-everywhere {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  max-width: 100%;
+}
+.btl-ev-left {
+  padding: 80px clamp(28px,4vw,56px) 80px 52px;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 24px;
+  position: relative; overflow: hidden;
+}
+.btl-ev-orb {
+  position: absolute; width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,94,26,0.045) 0%, transparent 68%);
+  top: 50%; left: 30%; transform: translate(-50%,-50%);
+  pointer-events: none; animation: orb-drift-a 14s ease-in-out infinite;
+}
+.btl-ev-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  color: var(--faint); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.btl-ev-rule { width: 24px; height: 1px; background: var(--border); flex-shrink: 0; }
+.btl-ev-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(36px,3.8vw,58px); font-weight: 500;
+  letter-spacing: -0.035em; line-height: 1.05; color: var(--ink);
+}
+.btl-ev-title em { font-style: italic; font-weight: 400; }
+.btl-ev-body {
+  font-size: 16px; font-weight: 300; line-height: 1.78;
+  color: var(--body); max-width: 400px;
+}
+.btl-ev-actions { display: flex; gap: 12px; margin-top: 4px; }
+
+.btl-ev-right {
+  padding: 80px clamp(28px,4vw,56px) 80px 52px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 48px;
+}
+.btl-ev-cards { display: flex; flex-direction: column; gap: 0; }
+.btl-ev-card {
+  padding: 28px 0; border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+  transition: padding-left 0.22s cubic-bezier(.16,1,.3,1);
+}
+.btl-ev-card:first-child { padding-top: 0; }
+.btl-ev-card:last-child { border-bottom: none; padding-bottom: 0; }
+.btl-ev-card:hover { padding-left: 8px; }
+.btl-ev-card-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint);
+}
+.btl-ev-card-title {
+  font-size: 15px; font-weight: 500; color: var(--ink); line-height: 1.3;
+}
+.btl-ev-card-body {
+  font-size: 13px; font-weight: 300; line-height: 1.72; color: var(--body);
+}
+.btl-ev-note {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--faint); letter-spacing: 0.04em; line-height: 1.6;
+}
+
 /* ─── FOOTER ─── */
 .footer { border-top: 1px solid var(--border); }
 .footer-cta {
@@ -599,8 +692,9 @@ body::before {
   .hero-right { min-height: 360px; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 56px 20px 40px; }
   .section-desc { text-align: left; max-width: 100%; }
-  .marrow-section,.retaindb-section,.research-inner,.footer-cta,.footer-main { grid-template-columns: 1fr; }
-  .marrow-left,.rdb-left,.research-left,.footer-cta-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 20px 40px; }
+  .marrow-section,.retaindb-section,.research-inner,.footer-cta,.footer-main,.btl-everywhere { grid-template-columns: 1fr; }
+  .marrow-left,.rdb-left,.research-left,.footer-cta-left,.btl-ev-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 20px 40px; }
+  .btl-ev-right { padding: 44px 20px 48px; }
   .marrow-right,.rdb-right,.research-right { padding: 40px 20px 44px; }
   .marrow-right { min-height: 320px; }
   .footer-cta-right { padding: 44px 20px; }
@@ -1583,6 +1677,7 @@ export default function BTLLanding() {
           <a className="nav-link" href="#products">Products</a>
           <a className="nav-link" href="/papers">Papers</a>
           <a className="nav-link" href="/brief">Brief</a>
+          <a className="nav-link" href="/hackathon">Hackathon</a>
           <a className="nav-link" href="/contact">Contact</a>
         </div>
         <div className="nav-right">
@@ -1651,6 +1746,15 @@ export default function BTLLanding() {
           </div>
         </div>
       </div>
+
+      {/* ── HACKATHON BANNER ── */}
+      <Link href="/hackathon" className="hack-banner">
+        <span className="hack-banner-dot" />
+        <span className="hack-banner-label">BTL Hackathon 2025</span>
+        <span className="hack-banner-sep">·</span>
+        <span className="hack-banner-copy">48 hours · Lagos State University · ₦1,000,000+ in prizes</span>
+        <span className="hack-banner-cta">Register free →</span>
+      </Link>
 
       {/* MARQUEE */}
       <div className="marquee-wrap">
@@ -1899,6 +2003,61 @@ export default function BTLLanding() {
 
       {/* ── RAISE ── */}
       <RaiseSection/>
+
+      {/* ── BTL EVERYWHERE ── */}
+      <section className="btl-everywhere">
+        <div className="btl-ev-left">
+          <div className="btl-ev-orb" />
+          <div className="btl-ev-eyebrow">
+            <span className="btl-ev-rule" />
+            <span>BTL Everywhere</span>
+          </div>
+          <h2 className="btl-ev-title">
+            Bring BTL to your<br />campus or <em>city.</em>
+          </h2>
+          <p className="btl-ev-body">
+            We partner with builders, student communities, and local organisers worldwide to
+            bring BTL&apos;s community and events — hackathons, meetups, research sessions —
+            closer to where you already are. Any city. Any campus. Any country.
+          </p>
+          <div className="btl-ev-actions">
+            <a href="https://forms.gle/jsdiP7cyV4BqWBy69" target="_blank" rel="noreferrer" className="btn-hero-p">
+              Apply to host <Arrow />
+            </a>
+          </div>
+        </div>
+
+        <div className="btl-ev-right">
+          <div className="btl-ev-cards">
+            {[
+              {
+                tag: "Campus chapter",
+                title: "Bring BTL to your university.",
+                body: "We partner with student orgs and CS departments to run hackathons, study groups, and research reading circles on campus. You organise the space — we bring the structure, prizes, and community."
+              },
+              {
+                tag: "City chapter",
+                title: "Start a BTL chapter in your city.",
+                body: "Host regular BTL meetups, builder nights, and local hackathons. We co-brand and support serious local organisers with resources, speakers, and community infrastructure."
+              },
+              {
+                tag: "Community sprint",
+                title: "Run a focused build sprint.",
+                body: "A 48-hour event with a specific theme — AI tooling, open source, systems — organised by you, backed by BTL. Open to any group, anywhere in the world."
+              },
+            ].map(({ tag, title, body }) => (
+              <div className="btl-ev-card" key={tag}>
+                <div className="btl-ev-card-tag">{tag}</div>
+                <div className="btl-ev-card-title">{title}</div>
+                <div className="btl-ev-card-body">{body}</div>
+              </div>
+            ))}
+          </div>
+          <p className="btl-ev-note">
+            Already running a community? We want to hear from you — doesn&apos;t matter where you are.
+          </p>
+        </div>
+      </section>
 
       {/* ── FOOTER ── */}
       <footer className="footer">
