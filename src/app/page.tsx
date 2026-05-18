@@ -1920,7 +1920,7 @@ export default function BTLLanding() {
               </div>
             </div>
             <Reveal delay={300}>
-              <MagneticBtn href="#" className="marrow-cta">
+              <MagneticBtn href="/marrow" className="marrow-cta">
                 Join the private beta <Arrow/>
               </MagneticBtn>
             </Reveal>
