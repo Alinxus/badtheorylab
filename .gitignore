@@ -37,6 +37,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# research benchmark (separate repo)
+/src/bench/
+/src/eval/
+/src/lib/
+/results/
+/human-validation.html
+/vitest.config.ts
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

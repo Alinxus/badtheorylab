@@ -1746,6 +1746,7 @@ export default function BTLLanding() {
           <a className="nav-link" href="#research">Research</a>
           <a className="nav-link" href="#products">Products</a>
           <a className="nav-link" href="/papers">Papers</a>
+          <a className="nav-link" href="/reasoning-test">Reasoning Test</a>
           <a className="nav-link" href="/brief">Brief</a>
           <a className="nav-link" href="/hackathon">Hackathon</a>
           <a className="nav-link" href="/contact">Contact</a>
@@ -1773,6 +1774,7 @@ export default function BTLLanding() {
           <a href="#research" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Research</a>
           <a href="#products" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Products</a>
           <a href="/papers"   className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Papers</a>
+          <a href="/reasoning-test" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Test</a>
           <a href="/brief"    className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Brief</a>
           <a href="/hackathon" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Hackathon</a>
           <a href="/contact"  className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Contact</a>
@@ -2263,6 +2265,7 @@ export default function BTLLanding() {
                 links: [
                   { label: 'The Compression Program', href: '/papers' },
                   { label: 'Papers', href: '/papers' },
+                  { label: 'Reasoning Test', href: '/reasoning-test' },
                   { label: 'Investor brief', href: '/brief' },
                   { label: 'Discord community', href: 'https://discord.gg/eEKNE5M8W' },
                 ],
