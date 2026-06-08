@@ -1,0 +1,1006 @@
+[
+  {
+    "graphDescription": "Training → Skill, Skill → Performance",
+    "kind": "observational",
+    "query": "Among employees who COMPLETED training, what % achieved HIGH performance?",
+    "choices": [
+      "49%",
+      "90%",
+      "5%",
+      "32%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(T) = 50% 50%\nP(S | T=no) = 70% 25% 5%\nP(S | T=yes) = 10% 35% 55%\nP(P | S=low) = 80% 15% 5%\nP(P | S=medium) = 30% 50% 20%\nP(P | S=high) = 5% 20% 75%",
+    "variables": [
+      {
+        "id": "T",
+        "name": "Training",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "S",
+        "name": "Skill",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      {
+        "id": "P",
+        "name": "Performance",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "T",
+        "to": "S"
+      },
+      {
+        "from": "S",
+        "to": "P"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Training → Skill, Skill → Performance",
+    "kind": "observational",
+    "query": "Among employees who did NOT take training, what % achieved HIGH performance?",
+    "choices": [
+      "48%",
+      "88%",
+      "12%",
+      "37%"
+    ],
+    "answer": 2,
+    "cptsDisplay": "P(T) = 50% 50%\nP(S | T=no) = 70% 25% 5%\nP(S | T=yes) = 10% 35% 55%\nP(P | S=low) = 80% 15% 5%\nP(P | S=medium) = 30% 50% 20%\nP(P | S=high) = 5% 20% 75%",
+    "variables": [
+      {
+        "id": "T",
+        "name": "Training",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "S",
+        "name": "Skill",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      {
+        "id": "P",
+        "name": "Performance",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "T",
+        "to": "S"
+      },
+      {
+        "from": "S",
+        "to": "P"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Training → Skill, Skill → Performance",
+    "kind": "interventional",
+    "query": "If the company FORCED everyone to complete training, what % would achieve HIGH performance?",
+    "choices": [
+      "49%",
+      "61%",
+      "84%",
+      "12%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(T) = 50% 50%\nP(S | T=no) = 70% 25% 5%\nP(S | T=yes) = 10% 35% 55%\nP(P | S=low) = 80% 15% 5%\nP(P | S=medium) = 30% 50% 20%\nP(P | S=high) = 5% 20% 75%",
+    "variables": [
+      {
+        "id": "T",
+        "name": "Training",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "S",
+        "name": "Skill",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      {
+        "id": "P",
+        "name": "Performance",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "T",
+        "to": "S"
+      },
+      {
+        "from": "S",
+        "to": "P"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Wealth → Education, Wealth → Income",
+    "kind": "observational",
+    "query": "Among people with ADVANCED education, what % have HIGH income?",
+    "choices": [
+      "35%",
+      "55%",
+      "45%",
+      "50%"
+    ],
+    "answer": 3,
+    "cptsDisplay": "P(W) = 50% 50%\nP(E | W=low) = 80% 20%\nP(E | W=high) = 20% 80%\nP(I | W=low) = 60% 30% 10%\nP(I | W=high) = 10% 30% 60%",
+    "variables": [
+      {
+        "id": "W",
+        "name": "Wealth",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "E",
+        "name": "Education",
+        "values": [
+          "basic",
+          "advanced"
+        ]
+      },
+      {
+        "id": "I",
+        "name": "Income",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "W",
+        "to": "E"
+      },
+      {
+        "from": "W",
+        "to": "I"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Wealth → Education, Wealth → Income",
+    "kind": "observational",
+    "query": "Among people with BASIC education, what % have HIGH income?",
+    "choices": [
+      "20%",
+      "37%",
+      "40%",
+      "56%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(W) = 50% 50%\nP(E | W=low) = 80% 20%\nP(E | W=high) = 20% 80%\nP(I | W=low) = 60% 30% 10%\nP(I | W=high) = 10% 30% 60%",
+    "variables": [
+      {
+        "id": "W",
+        "name": "Wealth",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "E",
+        "name": "Education",
+        "values": [
+          "basic",
+          "advanced"
+        ]
+      },
+      {
+        "id": "I",
+        "name": "Income",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "W",
+        "to": "E"
+      },
+      {
+        "from": "W",
+        "to": "I"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Wealth → Education, Wealth → Income",
+    "kind": "interventional",
+    "query": "If the government PAID for everyone to get ADVANCED education, what % would have HIGH income?",
+    "choices": [
+      "71%",
+      "84%",
+      "35%",
+      "62%"
+    ],
+    "answer": 2,
+    "cptsDisplay": "P(W) = 50% 50%\nP(E | W=low) = 80% 20%\nP(E | W=high) = 20% 80%\nP(I | W=low) = 60% 30% 10%\nP(I | W=high) = 10% 30% 60%",
+    "variables": [
+      {
+        "id": "W",
+        "name": "Wealth",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "E",
+        "name": "Education",
+        "values": [
+          "basic",
+          "advanced"
+        ]
+      },
+      {
+        "id": "I",
+        "name": "Income",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "W",
+        "to": "E"
+      },
+      {
+        "from": "W",
+        "to": "I"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Talent → Hired, Interview → Hired",
+    "kind": "observational",
+    "query": "Among HIRED candidates, what proportion had a STRONG interview?",
+    "choices": [
+      "62%",
+      "67%",
+      "35%",
+      "69%"
+    ],
+    "answer": 3,
+    "cptsDisplay": "P(T) = 60% 40%\nP(I) = 50% 50%\nP(H | T=low I=weak) = 95% 5%\nP(H | T=low I=strong) = 60% 40%\nP(H | T=high I=weak) = 40% 60%\nP(H | T=high I=strong) = 10% 90%",
+    "variables": [
+      {
+        "id": "T",
+        "name": "Talent",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "I",
+        "name": "Interview",
+        "values": [
+          "weak",
+          "strong"
+        ]
+      },
+      {
+        "id": "H",
+        "name": "Hired",
+        "values": [
+          "no",
+          "yes"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "T",
+        "to": "H"
+      },
+      {
+        "from": "I",
+        "to": "H"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Talent → Hired, Interview → Hired",
+    "kind": "observational",
+    "query": "Among HIRED candidates, what proportion had HIGH talent?",
+    "choices": [
+      "69%",
+      "73%",
+      "15%",
+      "71%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(T) = 60% 40%\nP(I) = 50% 50%\nP(H | T=low I=weak) = 95% 5%\nP(H | T=low I=strong) = 60% 40%\nP(H | T=high I=weak) = 40% 60%\nP(H | T=high I=strong) = 10% 90%",
+    "variables": [
+      {
+        "id": "T",
+        "name": "Talent",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "I",
+        "name": "Interview",
+        "values": [
+          "weak",
+          "strong"
+        ]
+      },
+      {
+        "id": "H",
+        "name": "Hired",
+        "values": [
+          "no",
+          "yes"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "T",
+        "to": "H"
+      },
+      {
+        "from": "I",
+        "to": "H"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Talent → Hired, Interview → Hired",
+    "kind": "interventional",
+    "query": "If the company forced ALL hired candidates to have HIGH talent, what proportion would have a STRONG interview?",
+    "choices": [
+      "50%",
+      "95%",
+      "5%",
+      "20%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(T) = 60% 40%\nP(I) = 50% 50%\nP(H | T=low I=weak) = 95% 5%\nP(H | T=low I=strong) = 60% 40%\nP(H | T=high I=weak) = 40% 60%\nP(H | T=high I=strong) = 10% 90%",
+    "variables": [
+      {
+        "id": "T",
+        "name": "Talent",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "I",
+        "name": "Interview",
+        "values": [
+          "weak",
+          "strong"
+        ]
+      },
+      {
+        "id": "H",
+        "name": "Hired",
+        "values": [
+          "no",
+          "yes"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "T",
+        "to": "H"
+      },
+      {
+        "from": "I",
+        "to": "H"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Factor1 → Treatment, Factor1 → Biomarker, Factor2 → Biomarker, Factor2 → Recovery, Treatment → Recovery",
+    "kind": "observational",
+    "query": "Among patients who TOOK the drug and had POSITIVE biomarker, what % achieved FULL recovery?",
+    "choices": [
+      "62%",
+      "35%",
+      "88%",
+      "33%"
+    ],
+    "answer": 3,
+    "cptsDisplay": "P(Z1) = 50% 50%\nP(Z2) = 50% 50%\nP(X | Z1=low) = 70% 30%\nP(X | Z1=high) = 30% 70%\nP(M | Z1=low Z2=low) = 90% 10%\nP(M | Z1=low Z2=high) = 30% 70%\nP(M | Z1=high Z2=low) = 40% 60%\nP(M | Z1=high Z2=high) = 80% 20%\nP(Y | Z2=low X=none) = 70% 20% 10%\nP(Y | Z2=low X=drug) = 50% 30% 20%\nP(Y | Z2=high X=none) = 40% 30% 30%\nP(Y | Z2=high X=drug) = 20% 30% 50%",
+    "variables": [
+      {
+        "id": "Z1",
+        "name": "Factor1",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "Z2",
+        "name": "Factor2",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "X",
+        "name": "Treatment",
+        "values": [
+          "none",
+          "drug"
+        ]
+      },
+      {
+        "id": "M",
+        "name": "Biomarker",
+        "values": [
+          "negative",
+          "positive"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Recovery",
+        "values": [
+          "no",
+          "partial",
+          "full"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "Z1",
+        "to": "X"
+      },
+      {
+        "from": "Z1",
+        "to": "M"
+      },
+      {
+        "from": "Z2",
+        "to": "M"
+      },
+      {
+        "from": "Z2",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "Y"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Factor1 → Treatment, Factor1 → Biomarker, Factor2 → Biomarker, Factor2 → Recovery, Treatment → Recovery",
+    "kind": "interventional",
+    "query": "If the trial GAVE the drug to ALL patients, what % would achieve FULL recovery?",
+    "choices": [
+      "35%",
+      "88%",
+      "69%",
+      "73%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(Z1) = 50% 50%\nP(Z2) = 50% 50%\nP(X | Z1=low) = 70% 30%\nP(X | Z1=high) = 30% 70%\nP(M | Z1=low Z2=low) = 90% 10%\nP(M | Z1=low Z2=high) = 30% 70%\nP(M | Z1=high Z2=low) = 40% 60%\nP(M | Z1=high Z2=high) = 80% 20%\nP(Y | Z2=low X=none) = 70% 20% 10%\nP(Y | Z2=low X=drug) = 50% 30% 20%\nP(Y | Z2=high X=none) = 40% 30% 30%\nP(Y | Z2=high X=drug) = 20% 30% 50%",
+    "variables": [
+      {
+        "id": "Z1",
+        "name": "Factor1",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "Z2",
+        "name": "Factor2",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "X",
+        "name": "Treatment",
+        "values": [
+          "none",
+          "drug"
+        ]
+      },
+      {
+        "id": "M",
+        "name": "Biomarker",
+        "values": [
+          "negative",
+          "positive"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Recovery",
+        "values": [
+          "no",
+          "partial",
+          "full"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "Z1",
+        "to": "X"
+      },
+      {
+        "from": "Z1",
+        "to": "M"
+      },
+      {
+        "from": "Z2",
+        "to": "M"
+      },
+      {
+        "from": "Z2",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "Y"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Lottery → College, Ability → College, Ability → Income, College → Income",
+    "kind": "observational",
+    "query": "Among people who ATTENDED college, what % earn HIGH income?",
+    "choices": [
+      "58%",
+      "15%",
+      "52%",
+      "57%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(Z) = 26% 74%\nP(X | Z=0 U=low) = 48% 52%\nP(X | Z=0 U=high) = 57% 43%\nP(X | Z=1 U=low) = 66% 34%\nP(X | Z=1 U=high) = 18% 82%\nP(Y | X=no U=low) = 39% 61%\nP(Y | X=no U=high) = 46% 54%\nP(Y | X=yes U=low) = 52% 48%\nP(Y | X=yes U=high) = 40% 60%\nP(U) = 31% 69%",
+    "variables": [
+      {
+        "id": "Z",
+        "name": "Lottery",
+        "values": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "id": "X",
+        "name": "College",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Income",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "U",
+        "name": "Ability",
+        "values": [
+          "low",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "Z",
+        "to": "X"
+      },
+      {
+        "from": "U",
+        "to": "X"
+      },
+      {
+        "from": "U",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "Y"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Lottery → College, Ability → College, Ability → Income, College → Income",
+    "kind": "interventional",
+    "query": "If the government FORCED everyone to attend college, what % would earn HIGH income?",
+    "choices": [
+      "56%",
+      "50%",
+      "55%",
+      "12%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(Z) = 26% 74%\nP(X | Z=0 U=low) = 48% 52%\nP(X | Z=0 U=high) = 57% 43%\nP(X | Z=1 U=low) = 66% 34%\nP(X | Z=1 U=high) = 18% 82%\nP(Y | X=no U=low) = 39% 61%\nP(Y | X=no U=high) = 46% 54%\nP(Y | X=yes U=low) = 52% 48%\nP(Y | X=yes U=high) = 40% 60%\nP(U) = 31% 69%",
+    "variables": [
+      {
+        "id": "Z",
+        "name": "Lottery",
+        "values": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "id": "X",
+        "name": "College",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Income",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "U",
+        "name": "Ability",
+        "values": [
+          "low",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "Z",
+        "to": "X"
+      },
+      {
+        "from": "U",
+        "to": "X"
+      },
+      {
+        "from": "U",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "Y"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Consciousness → Exercise, Consciousness → Health, Exercise → Fitness, Fitness → Health",
+    "kind": "observational",
+    "query": "Among people who are ACTIVE, what % have STRONG health?",
+    "choices": [
+      "62%",
+      "30%",
+      "48%",
+      "42%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(X | U=low) = 31% 69%\nP(X | U=high) = 48% 52%\nP(M | X=no) = 57% 43%\nP(M | X=yes) = 66% 34%\nP(Y | M=low U=low) = 18% 82%\nP(Y | M=low U=high) = 39% 61%\nP(Y | M=high U=low) = 46% 54%\nP(Y | M=high U=high) = 52% 48%\nP(U) = 26% 74%",
+    "variables": [
+      {
+        "id": "X",
+        "name": "Exercise",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "M",
+        "name": "Fitness",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Health",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "U",
+        "name": "Consciousness",
+        "values": [
+          "low",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "U",
+        "to": "X"
+      },
+      {
+        "from": "U",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "M"
+      },
+      {
+        "from": "M",
+        "to": "Y"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Consciousness → Exercise, Consciousness → Health, Exercise → Fitness, Fitness → Health",
+    "kind": "interventional",
+    "query": "If the government MANDATED exercise for everyone, what % would have STRONG health?",
+    "choices": [
+      "90%",
+      "57%",
+      "70%",
+      "61%"
+    ],
+    "answer": 3,
+    "cptsDisplay": "P(X | U=low) = 31% 69%\nP(X | U=high) = 48% 52%\nP(M | X=no) = 57% 43%\nP(M | X=yes) = 66% 34%\nP(Y | M=low U=low) = 18% 82%\nP(Y | M=low U=high) = 39% 61%\nP(Y | M=high U=low) = 46% 54%\nP(Y | M=high U=high) = 52% 48%\nP(U) = 26% 74%",
+    "variables": [
+      {
+        "id": "X",
+        "name": "Exercise",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "M",
+        "name": "Fitness",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Health",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "U",
+        "name": "Consciousness",
+        "values": [
+          "low",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "U",
+        "to": "X"
+      },
+      {
+        "from": "U",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "M"
+      },
+      {
+        "from": "M",
+        "to": "Y"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Age → Drug, Age → Recovery, Severity → Drug, Severity → Recovery, Drug → Recovery",
+    "kind": "observational",
+    "query": "Among patients who TOOK the drug, what % had GOOD recovery?",
+    "choices": [
+      "44%",
+      "15%",
+      "92%",
+      "48%"
+    ],
+    "answer": 3,
+    "cptsDisplay": "P(Z1) = 26% 74%\nP(Z2) = 31% 69%\nP(X | Z1=low Z2=low) = 48% 52%\nP(X | Z1=low Z2=high) = 57% 43%\nP(X | Z1=high Z2=low) = 66% 34%\nP(X | Z1=high Z2=high) = 18% 82%\nP(Y | X=no Z1=low Z2=low) = 39% 61%\nP(Y | X=no Z1=low Z2=high) = 46% 54%\nP(Y | X=no Z1=high Z2=low) = 52% 48%\nP(Y | X=no Z1=high Z2=high) = 40% 60%\nP(Y | X=yes Z1=low Z2=low) = 68% 32%\nP(Y | X=yes Z1=low Z2=high) = 19% 81%\nP(Y | X=yes Z1=high Z2=low) = 60% 40%\nP(Y | X=yes Z1=high Z2=high) = 55% 45%",
+    "variables": [
+      {
+        "id": "Z1",
+        "name": "Age",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "Z2",
+        "name": "Severity",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "X",
+        "name": "Drug",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Recovery",
+        "values": [
+          "low",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "Z1",
+        "to": "X"
+      },
+      {
+        "from": "Z1",
+        "to": "Y"
+      },
+      {
+        "from": "Z2",
+        "to": "X"
+      },
+      {
+        "from": "Z2",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "Y"
+      }
+    ]
+  },
+  {
+    "graphDescription": "Age → Drug, Age → Recovery, Severity → Drug, Severity → Recovery, Drug → Recovery",
+    "kind": "interventional",
+    "query": "If the hospital GAVE the drug to ALL patients, what % would have GOOD recovery?",
+    "choices": [
+      "49%",
+      "85%",
+      "12%",
+      "48%"
+    ],
+    "answer": 0,
+    "cptsDisplay": "P(Z1) = 26% 74%\nP(Z2) = 31% 69%\nP(X | Z1=low Z2=low) = 48% 52%\nP(X | Z1=low Z2=high) = 57% 43%\nP(X | Z1=high Z2=low) = 66% 34%\nP(X | Z1=high Z2=high) = 18% 82%\nP(Y | X=no Z1=low Z2=low) = 39% 61%\nP(Y | X=no Z1=low Z2=high) = 46% 54%\nP(Y | X=no Z1=high Z2=low) = 52% 48%\nP(Y | X=no Z1=high Z2=high) = 40% 60%\nP(Y | X=yes Z1=low Z2=low) = 68% 32%\nP(Y | X=yes Z1=low Z2=high) = 19% 81%\nP(Y | X=yes Z1=high Z2=low) = 60% 40%\nP(Y | X=yes Z1=high Z2=high) = 55% 45%",
+    "variables": [
+      {
+        "id": "Z1",
+        "name": "Age",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "Z2",
+        "name": "Severity",
+        "values": [
+          "low",
+          "high"
+        ]
+      },
+      {
+        "id": "X",
+        "name": "Drug",
+        "values": [
+          "no",
+          "yes"
+        ]
+      },
+      {
+        "id": "Y",
+        "name": "Recovery",
+        "values": [
+          "low",
+          "high"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "Z1",
+        "to": "X"
+      },
+      {
+        "from": "Z1",
+        "to": "Y"
+      },
+      {
+        "from": "Z2",
+        "to": "X"
+      },
+      {
+        "from": "Z2",
+        "to": "Y"
+      },
+      {
+        "from": "X",
+        "to": "Y"
+      }
+    ]
+  }
+]
