@@ -68,7 +68,7 @@ export default function ResultsPage() {
               {rows.map(r => (
                 <div key={r.id} style={{ background: "#fff", border: "1px solid #e8e6e1", borderRadius: 10, padding: "18px 20px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                    <span style={{ fontSize: 14, fontWeight: 500, color: "#0e0d0c" }}>{r.participant_id}</span>
+                    <span style={{ fontSize: 14, fontWeight: 500, color: "#0e0d0c" }}>{r.participant_id.slice(0, 3)}•••••</span>
                     <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: "#5c5954" }}>{r.score}/{r.total} ({Math.round((r.score / r.total) * 100)}%)</span>
                   </div>
                   <p style={{ fontSize: 11, color: "#9c9890", fontFamily: "'JetBrains Mono', monospace" }}>{new Date(r.created_at).toLocaleString()}</p>
