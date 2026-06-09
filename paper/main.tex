@@ -23,11 +23,11 @@
 \title{The Reasoning Gap:\\[4pt]Large Language Models Cannot Distinguish\\[2pt]Observation from Intervention}
 
 \author{%
+  Olajide Al-ameen\\
   Bad Theory Labs\\
-  \texttt{hello@badtheorylabs.com}\\[4pt]
-  \texttt{\href{https://www.badtheorylabs.com/reasoning-test}{badtheorylabs.com/reasoning-test}}
+  \texttt{hello@badtheorylab.com}
 }
-
+\thanks{This paper is a draft prepared for arXiv. The author is seeking an arXiv endorsement.}
 \date{\today}
 
 \begin{document}
@@ -35,7 +35,7 @@
 \maketitle
 
 \begin{abstract}
-We introduce a causal reasoning benchmark that cleanly separates observational from interventional queries over the same causal graphs and probability tables. Across 840 four-choice questions spanning seven canonical graph templates, we evaluate three frontier large language models: GPT-5.4, GPT-4o mini, and Gemini 2.0 Flash. All three models perform at or near random chance (25.0\%, 25.7\%, and 29.2\% respectively), while an exact inference baseline achieves 100\%. Human experts achieve 97.8\% on similar formal causal reasoning tasks \cite{counterbench}. These results suggest that current LLMs lack the capacity for interventional reasoning -- a limitation that persists across model scale, as the frontier model (GPT-5.4) performs no better than the cheapest (GPT-4o mini). We release our benchmark, evaluation code, and a public test interface for human validation.
+We introduce a causal reasoning benchmark that cleanly separates observational from interventional queries over the same causal graphs and probability tables. Across 840 four-choice questions spanning seven canonical graph templates, we evaluate three frontier large language models: GPT-5.4, GPT-4o mini, and Gemini 2.0 Flash. All three models perform at or near random chance (25.0\%, 25.7\%, and 29.2\% respectively), while an exact inference baseline achieves 100\%. Human experts achieve 97.8\% on similar formal causal reasoning tasks \cite{counterbench}. These results suggest that current LLMs lack the capacity for interventional reasoning -- a limitation that persists across model scale, as the frontier model (GPT-5.4) performs no better than the cheapest (GPT-4o mini). We release the full benchmark, evaluation code, and a live test interface at \url{https://www.badtheorylabs.com/reasoning-test}.
 \end{abstract}
 
 \section{Introduction}
@@ -109,6 +109,75 @@ Each question includes the complete causal graph (variable names and edges) and 
 \subsection{Metric}
 
 All questions are four-choice multiple choice. We report accuracy as the proportion of correctly answered questions. Random chance is 25\%.
+
+\subsection{Example Questions}
+
+Figures~\ref{fig:ex-obs} and~\ref{fig:ex-ivn} show a paired observational and interventional question from the chain graph. Both share the same causal structure ($\text{Training} \rightarrow \text{Skill} \rightarrow \text{Performance}$) and identical CPTs. The only difference is the query type.
+
+\begin{table}[h]
+\centering
+\caption{Observational question (chain graph).}
+\label{tab:ex-obs}
+\begin{tabular}{ll}
+\toprule
+\textbf{CPTs} & \\
+\midrule
+$P(\text{Training})$ & no 50\%, yes 50\% \\
+$P(\text{Skill} \mid \text{Training}=\text{no})$ & low 70\%, medium 25\%, high 5\% \\
+$P(\text{Skill} \mid \text{Training}=\text{yes})$ & low 10\%, medium 35\%, high 55\% \\
+$P(\text{Performance} \mid \text{Skill}=\text{low})$ & low 80\%, medium 15\%, high 5\% \\
+$P(\text{Performance} \mid \text{Skill}=\text{medium})$ & low 30\%, medium 50\%, high 20\% \\
+$P(\text{Performance} \mid \text{Skill}=\text{high})$ & low 5\%, medium 20\%, high 75\% \\
+\midrule
+\textbf{Query} & Among employees who COMPLETED training, \\
+ & what \% achieved HIGH performance? \\
+\textbf{Answer} & 49\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Interventional question (same chain graph, identical CPTs).}
+\label{tab:ex-ivn}
+\begin{tabular}{ll}
+\toprule
+\textbf{CPTs} & (same as Table~\ref{tab:ex-obs}) \\
+\midrule
+\textbf{Query} & If the company FORCED everyone to complete training, \\
+ & what \% would achieve HIGH performance? \\
+\textbf{Answer} & 49\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the chain graph, observational and interventional queries produce the same answer because there is no confounding. This serves as a control condition. In graphs with confounding (fork, collider, M-bias, etc.), the answers differ, and models must correctly apply the adjustment formula.
+
+\begin{table}[h]
+\centering
+\caption{Interventional question with confounding (fork graph).}
+\label{tab:ex-fork}
+\begin{tabular}{ll}
+\toprule
+\textbf{Graph} & Wealth $\rightarrow$ Education, Wealth $\rightarrow$ Income \\
+\midrule
+\textbf{CPTs} & \\
+$P(\text{Wealth})$ & low 50\%, high 50\% \\
+$P(\text{Education} \mid \text{Wealth}=\text{low})$ & basic 80\%, advanced 20\% \\
+$P(\text{Education} \mid \text{Wealth}=\text{high})$ & basic 20\%, advanced 80\% \\
+$P(\text{Income} \mid \text{Wealth}=\text{low})$ & low 60\%, medium 30\%, high 10\% \\
+$P(\text{Income} \mid \text{Wealth}=\text{high})$ & low 10\%, medium 30\%, high 60\% \\
+\midrule
+\textbf{Observational query} & Among people with HIGH wealth, what \% have HIGH income? \\
+\textbf{Answer} & 60\% \\
+\midrule
+\textbf{Interventional query} & If the government PAID for everyone to get ADVANCED \\ & education, what \% would have HIGH income? \\
+\textbf{Answer} & 35\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ex-fork} illustrates the fork graph, where wealth confounds the relationship between education and income. The observational answer (60\%) differs from the interventional answer (35\%) because conditioning on wealth blocks the confounder, while $\operatorname{do}(\text{education})$ requires marginalizing over the wealth distribution. A model that treats $\operatorname{do}(X)$ as conditioning on $X$ would answer the observational query incorrectly for the interventional question.
 
 \section{Experiments}
 
