@@ -92,13 +92,13 @@ blockquote { font-style: italic; margin: 12pt 0; padding: 0 12pt; border-left: 2
 <p>We define seven causal graph templates, each representing a distinct causal structure:</p>
 
 <ol>
-  <li><b>Chain:</b> $X \rightarrow M \rightarrow Y$ (control condition &mdash; observational and interventional queries produce identical answers)</li>
-  <li><b>Fork:</b> $X \leftarrow Z \rightarrow Y$ (confounding)</li>
-  <li><b>Collider:</b> $X \rightarrow Z \leftarrow Y$ (selection bias)</li>
-  <li><b>M-bias:</b> $X \rightarrow Z_1 \leftarrow U \rightarrow Z_2 \leftarrow Y$ (M-shaped structure)</li>
-  <li><b>Instrumental variable:</b> $Z \rightarrow X \rightarrow Y$, with $Z \not\rightarrow Y$ (instrument)</li>
-  <li><b>Front-door:</b> $X \rightarrow M \rightarrow Y$, with $X \leftarrow U \rightarrow Y$ (front-door criterion)</li>
-  <li><b>Back-door:</b> $X \rightarrow Y$, with $X \leftarrow Z \rightarrow Y$ (back-door criterion)</li>
+  <li><b>Chain:</b> $X \\rightarrow M \\rightarrow Y$ (control condition &mdash; observational and interventional queries produce identical answers)</li>
+  <li><b>Fork:</b> $X \leftarrow Z \\rightarrow Y$ (confounding)</li>
+  <li><b>Collider:</b> $X \\rightarrow Z \leftarrow Y$ (selection bias)</li>
+  <li><b>M-bias:</b> $X \\rightarrow Z_1 \leftarrow U \\rightarrow Z_2 \leftarrow Y$ (M-shaped structure)</li>
+  <li><b>Instrumental variable:</b> $Z \\rightarrow X \\rightarrow Y$, with $Z \\not\\rightarrow Y$ (instrument)</li>
+  <li><b>Front-door:</b> $X \\rightarrow M \\rightarrow Y$, with $X \leftarrow U \\rightarrow Y$ (front-door criterion)</li>
+  <li><b>Back-door:</b> $X \\rightarrow Y$, with $X \leftarrow Z \\rightarrow Y$ (back-door criterion)</li>
 </ol>
 
 <p>For each template, we define 3&ndash;5 scenario themes (e.g., for the fork: ice cream sales, weather, drowning incidents). Each scenario provides named variables with natural-language values.</p>
@@ -121,21 +121,21 @@ blockquote { font-style: italic; margin: 12pt 0; padding: 0 12pt; border-left: 2
 
 <h3>3.4 Metric</h3>
 
-<p>All questions are four-choice multiple choice. We report accuracy as the proportion of correctly answered questions. Random chance is 25%. We report 95% Wilson confidence intervals for all proportions [16].</p>
+<p>All questions are four-choice multiple choice. We report accuracy as the proportion of correctly answered questions. Random chance is 25%. We report 95% Wilson confidence intervals for all proportions [15].</p>
 
 <h3>3.5 Example Questions</h3>
 
-<p>Tables 1 and 2 show a paired observational and interventional question from the chain graph. Both share the same causal structure ($\text{Training} \rightarrow \text{Skill} \rightarrow \text{Performance}$) and identical CPTs. The only difference is the query type.</p>
+<p>Tables 1 and 2 show a paired observational and interventional question from the chain graph. Both share the same causal structure ($\\text{Training} \\rightarrow \\text{Skill} \\rightarrow \\text{Performance}$) and identical CPTs. The only difference is the query type.</p>
 
 <p class="caption">Table 1: Observational question (chain graph).</p>
 <table>
   <tr><th>CPTs</th><th></th></tr>
-  <tr><td>$P(\text{Training})$</td><td>no 50%, yes 50%</td></tr>
-  <tr><td>$P(\text{Skill} \mid \text{Training}=\text{no})$</td><td>low 70%, medium 25%, high 5%</td></tr>
-  <tr><td>$P(\text{Skill} \mid \text{Training}=\text{yes})$</td><td>low 10%, medium 35%, high 55%</td></tr>
-  <tr><td>$P(\text{Performance} \mid \text{Skill}=\text{low})$</td><td>low 80%, medium 15%, high 5%</td></tr>
-  <tr><td>$P(\text{Performance} \mid \text{Skill}=\text{medium})$</td><td>low 30%, medium 50%, high 20%</td></tr>
-  <tr><td>$P(\text{Performance} \mid \text{Skill}=\text{high})$</td><td>low 5%, medium 20%, high 75%</td></tr>
+  <tr><td>$P(\\text{Training})$</td><td>no 50%, yes 50%</td></tr>
+  <tr><td>$P(\\text{Skill} \mid \\text{Training}=\\text{no})$</td><td>low 70%, medium 25%, high 5%</td></tr>
+  <tr><td>$P(\\text{Skill} \mid \\text{Training}=\\text{yes})$</td><td>low 10%, medium 35%, high 55%</td></tr>
+  <tr><td>$P(\\text{Performance} \mid \\text{Skill}=\\text{low})$</td><td>low 80%, medium 15%, high 5%</td></tr>
+  <tr><td>$P(\\text{Performance} \mid \\text{Skill}=\\text{medium})$</td><td>low 30%, medium 50%, high 20%</td></tr>
+  <tr><td>$P(\\text{Performance} \mid \\text{Skill}=\\text{high})$</td><td>low 5%, medium 20%, high 75%</td></tr>
   <tr><td><b>Query</b></td><td>Among employees who COMPLETED training, what % achieved HIGH performance?</td></tr>
   <tr><td><b>Answer</b></td><td>49%</td></tr>
 </table>
@@ -151,20 +151,20 @@ blockquote { font-style: italic; margin: 12pt 0; padding: 0 12pt; border-left: 2
 
 <p class="caption">Table 3: Interventional question with confounding (fork graph).</p>
 <table>
-  <tr><th>Graph</th><td>Wealth $\rightarrow$ Education, Wealth $\rightarrow$ Income</td></tr>
+  <tr><th>Graph</th><td>Wealth $\\rightarrow$ Education, Wealth $\\rightarrow$ Income</td></tr>
   <tr><th>CPTs</th><td></td></tr>
-  <tr><td>$P(\text{Wealth})$</td><td>low 50%, high 50%</td></tr>
-  <tr><td>$P(\text{Education} \mid \text{Wealth}=\text{low})$</td><td>basic 80%, advanced 20%</td></tr>
-  <tr><td>$P(\text{Education} \mid \text{Wealth}=\text{high})$</td><td>basic 20%, advanced 80%</td></tr>
-  <tr><td>$P(\text{Income} \mid \text{Wealth}=\text{low})$</td><td>low 60%, medium 30%, high 10%</td></tr>
-  <tr><td>$P(\text{Income} \mid \text{Wealth}=\text{high})$</td><td>low 10%, medium 30%, high 60%</td></tr>
+  <tr><td>$P(\\text{Wealth})$</td><td>low 50%, high 50%</td></tr>
+  <tr><td>$P(\\text{Education} \mid \\text{Wealth}=\\text{low})$</td><td>basic 80%, advanced 20%</td></tr>
+  <tr><td>$P(\\text{Education} \mid \\text{Wealth}=\\text{high})$</td><td>basic 20%, advanced 80%</td></tr>
+  <tr><td>$P(\\text{Income} \mid \\text{Wealth}=\\text{low})$</td><td>low 60%, medium 30%, high 10%</td></tr>
+  <tr><td>$P(\\text{Income} \mid \\text{Wealth}=\\text{high})$</td><td>low 10%, medium 30%, high 60%</td></tr>
   <tr><td><b>Observational query</b></td><td>Among people with HIGH wealth, what % have HIGH income?</td></tr>
   <tr><td><b>Answer</b></td><td>60%</td></tr>
   <tr><td><b>Interventional query</b></td><td>If the government PAID for everyone to get ADVANCED education, what % would have HIGH income?</td></tr>
   <tr><td><b>Answer</b></td><td>35%</td></tr>
 </table>
 
-<p>Table 3 illustrates the fork graph, where wealth confounds the relationship between education and income. The observational answer (60%) differs from the interventional answer (35%) because conditioning on wealth blocks the confounder, while $\operatorname{do}(\text{education})$ requires marginalizing over the wealth distribution. A model that treats $\operatorname{do}(X)$ as conditioning on $X$ would answer the observational query incorrectly for the interventional question.</p>
+<p>Table 3 illustrates the fork graph, where wealth confounds the relationship between education and income. The observational answer (60%) differs from the interventional answer (35%) because conditioning on wealth blocks the confounder, while $\operatorname{do}(\\text{education})$ requires marginalizing over the wealth distribution. A model that treats $\operatorname{do}(X)$ as conditioning on $X$ would answer the observational query incorrectly for the interventional question.</p>
 
 <h2>4 Experiments</h2>
 
@@ -243,7 +243,7 @@ blockquote { font-style: italic; margin: 12pt 0; padding: 0 12pt; border-left: 2
 
 <p>GPT-5.4 (25.0%) performs no better than GPT-4o mini (25.7%). While a two-model comparison is limited, this result is consistent with the hypothesis that the limitation may be architectural rather than a matter of scale. If interventional reasoning required more parameters or more training data, we would expect the frontier model to outperform the budget model. It does not.</p>
 
-<p>This finding aligns with concurrent work showing that scaling alone does not close the compositionality gap [14] and that transformer-based models exhibit systematic gaps in multi-step reasoning [17].</p>
+<p>This finding aligns with concurrent work showing that scaling alone does not close the compositionality gap [13] and that transformer-based models exhibit systematic gaps in multi-step reasoning [16].</p>
 
 <h3>5.3 Implications</h3>
 
@@ -277,12 +277,11 @@ blockquote { font-style: italic; margin: 12pt 0; padding: 0 12pt; border-left: 2
 <p>[9] Z. Wang. CausalBench: A comprehensive benchmark for evaluating causal reasoning capabilities of large language models. In <i>SIGHAN</i>, 2024.</p>
 <p>[10] H. Chi, H. Li, W. Yang, F. Liu, L. Lan, X. Ren, T. Liu, and B. Han. Unveiling causal reasoning in large language models: Reality or mirage? In <i>NeurIPS</i>, 2024.</p>
 <p>[11] Y. Chen, V. K. Singh, J. Ma, and R. Tang. CounterBench: Evaluating and improving counterfactual reasoning in large language models. arXiv:2502.11008, 2025.</p>
-<p>[12] Z. Jin, Y. Chen, F. Leeb, et al. CLadder: A benchmark to assess causal reasoning capabilities of language models. In <i>NeurIPS</i>, 2024.</p>
-<p>[13] J. Thomm, G. Camposampiero, A. Terzic, M. Hersche, B. Sch&ouml;lkopf, and A. Rahimi. Limits of transformer language models on learning to compose algorithms. In <i>NeurIPS</i>, 2024.</p>
-<p>[14] O. Press, M. Zhang, S. Min, L. Schmidt, N. Smith, and M. Lewis. Measuring and narrowing the compositionality gap in language models. arXiv:2210.03350, 2022.</p>
-<p>[15] N. Dziri, X. Lu, M. Sclar, X. Li, L. Zettlemoyer, and Y. Bisk. Faith and fate: Limits of transformers on compositionality. In <i>NeurIPS</i>, 2024.</p>
-<p>[16] E. B. Wilson. Probable inference, the law of succession, and statistical inference. <i>Journal of the American Statistical Association</i>, 22(158):209&ndash;212, 1927.</p>
-<p>[17] J. Zhao, J. Tong, Y. Mou, M. Zhang, Q. Zhang, and X. Huang. Exploring the compositional deficiency of large language models in mathematical reasoning through trap problems. In <i>EMNLP</i>, 2024.</p>
+<p>[12] J. Thomm, G. Camposampiero, A. Terzic, M. Hersche, B. Sch&ouml;lkopf, and A. Rahimi. Limits of transformer language models on learning to compose algorithms. In <i>NeurIPS</i>, 2024.</p>
+<p>[13] O. Press, M. Zhang, S. Min, L. Schmidt, N. Smith, and M. Lewis. Measuring and narrowing the compositionality gap in language models. arXiv:2210.03350, 2022.</p>
+<p>[14] N. Dziri, X. Lu, M. Sclar, X. Li, L. Zettlemoyer, and Y. Bisk. Faith and fate: Limits of transformers on compositionality. In <i>NeurIPS</i>, 2024.</p>
+<p>[15] E. B. Wilson. Probable inference, the law of succession, and statistical inference. <i>Journal of the American Statistical Association</i>, 22(158):209&ndash;212, 1927.</p>
+<p>[16] J. Zhao, J. Tong, Y. Mou, M. Zhang, Q. Zhang, and X. Huang. Exploring the compositional deficiency of large language models in mathematical reasoning through trap problems. In <i>EMNLP</i>, 2024.</p>
 </div>
 
 </body>
