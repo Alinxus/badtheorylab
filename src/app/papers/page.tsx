@@ -13,6 +13,7 @@ export default function PapersPage() {
         <div className="nav-links">
           <Link href="/#research">Research</Link>
           <Link href="/#products">Products</Link>
+          <Link href="/reasoning-gap">Reasoning Gap</Link>
           <Link href="/papers" aria-current="page">Papers</Link>
           <Link href="/brief">Brief</Link>
           <Link href="/contact">Contact</Link>

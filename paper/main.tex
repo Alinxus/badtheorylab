@@ -35,7 +35,7 @@
 \maketitle
 
 \begin{abstract}
-We introduce a causal reasoning benchmark that cleanly separates observational from interventional queries over the same causal graphs and probability tables. Across 840 four-choice questions spanning seven canonical graph templates, we evaluate three frontier large language models: GPT-5.4, GPT-4o mini, and Gemini 2.0 Flash. All three models perform at or near random chance (25.0\% [22.2, 28.0], 25.7\% [22.9, 28.8], and 29.2\% [14.9, 49.2] respectively, 95\% Wilson confidence intervals), while an exact inference baseline achieves 100\%. Human experts achieve 97.8\% on similar formal causal reasoning tasks \cite{counterbench}. These results suggest that current frontier models do not reliably perform interventional reasoning -- a limitation that persists across model scale, as GPT-5.4 performs no better than GPT-4o mini. We release the full benchmark, evaluation code, and a live test interface at \url{https://www.badtheorylabs.com/reasoning-test}.
+We introduce a causal reasoning benchmark that cleanly separates observational from interventional queries over the same causal graphs and probability tables. Across 840 four-choice questions spanning seven canonical graph templates, we evaluate three frontier large language models: GPT-5.4, GPT-4o mini, and Gemini 2.0 Flash. All three models perform at or near random chance (25.0\% [22.2, 28.0], 25.7\% [22.9, 28.8], and 29.2\% [14.9, 49.2] respectively, 95\% Wilson confidence intervals), while an exact inference baseline achieves 100\%. Human experts achieve 97.8\% on similar formal causal reasoning tasks \cite{counterbench}. Notably, models also fail at observational queries, suggesting a broader inability to compute probabilities from CPTs rather than a deficit specific to interventional reasoning. We release the full benchmark, evaluation code, and a live test interface at \url{https://www.badtheorylabs.com/reasoning-test}.
 \end{abstract}
 
 \section{Introduction}
@@ -60,7 +60,7 @@ We release the full benchmark, evaluation code, and a live test interface at \ur
 
 \subsection{Causal Reasoning Benchmarks}
 
-Several benchmarks evaluate causal reasoning in LLMs. CLadder \cite{jin2024cladder} generates questions from structural causal models and covers multiple reasoning levels, finding that models perform well on association but degrade on intervention and counterfactual queries. CausalBench \cite{causalbench} evaluates across textual, mathematical, and coding domains with four reasoning perspectives per scenario. CausalProbe 2024 \cite{causalprobe} uses fresh news corpora to test whether LLMs can reason about unseen causal scenarios, finding significant performance drops compared to memorization-prone benchmarks.
+Several benchmarks evaluate causal reasoning in LLMs. CLadder \cite{jin2024cladder} generates questions from structural causal models and covers multiple reasoning levels, finding that models perform well on association but degrade on intervention and counterfactual queries. CausalBench \cite{causalbench} evaluates across textual, mathematical, and coding domains with four reasoning perspectives per scenario. CausalProbe \cite{chi2024causalprobe} uses fresh news corpora to test whether LLMs can reason about unseen causal scenarios, finding significant performance drops compared to memorization-prone benchmarks.
 
 CounterBench \cite{counterbench} specifically targets counterfactual reasoning with 1,200 questions, finding that GPT-4o and DeepSeek-V3 achieve approximately 50\% (random chance for binary questions). Notably, two PhD-level human annotators scored 97.75\% on a 200-question subset, demonstrating that the tasks are solvable with genuine reasoning.
 
@@ -272,13 +272,13 @@ Table~\ref{tab:bygraph} shows accuracy by graph template. Performance varies but
 
 The failure is striking because the task appears straightforward: given a causal graph and complete CPTs, compute a probability. An undergraduate statistics student can solve these problems with a few minutes of calculation. Human experts score 97.8\% on comparable tasks \cite{counterbench}. The exact inference engine achieves 100\%.
 
-One possible explanation is that LLMs process the provided numeric CPTs as text tokens without performing the compositional computation that inference requires. Computing $P(Y \mid \operatorname{do}(X))$ involves summing over intermediate variables while respecting the causal graph structure -- a multi-step operation that transformer-based architectures are not designed to execute reliably \cite{feng2024compositional,dziri2024faithful}. However, we note that the evaluated models perform at chance even on observational queries (Table~\ref{tab:bykind}), which require only basic probability computation from given CPTs. This suggests the failure may stem from a broader inability to compute with probabilities in text form, rather than a deficit specific to causal reasoning per se. Disentangling these explanations requires further work with non-causal arithmetic controls.
+One possible explanation is that LLMs process the provided numeric CPTs as text tokens without performing the compositional computation that inference requires. Computing $P(Y \mid \operatorname{do}(X))$ involves summing over intermediate variables while respecting the causal graph structure -- a multi-step operation that transformer-based architectures are not designed to execute reliably \cite{thomm2024limits,dziri2024faithful}. However, we note that the evaluated models perform at chance even on observational queries (Table~\ref{tab:bykind}), which require only basic probability computation from given CPTs. This suggests the failure may stem from a broader inability to compute with probabilities in text form, rather than a deficit specific to causal reasoning per se. Disentangling these explanations requires further work with non-causal arithmetic controls.
 
 \subsection{Scale Does Not Close the Gap}
 
 GPT-5.4 (25.0\%) performs no better than GPT-4o mini (25.7\%). While a two-model comparison is limited, this result is consistent with the hypothesis that the limitation may be architectural rather than a matter of scale. If interventional reasoning required more parameters or more training data, we would expect the frontier model to outperform the budget model. It does not.
 
-This finding aligns with concurrent work showing that scaling alone does not produce compositional generalization \cite{anil2022scaling,press2022scaling} and that transformer-based models exhibit systematic gaps in multi-step reasoning \cite{ezzini2024transformers}.
+This finding aligns with concurrent work showing that scaling alone does not close the compositionality gap \cite{press2022scaling} and that transformer-based models exhibit systematic gaps in multi-step reasoning \cite{zhao2024mathtrap}.
 
 \subsection{Implications}
 
@@ -340,35 +340,30 @@ E.~Kiciman, R.~Ness, A.~Sharma, and C.~Tan.
 \newblock Causal reasoning and large language models: Opening a new frontier for causality.
 \newblock arXiv:2305.00050, 2024.
 
-\bibitem[Li et al., 2024]{causalbench}
-B.~Li, Y.~Chen, Y.~Wang, and J.~Liang.
+\bibitem[Wang, 2024]{causalbench}
+Z.~Wang.
 \newblock CausalBench: A comprehensive benchmark for evaluating causal reasoning capabilities of large language models.
 \newblock In {\em SIGHAN}, 2024.
 
-\bibitem[Chi et al., 2024]{causalprobe}
-Z.~Chi, Z.~Yang, X.~Chen, and Y.~Zhang.
-\newblock CausalProbe: A causal reasoning benchmark for large language models.
-\newblock arXiv:2406.12345, 2024.
+\bibitem[Chi et al., 2024]{chi2024causalprobe}
+H.~Chi, H.~Li, W.~Yang, F.~Liu, L.~Lan, X.~Ren, T.~Liu, and B.~Han.
+\newblock Unveiling causal reasoning in large language models: Reality or mirage?
+\newblock In {\em NeurIPS}, 2024.
 
 \bibitem[Chen et al., 2025]{counterbench}
-Z.~Chen, Q.~Wu, Y.~Liu, and M.~Xu.
+Y.~Chen, V.~K.~Singh, J.~Ma, and R.~Tang.
 \newblock CounterBench: Evaluating and improving counterfactual reasoning in large language models.
 \newblock arXiv:2502.11008, 2025.
 
-\bibitem[Feng et al., 2024]{feng2024compositional}
-G.~Feng, X.~Chen, Y.~Li, and Z.~Lin.
-\newblock Compositional reasoning in large language models: A survey.
-\newblock arXiv:2401.04444, 2024.
+\bibitem[Thomm et al., 2024]{thomm2024limits}
+J.~Thomm, G.~Camposampiero, A.~Terzic, M.~Hersche, B.~Sch{\"o}lkopf, and A.~Rahimi.
+\newblock Limits of transformer language models on learning to compose algorithms.
+\newblock In {\em NeurIPS}, 2024.
 
 \bibitem[Dziri et al., 2024]{dziri2024faithful}
 N.~Dziri, X.~Lu, M.~Sclar, X.~Li, L.~Zettlemoyer, and Y.~Bisk.
 \newblock Faith and fate: Limits of transformers on compositionality.
 \newblock In {\em NeurIPS}, 2024.
-
-\bibitem[Anil et al., 2022]{anil2022scaling}
-C.~Anil, Y.~Wu, A.~J.~Andreassen, A.~Lewkowycz, V.~Stengele, E.~Lubin, et~al.
-\newblock Scaling does not improve compositional generalization in language models.
-\newblock arXiv:2207.08484, 2022.
 
 \bibitem[Press et al., 2022]{press2022scaling}
 O.~Press, M.~Zhang, S.~Min, L.~Schmidt, N.~Smith, and M.~Lewis.
@@ -380,10 +375,10 @@ E.~B.~Wilson.
 \newblock Probable inference, the law of succession, and statistical inference.
 \newblock {\em Journal of the American Statistical Association}, 22(158):209--212, 1927.
 
-\bibitem[Ezzi et al., 2024]{ezzini2024transformers}
-M.~Ezzi, A.~Boyd, and S.~Vyas.
-\newblock Transformers fail systematic compositional reasoning.
-\newblock arXiv:2403.12345, 2024.
+\bibitem[Zhao et al., 2024]{zhao2024mathtrap}
+J.~Zhao, J.~Tong, Y.~Mou, M.~Zhang, Q.~Zhang, and X.~Huang.
+\newblock Exploring the compositional deficiency of large language models in mathematical reasoning through trap problems.
+\newblock In {\em EMNLP}, 2024.
 
 \end{thebibliography}
 
