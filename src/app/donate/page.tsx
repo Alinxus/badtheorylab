@@ -25,9 +25,10 @@ const DONATIONS = [
 
 const RAISED = 60;
 
-export default function FundPage() {
+export default function DonatePage() {
   const [customAmt, setCustomAmt] = useState("");
   const [showDonate, setShowDonate] = useState<number | "custom" | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const progressPct = Math.min((RAISED / GOAL) * 100, 100);
 
   return (
@@ -49,7 +50,25 @@ export default function FundPage() {
           <a href={DISCORD_URL} target="_blank" rel="noreferrer">Join community</a>
           <a href={CAL_URL} target="_blank" rel="noreferrer" className="solid">Schedule call</a>
         </div>
+        <button className={`nav-burger${menuOpen ? " open" : ""}`} onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {menuOpen && (
+        <div className="nav-drawer">
+          <a href="/#research" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Research</a>
+          <a href="/#products" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Products</a>
+          <Link href="/reasoning-gap" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Gap</Link>
+          <Link href="/papers" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Papers</Link>
+          <Link href="/donate" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Donate</Link>
+          <Link href="/brief" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Brief</Link>
+          <Link href="/contact" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Contact</Link>
+          <div className="nav-drawer-divider" />
+          <a href={DISCORD_URL} target="_blank" rel="noreferrer" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Join community</a>
+          <a href={CAL_URL} target="_blank" rel="noreferrer" className="nav-drawer-cta" onClick={() => setMenuOpen(false)}>Schedule call</a>
+        </div>
+      )}
 
       <section className="hero">
         <p className="eyebrow">Bad Theory Labs · Research Fund</p>
@@ -329,7 +348,8 @@ const styles = `
 .btn:hover { opacity:.85; }
 
 @media (max-width:900px) {
-  .nav-links { display:none; }
+  .nav-links, .nav-cta { display:none; }
+  .nav-burger { display:flex; }
   .top-nav { padding:0 16px; }
   .fund-two-col { grid-template-columns:1fr; gap:32px; }
   .tier-grid { grid-template-columns:1fr 1fr; }
@@ -337,4 +357,22 @@ const styles = `
   .raised-amount { font-size:36px; }
   .hero, .fund-core, .donations-feed, .updates { padding-left:16px; padding-right:16px; }
 }
+
+@media (min-width:901px) {
+  .nav-burger { display:none; }
+}
+
+/* hamburger */
+.nav-burger { flex-direction:column; justify-content:center; align-items:center; width:36px; height:36px; background:none; border:none; cursor:pointer; gap:5px; padding:0; }
+.nav-burger span { display:block; width:20px; height:1.5px; background:var(--ink); border-radius:1px; transition:all 0.2s; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+/* drawer */
+.nav-drawer { position:fixed; top:58px; left:0; right:0; z-index:999; background:var(--bg); border-bottom:1px solid var(--border); padding:12px 16px 20px; display:flex; flex-direction:column; gap:2px; }
+.nav-drawer-link { padding:10px 0; color:var(--body); text-decoration:none; font-family:var(--font-s); font-size:14px; border-bottom:1px solid var(--border); }
+.nav-drawer-link:last-of-type { border-bottom:none; }
+.nav-drawer-divider { height:1px; background:var(--border2); margin:8px 0; }
+.nav-drawer-cta { display:block; text-align:center; background:var(--ink); color:var(--bg); padding:10px 14px; border-radius:8px; text-decoration:none; font-family:var(--font-s); font-size:14px; margin-top:4px; }
 `;
