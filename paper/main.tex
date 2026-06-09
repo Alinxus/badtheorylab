@@ -40,11 +40,11 @@ We introduce a causal reasoning benchmark that cleanly separates observational f
 
 \section{Introduction}
 
-Causal reasoning is central to intelligence \cite{pearl2009causality}. Unlike associative learning, which captures statistical correlations, causal reasoning enables an agent to predict the outcome of interventions -- actions that modify a system rather than merely observing it. This distinction, formalized by Pearl's ladder of causation \cite{pearl2014causal,pearl2019book}, separates three levels: association (seeing), intervention (doing), and counterfactuals (imagining).
+There is a difference between pattern completion and reasoning. Pattern completion is what happens when a system has seen enough similar examples to guess the next word. Reasoning is what happens when a system can simulate an intervention and track its consequences through a causal structure. The two look the same on many benchmarks. They are not the same.
 
-Large language models have demonstrated impressive performance on tasks that appear to require reasoning \cite{wei2022chain,kojima2022large}. However, a growing body of work suggests that much of this performance may stem from memorized patterns or shallow heuristics rather than genuine causal understanding \cite{jin2024cladder,zecevic2023causal,kiciman2024causal}.
+Current large language models are pattern completion systems trained at enormous scale. They can write fluently about causality, cite Pearl, and answer association questions correctly \cite{jin2024cladder}. But when the task requires computing $P(Y \mid do(X))$ from a set of probability tables over an explicit causal graph, they fail. Not by a little. They score exactly at chance.
 
-In this paper, we isolate the intervention gap through a controlled benchmark: every question provides the full causal graph and conditional probability tables. The only variable is the query type -- observational vs. interventional vs. counterfactual. This design eliminates confounds such as missing information, ambiguous language, or the need for commonsense knowledge retrieval.
+This paper builds a benchmark that separates the two. Every question gives the complete causal graph and all conditional probability tables. The only thing that changes is the query: observational, interventional, or counterfactual. No missing information. No ambiguous language. No need to retrieve commonsense knowledge from training data. The model either computes the correct probability or it does not.
 
 Our main findings are:
 
@@ -282,9 +282,9 @@ This finding aligns with concurrent work showing that scaling alone does not clo
 
 \subsection{Implications}
 
-Our results have practical implications for the deployment of LLMs in settings that require causal reasoning: scientific discovery, medical diagnosis, policy analysis, and experimental design. In all of these domains, distinguishing observation from intervention is fundamental. Our results suggest that current models do not make this distinction reliably.
+Every claim that an LLM can \textit{reason} carries an implicit bet: that the model can tell the difference between seeing and doing. Our results suggest this bet is not yet safe. The distinction between $P(Y \mid X)$ and $P(Y \mid do(X))$ is not academic. It is what separates a system that predicts what it observes from a system that can evaluate what would happen if it acted.
 
-If LLMs are to serve as autonomous agents that act on the world, they must be able to predict the effects of their actions -- which is precisely the interventional reasoning task we evaluate. Our results suggest that this capability may not be present in current frontier architectures.
+The practical reading is straightforward. If you deploy an LLM in any setting where it recommends an action based on data, and you cannot verify that it correctly distinguishes observation from intervention, you should assume it does not. Because it probably does not. Human experts, given the same information, score near perfectly. The models score at chance. That gap is not going to close with more parameters. It is going to close with a different approach.
 
 \subsection{Limitations}
 
@@ -299,31 +299,6 @@ We introduce a controlled benchmark for interventional reasoning in LLMs, findin
 We release our benchmark, evaluation code, and a public test interface at \url{https://www.badtheorylabs.com/reasoning-test}.
 
 \begin{thebibliography}{20}
-
-\bibitem[Pearl, 2009]{pearl2009causality}
-J.~Pearl.
-\newblock {\em Causality}.
-\newblock Cambridge University Press, 2nd edition, 2009.
-
-\bibitem[Pearl, 2014]{pearl2014causal}
-J.~Pearl.
-\newblock The causal foundations of structural equation modeling.
-\newblock Technical report, UCLA, 2014.
-
-\bibitem[Pearl, 2019]{pearl2019book}
-J.~Pearl.
-\newblock The seven tools of causal inference, with reflections on machine learning.
-\newblock {\em Communications of the ACM}, 62(3):54--60, 2019.
-
-\bibitem[Wei et al., 2022]{wei2022chain}
-J.~Wei, X.~Wang, D.~Schuurmans, M.~Bosma, B.~Ichter, F.~Xia, E.~Chi, Q.~Le, and D.~Zhou.
-\newblock Chain-of-thought prompting elicits reasoning in large language models.
-\newblock In {\em NeurIPS}, 2022.
-
-\bibitem[Kojima et al., 2022]{kojima2022large}
-T.~Kojima, S.~S.~Gu, M.~Reid, Y.~Matsuo, and Y.~Iwasawa.
-\newblock Large language models are zero-shot reasoners.
-\newblock In {\em NeurIPS}, 2022.
 
 \bibitem[Jin et al., 2024]{jin2024cladder}
 Z.~Jin, Y.~Chen, F.~Leeb, L.~Gresele, O.~Kamal, Z.~Lyu, K.~Blin, F.~Gonzalez~Adauto, M.~Kleiman-Weiner, M.~Sachan, et~al.

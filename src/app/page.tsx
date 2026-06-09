@@ -1748,6 +1748,7 @@ export default function BTLLanding() {
           <a className="nav-link" href="/papers">Papers</a>
           <a className="nav-link" href="/reasoning-gap">Reasoning Gap</a>
           <a className="nav-link" href="/reasoning-test">Reasoning Test</a>
+          <a className="nav-link" href="/fund">Fund</a>
           <a className="nav-link" href="/brief">Brief</a>
           <a className="nav-link" href="/hackathon">Hackathon</a>
           <a className="nav-link" href="/contact">Contact</a>
@@ -1777,6 +1778,7 @@ export default function BTLLanding() {
           <a href="/papers"   className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Papers</a>
           <a href="/reasoning-gap" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Gap</a>
           <a href="/reasoning-test" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Test</a>
+          <a href="/fund"     className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Fund</a>
           <a href="/brief"    className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Brief</a>
           <a href="/hackathon" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Hackathon</a>
           <a href="/contact"  className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Contact</a>
