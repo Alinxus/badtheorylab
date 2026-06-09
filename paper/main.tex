@@ -20,7 +20,7 @@
   urlcolor=blue,
 }
 
-\title{The Reasoning Gap:\\[4pt]Large Language Models Cannot Distinguish\\[2pt]Observation from Intervention}
+\title{The Reasoning Gap:\\[4pt]Frontier LLMs Fail at Interventional\\[2pt]Causal Inference from Probability Tables}
 
 \author{%
   Olajide Al-ameen\\
@@ -35,22 +35,22 @@
 \maketitle
 
 \begin{abstract}
-We introduce a causal reasoning benchmark that cleanly separates observational from interventional queries over the same causal graphs and probability tables. Across 840 four-choice questions spanning seven canonical graph templates, we evaluate three frontier large language models: GPT-5.4, GPT-4o mini, and Gemini 2.0 Flash. All three models perform at or near random chance (25.0\%, 25.7\%, and 29.2\% respectively), while an exact inference baseline achieves 100\%. Human experts achieve 97.8\% on similar formal causal reasoning tasks \cite{counterbench}. These results suggest that current LLMs lack the capacity for interventional reasoning -- a limitation that persists across model scale, as the frontier model (GPT-5.4) performs no better than the cheapest (GPT-4o mini). We release the full benchmark, evaluation code, and a live test interface at \url{https://www.badtheorylabs.com/reasoning-test}.
+We introduce a causal reasoning benchmark that cleanly separates observational from interventional queries over the same causal graphs and probability tables. Across 840 four-choice questions spanning seven canonical graph templates, we evaluate three frontier large language models: GPT-5.4, GPT-4o mini, and Gemini 2.0 Flash. All three models perform at or near random chance (25.0\% [22.2, 28.0], 25.7\% [22.9, 28.8], and 29.2\% [14.9, 49.2] respectively, 95\% Wilson confidence intervals), while an exact inference baseline achieves 100\%. Human experts achieve 97.8\% on similar formal causal reasoning tasks \cite{counterbench}. These results suggest that current frontier models do not reliably perform interventional reasoning -- a limitation that persists across model scale, as GPT-5.4 performs no better than GPT-4o mini. We release the full benchmark, evaluation code, and a live test interface at \url{https://www.badtheorylabs.com/reasoning-test}.
 \end{abstract}
 
 \section{Introduction}
 
 Causal reasoning is central to intelligence \cite{pearl2009causality}. Unlike associative learning, which captures statistical correlations, causal reasoning enables an agent to predict the outcome of interventions -- actions that modify a system rather than merely observing it. This distinction, formalized by Pearl's ladder of causation \cite{pearl2014causal,pearl2019book}, separates three levels: association (seeing), intervention (doing), and counterfactuals (imagining).
 
-Large language models have demonstrated impressive performance on tasks that appear to require reasoning \cite{wei2022chain,kojima2022large}. However, a growing body of work suggests that much of this performance may stem from memorized patterns or shallow heuristics rather than genuine causal understanding \cite{jin2024cladder,zecevic2023causal,kiciman2024causal}. Models succeed on observational questions but struggle when the same causal structure requires interventional reasoning.
+Large language models have demonstrated impressive performance on tasks that appear to require reasoning \cite{wei2022chain,kojima2022large}. However, a growing body of work suggests that much of this performance may stem from memorized patterns or shallow heuristics rather than genuine causal understanding \cite{jin2024cladder,zecevic2023causal,kiciman2024causal}.
 
 In this paper, we isolate the intervention gap through a controlled benchmark: every question provides the full causal graph and conditional probability tables. The only variable is the query type -- observational vs. interventional vs. counterfactual. This design eliminates confounds such as missing information, ambiguous language, or the need for commonsense knowledge retrieval.
 
 Our main findings are:
 
 \begin{itemize}
-  \item \textbf{All models perform at random chance.} GPT-5.4 (25.0\%), GPT-4o mini (25.7\%), and Gemini 2.0 Flash (29.2\%) all score indistinguishably from the 25\% baseline expected from random guessing on four-choice questions.
-  \item \textbf{Scale does not help.} The most capable model (GPT-5.4) performs no better than the cheapest (GPT-4o mini), suggesting an architectural rather than a scaling limitation.
+  \item \textbf{All evaluated models perform at or near random chance.} GPT-5.4 (25.0\%, 95\% CI [22.2, 28.0]), GPT-4o mini (25.7\%, 95\% CI [22.9, 28.8]), and Gemini 2.0 Flash (29.2\%, 95\% CI [14.9, 49.2]) all score indistinguishably from the 25\% baseline expected from random guessing on four-choice questions.
+  \item \textbf{Scale does not help.} The most capable model (GPT-5.4) performs no better than the cheapest (GPT-4o mini), consistent with an architectural rather than a scaling limitation.
   \item \textbf{The problem is solvable.} An exact inference engine achieves 100\%, and human experts score 97.8\% on comparable tasks \cite{counterbench}.
 \end{itemize}
 
@@ -108,7 +108,7 @@ Each question includes the complete causal graph (variable names and edges) and 
 
 \subsection{Metric}
 
-All questions are four-choice multiple choice. We report accuracy as the proportion of correctly answered questions. Random chance is 25\%.
+All questions are four-choice multiple choice. We report accuracy as the proportion of correctly answered questions. Random chance is 25\%. We report 95\% Wilson confidence intervals for all proportions \cite{wilson1927probable}.
 
 \subsection{Example Questions}
 
@@ -209,24 +209,25 @@ Models are instructed to output the letter corresponding to the correct answer. 
 
 \begin{table}[h]
 \centering
-\caption{Overall accuracy across models. Random chance is 25\%.}
+\caption{Overall accuracy across models. 95\% Wilson confidence intervals in brackets. Random chance is 25\%.}
 \label{tab:main}
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrl}
 \toprule
-\textbf{Model} & \textbf{Total} & \textbf{Correct} & \textbf{Accuracy} \\
+\textbf{Model} & \textbf{Total} & \textbf{Correct} & \textbf{Accuracy} & \textbf{95\% CI} \\
 \midrule
-Exact solver & 840 & 840 & 100.0\% \\
+Exact solver & 840 & 840 & 100.0\% & --- \\
 \midrule
-Gemini 2.0 Flash & 24 & 7 & 29.2\% \\
-GPT-4o mini & 840 & 216 & 25.7\% \\
-GPT-5.4 & 840 & 210 & 25.0\% \\
+Gemini 2.0 Flash$^\dagger$ & 24 & 7 & 29.2\% & [14.9, 49.2] \\
+GPT-4o mini & 840 & 216 & 25.7\% & [22.9, 28.8] \\
+GPT-5.4 & 840 & 210 & 25.0\% & [22.2, 28.0] \\
 \midrule
-Random chance & --- & --- & 25.0\% \\
+Random chance & --- & --- & 25.0\% & --- \\
 \bottomrule
+\multicolumn{5}{l}{\footnotesize $^\dagger$Gemini 2.0 Flash was evaluated on only 24 questions due to API rate limits. All other models evaluated on the full 840-question set.}
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:main} presents the main results. All three models score near the random-chance baseline of 25\%. GPT-5.4, despite being the most capable model in the set, achieves 25.0\% -- exactly at chance. GPT-4o mini achieves 25.7\% (216/840), and Gemini 2.0 Flash achieves 29.2\% on a limited subset of 24 questions. The exact solver achieves 100\%, confirming benchmark correctness.
+Table~\ref{tab:main} presents the main results. All three models score near the random-chance baseline of 25\%. GPT-5.4, despite being the most capable model in the set, achieves 25.0\% -- exactly at chance (95\% CI [22.2, 28.0]). GPT-4o mini achieves 25.7\% (95\% CI [22.9, 28.8]), and Gemini 2.0 Flash achieves 29.2\% on a limited subset of 24 questions (95\% CI [14.9, 49.2]). In all cases, the 95\% confidence interval includes 25\%, meaning none of the models perform statistically significantly above random chance. The exact solver achieves 100\%, confirming benchmark correctness.
 
 \begin{table}[h]
 \centering
@@ -242,7 +243,7 @@ GPT-5.4 & 24.2\% (110/455) & 24.8\% (78/315) & 31.4\% (22/70) \\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:bykind} breaks down performance by question type. Notably, models do not perform better on observational than interventional questions -- they fail uniformly across all three levels. This suggests that the difficulty is not specific to intervention queries but reflects a broader inability to compute probabilities from CPTs.
+Table~\ref{tab:bykind} breaks down performance by question type. Notably, models do not perform better on observational than interventional questions -- they fail uniformly across all three levels. This suggests that the primary difficulty is not specifically about interventions but rather a broader inability to compute probabilities from CPTs presented in text form.
 
 \begin{table}[h]
 \centering
@@ -271,27 +272,29 @@ Table~\ref{tab:bygraph} shows accuracy by graph template. Performance varies but
 
 The failure is striking because the task appears straightforward: given a causal graph and complete CPTs, compute a probability. An undergraduate statistics student can solve these problems with a few minutes of calculation. Human experts score 97.8\% on comparable tasks \cite{counterbench}. The exact inference engine achieves 100\%.
 
-The most likely explanation is that LLMs process the provided numeric CPTs as text tokens without performing the compositional computation that inference requires. Computing $P(Y \mid \operatorname{do}(X))$ involves summing over intermediate variables while respecting the causal graph structure -- a multi-step operation that transformer-based architectures are not designed to execute reliably \cite{feng2024compositional,dziri2024faithful}.
+One possible explanation is that LLMs process the provided numeric CPTs as text tokens without performing the compositional computation that inference requires. Computing $P(Y \mid \operatorname{do}(X))$ involves summing over intermediate variables while respecting the causal graph structure -- a multi-step operation that transformer-based architectures are not designed to execute reliably \cite{feng2024compositional,dziri2024faithful}. However, we note that the evaluated models perform at chance even on observational queries (Table~\ref{tab:bykind}), which require only basic probability computation from given CPTs. This suggests the failure may stem from a broader inability to compute with probabilities in text form, rather than a deficit specific to causal reasoning per se. Disentangling these explanations requires further work with non-causal arithmetic controls.
 
 \subsection{Scale Does Not Close the Gap}
 
-GPT-5.4 (25.0\%) performs no better than GPT-4o mini (25.7\%). This is consistent with the hypothesis that the limitation is architectural rather than a matter of scale. If interventional reasoning required more parameters or more training data, we would expect the frontier model to outperform the budget model. It does not.
+GPT-5.4 (25.0\%) performs no better than GPT-4o mini (25.7\%). While a two-model comparison is limited, this result is consistent with the hypothesis that the limitation may be architectural rather than a matter of scale. If interventional reasoning required more parameters or more training data, we would expect the frontier model to outperform the budget model. It does not.
 
 This finding aligns with concurrent work showing that scaling alone does not produce compositional generalization \cite{anil2022scaling,press2022scaling} and that transformer-based models exhibit systematic gaps in multi-step reasoning \cite{ezzini2024transformers}.
 
 \subsection{Implications}
 
-Our results have practical implications for the deployment of LLMs in settings that require causal reasoning: scientific discovery, medical diagnosis, policy analysis, and experimental design. In all of these domains, distinguishing observation from intervention is fundamental. Current models cannot make this distinction reliably.
+Our results have practical implications for the deployment of LLMs in settings that require causal reasoning: scientific discovery, medical diagnosis, policy analysis, and experimental design. In all of these domains, distinguishing observation from intervention is fundamental. Our results suggest that current models do not make this distinction reliably.
 
-If LLMs are to serve as autonomous agents that act on the world, they must be able to predict the effects of their actions -- which is precisely the interventional reasoning task we evaluate. Our results suggest that this capability is not present in current architectures.
+If LLMs are to serve as autonomous agents that act on the world, they must be able to predict the effects of their actions -- which is precisely the interventional reasoning task we evaluate. Our results suggest that this capability may not be present in current frontier architectures.
 
 \subsection{Limitations}
 
-This study has several limitations. First, we evaluate only three models; a broader survey would be valuable. Second, Gemini 2.0 Flash was evaluated on only 24 questions due to API rate limits, which limits statistical power. Third, our benchmark tests a specific form of causal reasoning (discrete CPTs over small graphs), and results may not generalize to continuous or high-dimensional settings. Fourth, all questions are four-choice, and we do not measure calibration or confidence.
+This study has several limitations. First, we evaluate only three models; a broader survey would be valuable. Second, Gemini 2.0 Flash was evaluated on only 24 questions due to API rate limits, which limits statistical power and comparability. Third, our benchmark tests a specific form of causal reasoning (discrete CPTs over small graphs), and results may not generalize to continuous or high-dimensional settings. Fourth, all questions are four-choice, and we do not measure calibration or confidence.
+
+Fifth, and most importantly, our benchmark conflates causal reasoning with arithmetic computation from probability tables. Models score at chance on observational queries as well as interventional ones (Table~\ref{tab:bykind}), suggesting the failure may reflect a general inability to compute probabilities from text rather than a deficit specific to causal reasoning. A non-causal control condition -- where models compute marginal probabilities from tables without causal structure -- would help isolate the source of failure. We leave this control for future work, but note that even a pure arithmetical interpretation of our results has practical significance: if frontier models cannot reliably compute probabilities from conditional probability tables, they cannot be trusted in settings that require probabilistic reasoning.
 
 \section{Conclusion}
 
-We introduce a controlled benchmark for interventional reasoning in LLMs, finding that current models -- including the frontier GPT-5.4 -- perform at random chance when asked to distinguish observational from interventional queries. The failure persists across model scale and graph structure. These results suggest that genuine causal reasoning remains an open challenge for transformer-based architectures.
+We introduce a controlled benchmark for interventional reasoning in LLMs, finding that evaluated models -- including the frontier GPT-5.4 -- perform at or near random chance when asked to distinguish observational from interventional queries. None of the models perform statistically significantly above the 25\% chance baseline. The failure persists across model scale and graph structure. These results suggest that reliable causal reasoning from probability tables remains an open challenge for current frontier models.
 
 We release our benchmark, evaluation code, and a public test interface at \url{https://www.badtheorylabs.com/reasoning-test}.
 
@@ -371,6 +374,11 @@ C.~Anil, Y.~Wu, A.~J.~Andreassen, A.~Lewkowycz, V.~Stengele, E.~Lubin, et~al.
 O.~Press, M.~Zhang, S.~Min, L.~Schmidt, N.~Smith, and M.~Lewis.
 \newblock Measuring and narrowing the compositionality gap in language models.
 \newblock arXiv:2210.03350, 2022.
+
+\bibitem[Wilson, 1927]{wilson1927probable}
+E.~B.~Wilson.
+\newblock Probable inference, the law of succession, and statistical inference.
+\newblock {\em Journal of the American Statistical Association}, 22(158):209--212, 1927.
 
 \bibitem[Ezzi et al., 2024]{ezzini2024transformers}
 M.~Ezzi, A.~Boyd, and S.~Vyas.
