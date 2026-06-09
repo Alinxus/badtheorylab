@@ -23,7 +23,7 @@ const DONATIONS = [
   { name: "Anonymous", amount: "$20", method: "SOL", date: "1w ago" },
 ];
 
-const RAISED = 175;
+const RAISED = 60;
 
 export default function FundPage() {
   const [customAmt, setCustomAmt] = useState("");
@@ -55,8 +55,8 @@ export default function FundPage() {
         <p className="eyebrow">Bad Theory Labs · Research Fund</p>
         <h1>BTL Research Fund</h1>
         <p className="hero-subtitle">
-          Fund the infrastructure for independent AI reasoning research.
-          No VC. No paywalls. Every dollar goes to compute. Every result gets published.
+          We need investment and donations to fund independent AI reasoning research.
+          Every dollar goes to compute. Every result gets published.
         </p>
       </section>
 
@@ -69,7 +69,7 @@ export default function FundPage() {
           <div className="progress-bar">
             <div className="progress-fill" style={{ width: `${progressPct}%` }} />
           </div>
-          <p className="progress-note">We do not take VC. Every contribution funds research infrastructure directly.</p>
+          <p className="progress-note">Every contribution funds research infrastructure directly.</p>
         </div>
 
         <div className="fund-two-col">
@@ -95,6 +95,14 @@ export default function FundPage() {
               <li><strong>$30,000</strong> — Dataset hosting, public infrastructure, compute for fine-tuning experiments</li>
               <li><strong>$20,000</strong> — DOI registration, archiving, domain fees, operational costs</li>
             </ul>
+            <div className="invest-section">
+              <h3>Interested in investing?</h3>
+              <p>
+                We welcome strategic investors who want to back independent AI reasoning research.
+                Reach out directly:
+              </p>
+              <a href="mailto:alameencodes@gmail.com" className="invest-email">alameencodes@gmail.com</a>
+            </div>
             <p className="fund-footnote">Every dollar is logged. Every result is public.</p>
           </div>
 
@@ -198,7 +206,7 @@ export default function FundPage() {
           <p className="update-date">June 2026</p>
           <p className="update-title">Fund launched</p>
           <p className="update-body">
-            BTL Research Fund is open. First $175 raised. First GPU order pending.
+            BTL Research Fund is open. First $60 raised. First GPU order pending.
             The Reasoning Gap benchmark is published. Next: arithmetic control eval and model fine-tuning experiments.
           </p>
         </div>
@@ -256,6 +264,10 @@ const styles = `
 .fund-desc li { padding:8px 0; border-bottom:1px solid var(--border); font-size:14px; color:var(--body); }
 .fund-desc li strong { color:var(--ink); }
 .fund-footnote { font-family:var(--font-m); font-size:11px; color:var(--faint); letter-spacing:.06em; text-transform:uppercase; margin-top:16px; }
+.invest-section { margin-top:32px; padding:16px; background:var(--surface); border:1px solid var(--border); border-radius:10px; }
+.invest-section h3 { font-family:var(--font-d); font-size:20px; letter-spacing:-.01em; margin-bottom:6px; }
+.invest-section p { color:var(--body); line-height:1.7; font-size:14px; margin-bottom:6px; }
+.invest-email { font-family:var(--font-m); font-size:13px; color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
 
 /* tiers */
 .fund-tiers h3 { font-family:var(--font-d); font-size:24px; letter-spacing:-.01em; margin-bottom:14px; }
