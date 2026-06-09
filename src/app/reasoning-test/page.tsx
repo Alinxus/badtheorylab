@@ -16,10 +16,34 @@ function shuffle<T>(a: T[]): T[] {
   return arr;
 }
 
-function parseCPTs(text: string): { lines: string[]; condLines: string[] } {
-  const lines = text.split("\n");
-  const condLines = lines.filter(l => l.includes("|"));
-  return { lines, condLines };
+type VarInfo = { id: string; name: string; values: string[] };
+
+function fmtPlainCPTs(text: string, variables: VarInfo[]): string[] {
+  const varMap = new Map(variables.map(v => [v.id, v]));
+  const out: string[] = [];
+  for (const line of text.split("\n")) {
+    const m = line.match(/^P\((\w+)(?:\s*\|\s*(.+))?\)\s*=\s*(.+)$/);
+    if (!m) continue;
+    const varId = m[1];
+    const condRaw = m[2] || "";
+    const probs = m[3].trim().split(/\s+/);
+    const vi = varMap.get(varId);
+    if (!vi) { out.push(line); continue; }
+    if (!condRaw) {
+      out.push(`${vi.name}: ${vi.values.map((vl, i) => `${vl} ${probs[i] || "?"}`).join(", ")}`);
+    } else {
+      // Parse conditions like "T=no,A=yes"
+      const condParts = condRaw.split(",").map(c => c.trim());
+      const condStr = condParts.map(c => {
+        const [id, val] = c.split("=");
+        const cv = varMap.get(id);
+        return cv ? `${cv.name} = ${val}` : c;
+      }).join(", ");
+      out.push(`When ${condStr}:`);
+      vi.values.forEach((vl, i) => out.push(`  ${vi.name} = ${vl} → ${probs[i] || "?"}`));
+    }
+  }
+  return out;
 }
 
 export default function ReasoningTestPage() {
@@ -68,7 +92,7 @@ export default function ReasoningTestPage() {
   if (phase === "done") return <ResultsScreen correct={correct} total={TOTAL_Q} answers={answers} saving={saving} saved={saved} onRestart={() => { setPhase("start"); setIdx(0); setCorrect(0); setAnswers([]); setSaved(false); }} />;
 
   const q = questions[idx];
-  const { lines, condLines } = parseCPTs(q.cptsDisplay);
+  const plainLines = fmtPlainCPTs(q.cptsDisplay, q.variables as VarInfo[]);
   const pct = (idx / TOTAL_Q) * 100;
 
   return (
@@ -90,9 +114,9 @@ export default function ReasoningTestPage() {
           </div>
           <div className="rt-cpts">
             <p className="rt-cpts-title">Probability Tables</p>
-            {lines.map((l, i) => {
-              const isCond = l.includes("|");
-              return <div key={i} className={`rt-cpt-line ${isCond ? "rt-cpt-cond" : ""}`}><code>{l}</code></div>;
+            {plainLines.map((l, i) => {
+              const isIndent = l.startsWith("  ");
+              return <div key={i} className={`rt-cpt-line ${isIndent ? "rt-cpt-indent" : ""}`}>{l}</div>;
             })}
           </div>
           <p className="rt-scenario">{q.query}</p>
@@ -223,9 +247,9 @@ const styles = `
 .rt-edge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--body);letter-spacing:.03em}
 .rt-cpts{background:var(--surface);border-radius:8px;padding:12px 14px;margin-bottom:12px}
 .rt-cpts-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
-.rt-cpt-line{font-size:10.5px;line-height:1.65;color:var(--body)}
+.rt-cpt-line{font-size:12px;line-height:1.65;color:var(--body);font-family:'JetBrains Mono',monospace}
 .rt-cpt-line code{font-family:'JetBrains Mono',monospace;background:transparent;color:inherit}
-.rt-cpt-cond{padding-left:8px;border-left:2px solid var(--border);margin-bottom:2px}
+.rt-cpt-indent{padding-left:12px;border-left:2px solid var(--border);margin-bottom:2px}
 .rt-scenario{font-size:16px;font-weight:500;color:var(--ink);line-height:1.4;margin-bottom:20px}
 .rt-choices{display:flex;flex-direction:column;gap:8px}
 .rt-choice{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;background:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--ink);text-align:left;transition:all .12s}
