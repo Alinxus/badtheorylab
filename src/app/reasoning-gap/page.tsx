@@ -31,7 +31,7 @@ export default function ReasoningGapPage() {
         <div className="hero-actions">
           <a href="https://github.com/Badtheorylabs/reasoning-gap" target="_blank" rel="noreferrer" className="btn btn-solid">View on GitHub</a>
           <a href="/reasoning-test" className="btn btn-outline">Take the Test</a>
-          <a href="https://github.com/Badtheorylabs/reasoning-gap/blob/main/paper/main.tex" target="_blank" rel="noreferrer" className="btn btn-outline">Read Paper (LaTeX)</a>
+          <a href="/reasoning-gap/paper.pdf" className="btn btn-outline">Read Paper (PDF)</a>
         </div>
       </section>
 
