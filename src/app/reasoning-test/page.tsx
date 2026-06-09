@@ -150,6 +150,9 @@ function StartScreen({ pid, setPid, onStart }: { pid: string; setPid: (v: string
             data can produce different answers depending on whether you&apos;re asked an observational,
             interventional, or counterfactual question.
           </p>
+          <p className="rt-start-body">
+            Human experts score ~98% on similar tasks. The best LLMs score ~29%.
+          </p>
           <div className="rt-field">
             <label className="rt-field-label">Name (anonymous OK)</label>
             <input className="rt-field-input" placeholder="e.g. alice@example.com" value={pid} onChange={e => setPid(e.target.value)} />
@@ -187,6 +190,7 @@ function ResultsScreen({ correct, total, answers, saving, saved, onRestart }: {
               <div className="rt-compare-row"><span className="rt-compare-label">GPT-5.4</span><span className="rt-compare-val">25.0%</span></div>
               <div className="rt-compare-row"><span className="rt-compare-label">GPT-4o mini</span><span className="rt-compare-val">25.7%</span></div>
               <div className="rt-compare-row"><span className="rt-compare-label">Gemini 2.0 Flash</span><span className="rt-compare-val">29.2%</span></div>
+              <div className="rt-compare-row rt-compare-hum"><span className="rt-compare-label">Human experts (CounterBench)</span><span className="rt-compare-val">97.8%</span></div>
             </div>
           </div>
           {saving && <p className="rt-score-msg">Saving your responses...</p>}
@@ -272,6 +276,7 @@ const styles = `
 .rt-compare-row{display:flex;justify-content:space-between;align-items:center;font-size:13px}
 .rt-compare-label{color:var(--body)}
 .rt-compare-val{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--ink)}
+.rt-compare-hum .rt-compare-val{color:#16a34a}
 .rt-review{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px}
 .rt-review-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
 .rt-review-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
