@@ -61,5 +61,9 @@ export async function GET() {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  return NextResponse.json(data);
+  const masked = (data || []).map((r: any) => ({
+    ...r,
+    participant_id: r.participant_id.slice(0, 3) + "•••••",
+  }));
+  return NextResponse.json(masked);
 }

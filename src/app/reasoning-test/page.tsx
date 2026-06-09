@@ -127,7 +127,7 @@ function StartScreen({ pid, setPid, onStart }: { pid: string; setPid: (v: string
             interventional, or counterfactual question.
           </p>
           <div className="rt-field">
-            <label className="rt-field-label">Name or email (anonymous OK)</label>
+            <label className="rt-field-label">Name (anonymous OK)</label>
             <input className="rt-field-input" placeholder="e.g. alice@example.com" value={pid} onChange={e => setPid(e.target.value)} />
           </div>
           <button className="rt-start-btn" onClick={onStart} disabled={!pid.trim()}>Begin Test</button>
