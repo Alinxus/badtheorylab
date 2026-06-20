@@ -27,6 +27,7 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   title: "Bad Theory Labs",
   description: "Building the infrastructure and products for the next interface to computing",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   icons: {
     icon: "/btl-favicon.svg",
     shortcut: "/btl-favicon.svg",
@@ -59,7 +60,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div style={{ background: '#111', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '13px', fontFamily: 'DM Mono, monospace', borderBottom: '1px solid #333', wordBreak: 'break-all', lineHeight: 1.5 }}>
+          CA: 3bBQrzzq9DRXXFfC9nUno9m1MBm9Y7dVnBBK44bVpump
+        </div>
+        {children}
+      </body>
     </html>
   );
 }
