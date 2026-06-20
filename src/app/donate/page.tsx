@@ -23,7 +23,7 @@ const DONATIONS = [
   { name: "Anonymous", amount: "$20", method: "SOL", date: "1w ago" },
 ];
 
-const RAISED = 300;
+const RAISED = 360;
 
 export default function DonatePage() {
   const [customAmt, setCustomAmt] = useState("");
@@ -225,7 +225,7 @@ export default function DonatePage() {
           <p className="update-date">June 2026</p>
           <p className="update-title">Fund launched</p>
           <p className="update-body">
-            BTL Research Fund is open. First $300 raised. GPU compute funded.
+            BTL Research Fund is open. First $360 raised. GPU compute funded.
             The Reasoning Gap benchmark is published. Next: arithmetic control eval and model fine-tuning experiments.
           </p>
         </div>
