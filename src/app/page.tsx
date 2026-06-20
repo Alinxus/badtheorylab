@@ -1729,6 +1729,9 @@ export default function BTLLanding() {
 
   return (
     <>
+      <div style={{ background: '#111', color: '#fff', textAlign: 'center', padding: '8px 16px', fontSize: '13px', fontFamily: 'JetBrains Mono, monospace', borderBottom: '1px solid #333', wordBreak: 'break-all', lineHeight: 1.5, position: 'relative', zIndex: 9999 }}>
+        CA: 3bBQrzzq9DRXXFfC9nUno9m1MBm9Y7dVnBBK44bVpump
+      </div>
       <style>{css}</style>
       <CursorGlow />
 
