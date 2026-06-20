@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const DISCORD_URL  = "https://discord.gg/eEKNE5M8W";
+const DISCORD_URL  = "https://discord.gg/QJBCcB7bF";
 const FORM_URL     = "https://forms.gle/LHURH73mqa8nXTx49";
 const HACKATHON_DATE = new Date("2025-07-18T08:00:00Z");
 

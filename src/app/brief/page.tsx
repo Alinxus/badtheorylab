@@ -3,7 +3,7 @@ import Link from "next/link";
 const CAL_URL = "https://cal.com/alameenpd/quick-chat";
 const BENCHMARK_URL = "https://retaindb.com/benchmark";
 const OSS_URL = "https://github.com/RetainDB";
-const DISCORD_URL = "https://discord.gg/eEKNE5M8W";
+const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 
 export default function BriefPage() {
   return (

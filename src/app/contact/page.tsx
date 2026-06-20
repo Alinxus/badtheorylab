@@ -1,10 +1,11 @@
 'use client';
 
-import { FormEvent, useState } from "react";
+import { FormEvent, Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const CAL_URL = "https://cal.com/alameenpd/quick-chat";
-const DISCORD_URL = "https://discord.gg/eEKNE5M8W";
+const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 
 type FormState = {
   name: string;
@@ -13,6 +14,10 @@ type FormState = {
   subject: string;
   message: string;
 };
+
+type SearchParamsLike = {
+  get(name: string): string | null;
+} | null;
 
 const initialState: FormState = {
   name: "",
@@ -23,10 +28,46 @@ const initialState: FormState = {
 };
 
 export default function ContactPage() {
+  return (
+    <Suspense fallback={<ContactPageShell searchParams={null} />}>
+      <ContactPageWithSearchParams />
+    </Suspense>
+  );
+}
+
+function ContactPageWithSearchParams() {
+  const searchParams = useSearchParams();
+  return <ContactPageShell searchParams={searchParams} />;
+}
+
+function ContactPageShell({ searchParams }: { searchParams: SearchParamsLike }) {
+  const didPrefill = useRef(false);
   const [form, setForm] = useState<FormState>(initialState);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (didPrefill.current) {
+      return;
+    }
+
+    const subject = searchParams?.get("subject")?.trim();
+    const body = searchParams?.get("message")?.trim();
+    const company = searchParams?.get("company")?.trim();
+
+    if (!subject && !body && !company) {
+      return;
+    }
+
+    setForm((prev) => ({
+      ...prev,
+      company: company || prev.company,
+      subject: subject || prev.subject,
+      message: body || prev.message,
+    }));
+    didPrefill.current = true;
+  }, [searchParams]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

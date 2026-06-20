@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 const CAL_URL = "https://cal.com/alameenpd/quick-chat";
-const DISCORD_URL = "https://discord.gg/eEKNE5M8W";
+const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 const GOAL = 250000;
 
 const TIERS = [

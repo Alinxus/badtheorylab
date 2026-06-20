@@ -1756,7 +1756,7 @@ export default function BTLLanding() {
 
         {/* desktop right */}
         <div className="nav-right">
-          <a className="btn-ghost" href="https://discord.gg/eEKNE5M8W" target="_blank" rel="noreferrer">Join community</a>
+          <a className="btn-ghost" href="https://discord.gg/QJBCcB7bF" target="_blank" rel="noreferrer">Join community</a>
           <a className="btn-solid" href="https://cal.com/alameenpd/quick-chat" target="_blank" rel="noreferrer">Schedule call</a>
         </div>
 
@@ -1783,7 +1783,7 @@ export default function BTLLanding() {
           <a href="/hackathon" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Hackathon</a>
           <a href="/contact"  className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Contact</a>
           <div className="nav-drawer-divider" />
-          <a href="https://discord.gg/eEKNE5M8W" target="_blank" rel="noreferrer" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Join community</a>
+          <a href="https://discord.gg/QJBCcB7bF" target="_blank" rel="noreferrer" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Join community</a>
           <a href="https://cal.com/alameenpd/quick-chat" target="_blank" rel="noreferrer" className="nav-drawer-cta" onClick={() => setMenuOpen(false)}>Schedule call</a>
         </div>
       )}
@@ -2056,6 +2056,71 @@ export default function BTLLanding() {
       </div>
 
       {/* ── RESEARCH ── */}
+      <div className="gateway-pilot-section">
+        <div className="gateway-pilot-left">
+          <Reveal>
+            <div className="product-label">BTL Runtime · AI inference gateway</div>
+            <h3 className="marrow-title" style={{ fontSize: 'clamp(28px, 3vw, 44px)' }}>
+              Lower cost.<br/><em>Lower latency.</em>
+            </h3>
+            <p className="marrow-body gateway-pilot-copy">
+              For teams shipping across OpenAI, Anthropic, Bedrock, Vertex, OpenRouter, and the long tail,
+              BTL Runtime is the drop-in gateway for lowering inference cost and latency
+              without rewriting the app every time provider economics change.
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="gateway-pilot-actions">
+              <MagneticBtn href="/contact?subject=BTL%20Runtime%20access%20request&message=We%20want%20to%20use%20BTL%20Runtime.%20Current%20stack,%20providers,%20traffic,%20and%20constraints:" className="marrow-cta">
+                Request access <Arrow/>
+              </MagneticBtn>
+              <a
+                href="/contact?subject=BTL%20Runtime%20access%20request&message=We%20want%20to%20use%20BTL%20Runtime.%20Current%20stack,%20providers,%20traffic,%20and%20constraints:"
+                className="gateway-pilot-ghost"
+              >
+                Request access
+              </a>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="gateway-pilot-right">
+          <Reveal direction="right">
+            <div className="gateway-pilot-label">What teams get</div>
+            <div className="gateway-pilot-list">
+              {[
+                {
+                  n: '01',
+                  title: 'Drop-in compatibility',
+                  body: 'Keep the OpenAI-compatible app surface and switch the base URL instead of the product architecture.',
+                },
+                {
+                  n: '02',
+                  title: 'Cheaper and faster execution',
+                  body: 'Use routing, cache, and dedupe to push costs down and speed up repeated traffic.',
+                },
+                {
+                  n: '03',
+                  title: 'Proof that it is working',
+                  body: 'Request ledgering, health snapshots, and runtime metrics make the savings visible.',
+                },
+              ].map((item) => (
+                <div key={item.n} className="gateway-pilot-row">
+                  <div className="gateway-pilot-num">{item.n}</div>
+                  <div>
+                    <div className="gateway-pilot-title">{item.title}</div>
+                    <div className="gateway-pilot-body">{item.body}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="gateway-pilot-note">
+              Best fit for teams already shipping AI products and feeling real spend or latency pressure.
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
       <div className="research-section" id="research">
         <div className="research-inner">
           <div className="research-left">
@@ -2272,7 +2337,7 @@ export default function BTLLanding() {
                   { label: 'Reasoning Gap', href: '/reasoning-gap' },
                   { label: 'Reasoning Test', href: '/reasoning-test' },
                   { label: 'Investor brief', href: '/brief' },
-                  { label: 'Discord community', href: 'https://discord.gg/eEKNE5M8W' },
+                  { label: 'Discord community', href: 'https://discord.gg/QJBCcB7bF' },
                 ],
               },
               {

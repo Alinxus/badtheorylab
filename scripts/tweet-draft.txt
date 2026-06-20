@@ -1,0 +1,5 @@
+Frontier LLMs (GPT-5.4, GPT-4o mini, Gemini 2.0 Flash) score ~25% on causal inference from probability tables — exactly random chance. Exact solver: 100%. Human experts: 97.8%. Scale doesn't help. Paper + benchmark + live test:
+
+📄 badtheorylabs.com/reasoning-gap/paper.pdf
+🧪 badtheorylabs.com/reasoning-test
+💻 github.com/Badtheorylabs/reasoning-gap
