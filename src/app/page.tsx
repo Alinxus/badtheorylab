@@ -417,6 +417,57 @@ body::before {
 .bench-bar-fill { height: 100%; background: var(--ink); border-radius: 2px; transition: width 1.2s cubic-bezier(.16,1,.3,1); }
 .bench-bar-fill.dim { background: var(--border2); }
 
+/* ─── BTL RUNTIME (gateway pilot) ─── */
+.gateway-pilot-section { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+.gateway-pilot-left {
+  padding: 60px 56px 64px 52px; border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.gateway-pilot-left::before {
+  content: ''; position: absolute; width: 460px; height: 460px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,94,26,0.045) 0%, transparent 68%);
+  top: 55%; left: 28%; transform: translate(-50%,-50%);
+  pointer-events: none; animation: orb-drift-a 14s ease-in-out infinite;
+}
+.gateway-pilot-copy { max-width: 440px; }
+.gateway-pilot-actions { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+.gateway-pilot-ghost {
+  font-size: 14px; color: var(--body); text-decoration: none;
+  padding: 13px 24px; border-radius: 8px; border: 1px solid var(--border);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.gateway-pilot-ghost:hover { border-color: var(--ink); color: var(--ink); background: rgba(14,13,12,0.025); }
+.gateway-pilot-right {
+  padding: 60px 52px 64px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.gateway-pilot-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--faint);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.gateway-pilot-label::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--border); }
+.gateway-pilot-list { display: flex; flex-direction: column; gap: 0; }
+.gateway-pilot-row {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+  transition: padding-left 0.26s cubic-bezier(.16,1,.3,1);
+}
+.gateway-pilot-row:first-child { border-top: 1px solid var(--border); }
+.gateway-pilot-row:hover { padding-left: 8px; }
+.gateway-pilot-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+  color: var(--faint); width: 22px; flex-shrink: 0; padding-top: 2px;
+}
+.gateway-pilot-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.gateway-pilot-body { font-size: 13px; font-weight: 300; color: var(--body); line-height: 1.65; }
+.gateway-pilot-note {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--faint); letter-spacing: 0.04em; line-height: 1.7; margin-top: 24px;
+}
+
 /* ─── RESEARCH ─── */
 .research-section {
   background: var(--ink); position: relative; overflow: hidden;
@@ -757,8 +808,9 @@ body::before {
   .section-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 48px 20px 36px; }
   .section-desc { text-align: left; max-width: 100%; }
   .products-section { max-width: 100%; }
-  .marrow-section,.retaindb-section,.research-inner,.footer-cta,.footer-main,.btl-everywhere { grid-template-columns: 1fr; }
-  .marrow-left,.rdb-left,.research-left,.footer-cta-left,.btl-ev-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 20px 40px; }
+  .marrow-section,.retaindb-section,.research-inner,.footer-cta,.footer-main,.btl-everywhere,.gateway-pilot-section { grid-template-columns: 1fr; }
+  .marrow-left,.rdb-left,.research-left,.footer-cta-left,.btl-ev-left,.gateway-pilot-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 20px 40px; }
+  .gateway-pilot-right { padding: 40px 20px 44px; }
   .btl-ev-right { padding: 44px 20px 48px; }
   .marrow-right,.rdb-right,.research-right { padding: 40px 20px 44px; }
   .marrow-right { min-height: 280px; }
@@ -1745,6 +1797,8 @@ export default function BTLLanding() {
         <div className="nav-links">
           <a className="nav-link" href="#research">Research</a>
           <a className="nav-link" href="#products">Products</a>
+          <a className="nav-link" href="/runtime">Runtime</a>
+          <a className="nav-link" href="/btl-2-coder">BTL-2 Coder</a>
           <a className="nav-link" href="/papers">Papers</a>
           <a className="nav-link" href="/reasoning-gap">Reasoning Gap</a>
           <a className="nav-link" href="/reasoning-test">Reasoning Test</a>
@@ -1775,6 +1829,8 @@ export default function BTLLanding() {
         <div className="nav-drawer">
           <a href="#research" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Research</a>
           <a href="#products" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Products</a>
+          <a href="/runtime"  className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Runtime</a>
+          <a href="/btl-2-coder" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>BTL-2 Coder</a>
           <a href="/papers"   className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Papers</a>
           <a href="/reasoning-gap" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Gap</a>
           <a href="/reasoning-test" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Test</a>
@@ -2075,8 +2131,8 @@ export default function BTLLanding() {
           </Reveal>
           <Reveal delay={120}>
             <div className="gateway-pilot-actions">
-              <MagneticBtn href="/contact?subject=BTL%20Runtime%20access%20request&message=We%20want%20to%20use%20BTL%20Runtime.%20Current%20stack,%20providers,%20traffic,%20and%20constraints:" className="marrow-cta">
-                Request access <Arrow/>
+              <MagneticBtn href="/runtime" className="marrow-cta">
+                Explore BTL Runtime <Arrow/>
               </MagneticBtn>
               <a
                 href="/contact?subject=BTL%20Runtime%20access%20request&message=We%20want%20to%20use%20BTL%20Runtime.%20Current%20stack,%20providers,%20traffic,%20and%20constraints:"
@@ -2329,6 +2385,8 @@ export default function BTLLanding() {
                 links: [
                   { label: 'Marrow', href: '#products' },
                   { label: 'RetainDB', href: 'https://retaindb.com' },
+                  { label: 'BTL Runtime', href: '/runtime' },
+                  { label: 'BTL-2 Coder 7B', href: '/btl-2-coder' },
                   { label: 'Benchmark', href: 'https://retaindb.com/benchmark' },
                   { label: 'Open source', href: 'https://github.com/RetainDB' },
                 ],
