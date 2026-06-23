@@ -4,10 +4,6 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 
-const REVIEW_REWARD_CLAIM_URL = `/contact?subject=${encodeURIComponent("$BTL review reward claim")}&message=${encodeURIComponent(
-  "Product used: BTL Runtime / Marrow / RetainDB\nReview URL:\nWallet address:\nWhat was useful:\nAnything we should improve:",
-)}`;
-
 /* ─────────────────────────────────────────────
    STYLES
 ───────────────────────────────────────────── */
@@ -2201,7 +2197,7 @@ export default function BTLLanding() {
               the reward is for useful public feedback that helps other builders understand the product.
             </p>
             <div className="review-rewards-actions">
-              <MagneticBtn href={REVIEW_REWARD_CLAIM_URL} className="marrow-cta">
+              <MagneticBtn href="/rewards" className="marrow-cta">
                 Submit review claim <Arrow />
               </MagneticBtn>
               <a
@@ -2246,8 +2242,8 @@ export default function BTLLanding() {
 
           <Reveal direction="right">
             <div className="review-rewards-rule">
-              Submit your review URL, wallet address, product used, and a short note. Rewards are reviewed manually
-              before payout to keep the program useful and abuse-resistant.
+              Submit your review URL, wallet address, product used, and notes through the rewards portal.
+              Claims are reviewed manually before payout to keep the program useful and abuse-resistant.
             </div>
           </Reveal>
         </div>
@@ -2459,7 +2455,7 @@ export default function BTLLanding() {
                   { label: 'RetainDB', href: 'https://retaindb.com' },
                   { label: 'BTL Runtime', href: '/runtime' },
                   { label: 'BTL-2 Coder 7B', href: '/btl-2-coder' },
-                  { label: '$BTL Review Rewards', href: '#review-rewards' },
+                  { label: '$BTL Review Rewards', href: '/rewards' },
                   { label: 'Benchmark', href: 'https://retaindb.com/benchmark' },
                   { label: 'Open source', href: 'https://github.com/RetainDB' },
                 ],

@@ -31,6 +31,30 @@ export async function GET() {
 CREATE UNIQUE INDEX IF NOT EXISTS hackathon_registrations_email_idx
   ON hackathon_registrations (email);`;
 
+  const rewardClaims = `CREATE TABLE IF NOT EXISTS reward_claims (
+  id BIGSERIAL PRIMARY KEY,
+  claim_type TEXT NOT NULL DEFAULT 'review',
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  product TEXT NOT NULL,
+  platform TEXT NOT NULL,
+  review_url TEXT NOT NULL,
+  wallet TEXT NOT NULL,
+  summary TEXT DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'pending',
+  payout_amount NUMERIC,
+  payout_tx TEXT DEFAULT '',
+  reviewer_notes TEXT DEFAULT '',
+  user_agent TEXT DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+-- one reward claim per public review URL
+CREATE UNIQUE INDEX IF NOT EXISTS reward_claims_review_url_idx
+  ON reward_claims (review_url);
+CREATE INDEX IF NOT EXISTS reward_claims_status_created_idx
+  ON reward_claims (status, created_at DESC);`;
+
   const presence = `CREATE TABLE IF NOT EXISTS site_presence (
   session_id TEXT PRIMARY KEY,
   first_seen TIMESTAMPTZ DEFAULT NOW(),
@@ -55,6 +79,7 @@ CREATE TABLE IF NOT EXISTS site_metrics (
     tables: {
       reasoning_test_responses: reasoningTest,
       hackathon_registrations: hackathon,
+      reward_claims: rewardClaims,
       site_presence: presence,
     },
   });
