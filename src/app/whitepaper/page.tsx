@@ -53,8 +53,8 @@ export default function WhitepaperPage() {
           </p>
           <p>
             This document describes the thesis behind the lab, the products shipping against it, and <strong>$BTL</strong>:
-            a Solana token that lets the community hold a stake in the work, coordinate around it, and get access to
-            what we build. $BTL is a coordination and access asset — not a promise of profit.
+            a Solana token that earns holders discounted credits for BTL Runtime, gates early access to what we build,
+            and lets the community coordinate around it. $BTL is a utility and access asset — not a promise of profit.
           </p>
         </section>
 
@@ -120,7 +120,8 @@ export default function WhitepaperPage() {
           <p>$BTL is an SPL token on Solana. It exists to align incentives between the people building the lab and the
             community supporting it. Its design goals are deliberately narrow:</p>
           <ul>
-            <li><strong>Access.</strong> Token-gated early access to product betas (RetainDB, Marrow) and hackathon tracks.</li>
+            <li><strong>Cheaper credits.</strong> Holding $BTL earns discounted credits for BTL Runtime access — the more you hold, the less you pay per call.</li>
+            <li><strong>Early access.</strong> Token-gated entry to product betas (RetainDB, Marrow) and priority hackathon tracks.</li>
             <li><strong>Coordination.</strong> Signal weight in community proposals — what we prioritize, what we open-source.</li>
             <li><strong>Membership.</strong> A durable badge of being early to the thesis, redeemable for community standing.</li>
           </ul>
