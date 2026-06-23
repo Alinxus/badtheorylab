@@ -33,6 +33,12 @@ export default function RewardsPage() {
     event: { target: { value: string } },
   ) => setForm((prev) => ({ ...prev, [key]: event.target.value }));
 
+  const focusNext = (selector: string) => (event: { key: string; preventDefault: () => void }) => {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    document.querySelector<HTMLElement>(selector)?.focus();
+  };
+
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
@@ -113,20 +119,40 @@ export default function RewardsPage() {
               </div>
 
               <div className="rw-grid">
-                <label>
+                <label htmlFor="reward-name">
                   Name
-                  <input value={form.name} onChange={set("name")} required />
+                  <input
+                    id="reward-name"
+                    name="name"
+                    autoComplete="name"
+                    enterKeyHint="next"
+                    value={form.name}
+                    onChange={set("name")}
+                    onKeyDown={focusNext("#reward-email")}
+                    required
+                  />
                 </label>
-                <label>
+                <label htmlFor="reward-email">
                   Email
-                  <input type="email" value={form.email} onChange={set("email")} required />
+                  <input
+                    id="reward-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    enterKeyHint="next"
+                    value={form.email}
+                    onChange={set("email")}
+                    onKeyDown={focusNext("#reward-product")}
+                    required
+                  />
                 </label>
               </div>
 
               <div className="rw-grid">
-                <label>
+                <label htmlFor="reward-product">
                   Product
-                  <select value={form.product} onChange={set("product")} required>
+                  <select id="reward-product" name="product" value={form.product} onChange={set("product")} required>
                     <option>BTL Runtime</option>
                     <option>Marrow</option>
                     <option>RetainDB</option>
@@ -134,9 +160,9 @@ export default function RewardsPage() {
                     <option>Bad Theory Labs</option>
                   </select>
                 </label>
-                <label>
+                <label htmlFor="reward-platform">
                   Platform
-                  <select value={form.platform} onChange={set("platform")} required>
+                  <select id="reward-platform" name="platform" value={form.platform} onChange={set("platform")} required>
                     <option>X</option>
                     <option>YouTube</option>
                     <option>Blog</option>
@@ -148,30 +174,44 @@ export default function RewardsPage() {
                 </label>
               </div>
 
-              <label>
+              <label htmlFor="reward-review-url">
                 Public review URL
                 <input
+                  id="reward-review-url"
+                  name="reviewUrl"
                   type="url"
+                  autoComplete="url"
+                  inputMode="url"
+                  enterKeyHint="next"
                   value={form.reviewUrl}
                   onChange={set("reviewUrl")}
+                  onKeyDown={focusNext("#reward-wallet")}
                   placeholder="https://..."
                   required
                 />
               </label>
 
-              <label>
+              <label htmlFor="reward-wallet">
                 Wallet address
                 <input
+                  id="reward-wallet"
+                  name="wallet"
+                  autoComplete="off"
+                  spellCheck={false}
+                  enterKeyHint="next"
                   value={form.wallet}
                   onChange={set("wallet")}
+                  onKeyDown={focusNext("#reward-summary")}
                   placeholder="$BTL payout wallet"
                   required
                 />
               </label>
 
-              <label>
+              <label htmlFor="reward-summary">
                 Notes
                 <textarea
+                  id="reward-summary"
+                  name="summary"
                   value={form.summary}
                   onChange={set("summary")}
                   rows={4}
@@ -209,13 +249,13 @@ h1 { font-family:var(--font-d); font-size:clamp(42px,5.4vw,74px); line-height:1;
 .rw-rule { border:1px solid var(--border); background:rgba(250,250,249,.72); border-radius:10px; padding:16px; }
 .rw-rule span { font-family:var(--font-m); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
 .rw-rule p { color:var(--body); font-size:13px; line-height:1.55; margin-top:8px; }
-.rw-form { padding:72px clamp(24px,5vw,68px); display:flex; flex-direction:column; justify-content:center; gap:14px; background:var(--surface); }
+.rw-form { padding:72px clamp(24px,5vw,68px); display:flex; flex-direction:column; justify-content:center; gap:14px; background:var(--surface); overflow-anchor:none; }
 .rw-form-head { margin-bottom:4px; }
 .rw-form-head span { font-family:var(--font-m); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); }
 .rw-form-head p { color:var(--body); font-size:13px; margin-top:6px; }
 .rw-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 label { display:flex; flex-direction:column; gap:7px; font-family:var(--font-m); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
-input, select, textarea { width:100%; border:1px solid var(--border); background:var(--bg); border-radius:10px; padding:12px 13px; color:var(--ink); font-family:var(--font-s); font-size:14px; text-transform:none; letter-spacing:0; outline:none; }
+input, select, textarea { width:100%; border:1px solid var(--border); background:var(--bg); border-radius:10px; padding:12px 13px; color:var(--ink); font-family:var(--font-s); font-size:16px; text-transform:none; letter-spacing:0; outline:none; scroll-margin-top:76px; }
 textarea { resize:vertical; }
 input:focus, select:focus, textarea:focus { border-color:var(--ink); }
 button { border:0; border-radius:10px; background:var(--ink); color:var(--bg); padding:13px 18px; cursor:pointer; font-size:14px; font-family:var(--font-s); }
