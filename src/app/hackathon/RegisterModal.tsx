@@ -11,7 +11,6 @@ type Fields = {
   country: string;
   github: string;
   experience: string;
-  track: string;
   teamName: string;
   teamSize: string;
   idea: string;
@@ -20,7 +19,7 @@ type Fields = {
 
 const blank: Fields = {
   firstName: "", lastName: "", email: "", country: "", github: "",
-  experience: "First hackathon", track: "", teamName: "", teamSize: "1",
+  experience: "First hackathon", teamName: "", teamSize: "1",
   idea: "", runtimePlan: "",
 };
 
@@ -65,11 +64,6 @@ export default function RegisterModal({ open, onClose, discordUrl }: Props) {
       setErr("That email doesn't look right.");
       return;
     }
-    if (!f.track) {
-      setErr("Pick a track so we know where you're building.");
-      return;
-    }
-
     setSending(true);
     try {
       const res = await fetch("/api/hackathon", {
@@ -147,14 +141,6 @@ export default function RegisterModal({ open, onClose, discordUrl }: Props) {
               </div>
 
               <div className="rm-grid">
-                <label className="rm-field">
-                  <span>Track *</span>
-                  <select value={f.track} onChange={set("track")}>
-                    <option value="">Choose one…</option>
-                    <option value="AI Apps">AI Apps — end-user products on the runtime</option>
-                    <option value="Agents & Tools">Agents &amp; Tools — agents, automations, dev tools</option>
-                  </select>
-                </label>
                 <label className="rm-field">
                   <span>Experience</span>
                   <select value={f.experience} onChange={set("experience")}>

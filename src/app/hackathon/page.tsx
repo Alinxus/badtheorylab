@@ -77,7 +77,7 @@ export default function HackathonPage() {
             </p>
             <div className="h-actions">
               <button type="button" onClick={openReg} className="btn-p">Register for free</button>
-              <a href="#tracks" className="btn-g">See tracks</a>
+              <a href="#schedule" className="btn-g">See schedule</a>
             </div>
           </div>
 
@@ -141,7 +141,7 @@ export default function HackathonPage() {
           ["Global", "Reach",      "any country, any timezone"],
           ["$1,100", "Prize pool", "paid in USD"],
           ["48h",    "Hacking",    "non-stop"],
-          ["2",      "Tracks",     "ai apps · agents & tools"],
+          ["$0",     "Entry",      "free to join"],
           ["Online", "Venue",      "discord + video"],
         ] as const).map(([n, l, s]) => (
           <div className="h-stat" key={l}>
@@ -179,53 +179,6 @@ export default function HackathonPage() {
         </a>
       </section>
 
-      {/* ── TRACKS ── */}
-      <section className="h-tracks" id="tracks">
-        <div className="h-section-head">
-          <div>
-            <div className="h-eyebrow"><span className="h-eyebrow-rule" /><span>What you&apos;ll build</span></div>
-            <h2 className="h-section-title">Two tracks,<br /><em>one runtime.</em></h2>
-          </div>
-          <p className="h-section-desc">
-            Both tracks run on the BTL runtime. Judging is combined — best project wins, track aside.
-          </p>
-        </div>
-
-        <div className="h-tracks-grid">
-          <div className="h-track-card h-track-dark">
-            <div className="h-track-orb" />
-            <div className="h-track-num">01</div>
-            <h3 className="h-track-name">AI Apps</h3>
-            <p className="h-track-desc">
-              End-user products with the runtime doing the heavy lifting — chat, copilots, search,
-              writing, voice, multimodal. If a real person would open it and get value, it belongs here.
-            </p>
-            <div className="h-track-tags">
-              {["Chat","Copilots","RAG","Search","Voice","Multimodal","Writing"].map(t =>
-                <span className="h-tag h-tag-dark" key={t}>{t}</span>)}
-            </div>
-          </div>
-
-          <div className="h-track-card">
-            <div className="h-track-num h-track-num-light">02</div>
-            <h3 className="h-track-name">Agents &amp; Tools</h3>
-            <p className="h-track-desc">
-              The infrastructure layer — autonomous agents, dev tools, automations, evals, and SDKs that
-              orchestrate the runtime. Tool use, streaming, and multi-step loops live here.
-            </p>
-            <div className="h-track-tags">
-              {["Agents","Tool Use","CLIs","Automations","Evals","SDKs","Pipelines"].map(t =>
-                <span className="h-tag" key={t}>{t}</span>)}
-            </div>
-          </div>
-        </div>
-        <div className="h-tracks-note">
-          <span className="h-tracks-note-rule" />
-          <span>One 1st, one 2nd, one 3rd across both tracks — plus a $100 spot prize for best use of the runtime.</span>
-          <span className="h-tracks-note-rule" />
-        </div>
-      </section>
-
       {/* ── PRIZES ── */}
       <section className="h-prizes">
         <div className="h-prizes-left">
@@ -261,32 +214,32 @@ export default function HackathonPage() {
           <div className="h-prize-card">
             <div className="h-prize-rank">1st Place</div>
             <div className="h-prize-amount">$500</div>
-            <div className="h-prize-track">Cash · Runtime credits · BTL beta access · Mentorship</div>
+            <div className="h-prize-detail">Cash · Runtime credits · BTL beta access · Mentorship</div>
           </div>
           <div className="h-prize-card">
             <div className="h-prize-rank">2nd Place</div>
             <div className="h-prize-amount">$300</div>
-            <div className="h-prize-track">Cash · Runtime credits · BTL beta access · Mentorship</div>
+            <div className="h-prize-detail">Cash · Runtime credits · BTL beta access · Mentorship</div>
           </div>
           <div className="h-prize-card h-prize-card-amber">
             <div className="h-prize-rank">3rd Place</div>
             <div className="h-prize-amount">$200</div>
-            <div className="h-prize-track">Cash · Runtime credits · Certificate · Mentorship</div>
+            <div className="h-prize-detail">Cash · Runtime credits · Certificate · Mentorship</div>
           </div>
           <div className="h-prize-card h-prize-card-spot">
             <div className="h-prize-rank">Spot Prize</div>
             <div className="h-prize-amount h-prize-amount-sm">$100</div>
-            <div className="h-prize-track">Best use of the BTL runtime · judges&apos; pick</div>
+            <div className="h-prize-detail">Best use of the BTL runtime · judges&apos; pick</div>
           </div>
           <div className="h-prize-note">
             Every participant who ships gets a BTL certificate, community membership, and post-event
-            research session access. Best project wins — track doesn&apos;t matter.
+            research session access.
           </div>
         </div>
       </section>
 
       {/* ── SCHEDULE ── */}
-      <section className="h-schedule">
+      <section className="h-schedule" id="schedule">
         <div className="h-section-head">
           <div>
             <div className="h-eyebrow"><span className="h-eyebrow-rule" /><span>Timeline · all times UTC</span></div>

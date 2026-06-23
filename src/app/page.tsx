@@ -4,6 +4,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 
+const REVIEW_REWARD_CLAIM_URL = `/contact?subject=${encodeURIComponent("$BTL review reward claim")}&message=${encodeURIComponent(
+  "Product used: BTL Runtime / Marrow / RetainDB\nReview URL:\nWallet address:\nWhat was useful:\nAnything we should improve:",
+)}`;
+
 /* ─────────────────────────────────────────────
    STYLES
 ───────────────────────────────────────────── */
@@ -468,6 +472,67 @@ body::before {
   color: var(--faint); letter-spacing: 0.04em; line-height: 1.7; margin-top: 24px;
 }
 
+/* ─── REVIEW REWARDS ─── */
+.review-rewards {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.review-rewards-left {
+  padding: 68px 56px 72px 52px; border-right: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.review-rewards-left::before {
+  content: ''; position: absolute; width: 520px; height: 520px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,94,26,0.045) 0%, transparent 68%);
+  top: 45%; left: 20%; transform: translate(-50%,-50%);
+  pointer-events: none; animation: orb-drift-a 14s ease-in-out infinite;
+}
+.review-rewards-eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--faint); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.review-rewards-eyebrow::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--border); }
+.review-rewards-title {
+  font-family: 'EB Garamond', serif; font-size: clamp(34px, 3.8vw, 58px);
+  font-weight: 500; letter-spacing: -0.035em; line-height: 1.05;
+  color: var(--ink); margin-bottom: 20px;
+}
+.review-rewards-title em { font-style: italic; font-weight: 400; }
+.review-rewards-body {
+  font-size: 15px; font-weight: 300; line-height: 1.78;
+  color: var(--body); max-width: 470px; margin-bottom: 28px;
+}
+.review-rewards-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.review-rewards-secondary {
+  font-size: 14px; color: var(--body); text-decoration: none;
+  padding: 13px 24px; border-radius: 8px; border: 1px solid var(--border);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.review-rewards-secondary:hover { border-color: var(--ink); color: var(--ink); background: rgba(14,13,12,0.025); }
+.review-rewards-right {
+  padding: 68px 52px 72px 56px;
+  display: flex; flex-direction: column; justify-content: center; gap: 18px;
+}
+.review-rewards-card {
+  border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+  padding: 22px 24px;
+}
+.review-rewards-card-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--faint);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;
+}
+.review-rewards-card-title { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+.review-rewards-card-body { font-size: 13px; font-weight: 300; color: var(--body); line-height: 1.68; }
+.review-rewards-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.review-rewards-rule {
+  border-top: 1px solid var(--border); padding-top: 14px;
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  color: var(--faint); letter-spacing: 0.04em; line-height: 1.7;
+}
+
 /* ─── RESEARCH ─── */
 .research-section {
   background: var(--ink); position: relative; overflow: hidden;
@@ -808,11 +873,12 @@ body::before {
   .section-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 48px 20px 36px; }
   .section-desc { text-align: left; max-width: 100%; }
   .products-section { max-width: 100%; }
-  .marrow-section,.retaindb-section,.research-inner,.footer-cta,.footer-main,.btl-everywhere,.gateway-pilot-section { grid-template-columns: 1fr; }
-  .marrow-left,.rdb-left,.research-left,.footer-cta-left,.btl-ev-left,.gateway-pilot-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 20px 40px; }
+  .marrow-section,.retaindb-section,.research-inner,.footer-cta,.footer-main,.btl-everywhere,.gateway-pilot-section,.review-rewards { grid-template-columns: 1fr; }
+  .marrow-left,.rdb-left,.research-left,.footer-cta-left,.btl-ev-left,.gateway-pilot-left,.review-rewards-left { border-right: none; border-bottom: 1px solid var(--border); padding: 44px 20px 40px; }
   .gateway-pilot-right { padding: 40px 20px 44px; }
   .btl-ev-right { padding: 44px 20px 48px; }
-  .marrow-right,.rdb-right,.research-right { padding: 40px 20px 44px; }
+  .marrow-right,.rdb-right,.research-right,.review-rewards-right { padding: 40px 20px 44px; }
+  .review-rewards-list { grid-template-columns: 1fr; }
   .marrow-right { min-height: 280px; }
   .footer-cta-right { padding: 44px 20px; }
   .footer-main { padding: 44px 20px 40px; gap: 36px; }
@@ -2122,6 +2188,71 @@ export default function BTLLanding() {
         </div>
       </div>
 
+      <section className="review-rewards" id="review-rewards">
+        <div className="review-rewards-left">
+          <Reveal direction="left">
+            <div className="review-rewards-eyebrow">$BTL Review Rewards</div>
+            <h2 className="review-rewards-title">
+              Share the truth.<br /><em>Earn $BTL.</em>
+            </h2>
+            <p className="review-rewards-body">
+              Builders who publish honest reviews, demos, teardown threads, or case studies about
+              BTL products can claim verified $BTL rewards. Positive, mixed, or critical is fine;
+              the reward is for useful public feedback that helps other builders understand the product.
+            </p>
+            <div className="review-rewards-actions">
+              <MagneticBtn href={REVIEW_REWARD_CLAIM_URL} className="marrow-cta">
+                Submit review claim <Arrow />
+              </MagneticBtn>
+              <a
+                href="https://x.com/search?q=%24BTL&src=cashtag_click"
+                target="_blank"
+                rel="noreferrer"
+                className="review-rewards-secondary"
+              >
+                View $BTL
+              </a>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="review-rewards-right">
+          <Reveal direction="right">
+            <div className="review-rewards-card">
+              <div className="review-rewards-card-label">Eligible reviews</div>
+              <div className="review-rewards-card-title">Public, specific, and verifiable.</div>
+              <div className="review-rewards-card-body">
+                Post on X, YouTube, a blog, Product Hunt, GitHub, LinkedIn, or another public channel.
+                Include what you tried, what worked, what did not, and a link or screenshot when useful.
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="review-rewards-list">
+            {[
+              ["Base reward", "Approved reviews earn $BTL after verification."],
+              ["Quality boost", "Deep demos, benchmarks, or case studies can earn larger payouts."],
+              ["No paid praise", "Critical reviews are eligible. Spam, copied posts, and fake usage are not."],
+              ["Monthly picks", "Best reviews can be featured in monthly $BTL reward leaderboards."],
+            ].map(([title, body], i) => (
+              <Reveal key={title} delay={i * 60} direction="right">
+                <div className="review-rewards-card">
+                  <div className="review-rewards-card-label">{title}</div>
+                  <div className="review-rewards-card-body">{body}</div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal direction="right">
+            <div className="review-rewards-rule">
+              Submit your review URL, wallet address, product used, and a short note. Rewards are reviewed manually
+              before payout to keep the program useful and abuse-resistant.
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <div className="research-section" id="research">
         <div className="research-inner">
           <div className="research-left">
@@ -2328,6 +2459,7 @@ export default function BTLLanding() {
                   { label: 'RetainDB', href: 'https://retaindb.com' },
                   { label: 'BTL Runtime', href: '/runtime' },
                   { label: 'BTL-2 Coder 7B', href: '/btl-2-coder' },
+                  { label: '$BTL Review Rewards', href: '#review-rewards' },
                   { label: 'Benchmark', href: 'https://retaindb.com/benchmark' },
                   { label: 'Open source', href: 'https://github.com/RetainDB' },
                 ],

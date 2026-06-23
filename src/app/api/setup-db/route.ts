@@ -19,7 +19,7 @@ export async function GET() {
   country TEXT DEFAULT '',
   github TEXT DEFAULT '',
   experience TEXT DEFAULT '',
-  track TEXT NOT NULL,
+  track TEXT DEFAULT 'General',
   team_name TEXT DEFAULT '',
   team_size TEXT DEFAULT '1',
   idea TEXT DEFAULT '',

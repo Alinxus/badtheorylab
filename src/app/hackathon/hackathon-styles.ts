@@ -254,44 +254,6 @@ export const pageCss = `
   font-size: 14px; font-weight: 300; color: var(--body); max-width: 280px; text-align: right; line-height: 1.72;
 }
 
-/* TRACKS */
-.h-tracks { border-bottom: 1px solid var(--border); }
-.h-tracks-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); }
-.h-track-card {
-  padding: 48px 40px; border-right: 1px solid var(--border);
-  display: flex; flex-direction: column; gap: 20px;
-  position: relative; overflow: hidden; transition: background .2s;
-}
-.h-track-card:last-child { border-right: none; }
-.h-track-card:hover { background: var(--surface); }
-.h-track-dark { background: var(--ink); border-right-color: rgba(250,250,249,.06); }
-.h-track-dark:hover { background: #1a1917; }
-.h-track-orb {
-  position: absolute; width: 300px; height: 300px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(168,94,26,.08) 0%, transparent 70%);
-  top: -80px; right: -80px; pointer-events: none; animation: orb-drift 12s ease-in-out infinite;
-}
-.h-track-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(250,250,249,.2); letter-spacing: .1em; }
-.h-track-num-light { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--faint); letter-spacing: .1em; }
-.h-track-name { font-family: 'EB Garamond', serif; font-size: 28px; font-weight: 500; letter-spacing: -.02em; line-height: 1.1; }
-.h-track-dark .h-track-name { color: rgba(250,250,249,.92); }
-.h-track-desc { font-size: 14px; font-weight: 300; line-height: 1.72; color: var(--body); flex: 1; }
-.h-track-dark .h-track-desc { color: rgba(250,250,249,.42); }
-.h-track-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.h-tag {
-  font-family: 'JetBrains Mono', monospace; font-size: 10px;
-  padding: 4px 10px; border-radius: 4px; letter-spacing: .05em;
-  border: 1px solid var(--border); color: var(--faint);
-}
-.h-tag-dark { border-color: rgba(250,250,249,.1); color: rgba(250,250,249,.35); background: rgba(250,250,249,.03); }
-.h-tracks-note {
-  display: flex; align-items: center; gap: 16px; padding: 16px 40px;
-  border-top: 1px solid var(--border);
-  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-  color: var(--faint); letter-spacing: .04em; text-align: center;
-}
-.h-tracks-note-rule { flex: 1; height: 1px; background: var(--border); }
-
 /* PRIZES */
 .h-prizes { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
 .h-prizes-left { padding: 72px 52px; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 20px; }
@@ -313,7 +275,7 @@ export const pageCss = `
 .h-prize-card-amber .h-prize-rank { color: rgba(168,94,26,.55); }
 .h-prize-amount { font-family: 'EB Garamond', serif; font-size: 30px; font-weight: 500; letter-spacing: -.03em; color: var(--ink); line-height: 1; }
 .h-prize-amount-sm { font-size: 22px !important; }
-.h-prize-track { font-size: 13px; font-weight: 300; color: var(--body); }
+.h-prize-detail { font-size: 13px; font-weight: 300; color: var(--body); }
 .h-prize-note { font-size: 12px; font-weight: 300; color: var(--faint); line-height: 1.65; margin-top: 6px; }
 
 /* SCHEDULE */
@@ -389,10 +351,6 @@ export const pageCss = `
   .h-hero-right { min-height: 320px; }
   .h-hero-overlay { padding: 28px 24px; }
 
-  .h-tracks-grid { grid-template-columns: 1fr; }
-  .h-track-card { border-right: none; border-bottom: 1px solid var(--border); padding: 36px 24px; }
-  .h-track-dark { border-bottom-color: rgba(250,250,249,.06); }
-
   .h-prizes { grid-template-columns: 1fr; }
   .h-prizes-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 24px; }
   .h-prizes-right { padding: 48px 24px; }
@@ -411,7 +369,6 @@ export const pageCss = `
   .h-faq-item:last-child { border-bottom: none; }
 
   .h-footer-cta { padding: 72px 24px; }
-  .h-tracks-note { padding: 14px 24px; font-size: 10px; }
 }
 
 @media (max-width: 560px) {

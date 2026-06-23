@@ -23,7 +23,7 @@ const initialState: FormState = {
   name: "",
   email: "",
   company: "",
-  subject: "Investor inquiry",
+  subject: "General inquiry",
   message: "",
 };
 
@@ -125,8 +125,8 @@ function ContactPageShell({ searchParams }: { searchParams: SearchParamsLike }) 
           <p className="eyebrow">Contact</p>
           <h1>Talk to Bad Theory Labs.</h1>
           <p>
-            Investors, partners, and researchers can reach out directly here. You can also schedule a call or join
-            our Discord community.
+            Investors, partners, builders, researchers, and community members can reach out directly here.
+            You can also schedule a call or join our Discord community.
           </p>
           <div className="quick-actions">
             <a href={CAL_URL} target="_blank" rel="noreferrer" className="solid">Schedule investor call</a>
@@ -157,7 +157,7 @@ function ContactPageShell({ searchParams }: { searchParams: SearchParamsLike }) 
 
           <div className="row">
             <label>
-              Company / Fund
+              Company / Handle
               <input
                 value={form.company}
                 onChange={(e) => setForm((prev) => ({ ...prev, company: e.target.value }))}
