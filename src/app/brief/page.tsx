@@ -17,6 +17,8 @@ export default function BriefPage() {
           <Link href="/#products">Products</Link>
           <Link href="/papers">Papers</Link>
           <Link href="/brief" aria-current="page">Brief</Link>
+          <Link href="/whitepaper">Whitepaper</Link>
+          <Link href="/stats">Stats</Link>
           <Link href="/contact">Contact</Link>
         </div>
         <div className="nav-cta">

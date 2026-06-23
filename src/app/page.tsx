@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import SiteNav from "@/components/SiteNav";
 
 /* ─────────────────────────────────────────────
    STYLES
@@ -97,7 +98,6 @@ body::before {
 
 /* ─── HERO — full viewport width, no max-width cap ─── */
 .hero {
-  padding-top: 56px;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1777,74 +1777,15 @@ function RaiseSection() {
    MAIN LANDING PAGE
 ───────────────────────────────────────────── */
 export default function BTLLanding() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <>
       <style>{css}</style>
       <CursorGlow />
 
-      {/* NAV */}
-      <nav className="nav">
-        <Link className="nav-logo" href="/" onClick={() => setMenuOpen(false)}>
-          <span className="nav-logo-mark"><OrbitalMark size={26} color="#0E0D0C"/></span>
-          <span className="nav-logo-text">
-            Bad Theory <span className="nav-logo-tag">LABS</span>
-          </span>
-        </Link>
+      {/* NAV — shared, grouped (replaces the old 11-link bar) */}
+      <SiteNav />
 
-        {/* desktop centre links */}
-        <div className="nav-links">
-          <a className="nav-link" href="#research">Research</a>
-          <a className="nav-link" href="#products">Products</a>
-          <a className="nav-link" href="/runtime">Runtime</a>
-          <a className="nav-link" href="/btl-2-coder">BTL-2 Coder</a>
-          <a className="nav-link" href="/papers">Papers</a>
-          <a className="nav-link" href="/reasoning-gap">Reasoning Gap</a>
-          <a className="nav-link" href="/reasoning-test">Reasoning Test</a>
-          <a className="nav-link" href="/donate">Donate</a>
-          <a className="nav-link" href="/brief">Brief</a>
-          <a className="nav-link" href="/hackathon">Hackathon</a>
-          <a className="nav-link" href="/contact">Contact</a>
-        </div>
-
-        {/* desktop right */}
-        <div className="nav-right">
-          <a className="btn-ghost" href="https://discord.gg/QJBCcB7bF" target="_blank" rel="noreferrer">Join community</a>
-          <a className="btn-solid" href="https://cal.com/alameenpd/quick-chat" target="_blank" rel="noreferrer">Schedule call</a>
-        </div>
-
-        {/* mobile hamburger */}
-        <button
-          className={`nav-burger${menuOpen ? " open" : ""}`}
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label="Toggle menu"
-        >
-          <span /><span /><span />
-        </button>
-      </nav>
-
-      {/* mobile drawer */}
-      {menuOpen && (
-        <div className="nav-drawer">
-          <a href="#research" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Research</a>
-          <a href="#products" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Products</a>
-          <a href="/runtime"  className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Runtime</a>
-          <a href="/btl-2-coder" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>BTL-2 Coder</a>
-          <a href="/papers"   className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Papers</a>
-          <a href="/reasoning-gap" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Gap</a>
-          <a href="/reasoning-test" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Reasoning Test</a>
-          <a href="/donate"     className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Donate</a>
-          <a href="/brief"    className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Brief</a>
-          <a href="/hackathon" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Hackathon</a>
-          <a href="/contact"  className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Contact</a>
-          <div className="nav-drawer-divider" />
-          <a href="https://discord.gg/QJBCcB7bF" target="_blank" rel="noreferrer" className="nav-drawer-link" onClick={() => setMenuOpen(false)}>Join community</a>
-          <a href="https://cal.com/alameenpd/quick-chat" target="_blank" rel="noreferrer" className="nav-drawer-cta" onClick={() => setMenuOpen(false)}>Schedule call</a>
-        </div>
-      )}
-
-      <div style={{ background: '#111', color: '#aaa', textAlign: 'center', padding: '10px 16px', fontSize: '13px', fontFamily: 'JetBrains Mono, monospace', borderBottom: '1px solid #222', wordBreak: 'break-all', lineHeight: 1.5, marginTop: 56 }}>
+      <div style={{ background: '#111', color: '#aaa', textAlign: 'center', padding: '10px 16px', fontSize: '13px', fontFamily: 'JetBrains Mono, monospace', borderBottom: '1px solid #222', wordBreak: 'break-all', lineHeight: 1.5 }}>
         CA: 3bBQrzzq9DRXXFfC9nUno9m1MBm9Y7dVnBBK44bVpump
       </div>
 

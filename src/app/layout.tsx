@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
+import PresenceBeacon from "@/components/PresenceBeacon";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -60,7 +61,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <PresenceBeacon />
+      </body>
     </html>
   );
 }

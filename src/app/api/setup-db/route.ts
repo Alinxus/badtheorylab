@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const sql = `CREATE TABLE IF NOT EXISTS reasoning_test_responses (
+  const reasoningTest = `CREATE TABLE IF NOT EXISTS reasoning_test_responses (
   id BIGSERIAL PRIMARY KEY,
   participant_id TEXT NOT NULL,
   score INTEGER NOT NULL,
@@ -11,9 +11,51 @@ export async function GET() {
   created_at TIMESTAMPTZ DEFAULT NOW()
 );`;
 
+  const hackathon = `CREATE TABLE IF NOT EXISTS hackathon_registrations (
+  id BIGSERIAL PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  country TEXT DEFAULT '',
+  github TEXT DEFAULT '',
+  experience TEXT DEFAULT '',
+  track TEXT NOT NULL,
+  team_name TEXT DEFAULT '',
+  team_size TEXT DEFAULT '1',
+  idea TEXT DEFAULT '',
+  runtime_plan TEXT DEFAULT '',
+  user_agent TEXT DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+-- one registration per email; the API treats a duplicate insert as "already in"
+CREATE UNIQUE INDEX IF NOT EXISTS hackathon_registrations_email_idx
+  ON hackathon_registrations (email);`;
+
+  const presence = `CREATE TABLE IF NOT EXISTS site_presence (
+  session_id TEXT PRIMARY KEY,
+  first_seen TIMESTAMPTZ DEFAULT NOW(),
+  last_seen TIMESTAMPTZ DEFAULT NOW(),
+  hits INTEGER DEFAULT 1,
+  path TEXT DEFAULT '/',
+  user_agent TEXT DEFAULT ''
+);
+-- /api/stats scans last_seen constantly; keep it indexed
+CREATE INDEX IF NOT EXISTS site_presence_last_seen_idx ON site_presence (last_seen DESC);
+
+-- tiny key/value bag for ratcheting counters like the all-time concurrency peak
+CREATE TABLE IF NOT EXISTS site_metrics (
+  id TEXT PRIMARY KEY,
+  value BIGINT NOT NULL DEFAULT 0,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);`;
+
   return NextResponse.json({
     ok: false,
-    message: "Supabase table not found. Run this SQL in your Supabase SQL Editor:",
-    sql,
+    message: "Run this SQL in your Supabase SQL Editor to create the tables the app expects:",
+    tables: {
+      reasoning_test_responses: reasoningTest,
+      hackathon_registrations: hackathon,
+      site_presence: presence,
+    },
   });
 }
