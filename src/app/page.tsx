@@ -2076,10 +2076,10 @@ export default function BTLLanding() {
                 Explore BTL Runtime <Arrow/>
               </MagneticBtn>
               <a
-                href="/contact?subject=BTL%20Runtime%20access%20request&message=We%20want%20to%20use%20BTL%20Runtime.%20Current%20stack,%20providers,%20traffic,%20and%20constraints:"
+                href="https://runtime.badtheorylabs.com"
                 className="gateway-pilot-ghost"
               >
-                Request access
+                Launch Runtime
               </a>
             </div>
           </Reveal>

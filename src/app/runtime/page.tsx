@@ -2,8 +2,7 @@ import Link from "next/link";
 
 const CAL_URL = "https://cal.com/alameenpd/quick-chat";
 const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
-const ACCESS_URL =
-  "/contact?subject=BTL%20Runtime%20access%20request&message=We%20want%20to%20use%20BTL%20Runtime.%20Current%20stack,%20providers,%20traffic,%20and%20constraints:";
+const ACCESS_URL = "https://runtime.badtheorylabs.com";
 
 // the four moves the gateway makes to send fewer billable tokens upstream.
 // pulled straight from the token-efficiency pipeline — order matters, caching first.
@@ -79,7 +78,7 @@ export default function RuntimePage() {
         </div>
         <div className="rt-nav-cta">
           <a href={DISCORD_URL} target="_blank" rel="noreferrer">Community</a>
-          <a href={ACCESS_URL} className="rt-solid">Request access</a>
+          <a href={ACCESS_URL} className="rt-solid">Launch Runtime</a>
         </div>
       </nav>
 
@@ -97,7 +96,7 @@ export default function RuntimePage() {
             when provider economics change underneath you.
           </p>
           <div className="rt-hero-actions">
-            <a href={ACCESS_URL} className="rt-btn rt-btn-solid">Request access →</a>
+            <a href={ACCESS_URL} className="rt-btn rt-btn-solid">Launch Runtime →</a>
             <a href={CAL_URL} target="_blank" rel="noreferrer" className="rt-btn rt-btn-outline">Schedule a call</a>
           </div>
         </div>
@@ -171,7 +170,7 @@ client.chat.completions.create(
               or latency pressure. No exact-vendor lock-in — ask for a specific
               provider when you need it, let the gateway choose when you don&apos;t.
             </p>
-            <a href={ACCESS_URL} className="rt-btn rt-btn-solid">Request access →</a>
+            <a href={ACCESS_URL} className="rt-btn rt-btn-solid">Launch Runtime →</a>
           </div>
           <div className="rt-two-right">
             {teamsGet.map((t) => (
@@ -214,7 +213,7 @@ client.chat.completions.create(
           Tell us your stack, providers, traffic, and constraints. We&apos;ll get you a key.
         </p>
         <div className="rt-hero-actions">
-          <a href={ACCESS_URL} className="rt-btn rt-btn-light">Request access →</a>
+          <a href={ACCESS_URL} className="rt-btn rt-btn-light">Launch Runtime →</a>
           <a href={CAL_URL} target="_blank" rel="noreferrer" className="rt-btn rt-btn-ghost">Schedule a call</a>
         </div>
       </section>
