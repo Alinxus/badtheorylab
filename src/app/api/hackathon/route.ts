@@ -11,6 +11,7 @@ type HackathonPayload = {
   experience?: string;
   teamName?: string;
   teamSize?: string;
+  idea?: string;
   projectIdea?: string;
 };
 
@@ -132,11 +133,19 @@ export async function POST(req: Request) {
     experience:  payload.experience?.trim()   || "",
     team_name:   payload.teamName?.trim()     || "",
     team_size:   payload.teamSize?.trim()     || "1",
-    idea:        payload.projectIdea?.trim()  || "",
+    idea:        (payload.projectIdea ?? payload.idea)?.trim() || "",
+    runtime_plan: "",
     user_agent:  req.headers.get("user-agent") || "",
   };
 
-  const { error } = await supabase.from("hackathon_registrations").insert(row);
+  let { error } = await supabase.from("hackathon_registrations").insert(row);
+
+  if (needsLegacyTrackRetry(error)) {
+    const retry = await supabase
+      .from("hackathon_registrations")
+      .insert({ ...row, track: "General" });
+    error = retry.error;
+  }
 
   if (error) {
     // 23505 = unique_violation — they already signed up with this email. Not an error worth scaring them with.
@@ -222,4 +231,14 @@ function escapeHtml(value: string) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function needsLegacyTrackRetry(error: { code?: string; message?: string } | null) {
+  if (!error) return false;
+  const message = error.message?.toLowerCase() || "";
+  return (
+    error.code === "23502" &&
+    message.includes("track") &&
+    message.includes("null")
+  );
 }
