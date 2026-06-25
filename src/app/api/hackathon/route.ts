@@ -15,6 +15,53 @@ type HackathonPayload = {
 };
 
 const EVENT_DATES = "July 3–5, 2026";
+const DISPOSABLE_EMAIL_DOMAINS = [
+  "007.hzeg.eu.org",
+  "10minutemail.com",
+  "20minutemail.com",
+  "33mail.com",
+  "anonaddy.com",
+  "burnermail.io",
+  "byom.de",
+  "dispostable.com",
+  "emailondeck.com",
+  "fakeinbox.com",
+  "getnada.com",
+  "gamesense.eu.cc",
+  "guerrillamail.biz",
+  "guerrillamail.com",
+  "guerrillamail.de",
+  "guerrillamail.info",
+  "guerrillamail.net",
+  "guerrillamail.org",
+  "huiyemao.dpdns.org",
+  "iivylls.cc.cd",
+  "maildrop.cc",
+  "mailinator.com",
+  "mailnesia.com",
+  "mailpoof.com",
+  "mailtemp.info",
+  "mailx.04.mom",
+  "mohmal.com",
+  "moakt.com",
+  "nimail.cn",
+  "oakon.com",
+  "ovom.us.ci",
+  "qudone.net",
+  "renatus.biz.id",
+  "sharklasers.com",
+  "temp-mail.org",
+  "tempail.com",
+  "tempmail.com",
+  "tempmailo.com",
+  "throwawaymail.com",
+  "trashmail.com",
+  "web-library.net",
+  "woaisufulei.de5.net",
+  "yopmail.com",
+  "yyds.mcmdo.com",
+  "zeabur.us.ci",
+] as const;
 
 function getSupabase() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "";
@@ -24,6 +71,24 @@ function getSupabase() {
 }
 
 const validEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const emailDomain = (email: string) => email.split("@").at(1)?.toLowerCase() || "";
+
+function blockedEmailDomains() {
+  const extra = (process.env.BLOCKED_HACKATHON_EMAIL_DOMAINS || "")
+    .split(",")
+    .map(domain => domain.trim().toLowerCase())
+    .filter(Boolean);
+  return new Set([...DISPOSABLE_EMAIL_DOMAINS, ...extra]);
+}
+
+function isBlockedEmailDomain(domain: string) {
+  for (const blocked of blockedEmailDomains()) {
+    if (domain === blocked || domain.endsWith(`.${blocked}`)) {
+      return true;
+    }
+  }
+  return false;
+}
 
 export async function POST(req: Request) {
   let payload: HackathonPayload;
@@ -42,6 +107,12 @@ export async function POST(req: Request) {
   }
   if (!validEmail(email)) {
     return NextResponse.json({ error: "A valid email address is required." }, { status: 400 });
+  }
+  if (isBlockedEmailDomain(emailDomain(email))) {
+    return NextResponse.json(
+      { error: "Please register with a permanent email address." },
+      { status: 400 },
+    );
   }
 
   const supabase = getSupabase();
@@ -71,6 +142,13 @@ export async function POST(req: Request) {
     // 23505 = unique_violation — they already signed up with this email. Not an error worth scaring them with.
     if (error.code === "23505") {
       return NextResponse.json({ ok: true, already: true });
+    }
+    // 23514 = check_violation, used by the optional database trigger for disposable domains.
+    if (error.code === "23514") {
+      return NextResponse.json(
+        { error: "Please register with a permanent email address." },
+        { status: 400 },
+      );
     }
     console.error("[hackathon] supabase insert failed:", error.message, error.code);
     return NextResponse.json(
