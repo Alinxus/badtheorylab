@@ -22,9 +22,8 @@ function calcRemaining(target: Date) {
 }
 
 function useCountdown(target: Date) {
-  const [t, setT] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
+  const [t, setT] = useState(() => calcRemaining(target));
   useEffect(() => {
-    setT(calcRemaining(target));
     const id = setInterval(() => setT(calcRemaining(target)), 1000);
     return () => clearInterval(id);
   }, [target]);

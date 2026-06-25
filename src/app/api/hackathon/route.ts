@@ -11,8 +11,7 @@ type HackathonPayload = {
   experience?: string;
   teamName?: string;
   teamSize?: string;
-  idea?: string;
-  runtimePlan?: string;
+  projectIdea?: string;
 };
 
 const EVENT_DATES = "July 3–5, 2026";
@@ -60,11 +59,9 @@ export async function POST(req: Request) {
     country:     payload.country?.trim()     || "",
     github:      payload.github?.trim()       || "",
     experience:  payload.experience?.trim()   || "",
-    track:       "General",
     team_name:   payload.teamName?.trim()     || "",
     team_size:   payload.teamSize?.trim()     || "1",
-    idea:        payload.idea?.trim()         || "",
-    runtime_plan: payload.runtimePlan?.trim() || "",
+    idea:        payload.projectIdea?.trim()  || "",
     user_agent:  req.headers.get("user-agent") || "",
   };
 
