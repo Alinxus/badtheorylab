@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import SiteNav from "@/components/SiteNav";
 
-const CA = "3bBQrzzq9DRXXFfC9nUno9m1MBm9Y7dVnBBK44bVpump";
+const CA = "E54u2LpWSNZ5LqLitetfw7Ajc7t4phCPHCJuJVRPpump";
 const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 
 type Stats = {
