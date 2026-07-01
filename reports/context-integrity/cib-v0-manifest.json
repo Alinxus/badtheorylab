@@ -1,13 +1,19 @@
 {
   "datasetVersion": "CIB-v0",
   "releaseDate": "2026-07-01",
-  "generatedAt": "2026-07-01T19:50:39.993Z",
+  "generatedAt": "2026-07-01T19:58:29.618Z",
   "artifacts": [
     {
       "path": "docs/context-integrity-paper.md",
-      "bytes": 34720,
-      "lines": 473,
-      "sha256": "472ace1e8389bc15a18e07dc2901eba1a12e66b584f32e102f95e61a8fee02b5"
+      "bytes": 34769,
+      "lines": 474,
+      "sha256": "83d1d9a90491c6aef4c06bd40630f470faa2adad8e57d4896c9f11fc9e06798a"
+    },
+    {
+      "path": "docs/context-integrity-appendix.md",
+      "bytes": 2051,
+      "lines": 45,
+      "sha256": "e9e658e7c8666447c3d91d104f9528b2b1fe6784ca12491072a88fc08f0bc8be"
     },
     {
       "path": "package.json",
@@ -35,15 +41,15 @@
     },
     {
       "path": "public/context-integrity/paper.html",
-      "bytes": 39225,
-      "lines": 235,
-      "sha256": "de4a3deb2c20c101f4a9c662ad31bf37d3f2a1612fde2e49839f7bd60280f632"
+      "bytes": 42052,
+      "lines": 253,
+      "sha256": "276d72d5b599e3276c1aa9dbdaac8ae7549fc31f8d0f20c6517d553af8bdaa26"
     },
     {
       "path": "public/context-integrity/paper.pdf",
-      "bytes": 435113,
+      "bytes": 481987,
       "lines": null,
-      "sha256": "5528ff1453414a15475d4d32b58776892d5ea06ba559b992ee8537e1f85d55eb"
+      "sha256": "a7c3cfae8b7c9009c88bc89afe771b436fe285eab1f96c8732748603eccbcef2"
     },
     {
       "path": "scripts/evaluate-context-integrity.mjs",
@@ -53,15 +59,15 @@
     },
     {
       "path": "scripts/generate-context-integrity-manifest.mjs",
-      "bytes": 2302,
-      "lines": 69,
-      "sha256": "e63da88ba5de533f37fc79a3bb84aeb639f2c1c9c79d240909fbdf63eb097906"
+      "bytes": 2342,
+      "lines": 70,
+      "sha256": "3bcb7514e4f196fd81e881f9c7b7d9e0332bf9fce0e66840a41c1b3c05f990ea"
     },
     {
       "path": "scripts/generate-context-integrity-paper-pdf.mjs",
-      "bytes": 5650,
-      "lines": 156,
-      "sha256": "f959e2e4f0f6cd7a7f780855d617d2d731ae20e1b7b994060effe67c7097d06a"
+      "bytes": 5988,
+      "lines": 166,
+      "sha256": "91846c99d356114d42a8eaa31778b9a6dcd201ae6a86c06ee9177a5392c3f5a1"
     },
     {
       "path": "scripts/run-context-integrity-model-eval.mjs",

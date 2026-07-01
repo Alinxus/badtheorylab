@@ -2,7 +2,10 @@ import puppeteer from "puppeteer";
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-const sourcePath = resolve("docs/context-integrity-paper.md");
+const sourcePaths = [
+  resolve("docs/context-integrity-paper.md"),
+  resolve("docs/context-integrity-appendix.md"),
+];
 const outDir = resolve("public/context-integrity");
 const htmlPath = resolve(outDir, "paper.html");
 const pdfPath = resolve(outDir, "paper.pdf");
@@ -71,6 +74,12 @@ function markdown(md) {
       flushList(out, list);
       continue;
     }
+    if (line.trim() === "<!-- pagebreak -->") {
+      flushParagraph(out, paragraph);
+      flushList(out, list);
+      out.push('<div class="pagebreak"></div>');
+      continue;
+    }
     const heading = line.match(/^(#{1,4})\s+(.+)$/);
     if (heading) {
       flushParagraph(out, paragraph);
@@ -103,7 +112,7 @@ function markdown(md) {
   return out.join("\n");
 }
 
-const paper = readFileSync(sourcePath, "utf8");
+const paper = sourcePaths.map((path) => readFileSync(path, "utf8")).join("\n\n");
 const body = markdown(paper);
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -130,6 +139,7 @@ th, td { border: 1px solid #bbb; padding: 5pt 6pt; vertical-align: top; }
 pre { border: 1px solid #ccc; background: #f7f7f7; padding: 8pt; white-space: pre-wrap; font-size: 8.2pt; line-height: 1.28; page-break-inside: avoid; }
 code { font-family: "Courier New", monospace; font-size: 0.92em; }
 blockquote { margin: 10pt 0; padding: 0 10pt; border-left: 2px solid #aaa; font-style: italic; color: #333; }
+.pagebreak { break-before: page; page-break-before: always; }
 </style>
 </head>
 <body>${body}</body>

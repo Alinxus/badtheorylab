@@ -23,6 +23,7 @@ th, td { border: 1px solid #bbb; padding: 5pt 6pt; vertical-align: top; }
 pre { border: 1px solid #ccc; background: #f7f7f7; padding: 8pt; white-space: pre-wrap; font-size: 8.2pt; line-height: 1.28; page-break-inside: avoid; }
 code { font-family: "Courier New", monospace; font-size: 0.92em; }
 blockquote { margin: 10pt 0; padding: 0 10pt; border-left: 2px solid #aaa; font-style: italic; color: #333; }
+.pagebreak { break-before: page; page-break-before: always; }
 </style>
 </head>
 <body><h1>Context Integrity</h1>
@@ -189,7 +190,7 @@ blockquote { margin: 10pt 0; padding: 0 10pt; border-left: 2px solid #aaa; font-
 <p>Out-of-scope use: CIB-v0 should not be used as a broad measure of general intelligence, conversational quality, world knowledge, or domain expertise. A high score on CIB-v0 does not imply an agent is safe to deploy without domain-specific evaluation.</p>
 <p>Known limitations: The dataset is small and synthetic. Its templates make failure modes auditable but may not capture the messiness of real enterprise histories. Later versions should add human-authored tasks, longer multi-document histories, tool traces, adversarial updates, and private splits.</p>
 <p>Reproducibility artifacts:</p>
-<ul><li>Dataset: <code>reports/context-integrity/cib-v0-dataset.jsonl</code></li><li>Summary: <code>reports/context-integrity/cib-v0-summary.json</code></li><li>Report: <code>reports/context-integrity/cib-v0-report.md</code></li><li>Manifest: <code>reports/context-integrity/cib-v0-manifest.json</code></li><li>PDF: <code>public/context-integrity/paper.pdf</code></li><li>Evaluator: <code>scripts/evaluate-context-integrity.mjs</code></li><li>Model harness: <code>scripts/run-context-integrity-model-eval.mjs</code></li><li>Validator: <code>scripts/validate-context-integrity-release.mjs</code></li></ul>
+<ul><li>Dataset: <code>reports/context-integrity/cib-v0-dataset.jsonl</code></li><li>Summary: <code>reports/context-integrity/cib-v0-summary.json</code></li><li>Report: <code>reports/context-integrity/cib-v0-report.md</code></li><li>Manifest: <code>reports/context-integrity/cib-v0-manifest.json</code></li><li>PDF: <code>public/context-integrity/paper.pdf</code></li><li>Appendix: <code>docs/context-integrity-appendix.md</code></li><li>Evaluator: <code>scripts/evaluate-context-integrity.mjs</code></li><li>Model harness: <code>scripts/run-context-integrity-model-eval.mjs</code></li><li>Validator: <code>scripts/validate-context-integrity-release.mjs</code></li></ul>
 <p>The manifest records SHA-256 hashes, byte sizes, and line counts for the released dataset, reports, PDF, HTML, and scripts. <code>npm run cib:release</code> regenerates the benchmark, PDF, manifest, hash verification, and release validator in one command.</p>
 <h2>13. Frontier Model Evaluation Protocol</h2>
 <p>CIB separates context-pipeline evaluation from model evaluation. The retrieval results above answer the question: did the system surface sufficient, current, scoped evidence? Frontier model evaluation answers the next question: given the task history and evidence, does the model choose the correct action and cite the correct sources?</p>
@@ -232,5 +233,22 @@ blockquote { margin: 10pt 0; padding: 0 10pt; border-left: 2px solid #aaa; font-
 <p>Wei, T. et al. (2026). Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory. https://arxiv.org/abs/2511.20857</p>
 <p>Du, P. (2026). Memory for Autonomous LLM Agents: Mechanisms, Evaluation, and Emerging Frontiers. https://arxiv.org/abs/2603.07670</p>
 <p>Shutova, A. et al. (2026). Evaluating Memory Structure in LLM Agents. https://arxiv.org/abs/2602.11243</p>
-<p>Yu, Y. et al. (2026). Agentic Memory: Learning Unified Long-Term and Short-Term Memory Management for Large Language Model Agents. https://arxiv.org/abs/2601.01885</p></body>
+<p>Yu, Y. et al. (2026). Agentic Memory: Learning Unified Long-Term and Short-Term Memory Management for Large Language Model Agents. https://arxiv.org/abs/2601.01885</p>
+<div class="pagebreak"></div>
+<h2>Appendix A. Task Schema</h2>
+<p>CIB tasks are JSON objects with the following required fields:</p>
+<table><thead><tr><th>Field</th><th>Type</th><th>Meaning</th></tr></thead><tbody><tr><td><code>id</code></td><td>string</td><td>Stable task identifier.</td></tr><tr><td><code>family</code></td><td>string</td><td>One of the seven task-family labels.</td></tr><tr><td><code>project</code></td><td>string</td><td>Scope field used to test project isolation.</td></tr><tr><td><code>domain</code></td><td>string</td><td>Scope field used to test domain isolation.</td></tr><tr><td><code>events</code></td><td>array</td><td>Timestamped event stream.</td></tr><tr><td><code>question</code></td><td>string</td><td>Later query or decision point.</td></tr><tr><td><code>gold_evidence</code></td><td>array</td><td>Source IDs required for a sufficient answer or action.</td></tr><tr><td><code>stale_evidence</code></td><td>array</td><td>Source IDs that should not authorize current action.</td></tr><tr><td><code>requires_abstention</code></td><td>boolean</td><td>Whether the correct behavior is to ask or abstain.</td></tr><tr><td><code>gold_action</code></td><td>string</td><td>Discrete gold action label.</td></tr></tbody></table>
+<p>Each event has a <code>source_id</code>, <code>timestamp</code>, <code>text</code>, <code>should_write</code>, <code>project</code>, <code>domain</code>, <code>stale</code>, and optional <code>superseded_by</code> field. A stale event must point to the newer event that supersedes it.</p>
+<h2>Appendix B. Release Checklist</h2>
+<p>A CIB v0 release should pass all of the following checks:</p>
+<ul><li><code>npm run cib:release</code></li><li><code>npm run cib:manifest:verify</code></li><li><code>npm run cib:validate</code></li><li><code>npm run build</code></li></ul>
+<p>The release validator checks task counts, family counts, source-ID uniqueness, evidence pointers, stale supersession metadata, summary totals, paired-comparison totals, metric ranges, and manifest hashes. A release should not be compared against another run until these checks pass.</p>
+<h2>Appendix C. Model Evaluation Contract</h2>
+<p>For frontier model evaluation, the model receives timestamped task events and the task question. It must return strict JSON:</p>
+<pre><code>{
+  "action": "one_of_allowed_actions",
+  "evidence": ["source_id"],
+  "abstain": true
+}</code></pre>
+<p>The harness scores action accuracy, abstention accuracy, evidence precision, evidence recall, retrieval sufficiency, and stale-evidence rate. Runs should report model name, endpoint family, date, temperature, maximum output tokens, prompt template, and any non-deterministic grading.</p></body>
 </html>

@@ -377,6 +377,7 @@ Reproducibility artifacts:
 - Report: `reports/context-integrity/cib-v0-report.md`
 - Manifest: `reports/context-integrity/cib-v0-manifest.json`
 - PDF: `public/context-integrity/paper.pdf`
+- Appendix: `docs/context-integrity-appendix.md`
 - Evaluator: `scripts/evaluate-context-integrity.mjs`
 - Model harness: `scripts/run-context-integrity-model-eval.mjs`
 - Validator: `scripts/validate-context-integrity-release.mjs`
