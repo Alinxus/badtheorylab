@@ -1,13 +1,13 @@
 {
   "datasetVersion": "CIB-v0",
   "releaseDate": "2026-07-01",
-  "generatedAt": "2026-07-01T19:36:25.046Z",
+  "generatedAt": "2026-07-01T19:42:40.959Z",
   "artifacts": [
     {
       "path": "docs/context-integrity-paper.md",
-      "bytes": 33607,
-      "lines": 464,
-      "sha256": "b2f98b31fa00afa0f225ecfb423df6c4feed09663bf77c8f61a849bc36baeb72"
+      "bytes": 33642,
+      "lines": 465,
+      "sha256": "2047fa0365d7a73a371474982c11088742d2223777f04fb10053aadfa70d8ea1"
     },
     {
       "path": "reports/context-integrity/cib-v0-dataset.jsonl",
@@ -29,15 +29,15 @@
     },
     {
       "path": "public/context-integrity/paper.html",
-      "bytes": 38072,
+      "bytes": 38124,
       "lines": 231,
-      "sha256": "cc001c97058c274641f9b99ddd0de206e5ffd2dd61fb535fdf50eca3f89a06d7"
+      "sha256": "2e3005f0b2e2c336914801bcb6f90db92bfa51fd9696b25a502fd24fb874ad84"
     },
     {
       "path": "public/context-integrity/paper.pdf",
-      "bytes": 430849,
+      "bytes": 431535,
       "lines": null,
-      "sha256": "0570d2aaa0f3620f12ef9a013635dddade11d28d8099f616241be73da83014c6"
+      "sha256": "1ac62a4504f9fc415a15aa20958c3ba282936fc09ed5d36b75209fd0db689bae"
     },
     {
       "path": "scripts/evaluate-context-integrity.mjs",
@@ -47,9 +47,9 @@
     },
     {
       "path": "scripts/generate-context-integrity-manifest.mjs",
-      "bytes": 2232,
-      "lines": 67,
-      "sha256": "ff0ff598935b97b120ab14e586e8b1b4f677dffcf163cb8078e5d9b1dd9fc1ea"
+      "bytes": 2284,
+      "lines": 68,
+      "sha256": "f9e98dafaba7cd1bec1095851c5934d233469e66b872db90861b8c9c22699454"
     },
     {
       "path": "scripts/generate-context-integrity-paper-pdf.mjs",
@@ -62,6 +62,12 @@
       "bytes": 5002,
       "lines": 152,
       "sha256": "18918212666f345f5fc3aa96e3255f4189596a8e1c3028b3fdce06eaf4698e35"
+    },
+    {
+      "path": "scripts/validate-context-integrity-release.mjs",
+      "bytes": 5401,
+      "lines": 115,
+      "sha256": "65358a6068e9016100bb5b6db2df2440760bf3151e6521fc96ba1a6b1dd440d6"
     }
   ]
 }

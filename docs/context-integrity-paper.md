@@ -379,8 +379,9 @@ Reproducibility artifacts:
 - PDF: `public/context-integrity/paper.pdf`
 - Evaluator: `scripts/evaluate-context-integrity.mjs`
 - Model harness: `scripts/run-context-integrity-model-eval.mjs`
+- Validator: `scripts/validate-context-integrity-release.mjs`
 
-The manifest records SHA-256 hashes, byte sizes, and line counts for the released dataset, reports, PDF, HTML, and scripts. It can be checked with `node scripts/generate-context-integrity-manifest.mjs --verify`, giving downstream evaluators a simple integrity check before comparing independent runs.
+The manifest records SHA-256 hashes, byte sizes, and line counts for the released dataset, reports, PDF, HTML, and scripts. The manifest script supports a `--verify` check, and the release validator checks dataset and result invariants before independent runs are compared.
 
 ## 13. Frontier Model Evaluation Protocol
 

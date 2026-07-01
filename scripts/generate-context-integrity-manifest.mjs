@@ -16,6 +16,7 @@ const artifactPaths = [
   "scripts/generate-context-integrity-manifest.mjs",
   "scripts/generate-context-integrity-paper-pdf.mjs",
   "scripts/run-context-integrity-model-eval.mjs",
+  "scripts/validate-context-integrity-release.mjs",
 ];
 const verify = process.argv.includes("--verify");
 
