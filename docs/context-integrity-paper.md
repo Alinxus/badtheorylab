@@ -184,6 +184,18 @@ For proportions, we report 95% Wilson confidence intervals. We use Wilson interv
 
 For paired system comparisons, we report exact two-sided binomial tests over discordant task outcomes. Each comparison is made on the same 250 task IDs. This matters because a benchmark with heterogeneous task families can make aggregate deltas look larger or smaller depending on task mix. Paired tests ask a stricter question: on how many identical tasks did one system retrieve sufficient evidence while the other did not?
 
+### 7.1 Scoring Equations
+
+For a task with retrieved set `S`, gold evidence `G`, and stale set `D`, evidence precision is `|S intersect G| / |S|` when `S` is non-empty and 0 otherwise. Evidence recall is `|S intersect G| / |G|`. Retrieval sufficiency is 1 exactly when every gold source is retrieved and no stale source is retrieved; otherwise it is 0.
+
+Stale error is 1 when `S` contains any source in `D`. Unsupported-action risk is 1 when `S` is non-empty but contains no source in `G`. Context flood is 1 when `|S| > |G| + 2`. The action upper bound is equal to retrieval sufficiency in CIB v0 because a perfect actor cannot license the gold action without sufficient current evidence.
+
+The grounded utility score used in this paper is:
+
+`GU_1k = 1000 * sufficient_outcomes / estimated_context_tokens`
+
+This is intentionally simple. Later releases should replace estimated context tokens with provider-reported billable tokens and should report latency distributions rather than averages alone.
+
 ## 8. CIB v0 Results
 
 We implement CIB v0 as a deterministic 250-task synthetic benchmark. This first release evaluates retrieval and memory policies only. It does not evaluate LLM answer generation, tool execution, or frontier model behavior.
@@ -320,6 +332,12 @@ Each task includes exact source IDs for gold evidence. Grading is mostly determi
 
 The benchmark reports aggregate results plus split-level results. A system that performs well on recall but fails abstention should not be described as having good memory.
 
+### 11.1 Run Validity
+
+A CIB run is valid only if five conditions hold. First, the system must return source IDs, not only prose citations. Second, retrieved sources must correspond to task events in the released JSONL. Third, stale evidence must remain auditable; systems may suppress stale facts at retrieval time but may not delete the stale labels from the evaluator. Fourth, model-evaluation runs must record model name, endpoint family, temperature, maximum output tokens, date, and prompt template. Fifth, any human or LLM-assisted natural-language grading must be reported separately from deterministic source-ID and action-label grading.
+
+These rules are meant to prevent the benchmark from collapsing into prompt theater. Context integrity is an audit property. If a system cannot expose what it used, the evaluator cannot distinguish grounded memory from lucky text generation.
+
 ## 12. Dataset Card
 
 Dataset name: Context Integrity Benchmark v0 (CIB-v0)
@@ -427,6 +445,8 @@ Schick, T. et al. (2023). Toolformer: Language Models Can Teach Themselves to Us
 Jimenez, C. E. et al. (2023). SWE-bench: Can Language Models Resolve Real-World GitHub Issues? https://arxiv.org/abs/2310.06770
 
 Anthropic (2024). Introducing the Model Context Protocol. https://www.anthropic.com/news/model-context-protocol
+
+Liu, X. et al. (2023). AgentBench: Evaluating LLMs as Agents. https://arxiv.org/abs/2308.03688
 
 Chhikara, P. et al. (2025). Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory. https://arxiv.org/abs/2504.19413
 
