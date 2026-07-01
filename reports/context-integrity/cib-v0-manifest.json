@@ -1,13 +1,13 @@
 {
   "datasetVersion": "CIB-v0",
   "releaseDate": "2026-07-01",
-  "generatedAt": "2026-07-01T19:42:40.959Z",
+  "generatedAt": "2026-07-01T19:46:24.830Z",
   "artifacts": [
     {
       "path": "docs/context-integrity-paper.md",
-      "bytes": 33642,
-      "lines": 465,
-      "sha256": "2047fa0365d7a73a371474982c11088742d2223777f04fb10053aadfa70d8ea1"
+      "bytes": 34749,
+      "lines": 473,
+      "sha256": "257c07c18fbd0f8c27ecc5c2cbf4dc5560e4e125fd00c0eac57941743f239346"
     },
     {
       "path": "reports/context-integrity/cib-v0-dataset.jsonl",
@@ -29,15 +29,15 @@
     },
     {
       "path": "public/context-integrity/paper.html",
-      "bytes": 38124,
-      "lines": 231,
-      "sha256": "2e3005f0b2e2c336914801bcb6f90db92bfa51fd9696b25a502fd24fb874ad84"
+      "bytes": 39254,
+      "lines": 235,
+      "sha256": "3685b68fb6e6b39fdc2e418e070f7e43c7b8434a1b95f0e76ed088a341e53362"
     },
     {
       "path": "public/context-integrity/paper.pdf",
-      "bytes": 431535,
+      "bytes": 435046,
       "lines": null,
-      "sha256": "1ac62a4504f9fc415a15aa20958c3ba282936fc09ed5d36b75209fd0db689bae"
+      "sha256": "2ad40f7816020c6f09208cbb517568187c4651332a0789f63ec3c3886aca2ac9"
     },
     {
       "path": "scripts/evaluate-context-integrity.mjs",

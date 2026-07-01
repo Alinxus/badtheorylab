@@ -424,7 +424,15 @@ For Bad Theory Labs, this frames memory, runtime, and action as one research pro
 
 This paper reports retrieval and memory baselines, not frontier LLM agent results. The strongest agent-level claims require running answer and action models over the retrieved evidence. Synthetic tasks may encode designer bias, so later versions should include human-authored and generated variants with human review. LLM-based answer grading should be minimized because it can introduce evaluator bias. Finally, context integrity is broad; a 250-task benchmark cannot cover every domain where agents operate.
 
-## 17. Conclusion
+## 17. Threats to Validity and Governance
+
+CIB is vulnerable to benchmark overfitting if the public synthetic templates become the training target. This is why later releases should include private splits, held-out human-authored workflows, and adversarial updates not visible in the generator. The v0 release is best understood as an auditable seed benchmark and a specification of failure modes, not a final leaderboard.
+
+There is also a governance risk. A high CIB score means a system preserved and used benchmark evidence correctly. It does not prove that the system is safe to deploy in finance, medicine, law, security, or other high-stakes domains. Deployment requires domain-specific evidence policies, privacy controls, retention limits, human override paths, and logging for contested actions.
+
+The benchmark intentionally requires source IDs because context integrity should be inspectable. A system that cannot explain which stored evidence authorized an answer or action should not receive credit, even if its prose answer is correct. This favors auditable systems over opaque memory claims.
+
+## 18. Conclusion
 
 The next wave of AI agents will be judged less by whether they can talk and more by whether they can follow through. Following through requires context integrity: storing the right facts, retrieving the right evidence, updating beliefs, abstaining under uncertainty, and grounding actions in what is actually known.
 
