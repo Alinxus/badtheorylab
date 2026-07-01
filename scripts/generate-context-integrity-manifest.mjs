@@ -7,6 +7,7 @@ const releaseDate = "2026-07-01";
 const outPath = resolve("reports/context-integrity/cib-v0-manifest.json");
 const artifactPaths = [
   "docs/context-integrity-paper.md",
+  "package.json",
   "reports/context-integrity/cib-v0-dataset.jsonl",
   "reports/context-integrity/cib-v0-summary.json",
   "reports/context-integrity/cib-v0-report.md",

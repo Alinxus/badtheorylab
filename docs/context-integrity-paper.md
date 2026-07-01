@@ -381,7 +381,7 @@ Reproducibility artifacts:
 - Model harness: `scripts/run-context-integrity-model-eval.mjs`
 - Validator: `scripts/validate-context-integrity-release.mjs`
 
-The manifest records SHA-256 hashes, byte sizes, and line counts for the released dataset, reports, PDF, HTML, and scripts. The manifest script supports a `--verify` check, and the release validator checks dataset and result invariants before independent runs are compared.
+The manifest records SHA-256 hashes, byte sizes, and line counts for the released dataset, reports, PDF, HTML, and scripts. `npm run cib:release` regenerates the benchmark, PDF, manifest, hash verification, and release validator in one command.
 
 ## 13. Frontier Model Evaluation Protocol
 

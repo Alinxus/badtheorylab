@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cib:evaluate": "node scripts/evaluate-context-integrity.mjs",
+    "cib:paper": "node scripts/generate-context-integrity-paper-pdf.mjs",
+    "cib:manifest": "node scripts/generate-context-integrity-manifest.mjs",
+    "cib:manifest:verify": "node scripts/generate-context-integrity-manifest.mjs --verify",
+    "cib:validate": "node scripts/validate-context-integrity-release.mjs",
+    "cib:release": "npm run cib:evaluate && npm run cib:paper && npm run cib:manifest && npm run cib:manifest:verify && npm run cib:validate"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.0",
