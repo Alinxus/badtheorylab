@@ -14,6 +14,7 @@ export default function PapersPage() {
           <Link href="/#research">Research</Link>
           <Link href="/#products">Products</Link>
           <Link href="/reasoning-gap">Reasoning Gap</Link>
+          <Link href="/context-integrity">Context Integrity</Link>
           <Link href="/papers" aria-current="page">Papers</Link>
           <Link href="/brief">Brief</Link>
           <Link href="/whitepaper">Whitepaper</Link>
@@ -33,6 +34,22 @@ export default function PapersPage() {
       </section>
 
       <section className="paper-wrap">
+        <article className="paper paper-link">
+          <header>
+            <p className="paper-meta">Benchmark Proposal · June 2026</p>
+            <h2>Context Integrity</h2>
+            <p className="status">A benchmark for long-running AI agent memory, evidence retrieval, abstention, and action grounding.</p>
+          </header>
+          <p>
+            Context Integrity asks whether an agent can preserve the right evidence across time, update stale facts,
+            retrieve only what matters, abstain when evidence is missing, and act only when the evidence supports it.
+          </p>
+          <p>
+            Status: protocol and paper draft. No model results are claimed yet.
+          </p>
+          <Link href="/context-integrity" className="paper-cta">Read Context Integrity →</Link>
+        </article>
+
         <article className="paper">
           <header>
             <p className="paper-meta">Bad Theory Labs - Internal Research Program</p>
@@ -256,6 +273,10 @@ const styles = `
 .hero p { color:var(--body); }
 .paper-wrap { max-width:1080px; margin:0 auto; padding:30px 28px 70px; }
 .paper { max-width:920px; border:1px solid var(--border); border-radius:16px; background:var(--surface); padding:24px; }
+.paper + .paper { margin-top:18px; }
+.paper-link { background:var(--bg); }
+.paper-cta { display:inline-block; margin-top:8px; color:var(--ink); text-decoration:none; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:13px; }
+.paper-cta:hover { border-color:var(--ink); }
 .paper-meta { font-family:var(--font-m); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--faint); margin-bottom:8px; }
 .paper h2 { font-family:var(--font-d); font-size:50px; letter-spacing:-.03em; line-height:1.02; margin-bottom:8px; }
 .status { color:var(--faint); font-size:13px; margin-bottom:16px; }

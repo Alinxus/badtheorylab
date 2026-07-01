@@ -27,6 +27,7 @@ const GROUPS: Group[] = [
       { label: "Whitepaper", href: "/whitepaper" },
       { label: "Papers", href: "/papers" },
       { label: "Reasoning Gap", href: "/reasoning-gap" },
+      { label: "Context Integrity", href: "/context-integrity" },
       { label: "Reasoning Test", href: "/reasoning-test" },
       { label: "Brief", href: "/brief" },
     ],
