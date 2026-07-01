@@ -92,6 +92,11 @@ const sources = [
   ["ReAct", "https://arxiv.org/abs/2210.03629"],
   ["Toolformer", "https://arxiv.org/abs/2302.04761"],
   ["SWE-bench", "https://arxiv.org/abs/2310.06770"],
+  ["MemoryAgentBench", "https://arxiv.org/abs/2507.05257"],
+  ["Evo-Memory", "https://arxiv.org/abs/2511.20857"],
+  ["Mem0", "https://arxiv.org/abs/2504.19413"],
+  ["StructMemEval", "https://arxiv.org/abs/2602.11243"],
+  ["Agentic Memory", "https://arxiv.org/abs/2601.01885"],
   ["Model Context Protocol", "https://www.anthropic.com/news/model-context-protocol"],
 ];
 
@@ -161,6 +166,18 @@ export default function ContextIntegrityPage() {
             mind. A document supersedes an older document. A preference applies in one situation but not another.
             An instruction is remembered, then contradicted. The agent must decide what to store, what to ignore,
             what to retrieve, what to update, when to ask for clarification, and whether an action is justified.
+          </p>
+
+          <h3>Formal Model</h3>
+          <p>
+            A CIB task is an ordered event stream plus a later query, allowed actions, gold evidence, disallowed
+            stale evidence, and a gold answer or action. Retrieval is sufficient only when the returned sources
+            include all required evidence and exclude superseded evidence that would authorize the wrong current
+            decision.
+          </p>
+          <p>
+            This separates model quality from context-pipeline quality: if the retrieved context is insufficient
+            or stale, even a perfect evidence-gated actor is already bounded away from the correct action.
           </p>
 
           <h3>Task Families</h3>
@@ -340,6 +357,11 @@ export default function ContextIntegrityPage() {
           </p>
 
           <h3>Related Work</h3>
+          <p>
+            CIB builds on RAG, long-context evaluation, MemGPT, LongMemEval, MemoryAgentBench, Evo-Memory, Mem0,
+            StructMemEval, and recent agentic-memory work. Its narrower contribution is evidence-level grading for
+            whether memory is current, scoped, auditable, sufficient, and safe to act on.
+          </p>
           <div className="ci-sources">
             {sources.map(([label, href]) => (
               <a key={href} href={href} target="_blank" rel="noreferrer">{label}</a>

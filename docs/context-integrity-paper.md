@@ -49,13 +49,27 @@ A system has context integrity when:
 
 This definition is deliberately operational. Context integrity is not a vibe, a product promise, or a model capability in the abstract. It is measured by comparing a system's memory writes, retrieved sources, answers, and actions against a gold evidence graph.
 
+### 2.1 Formal Task Model
+
+A CIB task is a tuple `T = (E, q, A, G, D, y)`.
+
+`E = {e_1, ..., e_n}` is an ordered event stream. Each event has a source ID, timestamp, text payload, scope fields such as project and domain, a write label, and optionally a supersession edge to newer evidence. `q` is the later query or decision point. `A` is the allowed action set. `G(q)` is the minimum gold evidence set required for the query. `D(q)` is the disallowed stale evidence set: sources that may be historically true but should not authorize a current answer or action. `y` is the gold answer or action.
+
+A context pipeline consists of a writer `W`, memory state `M_t`, retriever `R`, and actor `P`. For each event, `W` decides whether and how to update `M_t`. At query time, `R(q, M_t)` returns sources `S`. The actor chooses `P(q, S) -> a`.
+
+Retrieval is sufficient when every source in `G(q)` is contained in `S` and no source in `S` belongs to `D(q)`. An action is evidence-licensed when the selected action is entailed by sufficient evidence and not contradicted by stale evidence. This makes the benchmark model-agnostic: a language model can be weak or strong, but if the context pipeline returns insufficient or stale sources, the maximum evidence-licensed action accuracy is already bounded.
+
 ## 3. Related Work
 
 Retrieval-augmented generation was introduced to address the limits of parametric memory and to give generated answers access to external knowledge (Lewis et al., 2020). RAG remains the dominant pattern for grounding LLM outputs, but RAG evaluation often focuses on retrieval relevance and answer faithfulness within a single query.
 
 Long-context evaluation studies whether models can use information placed far inside a prompt. "Lost in the Middle" showed that language models can be sensitive to where relevant information appears in long contexts (Liu et al., 2023). These evaluations are useful, but they test a fixed input. They do not test whether a system can maintain memory across time.
 
-MemGPT frames LLM agents as systems that require virtual context management, with memory tiers inspired by operating systems (Packer et al., 2023). LongMemEval evaluates long-term memory in chat assistants across information extraction, multi-session reasoning, temporal reasoning, knowledge updates, and abstention (Wu et al., 2024). CIB builds in the same direction but adds evidence-level grading, write precision, action grounding, and cost-aware metrics.
+MemGPT frames LLM agents as systems that require virtual context management, with memory tiers inspired by operating systems (Packer et al., 2023). LongMemEval evaluates long-term memory in chat assistants across information extraction, multi-session reasoning, temporal reasoning, knowledge updates, and abstention (Wu et al., 2024). MemoryAgentBench later formalized memory-agent evaluation around accurate retrieval, test-time learning, long-range understanding, and selective forgetting (Hu et al., 2026). Evo-Memory moves further toward streaming task settings where agents must reuse and evolve experience across task streams (Wei et al., 2026).
+
+Production memory systems have also moved from static RAG toward extraction, consolidation, and retrieval. Mem0 compares memory-centric architectures against RAG, full-context, proprietary memory, and other memory systems on long-term conversational tasks, reporting accuracy and large latency/token reductions compared with full-context baselines (Chhikara et al., 2025). Recent survey work describes agent memory as a write-manage-read loop coupled to perception and action, and identifies contradiction handling, learned forgetting, latency budgets, and privacy governance as open engineering problems (Du, 2026).
+
+Two recent benchmark directions are especially close to CIB. StructMemEval argues that many long-term memory benchmarks still emphasize recall and proposes testing whether agents organize long-term memory into task-appropriate structures (Shutova et al., 2026). Agentic Memory treats memory operations as tool actions learned by the policy, rather than a separate heuristic controller (Yu et al., 2026). CIB is complementary: it does not prescribe an internal memory architecture. It grades whether the resulting context state is current, scoped, auditable, sufficient, and safe to act on.
 
 Agent benchmarks such as AgentBench and SWE-bench evaluate tool use and task completion. They are essential for measuring whether agents can act. CIB asks a prior question: whether the action is grounded in valid remembered evidence.
 
@@ -276,11 +290,11 @@ CIB makes claims that can fail.
 Claim 1: Long context alone is insufficient for durable agent memory.  
 Falsification: full-history prompting matches or beats memory systems on update, abstention, action grounding, cost, and latency.
 
-Claim 2: Hybrid retrieval improves evidence precision over naive vector retrieval.  
-Falsification: vector-only retrieval matches hybrid retrieval on evidence precision and stale-fact error.
+Claim 2: Retrieval relevance is insufficient without update semantics.
+Falsification: relevance-only retrieval matches scoped memory on stale-fact and causal-action splits.
 
-Claim 3: A critic reduces unsupported claims and stale-fact errors.  
-Falsification: critic pipelines increase latency and cost without reducing unsupported claims.
+Claim 3: Write filtering improves precision but does not solve stale context by itself.
+Falsification: write-filtered retrieval matches scoped memory on update and causal-action splits.
 
 Claim 4: Causal-action tasks expose failures not visible in recall tasks.  
 Falsification: systems that score well on recall also score well on causal action.
@@ -413,3 +427,15 @@ Schick, T. et al. (2023). Toolformer: Language Models Can Teach Themselves to Us
 Jimenez, C. E. et al. (2023). SWE-bench: Can Language Models Resolve Real-World GitHub Issues? https://arxiv.org/abs/2310.06770
 
 Anthropic (2024). Introducing the Model Context Protocol. https://www.anthropic.com/news/model-context-protocol
+
+Chhikara, P. et al. (2025). Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory. https://arxiv.org/abs/2504.19413
+
+Hu, Y. et al. (2026). Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions. https://arxiv.org/abs/2507.05257
+
+Wei, T. et al. (2026). Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory. https://arxiv.org/abs/2511.20857
+
+Du, P. (2026). Memory for Autonomous LLM Agents: Mechanisms, Evaluation, and Emerging Frontiers. https://arxiv.org/abs/2603.07670
+
+Shutova, A. et al. (2026). Evaluating Memory Structure in LLM Agents. https://arxiv.org/abs/2602.11243
+
+Yu, Y. et al. (2026). Agentic Memory: Learning Unified Long-Term and Short-Term Memory Management for Large Language Model Agents. https://arxiv.org/abs/2601.01885
