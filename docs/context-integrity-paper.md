@@ -375,9 +375,12 @@ Reproducibility artifacts:
 - Dataset: `reports/context-integrity/cib-v0-dataset.jsonl`
 - Summary: `reports/context-integrity/cib-v0-summary.json`
 - Report: `reports/context-integrity/cib-v0-report.md`
+- Manifest: `reports/context-integrity/cib-v0-manifest.json`
 - PDF: `public/context-integrity/paper.pdf`
 - Evaluator: `scripts/evaluate-context-integrity.mjs`
 - Model harness: `scripts/run-context-integrity-model-eval.mjs`
+
+The manifest records SHA-256 hashes, byte sizes, and line counts for the released dataset, reports, PDF, HTML, and scripts. It can be checked with `node scripts/generate-context-integrity-manifest.mjs --verify`, giving downstream evaluators a simple integrity check before comparing independent runs.
 
 ## 13. Frontier Model Evaluation Protocol
 

@@ -1,0 +1,67 @@
+{
+  "datasetVersion": "CIB-v0",
+  "releaseDate": "2026-07-01",
+  "generatedAt": "2026-07-01T19:36:25.046Z",
+  "artifacts": [
+    {
+      "path": "docs/context-integrity-paper.md",
+      "bytes": 33607,
+      "lines": 464,
+      "sha256": "b2f98b31fa00afa0f225ecfb423df6c4feed09663bf77c8f61a849bc36baeb72"
+    },
+    {
+      "path": "reports/context-integrity/cib-v0-dataset.jsonl",
+      "bytes": 361934,
+      "lines": 250,
+      "sha256": "e63b77bcd100e8dfa156fb469dccece798b0eb9924c9bf4b5096f0b06175d54f"
+    },
+    {
+      "path": "reports/context-integrity/cib-v0-summary.json",
+      "bytes": 11755,
+      "lines": 1,
+      "sha256": "8791cfb7638008249c730acd79216e8bec08ff481d30d0d346c16d880e5bba85"
+    },
+    {
+      "path": "reports/context-integrity/cib-v0-report.md",
+      "bytes": 2403,
+      "lines": 38,
+      "sha256": "9dc2e7f0c7dc9539304fc2b348e285db3405a6e842dd1016f0b81beb2b93c304"
+    },
+    {
+      "path": "public/context-integrity/paper.html",
+      "bytes": 38072,
+      "lines": 231,
+      "sha256": "cc001c97058c274641f9b99ddd0de206e5ffd2dd61fb535fdf50eca3f89a06d7"
+    },
+    {
+      "path": "public/context-integrity/paper.pdf",
+      "bytes": 430849,
+      "lines": null,
+      "sha256": "0570d2aaa0f3620f12ef9a013635dddade11d28d8099f616241be73da83014c6"
+    },
+    {
+      "path": "scripts/evaluate-context-integrity.mjs",
+      "bytes": 15019,
+      "lines": 386,
+      "sha256": "624269caaced1c0700d1028615876310a254c49e99091de1470d3589e8b67a68"
+    },
+    {
+      "path": "scripts/generate-context-integrity-manifest.mjs",
+      "bytes": 2232,
+      "lines": 67,
+      "sha256": "ff0ff598935b97b120ab14e586e8b1b4f677dffcf163cb8078e5d9b1dd9fc1ea"
+    },
+    {
+      "path": "scripts/generate-context-integrity-paper-pdf.mjs",
+      "bytes": 5650,
+      "lines": 156,
+      "sha256": "f959e2e4f0f6cd7a7f780855d617d2d731ae20e1b7b994060effe67c7097d06a"
+    },
+    {
+      "path": "scripts/run-context-integrity-model-eval.mjs",
+      "bytes": 5002,
+      "lines": 152,
+      "sha256": "18918212666f345f5fc3aa96e3255f4189596a8e1c3028b3fdce06eaf4698e35"
+    }
+  ]
+}
