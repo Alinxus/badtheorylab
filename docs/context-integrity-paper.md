@@ -4,15 +4,15 @@
 
 Olajide Al-ameen  
 Bad Theory Labs, Lagos  
-Draft v0.1 · June 2026
+Version 0.1 · July 2026
 
 ## Abstract
 
 AI agents are increasingly expected to operate across long-running workflows: reading documents, remembering user preferences, updating stale facts, retrieving evidence, and choosing actions. Existing evaluations usually isolate one piece of this system. Long-context benchmarks test whether a model can attend over a fixed prompt. Retrieval benchmarks test whether a relevant passage can be found. Agent benchmarks test whether a model can call tools. None of these alone measures whether an agent preserves context integrity across time.
 
-We introduce Context Integrity Benchmark (CIB), a proposed evaluation framework for persistent AI agents. A system has context integrity when every answer or action can be traced to the right stored evidence, updated against newer evidence, bounded by uncertainty, and executed only when the evidence supports it. CIB evaluates seven task families: selective memory writes, evidence retrieval, knowledge update, abstention, multi-session reasoning, action grounding, and causal action. The benchmark compares long-context prompting, naive vector RAG, hybrid lexical-semantic retrieval, memory systems such as RetainDB, and retrieval-plus-critic pipelines under the same answer model. We define metrics for answer accuracy, retrieval sufficiency, unsupported claim rate, stale-fact error, abstention precision and recall, action correctness, latency, token cost, and grounded utility per token.
+We introduce Context Integrity Benchmark (CIB), an evaluation framework for persistent AI agents. A system has context integrity when every answer or action can be traced to the right stored evidence, updated against newer evidence, bounded by uncertainty, and executed only when the evidence supports it. CIB evaluates seven task families: selective memory writes, evidence retrieval, knowledge update, abstention, multi-session reasoning, action grounding, and causal action. CIB v0 compares recent-context retrieval, full-history context, naive lexical retrieval, write-filtered lexical retrieval, and a structured scoped-memory upper bound. We define metrics for answer accuracy, retrieval sufficiency, unsupported claim rate, stale-fact error, abstention precision and recall, action correctness, latency, token cost, and grounded utility per token.
 
-This draft does not report model results. It defines the benchmark, the falsifiable claims, the evaluation protocol, and the failure modes a real agent memory system must survive.
+We generate CIB v0 as a 250-task deterministic benchmark and evaluate five retrieval/memory baselines. The scoped-memory baseline reaches 100.0% retrieval sufficiency (95% Wilson CI [98.5, 100.0]) with 0.0% stale-fact error, while recent-context retrieval reaches only 16.0% sufficiency (95% CI [12.0, 21.1]). Full-history context and naive lexical retrieval both reach 100.0% evidence recall but still fail 24.0% of tasks because superseded evidence remains in context. These are not LLM agent results; they are the empirical floor for the context pipeline before answer and action models are introduced.
 
 ## 1. Introduction
 
@@ -31,7 +31,8 @@ Our main contributions are:
 - We define context integrity as a measurable property of agent systems.
 - We propose seven task families that stress persistent memory, retrieval, abstention, and action grounding.
 - We define metrics that evaluate not only final answer accuracy but evidence use, unsupported claims, stale facts, and cost.
-- We describe a reproducible evaluation protocol comparing long-context, RAG, hybrid retrieval, memory, and critic-based systems.
+- We release a deterministic 250-task CIB v0 generator/evaluator with five baseline systems.
+- We report initial retrieval and memory results showing that full-history context and lexical retrieval can find evidence while still failing update and causal-action tasks.
 - We connect context integrity to causal action: agents that act must distinguish evidence of association from evidence that an intervention will work.
 
 ## 2. Definition
@@ -129,16 +130,15 @@ Example failure: the agent recommends increasing marketing spend because revenue
 
 ## 6. Baselines
 
-CIB should compare at least five systems:
+CIB v0 evaluates five retrieval and memory baselines:
 
-1. Full-history prompting: pass the entire available history when it fits.
-2. Long-context truncation: pass the most recent history up to the model limit.
-3. Naive vector RAG: chunk, embed, top-k retrieve.
-4. Hybrid retrieval: lexical BM25 plus vector retrieval.
-5. Memory system: explicit write/update/retrieve pipeline.
-6. Memory plus critic: retrieval with a verification stage before final answer or action.
+1. Recent3: retrieve the last three events.
+2. FullHistory: retrieve every event in the task history.
+3. Lexical3: retrieve the three events with highest word overlap against the question.
+4. WriteLexical3: retrieve only events marked as durable writes, then rank lexically.
+5. ScopedHybrid3: retrieve durable writes, prefer project/domain scope, and suppress superseded facts for current-state questions.
 
-The first evaluation should hold the answer model constant. This isolates context-system quality from model quality. A second evaluation can vary the answer model through a gateway such as BTL Runtime to measure how memory systems interact with model capability, cost, and latency.
+These baselines isolate context-system quality before answer generation. Full agent evaluations can layer an answer/action model on top of the same retrieved evidence and vary that model through a gateway such as BTL Runtime to measure model capability, cost, and latency separately from memory quality.
 
 ## 7. Metrics
 
@@ -146,11 +146,13 @@ CIB reports pipeline metrics, not only final answer accuracy.
 
 - Answer accuracy: whether the final answer matches the gold answer.
 - Action accuracy: whether the selected action matches the gold action.
+- Action upper bound: the best possible action accuracy for an evidence-gated agent using only the retrieved evidence.
 - Evidence recall: fraction of gold evidence source IDs retrieved.
 - Evidence precision: fraction of retrieved source IDs that are gold evidence.
 - Retrieval sufficiency: whether retrieved evidence is enough to answer.
 - Unsupported claim rate: claims not supported by retrieved evidence.
 - Stale fact error rate: answers or actions based on superseded facts.
+- Unsupported-action risk: retrieved context contains no gold evidence, creating pressure for guesswork.
 - Abstention precision: when the system abstains, was evidence actually missing?
 - Abstention recall: when evidence was missing, did the system abstain?
 - Write precision: fraction of written memories that should have been written.
@@ -164,7 +166,62 @@ The core production metric is grounded utility per token:
 
 This matters because production agents do not operate in a vacuum. A memory system that improves accuracy while doubling context cost may be less useful than a system that preserves groundedness under a tighter token budget.
 
-## 8. Example Task
+For proportions, we report 95% Wilson confidence intervals. We use Wilson intervals rather than normal approximations because several split-level outcomes approach 0% or 100%.
+
+For paired system comparisons, we report exact two-sided binomial tests over discordant task outcomes. Each comparison is made on the same 250 task IDs. This matters because a benchmark with heterogeneous task families can make aggregate deltas look larger or smaller depending on task mix. Paired tests ask a stricter question: on how many identical tasks did one system retrieve sufficient evidence while the other did not?
+
+## 8. CIB v0 Results
+
+We implement CIB v0 as a deterministic 250-task synthetic benchmark. This first release evaluates retrieval and memory policies only. It does not evaluate LLM answer generation, tool execution, or frontier model behavior.
+
+The five baselines are:
+
+- Recent3: retrieve the last three events.
+- FullHistory: retrieve every event in the task history.
+- Lexical3: retrieve the three events with highest word overlap against the question.
+- WriteLexical3: retrieve from events marked as durable memory writes, ranked lexically.
+- ScopedHybrid3: retrieve durable writes, prefer matching project/domain scope, and suppress superseded facts for current-state questions. This is a structured-memory upper bound for CIB v0, not a claim about an existing deployed model.
+
+| System | Evidence precision | Evidence recall | Retrieval sufficiency | Action upper bound | Stale error | Unsupported risk | Avg tokens | Grounded utility / 1k tokens |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| recent3 | 18.0% | 39.0% | 16.0% [12.0%, 21.1%] | 16.0% | 8.0% | 46.0% | 40.0 | 4.00 |
+| fullHistory | 29.5% | 100.0% | 76.0% [70.3%, 80.9%] | 76.0% | 24.0% | 0.0% | 55.5 | 13.68 |
+| lexical3 | 43.3% | 100.0% | 76.0% [70.3%, 80.9%] | 76.0% | 24.0% | 0.0% | 42.1 | 18.03 |
+| writeLexical3 | 88.0% | 100.0% | 76.0% [70.3%, 80.9%] | 76.0% | 24.0% | 0.0% | 28.0 | 27.10 |
+| scopedHybrid3 | 100.0% | 100.0% | 100.0% [98.5%, 100.0%] | 100.0% | 0.0% | 0.0% | 26.0 | 38.40 |
+
+These results show five early signals. First, recency is a weak proxy for memory: the last three events often miss the evidence needed for the decision, producing a 46.0% unsupported-action risk. Second, full-history context is not enough: it reaches 100.0% recall but still fails update and causal-action tasks because stale evidence remains available to the actor. Third, lexical retrieval can find all required evidence while still failing because it also retrieves stale confounders, producing the same 24.0% stale-error rate as full history. Fourth, explicit write filtering improves precision and token cost, but does not solve stale facts by itself. Fifth, the action upper bound tracks retrieval sufficiency exactly: if the context pipeline does not retrieve sufficient current evidence, even a perfect evidence-gated actor cannot choose the correct action. Scope and update semantics matter.
+
+The scoped hybrid baseline is intentionally simple. It is not a claim that CIB is solved. It is a sanity-check baseline showing that the benchmark rewards systems that preserve scope, suppress superseded facts, and avoid flooding the model with irrelevant context.
+
+### 8.1 Retrieval Sufficiency by Task Family
+
+| Family | recent3 | fullHistory | lexical3 | writeLexical3 | scopedHybrid3 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| selective_write | 0.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| evidence_retrieval | 0.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| knowledge_update | 100.0% | 0.0% | 0.0% | 0.0% | 100.0% |
+| abstention | 0.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| multi_session | 0.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| action_grounding | 0.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| causal_action | 0.0% | 0.0% | 0.0% | 0.0% | 100.0% |
+
+The split-level result clarifies the failure mode. Full-history and lexical retrieval are strong on tasks where current evidence is enough and weak precisely when the benchmark requires update semantics or causal-action discipline. They fail knowledge-update and causal-action tasks because the old evidence is present and action-relevant unless the memory system knows it has been superseded. This is the core reason context integrity cannot be reduced to context length or semantic similarity.
+
+### 8.2 Paired Sufficiency Tests
+
+Aggregate scores show the size of the gap. Paired tests show where the gap comes from. We compare each baseline against scopedHybrid3 on the same 250 tasks and count discordant outcomes: tasks where only one system retrieved sufficient, current evidence.
+
+| Baseline vs scopedHybrid3 | Both sufficient | scoped only | Baseline only | Both insufficient | Delta | Exact paired p |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| recent3 | 40 | 210 | 0 | 0 | 84.0% | <0.0001 |
+| fullHistory | 190 | 60 | 0 | 0 | 24.0% | <0.0001 |
+| lexical3 | 190 | 60 | 0 | 0 | 24.0% | <0.0001 |
+| writeLexical3 | 190 | 60 | 0 | 0 | 24.0% | <0.0001 |
+
+The paired table makes the result harder to dismiss as an averaging artifact. ScopedHybrid3 does not trade off wins and losses against full-history context in CIB v0. It matches it on the 190 tasks where full-history is sufficient and fixes the 60 tasks where full-history exposes stale evidence. Those 60 tasks are exactly the knowledge-update and causal-action families. In other words: the measured advantage is not "better search." It is update semantics.
+
+## 9. Example Task
 
 ```json
 {
@@ -212,9 +269,9 @@ This matters because production agents do not operate in a vacuum. A memory syst
 
 The second event creates a narrow exception. A brittle system may treat it as a global update and group every export by month. A context-integrity-preserving system uses both evidence sources and notices the scope: audit exports changed, normal finance exports did not.
 
-## 9. Falsifiable Claims
+## 10. Falsifiable Claims
 
-CIB should make claims that can fail.
+CIB makes claims that can fail.
 
 Claim 1: Long context alone is insufficient for durable agent memory.  
 Falsification: full-history prompting matches or beats memory systems on update, abstention, action grounding, cost, and latency.
@@ -228,9 +285,9 @@ Falsification: critic pipelines increase latency and cost without reducing unsup
 Claim 4: Causal-action tasks expose failures not visible in recall tasks.  
 Falsification: systems that score well on recall also score well on causal action.
 
-## 10. Evaluation Protocol
+## 11. Evaluation Protocol
 
-The initial benchmark should contain 250 tasks:
+CIB v0 contains 250 tasks:
 
 - 50 selective-write tasks
 - 40 evidence-retrieval tasks
@@ -240,16 +297,73 @@ The initial benchmark should contain 250 tasks:
 - 30 action-grounding tasks
 - 20 causal-action tasks
 
-Each task should include exact source IDs for gold evidence. Grading should be mostly deterministic:
+Each task includes exact source IDs for gold evidence. Grading is mostly deterministic:
 
 - Exact match for action labels.
 - Exact source-ID comparison for retrieval.
 - Rule-based stale-fact detection where possible.
 - Human or LLM-assisted equivalence checks only for natural-language answer variants.
 
-The benchmark should report aggregate results plus split-level results. A system that performs well on recall but fails abstention should not be described as having good memory.
+The benchmark reports aggregate results plus split-level results. A system that performs well on recall but fails abstention should not be described as having good memory.
 
-## 11. Expected Failure Modes
+## 12. Dataset Card
+
+Dataset name: Context Integrity Benchmark v0 (CIB-v0)
+
+Release date: 2026-07-01
+
+Creator: Bad Theory Labs
+
+Size: 250 deterministic synthetic tasks, emitted as JSONL.
+
+Task families:
+
+- Selective write: 50 tasks
+- Evidence retrieval: 40 tasks
+- Knowledge update: 40 tasks
+- Abstention: 35 tasks
+- Multi-session reasoning: 35 tasks
+- Action grounding: 30 tasks
+- Causal action: 20 tasks
+
+Data generation: Tasks are generated by `scripts/evaluate-context-integrity.mjs` from templates over project, domain, timestamp, evidence, distractor, stale-evidence, and action fields. The generator is deterministic so benchmark changes can be reviewed as code diffs.
+
+Labels: Each task includes source-level gold evidence, stale evidence markers, an abstention flag, and a discrete gold action. The primary v0 labels are exact source IDs rather than free-form natural-language labels.
+
+Personal data: CIB-v0 contains no personal data and no customer data. Names, projects, domains, timestamps, and documents are synthetic.
+
+Intended use: CIB-v0 is intended for evaluating context pipelines, memory policies, retrieval sufficiency, update handling, abstention behavior, and action grounding in agent systems.
+
+Out-of-scope use: CIB-v0 should not be used as a broad measure of general intelligence, conversational quality, world knowledge, or domain expertise. A high score on CIB-v0 does not imply an agent is safe to deploy without domain-specific evaluation.
+
+Known limitations: The dataset is small and synthetic. Its templates make failure modes auditable but may not capture the messiness of real enterprise histories. Later versions should add human-authored tasks, longer multi-document histories, tool traces, adversarial updates, and private splits.
+
+Reproducibility artifacts:
+
+- Dataset: `reports/context-integrity/cib-v0-dataset.jsonl`
+- Summary: `reports/context-integrity/cib-v0-summary.json`
+- Report: `reports/context-integrity/cib-v0-report.md`
+- PDF: `public/context-integrity/paper.pdf`
+- Evaluator: `scripts/evaluate-context-integrity.mjs`
+- Model harness: `scripts/run-context-integrity-model-eval.mjs`
+
+## 13. Frontier Model Evaluation Protocol
+
+CIB separates context-pipeline evaluation from model evaluation. The retrieval results above answer the question: did the system surface sufficient, current, scoped evidence? Frontier model evaluation answers the next question: given the task history and evidence, does the model choose the correct action and cite the correct sources?
+
+We provide an OpenAI-compatible evaluation harness at `scripts/run-context-integrity-model-eval.mjs`. The harness consumes `reports/context-integrity/cib-v0-dataset.jsonl`, prompts the model with timestamped events and the task question, and requires strict JSON output:
+
+```json
+{
+  "action": "one_of_allowed_actions",
+  "evidence": ["source_id"],
+  "abstain": true
+}
+```
+
+The harness scores action accuracy, abstention accuracy, evidence sufficiency, evidence precision, evidence recall, and stale-evidence rate. It supports any OpenAI-compatible endpoint through `CIB_MODEL_BASE_URL`, `CIB_MODEL_API_KEY`, and `CIB_MODEL`. No frontier model scores are reported in this paper because no model credentials were available in the evaluation environment. This is a constraint on this release, not a benchmark limitation.
+
+## 14. Expected Failure Modes
 
 The benchmark is designed to surface eight common failures:
 
@@ -262,7 +376,7 @@ The benchmark is designed to surface eight common failures:
 7. Action drift: choosing a plausible action not licensed by evidence.
 8. Causal confusion: recommending an intervention from observed correlation.
 
-## 12. Discussion
+## 15. Discussion
 
 The important distinction is between having context and preserving context integrity. A long prompt can contain the right sentence. A vector index can return a similar chunk. Neither guarantees that the system knows which evidence is current, scoped, sufficient, and action-authorizing.
 
@@ -270,11 +384,11 @@ This is why agent memory cannot be evaluated only as recall. The practical quest
 
 For Bad Theory Labs, this frames memory, runtime, and action as one research problem. RetainDB can be evaluated as the memory and retrieval layer. BTL Runtime can measure model, latency, and token-cost effects. Marrow can be evaluated as the action layer that must decide when evidence is strong enough to intervene.
 
-## 13. Limitations
+## 16. Limitations
 
-This draft defines a benchmark but does not report empirical model results. The strongest claims require running the benchmark across real systems. Hand-authored tasks may encode designer bias, so later versions should include generated variants with human review. LLM-based answer grading should be minimized because it can introduce evaluator bias. Finally, context integrity is broad; a 250-task benchmark cannot cover every domain where agents operate.
+This paper reports retrieval and memory baselines, not frontier LLM agent results. The strongest agent-level claims require running answer and action models over the retrieved evidence. Synthetic tasks may encode designer bias, so later versions should include human-authored and generated variants with human review. LLM-based answer grading should be minimized because it can introduce evaluator bias. Finally, context integrity is broad; a 250-task benchmark cannot cover every domain where agents operate.
 
-## 14. Conclusion
+## 17. Conclusion
 
 The next wave of AI agents will be judged less by whether they can talk and more by whether they can follow through. Following through requires context integrity: storing the right facts, retrieving the right evidence, updating beliefs, abstaining under uncertainty, and grounding actions in what is actually known.
 
@@ -299,4 +413,3 @@ Schick, T. et al. (2023). Toolformer: Language Models Can Teach Themselves to Us
 Jimenez, C. E. et al. (2023). SWE-bench: Can Language Models Resolve Real-World GitHub Issues? https://arxiv.org/abs/2310.06770
 
 Anthropic (2024). Introducing the Model Context Protocol. https://www.anthropic.com/news/model-context-protocol
-

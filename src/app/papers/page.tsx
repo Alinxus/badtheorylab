@@ -36,7 +36,7 @@ export default function PapersPage() {
       <section className="paper-wrap">
         <article className="paper paper-link">
           <header>
-            <p className="paper-meta">Benchmark Proposal · June 2026</p>
+            <p className="paper-meta">Benchmark Paper · July 2026</p>
             <h2>Context Integrity</h2>
             <p className="status">A benchmark for long-running AI agent memory, evidence retrieval, abstention, and action grounding.</p>
           </header>
@@ -45,9 +45,11 @@ export default function PapersPage() {
             retrieve only what matters, abstain when evidence is missing, and act only when the evidence supports it.
           </p>
           <p>
-            Status: protocol and paper draft. No model results are claimed yet.
+            Includes CIB v0: 250 deterministic tasks, five retrieval/memory baselines, paired significance tests,
+            and a public PDF.
           </p>
           <Link href="/context-integrity" className="paper-cta">Read Context Integrity →</Link>
+          <a href="/context-integrity/paper.pdf" className="paper-cta">PDF →</a>
         </article>
 
         <article className="paper">
@@ -275,7 +277,7 @@ const styles = `
 .paper { max-width:920px; border:1px solid var(--border); border-radius:16px; background:var(--surface); padding:24px; }
 .paper + .paper { margin-top:18px; }
 .paper-link { background:var(--bg); }
-.paper-cta { display:inline-block; margin-top:8px; color:var(--ink); text-decoration:none; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:13px; }
+.paper-cta { display:inline-block; margin-top:8px; margin-right:8px; color:var(--ink); text-decoration:none; border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:13px; }
 .paper-cta:hover { border-color:var(--ink); }
 .paper-meta { font-family:var(--font-m); text-transform:uppercase; letter-spacing:.12em; font-size:10px; color:var(--faint); margin-bottom:8px; }
 .paper h2 { font-family:var(--font-d); font-size:50px; letter-spacing:-.03em; line-height:1.02; margin-bottom:8px; }

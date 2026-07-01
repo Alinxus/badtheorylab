@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Context Integrity — Bad Theory Labs",
   description:
-    "A Bad Theory Labs benchmark proposal for evaluating whether AI agents preserve, retrieve, update, and use evidence correctly across long-running workflows.",
+    "A Bad Theory Labs benchmark and paper for evaluating whether AI agents preserve, retrieve, update, and use evidence correctly across long-running workflows.",
   openGraph: {
     title: "Context Integrity — Bad Theory Labs",
     description:
-      "A benchmark proposal for long-running AI agent memory, evidence retrieval, abstention, and action grounding.",
+      "A benchmark and paper for long-running AI agent memory, evidence retrieval, abstention, and action grounding.",
     url: "https://www.badtheorylabs.com/context-integrity",
     images: [
       {
@@ -21,11 +21,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Context Integrity — Bad Theory Labs",
     description:
-      "A benchmark proposal for long-running AI agent memory, evidence retrieval, abstention, and action grounding.",
+      "A benchmark and paper for long-running AI agent memory, evidence retrieval, abstention, and action grounding.",
   },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

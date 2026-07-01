@@ -5,10 +5,35 @@ const CAL_URL = "https://cal.com/alameenpd/quick-chat";
 const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 
 const cards = [
-  ["7", "task families", "memory writes, retrieval, updates, abstention, reasoning, action, causal action"],
-  ["13", "metrics", "accuracy, evidence precision/recall, unsupported claims, stale facts, cost, latency"],
-  ["5+", "baselines", "long context, truncation, vector RAG, hybrid RAG, memory, memory plus critic"],
-  ["0", "fabricated results", "this is a benchmark protocol until real evaluations are run"],
+  ["250", "CIB v0 tasks", "deterministic synthetic workflows across seven context-integrity task families"],
+  ["100.0%", "upper-bound sufficiency", "structured scoped memory retrieves enough evidence with no stale-fact errors"],
+  ["76.0%", "full-history ceiling", "retrieving every event still fails update and causal-action tasks"],
+  ["38.40", "utility / 1k tokens", "supported retrieval outcomes per estimated thousand context tokens"],
+];
+
+const results = [
+  ["recent3", "18.0%", "39.0%", "16.0%", "16.0%", "8.0%", "46.0%", "40.0", "4.00"],
+  ["fullHistory", "29.5%", "100.0%", "76.0%", "76.0%", "24.0%", "0.0%", "55.5", "13.68"],
+  ["lexical3", "43.3%", "100.0%", "76.0%", "76.0%", "24.0%", "0.0%", "42.1", "18.03"],
+  ["writeLexical3", "88.0%", "100.0%", "76.0%", "76.0%", "24.0%", "0.0%", "28.0", "27.10"],
+  ["scopedHybrid3", "100.0%", "100.0%", "100.0%", "100.0%", "0.0%", "0.0%", "26.0", "38.40"],
+];
+
+const familyResults = [
+  ["selective_write", "0.0%", "100.0%", "100.0%", "100.0%", "100.0%"],
+  ["evidence_retrieval", "0.0%", "100.0%", "100.0%", "100.0%", "100.0%"],
+  ["knowledge_update", "100.0%", "0.0%", "0.0%", "0.0%", "100.0%"],
+  ["abstention", "0.0%", "100.0%", "100.0%", "100.0%", "100.0%"],
+  ["multi_session", "0.0%", "100.0%", "100.0%", "100.0%", "100.0%"],
+  ["action_grounding", "0.0%", "100.0%", "100.0%", "100.0%", "100.0%"],
+  ["causal_action", "0.0%", "0.0%", "0.0%", "0.0%", "100.0%"],
+];
+
+const pairedResults = [
+  ["recent3", "40", "210", "0", "0", "84.0%", "<0.0001"],
+  ["fullHistory", "190", "60", "0", "0", "24.0%", "<0.0001"],
+  ["lexical3", "190", "60", "0", "0", "24.0%", "<0.0001"],
+  ["writeLexical3", "190", "60", "0", "0", "24.0%", "<0.0001"],
 ];
 
 const tasks = [
@@ -77,11 +102,12 @@ export default function ContextIntegrityPage() {
       <SiteNav />
 
       <section className="ci-hero">
-        <p className="ci-eyebrow">Research Draft · June 2026</p>
+        <p className="ci-eyebrow">Research Paper · July 2026</p>
         <h1>Context Integrity</h1>
         <p className="ci-subtitle">A benchmark for long-running AI agent memory and action.</p>
         <p className="ci-byline">Olajide Al-ameen · Bad Theory Labs, Lagos</p>
         <div className="ci-actions">
+          <a href="/context-integrity/paper.pdf" className="ci-btn ci-solid">Read Paper (PDF)</a>
           <a href={DISCORD_URL} target="_blank" rel="noreferrer" className="ci-btn ci-solid">Discuss in Discord</a>
           <a href={CAL_URL} target="_blank" rel="noreferrer" className="ci-btn ci-outline">Schedule call</a>
           <Link href="/reasoning-gap" className="ci-btn ci-outline">Read Reasoning Gap</Link>
@@ -91,7 +117,7 @@ export default function ContextIntegrityPage() {
       <section className="ci-paper-wrap">
         <article className="ci-paper">
           <header>
-            <p className="ci-paper-meta">Bad Theory Labs · Benchmark Proposal v0.1</p>
+            <p className="ci-paper-meta">Bad Theory Labs · CIB v0 · Paper v0.1</p>
             <h2>The agent stack has a context integrity problem.</h2>
             <p className="ci-lede">
               Long context is capacity. Memory is continuity. Retrieval is access. Reasoning is use.
@@ -121,12 +147,12 @@ export default function ContextIntegrityPage() {
           <p>
             We define context integrity as the property that every answer or action can be traced to the right
             stored evidence, updated against newer evidence, bounded by uncertainty, and executed only when the
-            evidence supports it. This draft defines the benchmark, the metrics, and the evaluation protocol.
-            It does not report model results yet.
+            evidence supports it. CIB v0 now includes 250 deterministic tasks and five retrieval/memory baselines.
+            These are context-pipeline results, not frontier LLM agent results.
           </p>
 
           <div className="ci-callout">
-            <p><strong>Core claim:</strong> AI agents fail when their context pipeline fails. The bottleneck is not only model intelligence, but the integrity of memory, retrieval, evidence, and action over time.</p>
+            <p><strong>Core claim:</strong> AI agents fail when their context pipeline fails. The bottleneck is not only model intelligence, but the integrity of memory, retrieval, evidence, and action over time. <a href="/context-integrity/paper.pdf">Read the PDF.</a></p>
           </div>
 
           <h3>Why This Exists</h3>
@@ -169,6 +195,93 @@ export default function ContextIntegrityPage() {
             billable tokens. This ties memory quality to actual deployment pressure.
           </p>
 
+          <h3>CIB v0 Results</h3>
+          <div className="ci-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>System</th>
+                  <th>Precision</th>
+                  <th>Recall</th>
+                  <th>Sufficiency</th>
+                  <th>Action</th>
+                  <th>Stale</th>
+                  <th>Unsupported</th>
+                  <th>Tokens</th>
+                  <th>Utility</th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => <td key={`${row[0]}-${index}`}>{cell}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            The first run is intentionally modest. It evaluates retrieval and memory policy before answer generation.
+            Recency fails badly. Lexical retrieval finds evidence but retrieves stale facts. Write filtering reduces
+            flooding, and scoped update semantics remove stale errors in this synthetic setting.
+          </p>
+
+          <h3>Split Results</h3>
+          <div className="ci-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Family</th>
+                  <th>recent3</th>
+                  <th>fullHistory</th>
+                  <th>lexical3</th>
+                  <th>writeLexical3</th>
+                  <th>scopedHybrid3</th>
+                </tr>
+              </thead>
+              <tbody>
+                {familyResults.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => <td key={`${row[0]}-${index}`}>{cell}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Full history and lexical retrieval fail exactly where update semantics and causal-action discipline
+            matter. More context can preserve the old evidence too well.
+          </p>
+
+          <h3>Paired Tests</h3>
+          <div className="ci-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Baseline</th>
+                  <th>Both sufficient</th>
+                  <th>Scoped only</th>
+                  <th>Baseline only</th>
+                  <th>Both fail</th>
+                  <th>Delta</th>
+                  <th>p</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pairedResults.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => <td key={`${row[0]}-${index}`}>{cell}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            The paired result is the sharpest CIB v0 signal: scopedHybrid3 matches full-history context on every
+            task where full history is sufficient and fixes the 60 update or causal-action tasks where stale evidence
+            breaks full-history context.
+          </p>
+
           <h3>Example Task</h3>
           <div className="ci-example">
             <div>
@@ -203,6 +316,22 @@ export default function ContextIntegrityPage() {
             <p><strong>Claim 4:</strong> Causal-action tasks expose failures not visible in recall tasks.</p>
           </div>
 
+          <h3>Model Eval Harness</h3>
+          <p>
+            The repo includes an OpenAI-compatible model harness for the next phase. It prompts models to return
+            strict JSON with an action, source IDs, and abstention flag, then scores action accuracy, evidence
+            sufficiency, stale evidence, and abstention behavior. No frontier model scores are reported until real
+            credentials are available.
+          </p>
+
+          <h3>Dataset Card</h3>
+          <p>
+            CIB v0 is a deterministic synthetic JSONL benchmark with no personal or customer data. Each item includes
+            timestamped events, gold evidence source IDs, stale-evidence markers, an abstention flag, and a discrete
+            gold action. The release includes the generator, dataset, summary JSON, benchmark report, PDF, and an
+            OpenAI-compatible model evaluation harness.
+          </p>
+
           <h3>How It Connects to BTL</h3>
           <p>
             This is the bridge between the lab&apos;s research and products. RetainDB can be evaluated as the memory
@@ -221,7 +350,7 @@ export default function ContextIntegrityPage() {
             Memory is not the ability to recall a sentence. It is the ability to maintain an auditable state that
             supports correct decisions over time.
           </blockquote>
-          <p className="ci-paper-meta">Bad Theory Labs, Lagos · June 2026</p>
+          <p className="ci-paper-meta">Bad Theory Labs, Lagos · July 2026</p>
         </article>
       </section>
     </main>
@@ -269,6 +398,11 @@ const styles = `
 .ci-example { display:grid; grid-template-columns:1fr 1fr; gap:14px; background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:18px; }
 .ci-example p { margin-bottom:8px; }
 .ci-example-label { font-family:var(--font-m); text-transform:uppercase; letter-spacing:.12em; color:var(--faint)!important; font-size:10px; margin-bottom:4px!important; }
+.ci-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; margin:12px 0 16px; }
+.ci-table-wrap table { width:100%; border-collapse:collapse; font-family:var(--font-m); font-size:12px; background:var(--bg); }
+.ci-table-wrap th { text-align:left; color:var(--faint); text-transform:uppercase; letter-spacing:.06em; font-size:10px; padding:10px 12px; border-bottom:1px solid var(--border); }
+.ci-table-wrap td { color:var(--body); padding:10px 12px; border-bottom:1px solid var(--border); white-space:nowrap; }
+.ci-table-wrap tr:last-child td { border-bottom:none; }
 .ci-claims { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:16px; }
 .ci-claims p { margin-bottom:8px; }
 .ci-claims p:last-child { margin-bottom:0; }
