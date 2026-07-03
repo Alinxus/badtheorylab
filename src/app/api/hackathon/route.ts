@@ -16,6 +16,7 @@ type HackathonPayload = {
 };
 
 const EVENT_DATES = "July 3–5, 2026";
+const REGISTRATION_CLOSED = true;
 const DISPOSABLE_EMAIL_DOMAINS = [
   "007.hzeg.eu.org",
   "10minutemail.com",
@@ -92,6 +93,13 @@ function isBlockedEmailDomain(domain: string) {
 }
 
 export async function POST(req: Request) {
+  if (REGISTRATION_CLOSED) {
+    return NextResponse.json(
+      { error: "Hackathon registration is closed." },
+      { status: 410 },
+    );
+  }
+
   let payload: HackathonPayload;
   try {
     payload = (await req.json()) as HackathonPayload;
@@ -153,6 +161,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true, already: true });
     }
     // 23514 = check_violation, used by the optional database trigger for disposable domains.
+    if (error.code === "23514" && error.message?.toLowerCase().includes("registration is closed")) {
+      return NextResponse.json(
+        { error: "Hackathon registration is closed." },
+        { status: 410 },
+      );
+    }
     if (error.code === "23514") {
       return NextResponse.json(
         { error: "Please register with a permanent email address." },

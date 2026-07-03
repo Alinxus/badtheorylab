@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import RegisterModal from "./RegisterModal";
 import { pageCss } from "./hackathon-styles";
 
 const DISCORD_URL   = "https://discord.gg/QJBCcB7bF";
 const RUNTIME_URL   = "https://badtheorylabs.com";
+const RUNTIME_SIGNUP_URL = "https://runtime.badtheorylabs.com/auth/signup";
 // 48h, online, starts 15:00 UTC so it's a sane hour across most of the world
 const HACKATHON_DATE = new Date("2026-07-03T15:00:00Z");
 
@@ -34,13 +34,10 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 export default function HackathonPage() {
   const cd = useCountdown(HACKATHON_DATE);
-  const [regOpen, setRegOpen] = useState(false);
-  const openReg = () => setRegOpen(true);
 
   return (
     <main className="hack-page">
       <style>{pageCss}</style>
-      <RegisterModal open={regOpen} onClose={() => setRegOpen(false)} discordUrl={DISCORD_URL} />
 
       {/* ── NAV ── */}
       <nav className="h-nav">
@@ -54,7 +51,7 @@ export default function HackathonPage() {
         </div>
         <div className="h-nav-cta">
           <a href={DISCORD_URL} target="_blank" rel="noreferrer">Join community</a>
-          <button type="button" onClick={openReg} className="solid">Register now</button>
+          <a href={DISCORD_URL} target="_blank" rel="noreferrer" className="solid">Registrations closed</a>
         </div>
       </nav>
 
@@ -72,11 +69,12 @@ export default function HackathonPage() {
             </h1>
             <p className="h-sub">
               48 hours, fully online, open to builders anywhere on Earth. Ship anything powered by the
-              BTL runtime — our OpenAI-compatible LLM gateway. Free API credits for everyone who enters.
-              $1,000+ in prizes. Courtesy of Bad Theory Labs.
+              BTL runtime — our OpenAI-compatible LLM gateway. Registration is now closed, and eligible
+              workspace signups receive 5M DeepSeek starter tokens for the event. $1,000+ in prizes.
+              Courtesy of Bad Theory Labs.
             </p>
             <div className="h-actions">
-              <button type="button" onClick={openReg} className="btn-p">Register for free</button>
+              <a href={RUNTIME_SIGNUP_URL} target="_blank" rel="noreferrer" className="btn-p">Create runtime workspace</a>
               <a href="#schedule" className="btn-g">See schedule</a>
             </div>
           </div>
@@ -103,9 +101,9 @@ export default function HackathonPage() {
           <div className="h-hero-overlay">
             <div className="h-live-chip">
               <span className="h-live-dot" />
-              Registrations open
+              Registrations closed
             </div>
-            <p className="h-countdown-label">Hacking starts in</p>
+            <p className="h-countdown-label">Hacking is live</p>
             <div className="h-countdown">
               <div className="h-cd-block">
                 <span className="h-cd-n">{pad(cd.days)}</span>
@@ -171,8 +169,8 @@ export default function HackathonPage() {
         <div className="h-ev-callout-text">
           <span className="h-ev-callout-label">The one rule</span>
           Every project must call the <strong>BTL runtime</strong> — our OpenAI-compatible gateway
-          (<code>/v1/chat/completions</code>, <code>/v1/responses</code>). Register and we send you a
-          scoped API key plus free credits to build with. Bring any provider behind it.
+          (<code>/v1/chat/completions</code>, <code>/v1/responses</code>). Registered builders should
+          create a runtime workspace, generate an API key, and use their DeepSeek starter tokens to build.
         </div>
         <a href={RUNTIME_URL} target="_blank" rel="noreferrer" className="h-ev-callout-btn">
           Read the runtime docs →
@@ -193,7 +191,7 @@ export default function HackathonPage() {
           <div className="h-perks-list">
             {([
               ["Cash prizes",     "$500 · $300 · $200 for the top 3, plus a $100 'best use of runtime' spot prize"],
-              ["Runtime credits", "Free BTL runtime API credits for every registrant — across providers"],
+              ["Runtime credits", "Eligible runtime workspaces receive 5M DeepSeek starter tokens for the event"],
               ["BTL beta access", "Top teams get early access to RetainDB + Marrow private beta"],
               ["Mentorship",      "Live office hours with BTL founders and research partners — open to all"],
               ["Certificate",     "Official BTL hackathon certificate for everyone who ships"],
@@ -282,9 +280,9 @@ export default function HackathonPage() {
         <div className="h-faq-grid">
           {([
             ["Is it free?",                "Yes. Free to enter, open to anyone anywhere. No fees, no tiers."],
-            ["Do I have to use the runtime?","Yes — that's the whole event. Every project calls the BTL runtime. You get a key and free credits at registration."],
+            ["Do I have to use the runtime?","Yes — that's the whole event. Every project calls the BTL runtime. Eligible workspace signups get 5M DeepSeek starter tokens."],
             ["Do I need a team?",          "No. Solo is welcome, and you can find teammates in Discord before kickoff. Teams up to 4."],
-            ["How do I register?",         "Hit any Register button on this page — the form is right here, no Google Forms. Under a minute."],
+            ["Can I still register?",      "Registration is closed. Join Discord for announcements, team updates, and demo day details."],
             ["Who owns the IP?",           "You do. BTL makes no claim on anything you build here."],
             ["How are prizes paid?",       "USD by bank transfer, PayPal, or stablecoin — whatever works for your country."],
           ] as const).map(([q, a]) => (
@@ -317,7 +315,7 @@ export default function HackathonPage() {
         </div>
         <h2 className="h-footer-title">48 hours to build<br />on the <em>runtime.</em></h2>
         <div className="h-footer-actions">
-          <button type="button" onClick={openReg} className="btn-p btn-p-lg">Register free →</button>
+          <a href={RUNTIME_SIGNUP_URL} target="_blank" rel="noreferrer" className="btn-p btn-p-lg">Create runtime workspace →</a>
           <a href={DISCORD_URL} target="_blank" rel="noreferrer" className="btn-g btn-g-lg">Join the Discord</a>
         </div>
         <p className="h-footer-note">
