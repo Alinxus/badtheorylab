@@ -9,6 +9,7 @@ type ScorePayload = {
   execution?: number;
   creativity?: number;
   demoClarity?: number;
+  publicityBonus?: number;
   runtimeVerified?: boolean;
   spotPrize?: boolean;
   notes?: string;
@@ -54,6 +55,7 @@ export async function POST(req: Request) {
     execution: clamp(payload.execution, 20),
     creativity: clamp(payload.creativity, 15),
     demo_clarity: clamp(payload.demoClarity, 10),
+    publicity_bonus: clamp(payload.publicityBonus, 3),
     runtime_verified: Boolean(payload.runtimeVerified),
     spot_prize: Boolean(payload.spotPrize),
     notes: (payload.notes || "").slice(0, 4000),
@@ -69,6 +71,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Couldn't save score." }, { status: 502 });
   }
 
-  const total = row.runtime_usage + row.usefulness + row.execution + row.creativity + row.demo_clarity;
+  const total = row.runtime_usage + row.usefulness + row.execution + row.creativity + row.demo_clarity +
+    row.publicity_bonus;
   return NextResponse.json({ ok: true, total });
 }

@@ -18,6 +18,7 @@ const empty = {
   repoUrl: "",
   demoVideoUrl: "",
   liveUrl: "",
+  xPostUrl: "",
   runtimeRoutes: "",
   runtimeProof: "",
   usesRuntime: false,
@@ -107,7 +108,8 @@ export default function SubmitPage() {
         <p className="sub-sub">
           One submission per team, keyed to your registered email. Come back and edit any time before the
           deadline — the last version wins. A GitHub repo is required; a demo video and live link help but
-          aren&rsquo;t mandatory. <strong>Every eligible project must call the BTL Runtime.</strong>
+          aren&rsquo;t mandatory. Sharing on X is optional and can earn up to 3 bonus points.
+          {" "}<strong>Every eligible project must call the BTL Runtime.</strong>
         </p>
         <div className="sub-deadline">
           <span className="dot" /> Submissions close <strong>Jul 5, 2026 · 15:00 UTC</strong>
@@ -168,6 +170,12 @@ export default function SubmitPage() {
                 onChange={e => update("liveUrl", e.target.value)} placeholder="https://your-app.vercel.app" />
             </Field>
           </div>
+
+          <Field label="X / Twitter post link"
+            hint="Optional. Post your demo or build thread on X, tag @badtheorylabs, and paste the link for up to 3 publicity bonus points.">
+            <input type="url" value={form.xPostUrl}
+              onChange={e => update("xPostUrl", e.target.value)} placeholder="https://x.com/you/status/…" />
+          </Field>
 
           <Field label="BTL Runtime routes / models used" required
             hint="e.g. /v1/chat/completions with deepseek, /v1/responses, vision, tools, memory.">

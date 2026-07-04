@@ -21,6 +21,7 @@ create table if not exists hackathon_submissions (
   repo_url       text not null default '',
   demo_video_url text not null default '',    -- optional
   live_url       text not null default '',    -- optional
+  x_post_url     text not null default '',    -- optional: X/Twitter post for publicity bonus
   runtime_routes text not null default '',    -- models / routes used through BTL Runtime
   runtime_proof  text not null default '',    -- optional: request id, screenshot url, log snippet
   uses_runtime   boolean not null default false,
@@ -28,6 +29,9 @@ create table if not exists hackathon_submissions (
   created_at     timestamptz not null default now(),
   updated_at     timestamptz not null default now()
 );
+
+alter table hackathon_submissions
+  add column if not exists x_post_url text not null default '';
 
 -- Keep updated_at honest on every edit/upsert.
 create or replace function touch_hackathon_submission_updated_at()
@@ -81,8 +85,12 @@ create table if not exists hackathon_scores (
   execution          int  not null default 0,   -- /20
   creativity         int  not null default 0,   -- /15
   demo_clarity       int  not null default 0,   -- /10
+  publicity_bonus    int  not null default 0,   -- /3
   runtime_verified   boolean not null default false,
   spot_prize         boolean not null default false,
   notes              text not null default '',
   updated_at         timestamptz not null default now()
 );
+
+alter table hackathon_scores
+  add column if not exists publicity_bonus int not null default 0;

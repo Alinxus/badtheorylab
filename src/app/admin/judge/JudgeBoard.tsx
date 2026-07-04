@@ -8,6 +8,7 @@ export type JudgeScore = {
   execution: number;
   creativity: number;
   demoClarity: number;
+  publicityBonus: number;
   runtimeVerified: boolean;
   spotPrize: boolean;
   notes: string;
@@ -24,6 +25,7 @@ export type JudgeEntry = {
   repoUrl: string;
   demoVideoUrl: string;
   liveUrl: string;
+  xPostUrl: string;
   runtimeRoutes: string;
   runtimeProof: string;
   updatedAt: string;
@@ -37,12 +39,15 @@ const RUBRIC = [
   { key: "execution", label: "Execution", max: 20 },
   { key: "creativity", label: "Creativity", max: 15 },
   { key: "demoClarity", label: "Demo clarity", max: 10 },
+  { key: "publicityBonus", label: "X publicity bonus", max: 3 },
 ] as const;
 
 type SortKey = "total" | "name" | "updated" | "unscored";
+const MAX_TOTAL = 103;
 
 function total(s: JudgeScore) {
-  return s.runtimeUsage + s.usefulness + s.execution + s.creativity + s.demoClarity;
+  return s.runtimeUsage + s.usefulness + s.execution + s.creativity + s.demoClarity +
+    s.publicityBonus;
 }
 
 /** Convert a YouTube / Loom / Vimeo watch URL to an embeddable one. */
@@ -96,7 +101,7 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
       body: JSON.stringify({
         submissionId: entry.id,
         runtimeUsage: s.runtimeUsage, usefulness: s.usefulness, execution: s.execution,
-        creativity: s.creativity, demoClarity: s.demoClarity,
+        creativity: s.creativity, demoClarity: s.demoClarity, publicityBonus: s.publicityBonus,
         runtimeVerified: s.runtimeVerified, spotPrize: s.spotPrize, notes: s.notes,
       }),
     });
@@ -152,7 +157,7 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
                   <span className={`jb-badge ${e.score.runtimeVerified ? "ok" : "warn"}`}>
                     {e.score.runtimeVerified ? "✓ runtime" : "runtime?"}
                   </span>
-                  <span className="jb-total">{t}<em>/100</em></span>
+                  <span className="jb-total">{t}<em>/{MAX_TOTAL}</em></span>
                   <span className="jb-caret">{open ? "▲" : "▼"}</span>
                 </div>
               </div>
@@ -163,6 +168,7 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
                 <a href={e.repoUrl} target="_blank" rel="noreferrer" className="jb-link repo">Repo ↗</a>
                 {e.liveUrl && <a href={e.liveUrl} target="_blank" rel="noreferrer" className="jb-link">Live ↗</a>}
                 {e.demoVideoUrl && <a href={e.demoVideoUrl} target="_blank" rel="noreferrer" className="jb-link">Video ↗</a>}
+                {e.xPostUrl && <a href={e.xPostUrl} target="_blank" rel="noreferrer" className="jb-link">X post ↗</a>}
                 {e.members && <span className="jb-members">👥 {e.members}</span>}
               </div>
 
@@ -211,7 +217,7 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
                     <textarea placeholder="Notes…" value={e.score.notes}
                       onChange={ev => patch(e.id, { notes: ev.target.value })} rows={2} />
                     <div className="jb-save-row">
-                      <span className="jb-bigtotal">{t}<em>/100</em></span>
+                      <span className="jb-bigtotal">{t}<em>/{MAX_TOTAL}</em></span>
                       <button className="jb-save" onClick={() => save(e)}>
                         {e.score.saved ? "Update score" : "Save score"}
                       </button>

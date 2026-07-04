@@ -11,6 +11,7 @@ type SubmissionPayload = {
   repoUrl?: string;
   demoVideoUrl?: string;
   liveUrl?: string;
+  xPostUrl?: string;
   runtimeRoutes?: string;
   runtimeProof?: string;
   usesRuntime?: boolean;
@@ -56,6 +57,17 @@ function validGithubRepoUrl(value: string) {
   }
 }
 
+function validXPostUrl(value: string) {
+  try {
+    const url = new URL(value);
+    const host = url.hostname.toLowerCase();
+    return host === "x.com" || host.endsWith(".x.com") ||
+      host === "twitter.com" || host.endsWith(".twitter.com");
+  } catch {
+    return false;
+  }
+}
+
 function blockedEmailDomains() {
   const extra = (process.env.BLOCKED_HACKATHON_EMAIL_DOMAINS || "")
     .split(",").map(d => d.trim().toLowerCase()).filter(Boolean);
@@ -91,6 +103,7 @@ export async function POST(req: Request) {
   const repoUrl = payload.repoUrl?.trim() || "";
   const demoVideoUrl = payload.demoVideoUrl?.trim() || "";
   const liveUrl = payload.liveUrl?.trim() || "";
+  const xPostUrl = payload.xPostUrl?.trim() || "";
   const runtimeRoutes = payload.runtimeRoutes?.trim() || "";
 
   if (!validEmail(email)) {
@@ -113,6 +126,9 @@ export async function POST(req: Request) {
   }
   if (liveUrl && !validUrl(liveUrl)) {
     return NextResponse.json({ error: "Live app link must be a valid URL." }, { status: 400 });
+  }
+  if (xPostUrl && !validXPostUrl(xPostUrl)) {
+    return NextResponse.json({ error: "X / Twitter post link must be an x.com or twitter.com URL." }, { status: 400 });
   }
   if (!runtimeRoutes) {
     return NextResponse.json({ error: "List the BTL Runtime routes/models you used." }, { status: 400 });
@@ -162,6 +178,7 @@ export async function POST(req: Request) {
     repo_url: repoUrl,
     demo_video_url: demoVideoUrl,
     live_url: liveUrl,
+    x_post_url: xPostUrl,
     runtime_routes: runtimeRoutes,
     runtime_proof: payload.runtimeProof?.trim() || "",
     uses_runtime: true,
