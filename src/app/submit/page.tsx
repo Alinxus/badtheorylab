@@ -18,7 +18,7 @@ const empty = {
   repoUrl: "",
   demoVideoUrl: "",
   liveUrl: "",
-  xPostUrl: "",
+  socialPostUrl: "",
   runtimeRoutes: "",
   runtimeProof: "",
   usesRuntime: false,
@@ -108,7 +108,7 @@ export default function SubmitPage() {
         <p className="sub-sub">
           One submission per team, keyed to your registered email. Come back and edit any time before the
           deadline — the last version wins. A GitHub repo is required; a demo video and live link help but
-          aren&rsquo;t mandatory. Sharing on X is optional and can earn up to 3 bonus points.
+          aren&rsquo;t mandatory. Sharing on social media is optional and can earn up to 3 bonus points.
           {" "}<strong>Every eligible project must call the BTL Runtime.</strong>
         </p>
         <div className="sub-deadline">
@@ -171,10 +171,10 @@ export default function SubmitPage() {
             </Field>
           </div>
 
-          <Field label="X / Twitter post link"
-            hint="Optional. Post your demo or build thread on X, tag @badtheorylabs, and paste the link for up to 3 publicity bonus points.">
-            <input type="url" value={form.xPostUrl}
-              onChange={e => update("xPostUrl", e.target.value)} placeholder="https://x.com/you/status/…" />
+          <Field label="Social post link"
+            hint="Optional. Post your demo or build thread on any public social platform and paste the link for up to 3 publicity bonus points.">
+            <input type="url" value={form.socialPostUrl}
+              onChange={e => update("socialPostUrl", e.target.value)} placeholder="https://social.example/you/post" />
           </Field>
 
           <Field label="BTL Runtime routes / models used" required

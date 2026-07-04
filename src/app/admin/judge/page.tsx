@@ -80,7 +80,7 @@ export default async function JudgePage() {
       repoUrl: s.repo_url,
       demoVideoUrl: s.demo_video_url,
       liveUrl: s.live_url,
-      xPostUrl: s.x_post_url,
+      socialPostUrl: s.social_post_url || s.x_post_url || "",
       runtimeRoutes: s.runtime_routes,
       runtimeProof: s.runtime_proof,
       updatedAt: s.updated_at,

@@ -21,7 +21,7 @@ create table if not exists hackathon_submissions (
   repo_url       text not null default '',
   demo_video_url text not null default '',    -- optional
   live_url       text not null default '',    -- optional
-  x_post_url     text not null default '',    -- optional: X/Twitter post for publicity bonus
+  social_post_url text not null default '',   -- optional: public social post for publicity bonus
   runtime_routes text not null default '',    -- models / routes used through BTL Runtime
   runtime_proof  text not null default '',    -- optional: request id, screenshot url, log snippet
   uses_runtime   boolean not null default false,
@@ -31,7 +31,25 @@ create table if not exists hackathon_submissions (
 );
 
 alter table hackathon_submissions
-  add column if not exists x_post_url text not null default '';
+  add column if not exists social_post_url text not null default '';
+
+do $$
+begin
+  if exists (
+    select 1
+    from information_schema.columns
+    where table_schema = 'public'
+      and table_name = 'hackathon_submissions'
+      and column_name = 'x_post_url'
+  ) then
+    execute $f$
+      update hackathon_submissions
+      set social_post_url = x_post_url
+      where social_post_url = ''
+        and x_post_url <> ''
+    $f$;
+  end if;
+end$$;
 
 -- Keep updated_at honest on every edit/upsert.
 create or replace function touch_hackathon_submission_updated_at()

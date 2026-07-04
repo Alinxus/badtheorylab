@@ -25,7 +25,7 @@ export type JudgeEntry = {
   repoUrl: string;
   demoVideoUrl: string;
   liveUrl: string;
-  xPostUrl: string;
+  socialPostUrl: string;
   runtimeRoutes: string;
   runtimeProof: string;
   updatedAt: string;
@@ -39,7 +39,7 @@ const RUBRIC = [
   { key: "execution", label: "Execution", max: 20 },
   { key: "creativity", label: "Creativity", max: 15 },
   { key: "demoClarity", label: "Demo clarity", max: 10 },
-  { key: "publicityBonus", label: "X publicity bonus", max: 3 },
+  { key: "publicityBonus", label: "Social publicity bonus", max: 3 },
 ] as const;
 
 type SortKey = "total" | "name" | "updated" | "unscored";
@@ -168,7 +168,7 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
                 <a href={e.repoUrl} target="_blank" rel="noreferrer" className="jb-link repo">Repo ↗</a>
                 {e.liveUrl && <a href={e.liveUrl} target="_blank" rel="noreferrer" className="jb-link">Live ↗</a>}
                 {e.demoVideoUrl && <a href={e.demoVideoUrl} target="_blank" rel="noreferrer" className="jb-link">Video ↗</a>}
-                {e.xPostUrl && <a href={e.xPostUrl} target="_blank" rel="noreferrer" className="jb-link">X post ↗</a>}
+                {e.socialPostUrl && <a href={e.socialPostUrl} target="_blank" rel="noreferrer" className="jb-link">Social post ↗</a>}
                 {e.members && <span className="jb-members">👥 {e.members}</span>}
               </div>
 
