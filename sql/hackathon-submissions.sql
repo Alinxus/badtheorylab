@@ -1,5 +1,6 @@
 -- Run this in the Supabase SQL Editor for the hackathon submission database.
--- Creates the submission + scoring tables used by /submit and /admin/judge.
+-- Creates the submission + scoring tables used by the public submit page and
+-- the private scoring dashboard.
 --
 -- Design notes:
 --   * One row per team, keyed by the registered email (unique). The /submit
@@ -7,7 +8,7 @@
 --     and always has exactly one final submission.
 --   * repo_url is required at the app layer; demo video / live link / proof are
 --     optional so repo-only projects are first-class.
---   * Scores live in a separate table so the judge dashboard can save/refresh
+--   * Scores live in a separate table so the scoring dashboard can save/refresh
 --     without touching the submission itself.
 
 create table if not exists hackathon_submissions (
@@ -72,7 +73,7 @@ begin
   end if;
 end$$;
 
--- One score row per submission. Judge dashboard upserts on submission_id.
+-- One score row per submission. The dashboard upserts on submission_id.
 create table if not exists hackathon_scores (
   submission_id      uuid primary key references hackathon_submissions(id) on delete cascade,
   runtime_usage      int  not null default 0,   -- /30

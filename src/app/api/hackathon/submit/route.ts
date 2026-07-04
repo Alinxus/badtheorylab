@@ -31,7 +31,7 @@ const DISPOSABLE_EMAIL_DOMAINS = [
 
 function getSupabase() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
   if (!url || !key) return null;
   return createClient(url, key);
 }
@@ -39,6 +39,22 @@ function getSupabase() {
 const validEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 const validUrl = (v: string) => /^https?:\/\/.+/i.test(v);
 const emailDomain = (email: string) => email.split("@").at(1)?.toLowerCase() || "";
+
+function validGithubRepoUrl(value: string) {
+  try {
+    const url = new URL(value);
+    const host = url.hostname.toLowerCase();
+    const parts = url.pathname.split("/").filter(Boolean);
+    return (
+      (host === "github.com" || host === "www.github.com") &&
+      parts.length >= 2 &&
+      Boolean(parts[0]) &&
+      Boolean(parts[1])
+    );
+  } catch {
+    return false;
+  }
+}
 
 function blockedEmailDomains() {
   const extra = (process.env.BLOCKED_HACKATHON_EMAIL_DOMAINS || "")
@@ -73,6 +89,8 @@ export async function POST(req: Request) {
   const projectName = payload.projectName?.trim() || "";
   const description = payload.description?.trim() || "";
   const repoUrl = payload.repoUrl?.trim() || "";
+  const demoVideoUrl = payload.demoVideoUrl?.trim() || "";
+  const liveUrl = payload.liveUrl?.trim() || "";
   const runtimeRoutes = payload.runtimeRoutes?.trim() || "";
 
   if (!validEmail(email)) {
@@ -87,8 +105,14 @@ export async function POST(req: Request) {
   if (!description) {
     return NextResponse.json({ error: "A short description is required." }, { status: 400 });
   }
-  if (!validUrl(repoUrl)) {
+  if (!validGithubRepoUrl(repoUrl)) {
     return NextResponse.json({ error: "A valid GitHub repo URL is required." }, { status: 400 });
+  }
+  if (demoVideoUrl && !validUrl(demoVideoUrl)) {
+    return NextResponse.json({ error: "Demo video must be a valid URL." }, { status: 400 });
+  }
+  if (liveUrl && !validUrl(liveUrl)) {
+    return NextResponse.json({ error: "Live app link must be a valid URL." }, { status: 400 });
   }
   if (!runtimeRoutes) {
     return NextResponse.json({ error: "List the BTL Runtime routes/models you used." }, { status: 400 });
@@ -105,6 +129,30 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Submission service is not configured yet." }, { status: 500 });
   }
 
+  const { data: registration, error: registrationError } = await supabase
+    .from("hackathon_registrations")
+    .select("email")
+    .eq("email", email)
+    .maybeSingle();
+
+  if (registrationError) {
+    console.error(
+      "[hackathon/submit] registration lookup failed:",
+      registrationError.message,
+      registrationError.code,
+    );
+    return NextResponse.json(
+      { error: "Couldn't verify your registration. Please try again in a moment." },
+      { status: 502 },
+    );
+  }
+  if (!registration) {
+    return NextResponse.json(
+      { error: "Use the same email you registered for the hackathon with." },
+      { status: 403 },
+    );
+  }
+
   const row = {
     email,
     team_name: teamName,
@@ -112,8 +160,8 @@ export async function POST(req: Request) {
     members: payload.members?.trim() || "",
     description,
     repo_url: repoUrl,
-    demo_video_url: payload.demoVideoUrl?.trim() || "",
-    live_url: payload.liveUrl?.trim() || "",
+    demo_video_url: demoVideoUrl,
+    live_url: liveUrl,
     runtime_routes: runtimeRoutes,
     runtime_proof: payload.runtimeProof?.trim() || "",
     uses_runtime: true,

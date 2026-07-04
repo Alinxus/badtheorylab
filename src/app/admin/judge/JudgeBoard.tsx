@@ -229,13 +229,17 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
 
 const page: React.CSSProperties = {
   minHeight: "100vh", background: "#FAFAF9", color: "#0E0D0C",
-  fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Arial,sans-serif",
+  fontFamily: "'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif",
   padding: "0 0 80px",
 };
 
 const css = `
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+.jb-eyebrow,.jb-badge,.jb-total em,.jb-bigtotal em{font-family:'JetBrains Mono',monospace}
+.jb-head h1,.jb-title h2{font-family:'EB Garamond',serif;font-weight:500;letter-spacing:-.03em}
 .jb-head{max-width:920px;margin:0 auto;padding:26px 24px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.jb-eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9C9890}
+.jb-eyebrow{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#9C9890}
+.jb-total,.jb-bigtotal{font-family:'EB Garamond',serif;letter-spacing:-.03em}
 .jb-head h1{margin:6px 0 2px;font-size:28px;letter-spacing:-.02em}
 .jb-muted{color:#9C9890;font-size:13px;margin:0}
 .jb-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}

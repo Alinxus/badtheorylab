@@ -229,42 +229,62 @@ function Field({ label, required, hint, children }: {
   );
 }
 
+// Same type kit + palette as /hackathon so /submit reads like the rest of the site.
 const css = `
-.sub-page{min-height:100vh;background:#FAFAF9;color:#0E0D0C;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;padding-bottom:80px}
-.sub-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:820px;margin:0 auto}
-.sub-brand{font-weight:700;text-decoration:none;color:#0E0D0C}
-.sub-nav-links{display:flex;gap:20px}
-.sub-nav-links a{color:#5C5954;text-decoration:none;font-size:14px}
-.sub-nav-links a:hover{color:#0E0D0C}
-.sub-hero{max-width:820px;margin:24px auto 8px;padding:0 28px}
-.sub-eyebrow{display:flex;align-items:center;gap:10px;color:#9C9890;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-.sub-eyebrow .rule{width:28px;height:1px;background:#D6D3CC}
-.sub-hero h1{font-size:40px;margin:14px 0 10px;letter-spacing:-.02em}
-.sub-sub{color:#5C5954;font-size:16px;line-height:1.6;max-width:640px}
-.sub-deadline{margin-top:16px;display:inline-flex;align-items:center;gap:8px;background:#F3F2EF;border:1px solid #E8E6E1;border-radius:999px;padding:7px 14px;font-size:13px;color:#4a4540}
-.sub-deadline .dot{width:7px;height:7px;border-radius:50%;background:#0E0D0C}
-.sub-form{max-width:820px;margin:28px auto 0;padding:0 28px;display:flex;flex-direction:column;gap:20px}
-.sub-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:640px){.sub-row{grid-template-columns:1fr}.sub-hero h1{font-size:32px}}
-.sub-field{display:flex;flex-direction:column;gap:6px}
-.sub-label{font-size:14px;font-weight:600}
-.sub-label .req{color:#b3402e;font-style:normal}
-.sub-hint{font-size:12px;color:#9C9890}
-.sub-field input,.sub-field textarea{border:1px solid #D6D3CC;border-radius:10px;padding:11px 13px;font-size:15px;background:#fff;color:#0E0D0C;font-family:inherit;outline:none}
-.sub-field input:focus,.sub-field textarea:focus{border-color:#0E0D0C;box-shadow:0 0 0 3px rgba(14,13,12,.06)}
-.sub-check-row{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:#4a4540;line-height:1.5;background:#F3F2EF;border:1px solid #E8E6E1;border-radius:10px;padding:13px 15px}
-.sub-check-row input{margin-top:2px;width:16px;height:16px;flex:none}
-.sub-check-row em{color:#b3402e;font-style:normal;font-weight:600}
-.sub-err{color:#b3402e;font-size:14px;margin:0}
-.btn-p{background:#0E0D0C;color:#fff;border:none;border-radius:10px;padding:13px 22px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
-.btn-p:disabled{opacity:.55;cursor:default}
-.btn-g{background:transparent;color:#0E0D0C;border:1px solid #D6D3CC;border-radius:10px;padding:13px 22px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
-.sub-submit{margin-top:4px}
-.sub-fine{font-size:12px;color:#9C9890;text-align:center;margin:2px 0 0}
-.sub-closed,.sub-done{max-width:640px;margin:60px auto;padding:0 28px;text-align:center}
-.sub-done .sub-check{width:52px;height:52px;border-radius:50%;background:#0E0D0C;color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
-.sub-done h1{font-size:30px;margin:0 0 12px}
-.sub-done p{color:#5C5954;line-height:1.6}
-.sub-muted{color:#9C9890;font-size:14px}
-.sub-actions{display:flex;gap:12px;justify-content:center;margin-top:22px}
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+.sub-page{--bg:#FAFAF9;--surface:#F3F2EF;--border:#E8E6E1;--border2:#D6D3CC;--ink:#0E0D0C;--body:#5C5954;--faint:#9C9890;--amber:rgba(168,94,26,1);
+  min-height:100vh;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:96px;position:relative;overflow-x:hidden}
+.sub-page::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px;animation:sub-grain .18s steps(1) infinite}
+@keyframes sub-grain{0%{background-position:0 0}25%{background-position:-14% 4%}50%{background-position:-4% 23%}75%{background-position:14% 0}100%{background-position:0 0}}
+
+.sub-nav{position:sticky;top:0;z-index:200;height:58px;border-bottom:1px solid var(--border);background:rgba(250,250,249,.92);backdrop-filter:blur(20px) saturate(1.4);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+.sub-brand{font-family:'EB Garamond',serif;font-size:20px;font-weight:500;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.sub-nav-links{display:flex;gap:18px;align-items:center}
+.sub-nav-links a{color:var(--body);text-decoration:none;font-size:13px;transition:color .15s}
+.sub-nav-links a:hover{color:var(--ink)}
+
+.sub-hero{max-width:760px;margin:0 auto;padding:64px 28px 8px}
+.sub-eyebrow{display:flex;align-items:center;gap:10px;color:var(--faint);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.sub-eyebrow .rule{width:24px;height:1px;background:var(--border);flex-shrink:0}
+.sub-hero h1{font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,60px);font-weight:500;letter-spacing:-.04em;line-height:1.02;margin:24px 0 16px}
+.sub-sub{font-size:16px;font-weight:300;line-height:1.76;color:var(--body);max-width:600px}
+.sub-sub strong{font-weight:500;color:var(--ink)}
+.sub-deadline{margin-top:24px;display:inline-flex;align-items:center;gap:9px;background:#fdf8f3;border:1px solid rgba(168,94,26,.14);border-radius:8px;padding:9px 15px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#8a5a2e}
+.sub-deadline strong{font-weight:500}
+.sub-deadline .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;animation:sub-pulse 2.2s ease-in-out infinite}
+@keyframes sub-pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,94,26,.5)}50%{box-shadow:0 0 0 5px rgba(168,94,26,0)}}
+
+.sub-form{max-width:760px;margin:40px auto 0;padding:0 28px;display:flex;flex-direction:column;gap:26px}
+.sub-row{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+@media(max-width:640px){.sub-row{grid-template-columns:1fr;gap:26px}}
+.sub-field{display:flex;flex-direction:column;gap:7px}
+.sub-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.sub-label .req{color:var(--amber);font-style:normal}
+.sub-hint{font-size:12.5px;font-weight:300;line-height:1.55;color:var(--faint)}
+.sub-field input,.sub-field textarea{border:1px solid var(--border2);border-radius:8px;padding:12px 14px;font-size:15px;background:#fff;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s,box-shadow .15s}
+.sub-field input::placeholder,.sub-field textarea::placeholder{color:var(--faint)}
+.sub-field input:focus,.sub-field textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(14,13,12,.05)}
+.sub-check-row{display:flex;gap:12px;align-items:flex-start;font-size:14px;font-weight:300;color:var(--body);line-height:1.55;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.sub-check-row input{margin-top:2px;width:16px;height:16px;flex:none;accent-color:var(--ink)}
+.sub-check-row em{color:var(--amber);font-style:normal;font-weight:500}
+.sub-err{color:#a8402a;font-size:14px;margin:0}
+
+.btn-p{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--bg);border:none;border-radius:8px;padding:14px 28px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:opacity .12s}
+.btn-p:hover{opacity:.85}
+.btn-p:disabled{opacity:.5;cursor:default}
+.btn-g{font-family:'DM Sans',sans-serif;background:transparent;color:var(--body);border:1px solid var(--border2);border-radius:8px;padding:13px 26px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s,background .15s}
+.btn-g:hover{border-color:var(--ink);color:var(--ink);background:rgba(14,13,12,.025)}
+.sub-submit{margin-top:6px;align-self:flex-start;padding:15px 34px}
+.sub-fine{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0}
+
+.sub-closed,.sub-done{max-width:620px;margin:80px auto;padding:0 28px;text-align:center}
+.sub-closed h2,.sub-done h1{font-family:'EB Garamond',serif;font-weight:500;letter-spacing:-.03em}
+.sub-done h1{font-size:38px;margin:0 0 14px}
+.sub-closed h2{font-size:32px;margin:0 0 12px}
+.sub-done .sub-check{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+.sub-done p,.sub-closed p{color:var(--body);font-weight:300;line-height:1.72;font-size:15px}
+.sub-done p strong{color:var(--ink);font-weight:500}
+.sub-muted{color:var(--faint);font-size:13.5px}
+.sub-actions{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
 `;

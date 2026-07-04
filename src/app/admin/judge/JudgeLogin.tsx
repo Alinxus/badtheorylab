@@ -33,10 +33,10 @@ export default function JudgeLogin({ configured }: { configured: boolean }) {
   return (
     <main style={wrap}>
       <form onSubmit={onSubmit} style={card}>
-        <div style={{ fontSize: 12, letterSpacing: ".08em", textTransform: "uppercase", color: "#9C9890" }}>
+        <div style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#9C9890" }}>
           Bad Theory Labs · Judging
         </div>
-        <h1 style={{ margin: "10px 0 4px", fontSize: 24 }}>Judge dashboard</h1>
+        <h1 style={{ fontFamily: "Georgia, serif", fontWeight: 500, letterSpacing: "-.03em", margin: "12px 0 4px", fontSize: 28 }}>Judge dashboard</h1>
         <p style={{ color: "#5C5954", fontSize: 14, margin: "0 0 18px" }}>
           {configured
             ? "Enter the judge password to review submissions."
@@ -69,10 +69,11 @@ const card: React.CSSProperties = {
   padding: 28, width: 360, boxShadow: "0 4px 24px rgba(0,0,0,.04)",
 };
 const input: React.CSSProperties = {
-  width: "100%", boxSizing: "border-box", border: "1px solid #D6D3CC", borderRadius: 10,
-  padding: "11px 13px", fontSize: 15, outline: "none",
+  width: "100%", boxSizing: "border-box", border: "1px solid #D6D3CC", borderRadius: 8,
+  padding: "12px 14px", fontSize: 15, outline: "none", fontFamily: "system-ui,-apple-system,sans-serif",
 };
 const button: React.CSSProperties = {
   width: "100%", marginTop: 14, background: "#0E0D0C", color: "#fff", border: "none",
-  borderRadius: 10, padding: "12px", fontSize: 15, fontWeight: 600, cursor: "pointer",
+  borderRadius: 8, padding: "13px", fontSize: 15, fontWeight: 500, cursor: "pointer",
+  fontFamily: "system-ui,-apple-system,sans-serif",
 };
