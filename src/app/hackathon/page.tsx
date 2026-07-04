@@ -250,9 +250,9 @@ export default function HackathonPage() {
             ["Jul 3 · 16:00 UTC","Team formation",      "Find a team in Discord, or fly solo. Mentor channels open."],
             ["Jul 4 · 15:00 UTC","Midpoint office hours","Drop-in help with the runtime, debugging, and scope."],
             ["Jul 4 · 19:00 UTC","BTL research talk",    "Live research session — open to every participant."],
-            ["Jul 5 · 15:00 UTC","Submissions due",      "Repo + 2-min demo video submitted. Hard deadline, no late entries."],
-            ["Jul 5 · 17:00 UTC","Demo day",             "Finalists present live on the call. 5-min demo + 3-min Q&A."],
-            ["Jul 5 · 20:00 UTC","Winners announced",    "Prizes awarded on stream. Payouts begin."],
+            ["Jul 7 · 15:00 UTC","Submissions due",      "Repo + 2-min demo video submitted. Hard deadline, no late entries."],
+            ["Jul 7 · 17:00 UTC","Demo day",             "Finalists present live on the call. 5-min demo + 3-min Q&A."],
+            ["Jul 7 · 20:00 UTC","Winners announced",    "Prizes awarded on stream. Payouts begin."],
           ] as const).map(([time, title, desc], i) => (
             <div className="h-tl-row" key={i}>
               <div className="h-tl-time">{time}</div>

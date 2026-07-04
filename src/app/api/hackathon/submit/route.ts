@@ -19,7 +19,7 @@ type SubmissionPayload = {
 };
 
 // Hard deadline — matches /submit and the /hackathon timeline.
-const DEADLINE = new Date("2026-07-05T15:00:00Z");
+const DEADLINE = new Date("2026-07-07T15:00:00Z");
 
 // Same disposable-domain guard as the registration route.
 const DISPOSABLE_EMAIL_DOMAINS = [
@@ -74,7 +74,7 @@ function isBlockedEmailDomain(domain: string) {
 export async function POST(req: Request) {
   if (Date.now() > DEADLINE.getTime()) {
     return NextResponse.json(
-      { error: "Submissions are closed. The deadline (Jul 5, 15:00 UTC) has passed." },
+      { error: "Submissions are closed. The deadline (Jul 7, 15:00 UTC) has passed." },
       { status: 410 },
     );
   }
@@ -219,16 +219,16 @@ async function sendConfirmation(to: string, projectName: string, updated: boolea
       <h2 style="margin: 0 0 14px; font-size: 22px;">Submission ${verb} — ${project}</h2>
       <p>We've ${verb} your project for the <strong>BTL Runtime Hackathon</strong>.</p>
       <p>You can edit your submission with the same email any time before the deadline —
-         <strong>Jul 5, 2026 at 15:00 UTC</strong>. The last saved version is the one we judge.</p>
-      <p>Demo day is Jul 5 at 17:00 UTC in Discord, where finalists present live.</p>
+         <strong>Jul 7, 2026 at 15:00 UTC</strong>. The last saved version is the one we judge.</p>
+      <p>Demo day is Jul 7 at 17:00 UTC in Discord, where finalists present live.</p>
       <hr style="margin: 22px 0; border: 0; border-top: 1px solid #ddd;" />
       <p style="color:#888;font-size:12px;">Bad Theory Labs · You keep full ownership of whatever you build.</p>
     </div>
   `;
   const text =
     `Submission ${verb} for the BTL Runtime Hackathon: ${projectName}.\n` +
-    `Edit any time with the same email before Jul 5, 2026 15:00 UTC — last version wins.\n` +
-    `Demo day: Jul 5, 17:00 UTC in Discord.\n— Bad Theory Labs`;
+    `Edit any time with the same email before Jul 7, 2026 15:00 UTC — last version wins.\n` +
+    `Demo day: Jul 7, 17:00 UTC in Discord.\n— Bad Theory Labs`;
 
   const transporter = nodemailer.createTransport({ host, port, secure, auth: { user, pass } });
   try {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 // Hard deadline — mirrors the "Submissions due" row on /hackathon.
-const DEADLINE = new Date("2026-07-05T15:00:00Z");
+const DEADLINE = new Date("2026-07-07T15:00:00Z");
 const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 
 type Status = "idle" | "sending" | "ok" | "error";
@@ -83,10 +83,10 @@ export default function SubmitPage() {
           <h1>{edited ? "Submission updated." : "Submission received."}</h1>
           <p>
             You&rsquo;re locked in for the BTL Runtime Hackathon. You can come back and edit this form
-            with the same email any time before <strong>Jul 5, 15:00 UTC</strong>.
+            with the same email any time before <strong>Jul 7, 15:00 UTC</strong>.
           </p>
           <p className="sub-muted">
-            Demo day is Jul 5 at 17:00 UTC in Discord — that&rsquo;s where finalists present live.
+            Demo day is Jul 7 at 17:00 UTC in Discord — that&rsquo;s where finalists present live.
           </p>
           <div className="sub-actions">
             <button className="btn-g" onClick={() => { setStatus("idle"); }}>Edit my submission</button>
@@ -112,14 +112,14 @@ export default function SubmitPage() {
           {" "}<strong>Every eligible project must call the BTL Runtime.</strong>
         </p>
         <div className="sub-deadline">
-          <span className="dot" /> Submissions close <strong>Jul 5, 2026 · 15:00 UTC</strong>
+          <span className="dot" /> Submissions close <strong>Jul 7, 2026 · 15:00 UTC</strong>
         </div>
       </section>
 
       {closed ? (
         <section className="sub-closed">
           <h2>Submissions are closed.</h2>
-          <p>The deadline (Jul 5, 15:00 UTC) has passed. Join us for demo day at 17:00 UTC in Discord.</p>
+          <p>The deadline (Jul 7, 15:00 UTC) has passed. Join us for demo day at 17:00 UTC in Discord.</p>
           <a className="btn-p" href={DISCORD_URL} target="_blank" rel="noreferrer">Open Discord →</a>
         </section>
       ) : (
@@ -198,7 +198,7 @@ export default function SubmitPage() {
           <label className="sub-check-row">
             <input type="checkbox" checked={form.acceptDeadline}
               onChange={e => update("acceptDeadline", e.target.checked)} />
-            <span>I understand submissions close Jul 5, 2026 at 15:00 UTC.</span>
+            <span>I understand submissions close Jul 7, 2026 at 15:00 UTC.</span>
           </label>
 
           {status === "error" && <p className="sub-err">{message}</p>}
