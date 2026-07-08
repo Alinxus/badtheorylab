@@ -19,6 +19,7 @@ const GROUPS: Group[] = [
       { label: "BTL-2 Coder", href: "/btl-2-coder" },
       { label: "RetainDB", href: "/#products" },
       { label: "Marrow", href: "/marrow" },
+      { label: "Open projects", href: "/#open-source" },
     ],
   },
   {
@@ -28,6 +29,7 @@ const GROUPS: Group[] = [
       { label: "Papers", href: "/papers" },
       { label: "Reasoning Gap", href: "/reasoning-gap" },
       { label: "Context Integrity", href: "/context-integrity" },
+      { label: "ESP", href: "/esp" },
       { label: "Reasoning Test", href: "/reasoning-test" },
       { label: "Brief", href: "/brief" },
     ],
