@@ -36,6 +36,25 @@ export default function PapersPage() {
       <section className="paper-wrap">
         <article className="paper paper-link">
           <header>
+            <p className="paper-meta">Thesis Paper · July 2026 · Pre-registered</p>
+            <h2>ESP: Echo-Skeleton Perception</h2>
+            <p className="status">Stateful, event-driven screen sensing for blind language models — a small text-only model drives a GUI with no images.</p>
+          </header>
+          <p>
+            Every serious computer-use agent screenshots the screen and feeds a large vision model. ESP proposes
+            the opposite organ: the model holds a labeled skeleton of the screen and perceives only change —
+            structure sensed through echoes, not sight.
+          </p>
+          <p>
+            Architecture, four falsifiable hypotheses with numbers attached, a worked session, and a
+            pre-registered experimental plan whose decision rule is fixed before the prototype exists.
+          </p>
+          <Link href="/esp" className="paper-cta">Read ESP →</Link>
+          <a href="/esp/paper.pdf" className="paper-cta">PDF →</a>
+        </article>
+
+        <article className="paper paper-link">
+          <header>
             <p className="paper-meta">Benchmark Paper · July 2026</p>
             <h2>Context Integrity</h2>
             <p className="status">A benchmark for long-running AI agent memory, evidence retrieval, abstention, and action grounding.</p>
