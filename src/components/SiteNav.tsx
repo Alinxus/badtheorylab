@@ -15,30 +15,29 @@ const GROUPS: Group[] = [
   {
     label: "Products",
     items: [
+      { label: "BTL-3", href: "/btl-3" },
+      { label: "BTL-3 Compact", href: "https://huggingface.co/badtheorylabs/BTL-3-Compact", external: true },
       { label: "BTL Runtime", href: "/runtime" },
-      { label: "BTL-2 Coder", href: "/btl-2-coder" },
-      { label: "RetainDB", href: "/#products" },
+      { label: "RetainDB", href: "https://retaindb.com", external: true },
+      { label: "Prism", href: "https://github.com/Badtheorylabs/Prism", external: true },
       { label: "Marrow", href: "/marrow" },
-      { label: "Open projects", href: "/#open-source" },
+      { label: "BTL-2 Coder", href: "/btl-2-coder" },
     ],
   },
   {
     label: "Research",
     items: [
-      { label: "Whitepaper", href: "/whitepaper" },
       { label: "Papers", href: "/papers" },
-      { label: "Reasoning Gap", href: "/reasoning-gap" },
       { label: "Context Integrity", href: "/context-integrity" },
       { label: "ESP", href: "/esp" },
+      { label: "Reasoning Gap", href: "/reasoning-gap" },
       { label: "Reasoning Test", href: "/reasoning-test" },
-      { label: "Brief", href: "/brief" },
     ],
   },
   {
     label: "Community",
     items: [
-      { label: "Hackathon", href: "/hackathon" },
-      { label: "Donate", href: "/donate" },
+      { label: "GitHub", href: "https://github.com/Badtheorylabs", external: true },
       { label: "Contact", href: "/contact" },
       { label: "Join Discord", href: DISCORD_URL, external: true },
     ],

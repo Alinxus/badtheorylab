@@ -27,7 +27,7 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: "Bad Theory Labs",
-  description: "Building the infrastructure and products for the next interface to computing",
+  description: "An independent AI lab shipping open models, agent infrastructure, native runtimes, and reproducible research.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   icons: {
     icon: "/btl-favicon.svg",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Bad Theory Labs",
-    description: "Building the infrastructure and products for the next interface to computing",
+    description: "Open models, agent infrastructure, native runtimes, and research you can run.",
     images: [
       {
         url: "/og-image.png",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Bad Theory Labs",
-    description: "Building the infrastructure and products for the next interface to computing",
+    description: "Open models, agent infrastructure, native runtimes, and research you can run.",
     images: ["/og-image.png"],
   },
 };
