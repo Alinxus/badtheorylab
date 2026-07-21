@@ -16,7 +16,7 @@ const GROUPS: Group[] = [
     label: "Products",
     items: [
       { label: "BTL-3", href: "/btl-3" },
-      { label: "BTL-3 Compact", href: "https://huggingface.co/badtheorylabs/BTL-3-Compact", external: true },
+      { label: "BTL-3 Compact", href: "/btl-3-compact" },
       { label: "BTL Runtime", href: "/runtime" },
       { label: "RetainDB", href: "https://retaindb.com", external: true },
       { label: "Prism", href: "https://github.com/Badtheorylabs/Prism", external: true },

@@ -2,7 +2,6 @@ import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import styles from "./home.module.css";
 
-const compactUrl = "https://huggingface.co/badtheorylabs/BTL-3-Compact";
 const githubUrl = "https://github.com/Badtheorylabs";
 
 const evidence = [
@@ -31,9 +30,8 @@ const coreOutputs = [
     title: "The complete 27B text model, packed into 8.39 GB.",
     body: "A byte-verified AVQ2/UniSVQ GGUF with its own CUDA and Metal runtime, OpenAI-compatible server, and Ollama and LM Studio bridges. No BF16 checkpoint is loaded behind the scenes.",
     facts: ["2,416 tensors", "92.2% tool retention", "CUDA + Metal"],
-    href: compactUrl,
+    href: "/btl-3-compact",
     action: "Get Compact",
-    external: true,
   },
   {
     number: "03",
@@ -273,7 +271,7 @@ export default function Home() {
           <small>Lagos, Nigeria · Est. 2025</small>
         </div>
         <div className={styles.footerLinks}>
-          <div><span>Build</span><Link href="/btl-3">BTL-3</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>
+          <div><span>Build</span><Link href="/btl-3">BTL-3</Link><Link href="/btl-3-compact">BTL-3 Compact</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>
           <div><span>Research</span><Link href="/context-integrity">Context Integrity</Link><Link href="/esp">ESP</Link><Link href="/reasoning-gap">Reasoning Gap</Link><Link href="/papers">Papers</Link></div>
           <div><span>Lab</span><a href={githubUrl}>GitHub</a><a href="https://discord.gg/QJBCcB7bF">Discord</a><Link href="/contact">Contact</Link><a href="https://cal.com/alameenpd/quick-chat">Schedule a call</a></div>
         </div>

@@ -27,7 +27,7 @@ const papers = [
     title: "BTL-3 Compact",
     summary: "The engineering record behind a complete 27B agentic coding model in one 8.39 GB native GGUF: allocation, packing, behavior repair, kernels, and artifact-faithful validation.",
     artifacts: ["8.39 GB artifact", "Native CUDA + Metal", "92.2% tool retention", "Open model"],
-    href: "/btl-3",
+    href: "/btl-3-compact",
   },
   {
     date: "June 2026",
