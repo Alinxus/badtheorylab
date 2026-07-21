@@ -1847,10 +1847,6 @@ export default function BTLLanding() {
       {/* NAV — shared, grouped (replaces the old 11-link bar) */}
       <SiteNav />
 
-      <div style={{ background: '#111', color: '#aaa', textAlign: 'center', padding: '10px 16px', fontSize: '13px', fontFamily: 'JetBrains Mono, monospace', borderBottom: '1px solid #222', wordBreak: 'break-all', lineHeight: 1.5 }}>
-        CA: E54u2LpWSNZ5LqLitetfw7Ajc7t4phCPHCJuJVRPpump
-      </div>
-
       {/* ── HERO ── */}
       <div className="hero">
         {/* LEFT */}
