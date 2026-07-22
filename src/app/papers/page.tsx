@@ -5,6 +5,15 @@ import styles from "./papers.module.css";
 const papers = [
   {
     date: "July 2026",
+    type: "Research paper · released",
+    title: "Behavior Before Perplexity",
+    summary: "The complete BTL-3 Compact compression recipe: failed routes, behavioral cliff localization, measured precision allocation, repair, packing, and native proof under an exact byte ceiling.",
+    artifacts: ["Academic paper", "Engineering article", "Recipe + evidence", "Open source"],
+    href: "/papers/behavior-before-perplexity",
+    pdf: "/papers/behavior-before-perplexity/paper.pdf",
+  },
+  {
+    date: "July 2026",
     type: "Benchmark paper · released",
     title: "Context Integrity",
     summary: "An auditable benchmark for whether long-running agents preserve, retrieve, update, and use evidence correctly across sessions.",
