@@ -54,6 +54,19 @@ CREATE UNIQUE INDEX IF NOT EXISTS reward_claims_review_url_idx
 CREATE INDEX IF NOT EXISTS reward_claims_status_created_idx
   ON reward_claims (status, created_at DESC);`;
 
+  const runtimeSurvey = `CREATE TABLE IF NOT EXISTS runtime_survey_responses (
+  id BIGSERIAL PRIMARY KEY,
+  email TEXT DEFAULT '',
+  stage TEXT NOT NULL,
+  blocker TEXT NOT NULL,
+  feedback TEXT DEFAULT '',
+  user_agent TEXT DEFAULT '',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+-- stage is a fixed set of funnel steps, not free text; keep this list in sync with /survey
+CREATE INDEX IF NOT EXISTS runtime_survey_responses_stage_idx
+  ON runtime_survey_responses (stage, created_at DESC);`;
+
   const presence = `CREATE TABLE IF NOT EXISTS site_presence (
   session_id TEXT PRIMARY KEY,
   first_seen TIMESTAMPTZ DEFAULT NOW(),
@@ -79,6 +92,7 @@ CREATE TABLE IF NOT EXISTS site_metrics (
       reasoning_test_responses: reasoningTest,
       hackathon_registrations: hackathon,
       reward_claims: rewardClaims,
+      runtime_survey_responses: runtimeSurvey,
       site_presence: presence,
     },
   });
