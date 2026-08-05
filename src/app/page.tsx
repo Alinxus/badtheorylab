@@ -271,7 +271,7 @@ export default function Home() {
           <small>Lagos, Nigeria · Est. 2025</small>
         </div>
         <div className={styles.footerLinks}>
-          <div><span>Build</span><Link href="/btl-3">BTL-3</Link><Link href="/btl-3-compact">BTL-3 Compact</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>
+          <div><span>Build</span><Link href="/btl-3">BTL-3</Link><Link href="/btl-3-compact">BTL-3 Compact</Link><Link href="/macaw">Macaw</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>
           <div><span>Research</span><Link href="/context-integrity">Context Integrity</Link><Link href="/esp">ESP</Link><Link href="/reasoning-gap">Reasoning Gap</Link><Link href="/papers">Papers</Link></div>
           <div><span>Lab</span><a href={githubUrl}>GitHub</a><a href="https://discord.gg/QJBCcB7bF">Discord</a><Link href="/contact">Contact</Link><a href="https://cal.com/alameenpd/quick-chat">Schedule a call</a></div>
         </div>
