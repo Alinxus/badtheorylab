@@ -102,6 +102,44 @@ export const styles = `
 .mw-gauge-fill { position:absolute; left:0; top:0; bottom:0; border-radius:6px; background:var(--accent-soft); }
 .mw-gauge-tick { position:absolute; top:-3px; width:1px; height:16px; background:var(--bg); }
 
+/* hero demo line under the readout */
+.mw-readout-demo { margin-top:18px; padding:14px; border:1px dashed var(--border2); border-radius:10px; font-size:13px; }
+.mw-readout-demo-k { color:var(--body); }
+.mw-readout-demo-v { color:var(--accent); font-weight:600; }
+
+/* capability cards */
+.mw-caps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.mw-cap-card { border:1px solid var(--border); border-radius:14px; padding:22px; background:var(--bg); transition:border-color .15s, transform .15s; }
+.mw-cap-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+.mw-cap-ask { display:block; font-family:'EB Garamond',serif; font-style:italic; font-size:19px; color:var(--accent); line-height:1.25; margin-bottom:14px; }
+.mw-cap-title { font-size:15px; font-weight:600; margin:0 0 6px; }
+.mw-cap-body { font-size:13px; line-height:1.6; color:var(--body); margin:0; }
+@media (max-width:960px){ .mw-caps{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .mw-caps{ grid-template-columns:1fr; } }
+
+/* comparison table */
+.mw-tbl { width:100%; border-collapse:collapse; font-size:13.5px; }
+.mw-tbl td { padding:13px 10px; border-bottom:1px solid var(--border); vertical-align:top; }
+.mw-tbl tr:last-child td { border-bottom:none; }
+.mw-tbl td.name { color:var(--faint); white-space:nowrap; }
+.mw-tbl td.col2 { color:var(--body); width:34%; }
+.mw-tbl td.col3 { color:var(--ink); font-weight:500; }
+
+/* steps */
+.mw-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.mw-step { border-top:1px solid var(--border); padding-top:18px; }
+.mw-step-n { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint); letter-spacing:0.08em; margin-bottom:10px; }
+.mw-step-title { font-family:'EB Garamond',serif; font-size:22px; font-weight:500; margin:0 0 8px; }
+.mw-step-body { font-size:13.5px; line-height:1.6; color:var(--body); margin:0; }
+@media (max-width:760px){ .mw-steps{ grid-template-columns:1fr; } }
+
+/* compatibility chips */
+.mw-compat { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; max-width:680px; }
+.mw-compat-chip { border:1px solid var(--border); border-radius:12px; padding:18px 20px; background:var(--bg); }
+.mw-compat-chip b { display:block; font-size:14px; margin-bottom:4px; }
+.mw-compat-chip span { font-size:13px; color:var(--body); }
+@media (max-width:600px){ .mw-compat{ grid-template-columns:1fr; } }
+
 .mw-two { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
 .mw-tbl-wrap { min-width:0; }
 .mw-cap { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; }

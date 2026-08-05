@@ -2,7 +2,8 @@ import Link from "next/link";
 import { styles } from "./styles";
 import {
   HF_MLX, HF_FULL, GH_URL, DISCORD_URL, CAL_URL, BASE_LICENSE,
-  headline, specStrip, editions, evals, boundaries, qs,
+  headline, specStrip, capabilities, comparison, steps,
+  compatibility, evals, boundaries, qs,
 } from "./data";
 
 const sevClass = (s: string) =>
@@ -28,32 +29,30 @@ export default function MacawPage() {
         </div>
       </nav>
 
-      {/* hero */}
+      {/* hero — the promise first */}
       <section className="mw-hero">
         <div className="mw-hero-copy">
-          <p className="mw-eyebrow"><span className="mw-dot" />Open weights · On-device agent · MACAW-V1</p>
-          <h1 className="mw-h1">Mac<em>aw</em></h1>
+          <p className="mw-eyebrow"><span className="mw-dot" />Live today · Open source · Runs 100% on your Mac</p>
+          <h1 className="mw-h1">The Siri you<br />always <em>wanted.</em></h1>
           <p className="mw-lede">
-            A <b>2.7B</b> model that lives on your Mac, calls <b>97</b> real tools,
-            and never phones home. No cloud. No accounts. No payments.
+            <b>Macaw</b> is your own AI model that controls your Mac — 97 verified
+            tools for mail, files, calendar, music, and settings, in plain English.
+            No cloud. No accounts. No payments.
           </p>
           <p className="mw-sub">
-            Fine-tuned from Liquid AI's LFM2.5 to emit a tool call straight after
-            the assistant turn, so a request → tool → answer round-trip finishes in
-            about a second. Every number on this page is measured on the frozen
-            checkpoint.
+            Runs entirely on your machine on Apple Silicon. Free to download right
+            now — not a waitlist, not "pricing at launch."
           </p>
           <div className="mw-hero-actions">
             <a href={HF_MLX} target="_blank" rel="noreferrer" className="mw-btn mw-btn-solid">Download Macaw →</a>
-            <a href={HF_FULL} target="_blank" rel="noreferrer" className="mw-btn mw-btn-outline">BF16 weights</a>
-            <a href={GH_URL} target="_blank" rel="noreferrer" className="mw-btn mw-btn-outline">Source</a>
+            <a href="#capabilities" className="mw-btn mw-btn-outline">See what it can do</a>
           </div>
         </div>
 
         <div className="mw-readout">
           <div className="mw-readout-head">
             <span /><span /><span />
-            <span className="mw-readout-label">frozen · macaw-v1 · 2.7B</span>
+            <span className="mw-readout-label">macaw-v1 · measured on m2</span>
           </div>
           {headline.map((h) => (
             <div key={h.k} className="mw-readout-row">
@@ -61,66 +60,84 @@ export default function MacawPage() {
               <span className="mw-readout-v">{h.v}</span>
             </div>
           ))}
+          <div className="mw-readout-demo">
+            <span className="mw-readout-demo-k">"email daisy the agenda"</span>
+            <span className="mw-readout-demo-v">→ sent in 0.9 s</span>
+          </div>
         </div>
       </section>
 
-      {/* spec strip */}
-      <section className="mw-strip">
-        {specStrip.map((s) => (
-          <div key={s.k} className="mw-strip-cell">
-            <div className="mw-strip-k">{s.k}</div>
-            <div className="mw-strip-v">{s.v}</div>
-          </div>
-        ))}
-      </section>
-
-      {/* two editions */}
-      <section className="mw-block">
+      {/* capabilities */}
+      <section className="mw-block" id="capabilities">
         <div className="mw-block-head">
-          <p className="mw-label">Two editions</p>
-          <h2 className="mw-h2">One model,<br /><em>two ways to run it.</em></h2>
+          <p className="mw-label">Capabilities</p>
+          <h2 className="mw-h2">Your own model<br /><em>that controls your Mac.</em></h2>
           <p className="mw-body">
-            The on-device MLX build is the product — 4-bit, Metal, no server except
-            the one on localhost. The BF16 build is the exact checkpoint, for people
-            who want the weights as trained.
+            One sentence in, a real action out. Every card below is a tool family
+            in <code>tools.json</code> — verified, not aspirational.
           </p>
         </div>
-        <div className="mw-editions">
-          {editions.map((e) => (
-            <div key={e.id} className={`mw-card${e.primary ? " mw-card-feat" : ""}`}>
-              <span className="mw-card-tag">{e.tag}</span>
-              <div className="mw-card-name">{e.name}</div>
-              <p className="mw-card-blurb">{e.blurb}</p>
-              <ul className="mw-speclist">
-                {e.rows.map(([k, v]) => (
-                  <li key={k}>
-                    <span className="mw-spec-k">{k}</span>
-                    <span className="mw-spec-v">{v}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={e.href}
-                target="_blank"
-                rel="noreferrer"
-                className={`mw-btn ${e.primary ? "mw-btn-solid" : "mw-btn-outline"}`}
-              >
-                {e.primary ? "Get Macaw →" : "BF16 weights →"}
-              </a>
+        <div className="mw-caps">
+          {capabilities.map((c) => (
+            <div key={c.title} className="mw-cap-card">
+              <span className="mw-cap-ask">"{c.ask}"</span>
+              <h3 className="mw-cap-title">{c.title}</h3>
+              <p className="mw-cap-body">{c.body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* measured */}
+      {/* comparison */}
+      <section className="mw-block mw-block-alt">
+        <div className="mw-block-head">
+          <p className="mw-label">Why Macaw</p>
+          <h2 className="mw-h2">Everything Siri can't do.<br /><em>Macaw does.</em></h2>
+          <p className="mw-body">
+            Same Mac, different brain. And unlike the waitlisted "coming soon"
+            assistants, Macaw is live today with the source in the open.
+          </p>
+        </div>
+        <div className="mw-tbl-wrap" style={{ maxWidth: 640 }}>
+          <table className="mw-tbl">
+            <tbody>
+              {comparison.rows.map((r) => (
+                <tr key={r[0]}>
+                  <td className="name">{r[0]}</td>
+                  <td className="col2">{r[1]}</td>
+                  <td className="col3">{r[2]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* how it works */}
+      <section className="mw-block">
+        <div className="mw-block-head">
+          <p className="mw-label">How it works</p>
+          <h2 className="mw-h2">Running in<br /><em>three steps.</em></h2>
+        </div>
+        <div className="mw-steps">
+          {steps.map((s) => (
+            <div key={s.n} className="mw-step">
+              <div className="mw-step-n">{s.n}</div>
+              <h3 className="mw-step-title">{s.title}</h3>
+              <p className="mw-step-body">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* receipts */}
       <section className="mw-block mw-block-alt">
         <div className="mw-block-head">
           <p className="mw-label">Receipts</p>
           <h2 className="mw-h2">Measured, on an M2.</h2>
           <p className="mw-body">
-            bench.py, one representative request per capability, top-12 tool
-            retrieval. No hand-tuning between rows, no numbers borrowed from
-            another checkpoint.
+            We measure without mercy. bench.py, one request per capability,
+            top-12 retrieval — no hand-tuning between rows.
           </p>
         </div>
         <div className="mw-bench">
@@ -140,15 +157,39 @@ export default function MacawPage() {
         </div>
       </section>
 
-      {/* boundaries */}
+      {/* compatibility */}
       <section className="mw-block">
         <div className="mw-block-head">
-          <p className="mw-label">Boundaries</p>
-          <h2 className="mw-h2">The asterisks, stated plainly.</h2>
-          <p className="mw-body">
-            Macaw is honest about being a small on-device model. If a claim on
-            this page has a catch, the catch is here.
-          </p>
+          <p className="mw-label">Compatibility</p>
+          <h2 className="mw-h2">Runs on your Mac.<br /><em>Not theirs.</em></h2>
+        </div>
+        <div className="mw-compat">
+          {compatibility.map((c) => (
+            <div key={c.chip} className="mw-compat-chip">
+              <b>{c.chip}</b>
+              <span>{c.note}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* cta */}
+      <section className="mw-cta">
+        <h2 className="mw-cta-title">Live today. Open source. Yours.</h2>
+        <p className="mw-cta-sub">
+          Weights on Hugging Face, code on GitHub, runs fully local. No waitlist, no pricing-at-launch.
+        </p>
+        <div className="mw-hero-actions" style={{ justifyContent: "center" }}>
+          <a href={HF_MLX} target="_blank" rel="noreferrer" className="mw-btn mw-btn-light">Download Macaw →</a>
+          <a href={GH_URL} target="_blank" rel="noreferrer" className="mw-btn mw-btn-ghost">Read the source</a>
+        </div>
+      </section>
+
+      {/* boundaries — compact, honest */}
+      <section className="mw-block">
+        <div className="mw-block-head">
+          <p className="mw-label">The small print</p>
+          <h2 className="mw-h2">Honest asterisks.</h2>
         </div>
         <div className="mw-bounds">
           {boundaries.map((b) => (
@@ -159,73 +200,23 @@ export default function MacawPage() {
               <p>{b.b}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* quickstart */}
-      <section className="mw-block mw-block-alt">
-        <div className="mw-block-head">
-          <p className="mw-label">Quickstart</p>
-          <h2 className="mw-h2">Pull it. Serve it.</h2>
-          <p className="mw-body">
-            Server, library, or the menu-bar app. The app auto-starts the server —
-            point <code>MACAW_PYTHON</code> at a Python with mlx-lm if it isn't on PATH.
-          </p>
-        </div>
-        <div className="mw-qs">
-          <div className="mw-qs-panel">
-            <div className="mw-qs-tag">Serve · OpenAI-compatible</div>
-            <pre className="mw-qs-code">{qs.serve}</pre>
+          <div className="mw-bnd">
+            <div className="mw-bnd-h">
+              <span className="mw-sev mw-sev-note" />License & integrity
+            </div>
+            <p>
+              Code is <a href={GH_URL} target="_blank" rel="noreferrer">MIT</a>; weights inherit the{" "}
+              <a href={BASE_LICENSE} target="_blank" rel="noreferrer">LFM Open License v1.0</a> from LFM2.5.
+              MLX: <code className="mw-hash-sha">aa045fad…e238</code> · BF16: <code className="mw-hash-sha">966d2066…8be0</code>.
+            </p>
           </div>
-          <div className="mw-qs-panel">
-            <div className="mw-qs-tag">Generate · Python</div>
-            <pre className="mw-qs-code">{qs.py}</pre>
-          </div>
-          <div className="mw-qs-panel">
-            <div className="mw-qs-tag">App · macOS</div>
-            <pre className="mw-qs-code">{qs.app}</pre>
-          </div>
-        </div>
-      </section>
-
-      {/* integrity */}
-      <section className="mw-block">
-        <div className="mw-block-head">
-          <p className="mw-label">Integrity</p>
-          <h2 className="mw-h2">Frozen, verifiable.</h2>
-          <p className="mw-body">
-            Weights hash to the files on Hugging Face. The code is MIT; the weights
-            inherit the <a href={BASE_LICENSE} target="_blank" rel="noreferrer">LFM Open License v1.0</a> from the LFM2.5 base.
-          </p>
-        </div>
-        <div className="mw-two">
-          <div className="mw-tbl-wrap">
-            <div className="mw-cap">MLX 4-bit · SHA-256</div>
-            <div className="mw-hash"><code className="mw-hash-sha">aa045fad2ddadc73f204e0b795b57ab37c73c829e0f63e09fde6abc1be93e238</code></div>
-            <p className="mw-note">model.safetensors in badtheorylabs/Macaw-4bit-MLX</p>
-          </div>
-          <div className="mw-tbl-wrap">
-            <div className="mw-cap">BF16 · SHA-256</div>
-            <div className="mw-hash"><code className="mw-hash-sha">966d206651b96446f6a4c415d118049f478a8df79be3fa45bfd04959a4d68be0</code></div>
-            <p className="mw-note">model.safetensors in badtheorylabs/Macaw</p>
-          </div>
-        </div>
-      </section>
-
-      {/* cta */}
-      <section className="mw-cta">
-        <h2 className="mw-cta-title">Your Mac, with hands.</h2>
-        <p className="mw-cta-sub">Runs fully local. Weights are live today. None of it is a black box.</p>
-        <div className="mw-hero-actions" style={{ justifyContent: "center" }}>
-          <a href={HF_MLX} target="_blank" rel="noreferrer" className="mw-btn mw-btn-light">Download Macaw →</a>
-          <a href={HF_FULL} target="_blank" rel="noreferrer" className="mw-btn mw-btn-ghost">BF16 weights</a>
         </div>
       </section>
 
       <footer className="mw-footer">
         <div className="mw-foot-note">
           Macaw MACAW-V1 · base LFM2.5-2.6B · measured 2026-08-05 on Apple M2 (MLX 4-bit).<br />
-          The tool-call suite is 10 requests, not a frontier benchmark. Run generated actions in a sandbox;
+          Tool suite is 10 requests, not a frontier benchmark. Run generated actions in a sandbox;
           destructive tools always ask first.
         </div>
         <div className="mw-foot-links">

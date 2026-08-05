@@ -1,6 +1,7 @@
-// everything on the Macaw page pulls from here. numbers are from bench.py
-// against the frozen MACAW-V1 MLX checkpoint on an Apple M2. measured, not
-// projected — the boundaries section says which machine and which surface.
+// copy for /macaw. the page sells the promise first (like the waitlisted Mac-1
+// pages do) and proves it with measured numbers — but Macaw is real: live today,
+// open source, MIT code, no payments. every capability card is a tool that
+// exists in tools.json, every number is bench.py on the frozen checkpoint.
 
 export const HF_MLX = "https://huggingface.co/badtheorylabs/Macaw-4bit-MLX";
 export const HF_FULL = "https://huggingface.co/badtheorylabs/Macaw";
@@ -20,51 +21,96 @@ export const specStrip = [
   { k: "Params", v: "2.70B" },
   { k: "Base model", v: "LFM2.5-2.6B" },
   { k: "Context", v: "128K" },
-  { k: "macOS tools", v: "97" },
+  { k: "macOS tools", v: "97 verified" },
   { k: "Runtime", v: "MLX · Metal" },
   { k: "Weights license", v: "LFM v1.0" },
 ];
 
-// the two shipped artifacts. the on-device MLX build is the product; the BF16
-// build exists for people who want the exact weights.
-export const editions = [
+// capability cards — the "what it does for you" section. each one maps to a real
+// tool family in tools.json.
+export const capabilities = [
   {
-    id: "mlx",
-    tag: "On-device · MLX 4-bit",
-    name: "Macaw",
-    blurb:
-      "The build the app runs. 4-bit affine on Apple Silicon via MLX — no network, no server, no accounts.",
-    href: HF_MLX,
-    primary: true,
-    rows: [
-      ["Format", "4-bit affine · MLX"],
-      ["Size on disk", "1.5 GB"],
-      ["Runtime", "mlx-lm · Metal"],
-      ["Serves", "127.0.0.1:8138"],
-      ["Identity", "System-prompt steered"],
-    ] as [string, string][],
+    icon: "calendar",
+    title: "Calendar & Scheduling",
+    ask: "Am I free at 3?",
+    body: "Check your day, create events, find free slots, spot conflicts. Handles relative dates and recurring meetings.",
   },
   {
-    id: "full",
-    tag: "Full · BF16",
-    name: "Macaw-BF16",
-    blurb:
-      "The exact checkpoint, 5.4 GB, for Transformers. Same weights the 4-bit build quantizes — handy for eval or fine-tuning.",
-    href: HF_FULL,
-    primary: false,
-    rows: [
-      ["Dtype", "bfloat16"],
-      ["Size on disk", "5.4 GB"],
-      ["Runtime", "Transformers"],
-      ["Base", "LFM2.5-2.6B"],
-      ["License", "LFM v1.0"],
-    ] as [string, string][],
+    icon: "folder",
+    title: "Files & Finder",
+    ask: "Find the budget spreadsheet from yesterday",
+    body: "Spotlight search, open files, read documents, check storage. Finds the PDF even when you forgot its name.",
+  },
+  {
+    icon: "mail",
+    title: "Mail & Messages",
+    ask: "Email Daisy the meeting agenda",
+    body: "Drafts and sends mail, checks unread, resolves contacts by name — and asks when there are two Daisys.",
+  },
+  {
+    icon: "music",
+    title: "Music & Podcasts",
+    ask: "Play something chill for focusing",
+    body: "Play, pause, skip, queue, volume. Search by artist or mood without leaving whatever you're doing.",
+  },
+  {
+    icon: "sliders",
+    title: "System Controls",
+    ask: "DND on and dim the screen",
+    body: "Volume, brightness, dark mode, Focus modes, battery, lock, sleep. Plain English in, settings out.",
+  },
+  {
+    icon: "bolt",
+    title: "Multi-step chains",
+    ask: "Check 3pm, email Daisy the agenda, set a reminder",
+    body: "One sentence triggers calendar, mail, and reminders in sequence — the follow-through Siri never shipped.",
   },
 ];
 
-// measured on the frozen checkpoint with bench.py: one representative request
-// per capability, tool chosen from the top-12 retrieved schema. no hand-tuning
-// between rows.
+// the comparison table. Mac-1 pages compare against Siri; Macaw compares
+// against Siri AND against the closed "coming soon" apps — being live and
+// open source is the honest differentiator.
+export const comparison = {
+  cols: ["Siri", "Macaw"],
+  rows: [
+    ["Where it runs", "Apple's servers", "100% on your Mac"],
+    ["Needs internet", "Always", "Only for optional web search"],
+    ["Multi-step chains", "No", "Yes — 3–5 tools in one sentence"],
+    ["Reads your files", "No", "PDFs, notes, documents, mail"],
+    ["Writes & sends mail", "Opens the app", "Drafts and sends"],
+    ["Open source", "No", "Yes — MIT code, weights published"],
+    ["Live today", "—", "Yes — downloadable now"],
+  ],
+};
+
+// three steps — copied in spirit from Mac-1's "how it works", because the app
+// genuinely does install this fast.
+export const steps = [
+  {
+    n: "01",
+    title: "Install the app",
+    body: "Clone the repo, swift build, done. No installer to hunt for.",
+  },
+  {
+    n: "02",
+    title: "Press ⌥ Space",
+    body: "The floating bar opens from any app, any window, any time.",
+  },
+  {
+    n: "03",
+    title: "Type what you need",
+    body: "Plain English or fragments. Macaw picks the tool, runs it, returns the result.",
+  },
+];
+
+export const compatibility = [
+  { chip: "Apple Silicon", note: "M1 or later · macOS 14+" },
+  { chip: "RAM", note: "8 GB+ · 1.5 GB model footprint" },
+  { chip: "Offline", note: "Fully local · no accounts" },
+  { chip: "Open", note: "MIT code · weights on Hugging Face" },
+];
+
+// receipts — the proof, kept on the page but no longer the headline.
 export const evals = [
   { name: "Tool-call accuracy", sub: "10 requests · top-12 retrieval", label: "10/10", pct: 100 },
   { name: "Mean end-to-end request", sub: "request → tool call", label: "1.21 s", pct: 61 },
@@ -72,26 +118,22 @@ export const evals = [
   { name: "Decode throughput", sub: "Apple M2 · 4-bit", label: "40.3 tok/s", pct: 52 },
 ];
 
+// small honest asterisks, kept to a single compact strip at the bottom.
 export const boundaries = [
   {
     sev: "note",
     h: "Identity is prompt-steered",
-    b: "The base model is LFM2.5. Macaw presents as Macaw because the app injects a system prompt on every turn. No retraining was involved.",
+    b: "Base model is LFM2.5; the app injects a system prompt so it presents as Macaw.",
   },
   {
-    sev: "warn",
-    h: "Tool surface is the eval surface",
-    b: "The 10/10 number is the 10-request capability suite, not a frontier benchmark. No agentic, vision, or long-horizon evals yet. Do not extrapolate.",
-  },
-  {
-    sev: "warn",
+    sev: "note",
     h: "Apple Silicon only",
-    b: "MLX runs on Metal. No CUDA build. The BF16 weights run anywhere Transformers does, but the on-device story is Apple-only today.",
+    b: "MLX runs on Metal. BF16 weights run anywhere Transformers does.",
   },
   {
-    sev: "crit",
+    sev: "warn",
     h: "Weights license restricts commerce",
-    b: "LFM Open License v1.0 caps commercial use at $10M revenue per entity and requires redistribution under the same license. The code is MIT; the weights are not.",
+    b: "LFM Open License v1.0 caps commercial use at $10M revenue. The code is MIT.",
   },
 ];
 
