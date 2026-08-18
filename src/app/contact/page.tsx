@@ -110,7 +110,6 @@ function ContactPageShell({ searchParams }: { searchParams: SearchParamsLike }) 
           <Link href="/#products">Products</Link>
           <Link href="/papers">Papers</Link>
           <Link href="/brief">Brief</Link>
-          <Link href="/whitepaper">Whitepaper</Link>
           <Link href="/stats">Stats</Link>
           <Link href="/contact" aria-current="page">Contact</Link>
         </div>
