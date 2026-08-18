@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import SiteNav from "@/components/SiteNav";
 
-const CA = "E54u2LpWSNZ5LqLitetfw7Ajc7t4phCPHCJuJVRPpump";
-const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 
 type Stats = {
   configured: boolean;
@@ -155,16 +153,6 @@ export default function StatsPage() {
           <p className="st-quiet">{configured ? "Quiet right now — no one on a page this second." : "Waiting on the tracker."}</p>
         )}
       </section>
-
-      <section className="st-token">
-        <div className="st-token-inner">
-          <div>
-            <div className="st-token-label">$BTL · Solana</div>
-            <div className="st-token-ca">{CA}</div>
-          </div>
-          <a className="st-token-cta" href={DISCORD_URL} target="_blank" rel="noreferrer">Join the community →</a>
-        </div>
-      </section>
     </main>
   );
 }
@@ -220,13 +208,6 @@ const styles = `
 .st-path-bar span { display:block; height:100%; background:var(--ink); border-radius:3px; transition:width .6s cubic-bezier(.16,1,.3,1); }
 .st-path-c { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--body); text-align:right; }
 .st-quiet { font-size:14px; color:var(--faint); padding:20px 0; border-top:1px solid var(--border); }
-
-.st-token { max-width:1080px; margin:64px auto 0; padding:0 28px 80px; }
-.st-token-inner { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; padding:26px; border:1px solid var(--border); border-radius:14px; background:var(--surface); }
-.st-token-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin-bottom:7px; }
-.st-token-ca { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--ink); word-break:break-all; }
-.st-token-cta { font-size:14px; font-weight:500; color:var(--bg); background:var(--ink); padding:11px 20px; border-radius:9px; text-decoration:none; white-space:nowrap; transition:opacity .12s; }
-.st-token-cta:hover { opacity:.85; }
 
 @media (max-width: 720px) {
   .st-grid { grid-template-columns:1fr 1fr; }
