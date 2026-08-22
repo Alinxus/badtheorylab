@@ -5,33 +5,33 @@ import styles from "./home.module.css";
 const githubUrl = "https://github.com/Badtheorylabs";
 
 const evidence = [
-  { value: "88.5%", label: "BFCL v4 AST", note: "1,240 cases · BTL-3" },
-  { value: "95.12%", label: "HumanEval pass@1", note: "156 / 164 · thinking" },
-  { value: "8.39 GB", label: "Complete 27B edition", note: "one native GGUF" },
-  { value: "43.16 t/s", label: "Compact generation", note: "RTX PRO 6000" },
+  { value: "94.1%", label: "Behavior retention", note: "111 / 118 · BTL-4 Compact" },
+  { value: "9.96 GB", label: "35.1B MoE GGUF", note: "2.30 bpw · stock format" },
+  { value: "2.1B", label: "Active parameters", note: "per token · routed MoE" },
+  { value: "31.9 t/s", label: "MacBook decode", note: "M4 · full Metal offload" },
 ];
 
 const coreOutputs = [
   {
     number: "01",
-    kind: "Open-weight model",
-    name: "BTL-3",
-    title: "A 27B model trained to act, verify, recover, and know when to stop.",
-    body: "Our frozen RL-0013 release combines agentic coding with structured tool use. It ships with complete evaluation evidence, a full-quality adapter, and a native compact edition.",
-    facts: ["88.5% BFCL v4", "95.12% HumanEval", "262K architecture"],
-    href: "/btl-3",
-    action: "Explore BTL-3",
+    kind: "Open-weight MoE",
+    name: "BTL-4 Compact",
+    title: "A 35.1B mixture-of-experts model released as a 9.96 GB stock GGUF.",
+    body: "BTL-4 Compact keeps the model in a standard llama.cpp-compatible format while preserving 111 of 118 teacher-correct behaviors on the release gate. The paper records the range-selection result, expert-level ablations, and the boundary of the claim.",
+    facts: ["35.1B MoE", "9.96 GB GGUF", "94.1% retention"],
+    href: "/papers/range-before-representation",
+    action: "Read BTL-4",
     featured: true,
   },
   {
     number: "02",
-    kind: "Native model system",
-    name: "BTL-3 Compact",
-    title: "The complete 27B text model, packed into 8.39 GB.",
-    body: "A byte-verified AVQ2/UniSVQ GGUF with its own CUDA and Metal runtime, OpenAI-compatible server, and Ollama and LM Studio bridges. No BF16 checkpoint is loaded behind the scenes.",
-    facts: ["2,416 tensors", "92.2% tool retention", "CUDA + Metal"],
-    href: "/btl-3-compact",
-    action: "Get Compact",
+    kind: "Open-weight model",
+    name: "BTL-3",
+    title: "A 27B model trained to act, verify, recover, and know when to stop.",
+    body: "The frozen RL-0013 release combines agentic coding with structured tool use. It ships with complete evaluation evidence, a full-quality adapter, and a native compact edition.",
+    facts: ["88.5% BFCL v4", "95.12% HumanEval", "262K architecture"],
+    href: "/btl-3",
+    action: "Explore BTL-3",
   },
   {
     number: "03",
@@ -75,9 +75,9 @@ const research = [
   {
     index: "R/03",
     name: "Low-bit model systems",
-    state: "Method + artifact",
-    body: "Our compression work produced a complete 8.39 GB 27B model, a packed representation, native kernels, precision-island allocation, behavior repair, and artifact-faithful validation.",
-    href: "/btl-3",
+    state: "Papers + artifact",
+    body: "BTL-4 Compact ships a 35.1B MoE as a 9.96 GB stock GGUF, while BRQ records the one-bit recovery lane and its non-promoted boundary.",
+    href: "/papers/range-before-representation",
   },
   {
     index: "R/04",
@@ -151,7 +151,7 @@ export default function Home() {
             The work is public, runnable, and measured against the thing it claims to do.
           </p>
           <div className={styles.actions}>
-            <Link className={styles.primaryButton} href="/btl-3">Meet BTL-3 <Arrow /></Link>
+            <Link className={styles.primaryButton} href="/papers/range-before-representation">Read BTL-4 <Arrow /></Link>
             <a className={styles.secondaryButton} href={githubUrl} target="_blank" rel="noreferrer">See the work</a>
           </div>
         </div>
@@ -159,18 +159,18 @@ export default function Home() {
         <div className={styles.releasePanel}>
           <div className={styles.panelTop}>
             <span className={styles.liveDot} />
-            <span>Latest release · July 2026</span>
-            <span>RL-0013</span>
+            <span>Latest release · August 2026</span>
+            <span>2.30 bpw</span>
           </div>
-          <div className={styles.panelModel}>BTL<span>–</span>3</div>
-          <p>27B agentic coding + tool-use model</p>
+          <div className={styles.panelModel}>BTL<span>–</span>4</div>
+          <p>35.1B MoE in a 9.96 GB stock GGUF</p>
           <div className={styles.panelRows}>
-            <div><span>Full edition</span><b>Open weights</b></div>
-            <div><span>Compact edition</span><b>8.39 GB</b></div>
-            <div><span>Native runtime</span><b>CUDA + Metal</b></div>
-            <div><span>Evidence</span><b>Public artifacts</b></div>
+            <div><span>Full model</span><b>35.1B MoE</b></div>
+            <div><span>Active path</span><b>~2.1B / token</b></div>
+            <div><span>Compact artifact</span><b>9.96 GB</b></div>
+            <div><span>Evidence</span><b>111 / 118 retained</b></div>
           </div>
-          <Link href="/btl-3" className={styles.panelLink}>Release dossier <Arrow /></Link>
+          <Link href="/papers/range-before-representation" className={styles.panelLink}>Release dossier <Arrow /></Link>
         </div>
       </section>
 
@@ -271,7 +271,7 @@ export default function Home() {
           <small>Lagos, Nigeria · Est. 2025</small>
         </div>
         <div className={styles.footerLinks}>
-          <div><span>Build</span><Link href="/btl-3">BTL-3</Link><Link href="/btl-3-compact">BTL-3 Compact</Link><Link href="/macaw">Macaw</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>
+          <div><span>Build</span><Link href="/papers/range-before-representation">BTL-4</Link><Link href="/papers/behaviour-relearned-quantization">BRQ</Link><Link href="/btl-3">BTL-3</Link><Link href="/macaw">Macaw</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>
           <div><span>Research</span><Link href="/context-integrity">Context Integrity</Link><Link href="/esp">ESP</Link><Link href="/reasoning-gap">Reasoning Gap</Link><Link href="/papers">Papers</Link></div>
           <div><span>Lab</span><a href={githubUrl}>GitHub</a><a href="https://discord.gg/QJBCcB7bF">Discord</a><Link href="/contact">Contact</Link><a href="https://cal.com/alameenpd/quick-chat">Schedule a call</a></div>
         </div>

@@ -5,6 +5,15 @@ import styles from "./papers.module.css";
 const papers = [
   {
     date: "August 2026",
+    type: "Technical report · research lane",
+    title: "Behaviour-Relearned Quantization",
+    summary: "The BRQ paper: why static one-bit MoE quantization failed, how binary routed experts recovered teacher-forced structure, and why the result did not yet promote as a release artifact.",
+    artifacts: ["11-page paper", "OLMoE receipts", "Qwen controls", "V1b contract"],
+    href: "/papers/behaviour-relearned-quantization",
+    pdf: "/papers/behaviour-relearned-quantization/paper.pdf",
+  },
+  {
+    date: "August 2026",
     type: "Research paper · released",
     title: "Range Before Representation",
     summary: "Behavior-gated two-bit quantization of a 35.1B-parameter mixture-of-experts model into a 9.96 GB stock-format GGUF, with controlled range-selection and expert-level ablations.",
