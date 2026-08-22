@@ -4,6 +4,15 @@ import styles from "./papers.module.css";
 
 const papers = [
   {
+    date: "August 2026",
+    type: "Research paper · released",
+    title: "Range Before Representation",
+    summary: "Behavior-gated two-bit quantization of a 35.1B-parameter mixture-of-experts model into a 9.96 GB stock-format GGUF, with controlled range-selection and expert-level ablations.",
+    artifacts: ["35.1B MoE", "9.96 GB GGUF", "94.1% conditional retention", "PDF"],
+    href: "/papers/range-before-representation",
+    pdf: "/papers/range-before-representation/paper.pdf",
+  },
+  {
     date: "July 2026",
     type: "Research paper · released",
     title: "Behavior Before Perplexity",
