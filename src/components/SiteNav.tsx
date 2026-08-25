@@ -7,7 +7,7 @@ const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 const CAL_URL = "https://cal.com/alameenpd/quick-chat";
 
 // one source of truth for the nav. the home page used to spill 11 links across
-// the bar — folded them into three dropdowns + Stats so it breathes again.
+// the bar. folded into four dropdowns so it breathes again.
 type Item = { label: string; href: string; external?: boolean; live?: boolean };
 type Group = { label: string; items: Item[] };
 
@@ -104,9 +104,6 @@ export default function SiteNav() {
               </div>
             </div>
           ))}
-          <Link href="/stats" className="sn-stats">
-            <span className="sn-live-dot" /> Stats
-          </Link>
         </div>
 
         <div className="sn-right">
@@ -125,9 +122,6 @@ export default function SiteNav() {
 
       {open && (
         <div className="sn-drawer">
-          <Link href="/stats" className="sn-drawer-item sn-drawer-stats" onClick={close}>
-            <span className="sn-live-dot" /> Live Stats
-          </Link>
           {GROUPS.map((g) => (
             <div key={g.label} className="sn-drawer-group">
               <div className="sn-drawer-head">{g.label}</div>

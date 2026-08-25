@@ -145,7 +145,7 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}><span />Independent research lab · Lagos</p>
-          <h1>We build frontier models efficient enough to run on <em>hardware you already own.</em></h1>
+          <h1>We build frontier models <em>efficient enough to own.</em></h1>
           <p className={styles.lede}>
             Most of the field treats efficiency as something you do to a model after it is finished. We
             train for it. What breaks when a model gets cheaper to run is rarely knowledge, it is
