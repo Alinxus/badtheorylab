@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "BTL",
-  description: "Intelligence efficient enough to own. BTL is an independent research lab building open models, native runtimes, agent infrastructure, and benchmarks you can run.",
+  description: "BTL is an independent research lab in Lagos. We build frontier models efficient enough to run on hardware people already own, plus the runtimes, memory, and benchmarks around them.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   icons: {
     icon: "/btl-favicon.svg",

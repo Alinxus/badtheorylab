@@ -11,11 +11,11 @@
 }
 .eyebrow span { width: 30px; height: 1px; background: var(--signal);
 }
-.hero h1 { max-width: 900px; font-family: var(--font-d), Georgia, serif; font-size: clamp(58px, 7.5vw, 116px); font-weight: 400; letter-spacing: -0.065em; line-height: 0.84;
+.hero h1 { max-width: 900px; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(40px, 5.4vw, 82px); font-weight: 800; letter-spacing: -0.042em; line-height: 0.98;
 }
 .hero h1 em,
 .section h2 em,
-.manifesto em { font-weight: 300; color: var(--signal);
+.manifesto em { font-weight: inherit; color: var(--signal);
 }
 .lede { max-width: 720px; margin-top: 44px; color: #4b5154; font-size: clamp(17px, 1.45vw, 21px); line-height: 1.6;
 }
@@ -42,7 +42,7 @@
 }
 .liveDot { width: 7px; height: 7px; border-radius: 50%; background: #5cf38b; box-shadow: 0 0 16px rgba(92, 243, 139, 0.6);
 }
-.panelModel { margin: 58px 0 2px; font-family: var(--font-d), Georgia, serif; font-size: clamp(76px, 9vw, 138px); letter-spacing: -0.075em; line-height: 0.8; position: relative;
+.panelModel { margin: 58px 0 2px; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(76px, 9vw, 138px); letter-spacing: -0.040em; line-height: 0.8; position: relative;
 }
 .panelModel span { color: var(--signal);
 }
@@ -68,7 +68,7 @@
 }
 .evidenceCell:last-child { border-right: 0;
 }
-.evidenceCell strong { display: block; font-family: var(--font-d), Georgia, serif; font-size: clamp(38px, 4.2vw, 68px); font-weight: 400; letter-spacing: -0.055em; line-height: 1;
+.evidenceCell strong { display: block; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(38px, 4.2vw, 68px); font-weight: 700; letter-spacing: -0.040em; line-height: 1;
 }
 .evidenceCell span,
 .evidenceCell small { display: block;
@@ -83,7 +83,7 @@
 }
 .label { margin-bottom: 20px; color: var(--signal);
 }
-.section h2 { font-family: var(--font-d), Georgia, serif; font-size: clamp(48px, 6vw, 88px); font-weight: 400; letter-spacing: -0.055em; line-height: 0.95;
+.section h2 { font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(48px, 6vw, 88px); font-weight: 700; letter-spacing: -0.040em; line-height: 0.95;
 }
 .sectionHead > p { color: var(--muted); font-size: 16px; line-height: 1.65;
 }
@@ -95,9 +95,9 @@
 }
 .outputMeta { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); font-family: var(--font-m), monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
 }
-.outputCard h3 { margin-top: 72px; font-family: var(--font-d), Georgia, serif; font-size: clamp(42px, 5vw, 72px); font-weight: 400; letter-spacing: -0.05em;
+.outputCard h3 { margin-top: 72px; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(42px, 5vw, 72px); font-weight: 700; letter-spacing: -0.040em;
 }
-.outputCard h4 { max-width: 650px; margin-top: 16px; font-family: var(--font-d), Georgia, serif; font-size: clamp(23px, 2.4vw, 34px); font-weight: 400; line-height: 1.15;
+.outputCard h4 { max-width: 650px; margin-top: 16px; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(23px, 2.4vw, 34px); font-weight: 700; line-height: 1.15;
 }
 .outputCard > p { max-width: 650px; margin-top: 22px; color: var(--muted); font-size: 14px; line-height: 1.7;
 }
@@ -120,7 +120,7 @@
 .researchIndex,
 .researchState { font-family: var(--font-m), monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.38);
 }
-.researchRow h3 { margin-top: 7px; font-family: var(--font-d), Georgia, serif; font-size: clamp(28px, 3vw, 42px); font-weight: 400; letter-spacing: -0.035em;
+.researchRow h3 { margin-top: 7px; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(28px, 3vw, 42px); font-weight: 700; letter-spacing: -0.035em;
 }
 .researchRow p { color: rgba(255, 255, 255, 0.52); font-size: 13px; line-height: 1.65;
 }
@@ -133,7 +133,7 @@
 }
 .systemGrid span { font-family: var(--font-m), monospace; font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--signal);
 }
-.systemGrid h3 { margin-top: 40px; font-family: var(--font-d), Georgia, serif; font-size: 42px; font-weight: 400; letter-spacing: -0.04em;
+.systemGrid h3 { margin-top: 40px; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: 42px; font-weight: 700; letter-spacing: -0.040em;
 }
 .systemGrid p { margin-top: 14px; color: var(--muted); font-size: 13px; line-height: 1.65;
 }
@@ -143,13 +143,13 @@
 }
 .manifesto > p { font-family: var(--font-m), monospace; font-size: 10px; letter-spacing: 0.15em;
 }
-.manifesto blockquote { margin-top: 30px; font-family: var(--font-d), Georgia, serif; font-size: clamp(50px, 7vw, 104px); font-weight: 400; letter-spacing: -0.06em; line-height: 0.95;
+.manifesto blockquote { margin-top: 30px; font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: clamp(50px, 7vw, 104px); font-weight: 700; letter-spacing: -0.040em; line-height: 0.95;
 }
 .manifesto > div { justify-content: center;
 }
 .footer { padding: 70px clamp(24px, 5vw, 78px) 28px; background: var(--ink); color: #edeeea;
 }
-.footer > div:first-child strong { font-family: var(--font-d), Georgia, serif; font-size: 32px; font-weight: 400;
+.footer > div:first-child strong { font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: 32px; font-weight: 700;
 }
 .footer > div:first-child p { max-width: 440px; margin-top: 12px; color: rgba(255, 255, 255, 0.52); line-height: 1.6;
 }

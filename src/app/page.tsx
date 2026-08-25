@@ -145,11 +145,12 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}><span />Independent research lab · Lagos</p>
-          <h1>Every technology that mattered started out <em>too big to own.</em></h1>
+          <h1>We build frontier models efficient enough to run on <em>hardware you already own.</em></h1>
           <p className={styles.lede}>
-            Intelligence is still at the room stage. The models that reliably finish difficult work run
-            inside datacentres, reached through a meter, on a roadmap you do not set. That is not physics.
-            It is a set of engineering choices, and engineering choices can change.
+            Most of the field treats efficiency as something you do to a model after it is finished. We
+            train for it. What breaks when a model gets cheaper to run is rarely knowledge, it is
+            behaviour, and it breaks quietly while the usual numbers keep looking fine. So we gate on
+            behaviour and publish what the gate measured.
           </p>
           <div className={styles.actions}>
             <Link className={styles.primaryButton} href="/thesis">Read the thesis <Arrow /></Link>
