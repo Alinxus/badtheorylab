@@ -124,7 +124,7 @@ export default function CompactPage() {
         </div>
       </section>
 
-      <footer className={styles.footer}><strong>BTL-3 Compact · 8.39 GB</strong><div><Link href="/">Bad Theory Labs</Link><Link href="/btl-3">Full model</Link><a href={links.compact}>Hugging Face</a><a href={links.github}>GitHub</a></div></footer>
+      <footer className={styles.footer}><strong>BTL-3 Compact · 8.39 GB</strong><div><Link href="/">BTL</Link><Link href="/btl-3">Full model</Link><a href={links.compact}>Hugging Face</a><a href={links.github}>GitHub</a></div></footer>
     </main>
   );
 }

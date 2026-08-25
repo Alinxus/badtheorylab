@@ -104,7 +104,7 @@ function ContactPageShell({ searchParams }: { searchParams: SearchParamsLike }) 
       <style>{styles}</style>
 
       <nav className="top-nav">
-        <Link href="/" className="brand">Bad Theory Labs</Link>
+        <Link href="/" className="brand">BTL</Link>
         <div className="nav-links">
           <Link href="/#research">Research</Link>
           <Link href="/#products">Products</Link>
@@ -122,7 +122,7 @@ function ContactPageShell({ searchParams }: { searchParams: SearchParamsLike }) 
       <section className="hero">
         <div>
           <p className="eyebrow">Contact</p>
-          <h1>Talk to Bad Theory Labs.</h1>
+          <h1>Talk to BTL.</h1>
           <p>
             Investors, partners, builders, researchers, and community members can reach out directly here.
             You can also schedule a call or join our Discord community.
@@ -191,7 +191,7 @@ function ContactPageShell({ searchParams }: { searchParams: SearchParamsLike }) 
 }
 
 const styles = `
-:root { --bg:#fafaf9; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0e0d0c; --body:#5c5954; --faint:#9c9890; }
+:root { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; }
 .contact-page { min-height:100vh; background:var(--bg); color:var(--ink); }
 .top-nav { position:sticky; top:0; z-index:20; height:58px; border-bottom:1px solid var(--border); background:rgba(250,250,249,.88); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }
 .brand { font-family:var(--font-d); font-size:22px; color:var(--ink); text-decoration:none; }

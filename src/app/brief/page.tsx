@@ -11,7 +11,7 @@ export default function BriefPage() {
       <style>{styles}</style>
 
       <nav className="top-nav">
-        <Link href="/" className="brand">Bad Theory Labs</Link>
+        <Link href="/" className="brand">BTL</Link>
         <div className="nav-links">
           <Link href="/#research">Research</Link>
           <Link href="/#products">Products</Link>
@@ -29,7 +29,7 @@ export default function BriefPage() {
       <section className="hero">
         <p className="eyebrow">Investor Brief</p>
         <h1>Building the infrastructure and products for the next interface to computing.</h1>
-        <p className="hero-copy">Bad Theory Labs is building for a world where software remembers, reasons, and acts with restraint.</p>
+        <p className="hero-copy">BTL is building for a world where software remembers, reasons, and acts with restraint.</p>
         <div className="hero-actions">
           <a href={CAL_URL} target="_blank" rel="noreferrer" className="solid">Schedule investor call</a>
           <Link href="/contact" className="ghost">Send a note</Link>
@@ -40,7 +40,7 @@ export default function BriefPage() {
         <article>
           <h2>1. What We Are</h2>
           <p>
-            Bad Theory Labs is a product and research lab built around one thesis: we research how intelligence
+            BTL is a product and research lab built around one thesis: we research how intelligence
             perceives, reasons, and acts, then build infrastructure that makes that useful in real workflows.
             We are not a model company and not an AI wrapper. We are building the substrate layer: memory,
             retrieval, context, and ambient presence.
@@ -169,7 +169,7 @@ export default function BriefPage() {
 
           <h2>10. Closing</h2>
           <p>
-            Bad Theory Labs is building for a world where software does more than wait for instructions. Agents
+            BTL is building for a world where software does more than wait for instructions. Agents
             remember the right things, context survives across time, assistance stays selective, and systems follow
             through.
           </p>
@@ -177,14 +177,14 @@ export default function BriefPage() {
           <div className="card">
             <h3>Appendix A · One Paragraph</h3>
             <p>
-              Bad Theory Labs is a product and research lab building toward AI-native computing. RetainDB provides
+              BTL is a product and research lab building toward AI-native computing. RetainDB provides
               memory and context infrastructure for agents with strong benchmark performance and a 0% hallucination
               rate on stored facts. Marrow is a proactive desktop agent that builds context from your workflow and
               intervenes selectively, then executes end-to-end tasks directly on your machine.
             </p>
             <h3>Appendix B · 3-Sentence Version</h3>
             <p>
-              Bad Theory Labs builds infrastructure and products for AI systems that can remember, decide, and act.
+              BTL builds infrastructure and products for AI systems that can remember, decide, and act.
               RetainDB is memory and context infrastructure benchmarked above current alternatives. Marrow is a
               proactive desktop agent with taste: a ghost in your computer that stays quiet until signal is high,
               then executes.
@@ -197,7 +197,7 @@ export default function BriefPage() {
 }
 
 const styles = `
-:root { --bg:#fafaf9; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0e0d0c; --body:#5c5954; --faint:#9c9890; }
+:root { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; }
 .brief-page { background:var(--bg); color:var(--ink); min-height:100vh; }
 .top-nav { position:sticky; top:0; z-index:20; height:58px; border-bottom:1px solid var(--border); background:rgba(250,250,249,.88); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }
 .brand { font-family:var(--font-d); font-size:22px; color:var(--ink); text-decoration:none; }

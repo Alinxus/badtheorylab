@@ -22,7 +22,7 @@ export default function BehaviourRelearnedQuantizationPage() {
   return (
     <main className={styles.page}>
       <nav className={styles.nav}>
-        <Link href="/" className={styles.brand}>Bad Theory Labs</Link>
+        <Link href="/" className={styles.brand}>BTL</Link>
         <div className={styles.navLinks}>
           <Link href="/papers">Papers</Link>
           <a href={PDF}>PDF</a>
@@ -36,7 +36,7 @@ export default function BehaviourRelearnedQuantizationPage() {
           <p className={styles.deck}>
             Recovering one-bit mixture-of-experts weights by reserving structure and relearning expert codes.
           </p>
-          <p className={styles.byline}>Bad Theory Labs, Lagos</p>
+          <p className={styles.byline}>BTL, Lagos</p>
           <div className={styles.actions}>
             <a className={styles.primary} href={PDF}>Read the paper</a>
             <Link href="/papers">All papers</Link>
@@ -113,7 +113,7 @@ export default function BehaviourRelearnedQuantizationPage() {
       </section>
 
       <footer className={styles.footer}>
-        <span>Bad Theory Labs · Lagos</span>
+        <span>BTL · Lagos</span>
         <Link href="/papers">All papers</Link>
       </footer>
     </main>

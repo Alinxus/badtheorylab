@@ -222,13 +222,13 @@ async function sendConfirmation(to: string, projectName: string, updated: boolea
          <strong>Jul 7, 2026 at 15:00 UTC</strong>. The last saved version is the one we judge.</p>
       <p>Demo day is Jul 7 at 17:00 UTC in Discord, where finalists present live.</p>
       <hr style="margin: 22px 0; border: 0; border-top: 1px solid #ddd;" />
-      <p style="color:#888;font-size:12px;">Bad Theory Labs · You keep full ownership of whatever you build.</p>
+      <p style="color:#888;font-size:12px;">BTL · You keep full ownership of whatever you build.</p>
     </div>
   `;
   const text =
     `Submission ${verb} for the BTL Runtime Hackathon: ${projectName}.\n` +
     `Edit any time with the same email before Jul 7, 2026 15:00 UTC — last version wins.\n` +
-    `Demo day: Jul 7, 17:00 UTC in Discord.\n— Bad Theory Labs`;
+    `Demo day: Jul 7, 17:00 UTC in Discord.\n— BTL`;
 
   const transporter = nodemailer.createTransport({ host, port, secure, auth: { user, pass } });
   try {

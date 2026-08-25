@@ -71,7 +71,7 @@ export default function PapersPage() {
     <main className={styles.page}>
       <SiteNav />
       <header className={styles.hero}>
-        <p>Bad Theory Labs · Research index</p>
+        <p>BTL · Research index</p>
         <h1>Research should end in<br /><em>something you can run.</em></h1>
         <div>
           <p>We publish the question, the method, the artifacts, the failures, and the code needed to reproduce the result.</p>
@@ -111,7 +111,7 @@ export default function PapersPage() {
       </section>
 
       <footer className={styles.footer}>
-        <strong>Bad Theory Labs</strong>
+        <strong>BTL</strong>
         <p>Independent AI research and product lab · Lagos, Nigeria</p>
         <div><Link href="/">Home</Link><a href="https://github.com/Badtheorylabs">GitHub</a><a href="mailto:hello@badtheorylabs.com">Email</a></div>
       </footer>

@@ -4,10 +4,10 @@ const desc =
   "BTL Runtime is a drop-in, OpenAI-compatible inference gateway. Route across OpenAI, Anthropic, Bedrock, Vertex, and OpenRouter, cut token waste, and watch the savings — without rewriting your app.";
 
 export const metadata: Metadata = {
-  title: "BTL Runtime — Inference Gateway · Bad Theory Labs",
+  title: "BTL Runtime — Inference Gateway · BTL",
   description: desc,
   openGraph: {
-    title: "BTL Runtime — Inference Gateway · Bad Theory Labs",
+    title: "BTL Runtime — Inference Gateway · BTL",
     description: desc,
     url: "https://www.badtheorylabs.com/runtime",
     images: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTL Runtime — Inference Gateway · Bad Theory Labs",
+    title: "BTL Runtime — Inference Gateway · BTL",
     description: desc,
   },
 };

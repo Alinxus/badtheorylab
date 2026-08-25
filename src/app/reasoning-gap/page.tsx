@@ -9,7 +9,7 @@ export default function ReasoningGapPage() {
       <style>{styles}</style>
 
       <nav className="top-nav">
-        <Link href="/" className="brand">Bad Theory Labs</Link>
+        <Link href="/" className="brand">BTL</Link>
         <div className="nav-links">
           <Link href="/#research">Research</Link>
           <Link href="/#products">Products</Link>
@@ -28,7 +28,7 @@ export default function ReasoningGapPage() {
         <p className="eyebrow">Research Paper · June 2026</p>
         <h1>The Reasoning Gap</h1>
         <p className="hero-subtitle">Frontier LLMs Fail at Interventional Causal Inference from Probability Tables</p>
-        <p className="hero-byline">Olajide Al-ameen · Bad Theory Labs, Lagos</p>
+        <p className="hero-byline">Olajide Al-ameen · BTL, Lagos</p>
         <div className="hero-actions">
           <a href="https://github.com/Badtheorylabs/reasoning-gap" target="_blank" rel="noreferrer" className="btn btn-solid">View on GitHub</a>
           <a href="/reasoning-test" className="btn btn-outline">Take the Test</a>
@@ -40,7 +40,7 @@ export default function ReasoningGapPage() {
         <article className="paper">
 
           <header>
-            <p className="paper-meta">Published June 2026 · Bad Theory Labs</p>
+            <p className="paper-meta">Published June 2026 · BTL</p>
             <h2>The Reasoning Gap: Frontier LLMs Fail at Interventional Causal Inference from Probability Tables</h2>
             <p className="paper-authors">Olajide Al-ameen</p>
           </header>
@@ -173,7 +173,7 @@ export default function ReasoningGapPage() {
             &ldquo;The field has been teaching systems to predict the world. We are trying to build systems that
             understand it. The difference is not scale. It is the objective.&rdquo;
           </blockquote>
-          <p className="paper-submeta">Bad Theory Labs, Lagos · June 2026</p>
+          <p className="paper-submeta">BTL, Lagos · June 2026</p>
         </article>
       </section>
     </main>
@@ -181,7 +181,7 @@ export default function ReasoningGapPage() {
 }
 
 const styles = `
-:root { --bg:#fafaf9; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0e0d0c; --body:#5c5954; --faint:#9c9890; --accent:#2563eb; }
+:root { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; --accent:#2563eb; }
 .rg-page { min-height:100vh; background:var(--bg); color:var(--ink); }
 .top-nav { position:sticky; top:0; z-index:20; height:58px; border-bottom:1px solid var(--border); background:rgba(250,250,249,.88); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }
 .brand { font-family:var(--font-d); font-size:22px; color:var(--ink); text-decoration:none; }

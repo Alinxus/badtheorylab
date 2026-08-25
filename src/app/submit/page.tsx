@@ -216,7 +216,7 @@ export default function SubmitPage() {
 function Nav() {
   return (
     <nav className="sub-nav">
-      <Link href="/" className="sub-brand">Bad Theory Labs</Link>
+      <Link href="/" className="sub-brand">BTL</Link>
       <div className="sub-nav-links">
         <Link href="/hackathon">Hackathon</Link>
         <a href={DISCORD_URL} target="_blank" rel="noreferrer">Discord</a>
@@ -241,24 +241,24 @@ function Field({ label, required, hint, children }: {
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
 
-.sub-page{--bg:#FAFAF9;--surface:#F3F2EF;--border:#E8E6E1;--border2:#D6D3CC;--ink:#0E0D0C;--body:#5C5954;--faint:#9C9890;--amber:rgba(168,94,26,1);
-  min-height:100vh;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:96px;position:relative;overflow-x:hidden}
+.sub-page{--bg:#EDEEEA;--surface:#F3F2EF;--border:#E8E6E1;--border2:#D6D3CC;--ink:#0B0C0D;--body:#5C5954;--faint:#62696D;--amber:rgba(168,94,26,1);
+  min-height:100vh;background:var(--bg);color:var(--ink);font-family:var(--font-s), Arial, sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:96px;position:relative;overflow-x:hidden}
 .sub-page::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px;animation:sub-grain .18s steps(1) infinite}
 @keyframes sub-grain{0%{background-position:0 0}25%{background-position:-14% 4%}50%{background-position:-4% 23%}75%{background-position:14% 0}100%{background-position:0 0}}
 
 .sub-nav{position:sticky;top:0;z-index:200;height:58px;border-bottom:1px solid var(--border);background:rgba(250,250,249,.92);backdrop-filter:blur(20px) saturate(1.4);display:flex;align-items:center;justify-content:space-between;padding:0 28px}
-.sub-brand{font-family:'EB Garamond',serif;font-size:20px;font-weight:500;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.sub-brand{font-family:var(--font-d), 'Helvetica Neue', Arial, sans-serif;font-size:20px;font-weight:700;letter-spacing:-.032em;color:var(--ink);text-decoration:none}
 .sub-nav-links{display:flex;gap:18px;align-items:center}
 .sub-nav-links a{color:var(--body);text-decoration:none;font-size:13px;transition:color .15s}
 .sub-nav-links a:hover{color:var(--ink)}
 
 .sub-hero{max-width:760px;margin:0 auto;padding:64px 28px 8px}
-.sub-eyebrow{display:flex;align-items:center;gap:10px;color:var(--faint);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.sub-eyebrow{display:flex;align-items:center;gap:10px;color:var(--faint);font-family:var(--font-m), monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
 .sub-eyebrow .rule{width:24px;height:1px;background:var(--border);flex-shrink:0}
-.sub-hero h1{font-family:'EB Garamond',serif;font-size:clamp(40px,5vw,60px);font-weight:500;letter-spacing:-.04em;line-height:1.02;margin:24px 0 16px}
+.sub-hero h1{font-family:var(--font-d), 'Helvetica Neue', Arial, sans-serif;font-size:clamp(40px,5vw,60px);font-weight:700;letter-spacing:-.04em;line-height:1.02;margin:24px 0 16px}
 .sub-sub{font-size:16px;font-weight:300;line-height:1.76;color:var(--body);max-width:600px}
 .sub-sub strong{font-weight:500;color:var(--ink)}
-.sub-deadline{margin-top:24px;display:inline-flex;align-items:center;gap:9px;background:#fdf8f3;border:1px solid rgba(168,94,26,.14);border-radius:8px;padding:9px 15px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#8a5a2e}
+.sub-deadline{margin-top:24px;display:inline-flex;align-items:center;gap:9px;background:#fdf8f3;border:1px solid rgba(168,94,26,.14);border-radius:8px;padding:9px 15px;font-family:var(--font-m), monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#8a5a2e}
 .sub-deadline strong{font-weight:500}
 .sub-deadline .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0;animation:sub-pulse 2.2s ease-in-out infinite}
 @keyframes sub-pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,94,26,.5)}50%{box-shadow:0 0 0 5px rgba(168,94,26,0)}}
@@ -267,10 +267,10 @@ const css = `
 .sub-row{display:grid;grid-template-columns:1fr 1fr;gap:26px}
 @media(max-width:640px){.sub-row{grid-template-columns:1fr;gap:26px}}
 .sub-field{display:flex;flex-direction:column;gap:7px}
-.sub-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.sub-label{font-family:var(--font-m), monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);font-weight:500}
 .sub-label .req{color:var(--amber);font-style:normal}
 .sub-hint{font-size:12.5px;font-weight:300;line-height:1.55;color:var(--faint)}
-.sub-field input,.sub-field textarea{border:1px solid var(--border2);border-radius:8px;padding:12px 14px;font-size:15px;background:#fff;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s,box-shadow .15s}
+.sub-field input,.sub-field textarea{border:1px solid var(--border2);border-radius:8px;padding:12px 14px;font-size:15px;background:#fff;color:var(--ink);font-family:var(--font-s), Arial, sans-serif;outline:none;transition:border-color .15s,box-shadow .15s}
 .sub-field input::placeholder,.sub-field textarea::placeholder{color:var(--faint)}
 .sub-field input:focus,.sub-field textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(14,13,12,.05)}
 .sub-check-row{display:flex;gap:12px;align-items:flex-start;font-size:14px;font-weight:300;color:var(--body);line-height:1.55;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
@@ -278,16 +278,16 @@ const css = `
 .sub-check-row em{color:var(--amber);font-style:normal;font-weight:500}
 .sub-err{color:#a8402a;font-size:14px;margin:0}
 
-.btn-p{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--bg);border:none;border-radius:8px;padding:14px 28px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:opacity .12s}
+.btn-p{font-family:var(--font-s), Arial, sans-serif;background:var(--ink);color:var(--bg);border:none;border-radius:8px;padding:14px 28px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:opacity .12s}
 .btn-p:hover{opacity:.85}
 .btn-p:disabled{opacity:.5;cursor:default}
-.btn-g{font-family:'DM Sans',sans-serif;background:transparent;color:var(--body);border:1px solid var(--border2);border-radius:8px;padding:13px 26px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s,background .15s}
+.btn-g{font-family:var(--font-s), Arial, sans-serif;background:transparent;color:var(--body);border:1px solid var(--border2);border-radius:8px;padding:13px 26px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s,background .15s}
 .btn-g:hover{border-color:var(--ink);color:var(--ink);background:rgba(14,13,12,.025)}
 .sub-submit{margin-top:6px;align-self:flex-start;padding:15px 34px}
-.sub-fine{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0}
+.sub-fine{font-family:var(--font-m), monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0}
 
 .sub-closed,.sub-done{max-width:620px;margin:80px auto;padding:0 28px;text-align:center}
-.sub-closed h2,.sub-done h1{font-family:'EB Garamond',serif;font-weight:500;letter-spacing:-.03em}
+.sub-closed h2,.sub-done h1{font-family:var(--font-d), 'Helvetica Neue', Arial, sans-serif;font-weight:700;letter-spacing:-.03em}
 .sub-done h1{font-size:38px;margin:0 0 14px}
 .sub-closed h2{font-size:32px;margin:0 0 12px}
 .sub-done .sub-check{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 22px}

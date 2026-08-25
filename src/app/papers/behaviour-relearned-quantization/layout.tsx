@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const title = "Behaviour-Relearned Quantization — BRQ";
 const description =
-  "Bad Theory Labs' BRQ paper: one-bit MoE recovery experiments, binary expert relearning receipts, and the boundary before a promoted release artifact.";
+  "BTL's BRQ paper: one-bit MoE recovery experiments, binary expert relearning receipts, and the boundary before a promoted release artifact.";
 
 export const metadata: Metadata = {
   title,

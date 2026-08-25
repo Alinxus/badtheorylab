@@ -24,7 +24,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-s), Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -52,14 +52,14 @@ body::before {
   border-bottom: 1px solid var(--border);
 }
 .mr-nav-brand {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
   font-size: 15px; letter-spacing: -0.01em;
   color: rgba(237,233,224,0.65); text-decoration: none;
   transition: color 0.2s;
 }
 .mr-nav-brand:hover { color: var(--ink); }
 .mr-nav-back {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-m), monospace;
   font-size: 11px; color: var(--faint);
   text-decoration: none; letter-spacing: 0.08em;
   transition: color 0.2s;
@@ -99,7 +99,7 @@ body::before {
 }
 .mr-eyebrow {
   display: flex; align-items: center; gap: 10px; margin-bottom: 44px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-m), monospace;
   font-size: 10.5px; color: var(--faint);
   letter-spacing: 0.18em; text-transform: uppercase;
   opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
@@ -111,7 +111,7 @@ body::before {
   animation: dot-pulse 2.4s ease-in-out infinite; flex-shrink: 0;
 }
 .mr-wordmark {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
   font-size: clamp(76px, 14vw, 164px);
   font-weight: 400; letter-spacing: -0.055em; line-height: 0.88;
   margin-bottom: 36px;
@@ -121,7 +121,7 @@ body::before {
   animation: gradient-flow 8s linear infinite, fadeUp 0.8s ease 0.18s both;
 }
 .mr-tagline {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
   font-size: clamp(22px, 3.5vw, 40px);
   font-weight: 400; font-style: italic; color: var(--body); line-height: 1.25;
   margin-bottom: 28px; opacity: 0; animation: fadeUp 0.6s ease 0.34s forwards;
@@ -139,7 +139,7 @@ body::before {
   padding: 16px 32px;
   background: var(--accent);
   color: #0A0708; font-size: 15px; font-weight: 500;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-s), Arial, sans-serif;
   border-radius: 10px; text-decoration: none;
   position: relative; overflow: hidden;
   transition: opacity 0.15s, transform 0.15s;
@@ -156,7 +156,7 @@ body::before {
 .mr-btn-ghost {
   padding: 16px 24px;
   color: var(--body); font-size: 15px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-s), Arial, sans-serif;
   text-decoration: none; border-radius: 10px;
   border: 1px solid var(--border);
   transition: color 0.2s, border-color 0.2s;
@@ -169,7 +169,7 @@ body::before {
   opacity: 0; animation: fadeUp 0.6s ease 1s forwards;
 }
 .mr-scroll-label {
-  font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+  font-family: var(--font-m), monospace; font-size: 9.5px;
   color: var(--faint); letter-spacing: 0.2em; text-transform: uppercase;
 }
 .mr-scroll-line {
@@ -186,7 +186,7 @@ body::before {
 }
 .mr-caps-header { text-align: center; margin-bottom: 64px; }
 .mr-caps-label {
-  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  font-family: var(--font-m), monospace; font-size: 11px;
   color: var(--faint); letter-spacing: 0.22em; text-transform: uppercase;
 }
 .mr-caps-grid {
@@ -206,11 +206,11 @@ body::before {
 }
 .mr-cap:hover::before { opacity: 1; }
 .mr-cap-n {
-  display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  display: block; font-family: var(--font-m), monospace; font-size: 11px;
   color: var(--faint); letter-spacing: 0.1em; margin-bottom: 24px;
 }
 .mr-cap-title {
-  font-family: 'EB Garamond', serif; font-size: 30px; font-weight: 500;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: 30px; font-weight: 700;
   letter-spacing: -0.025em; color: var(--ink); margin-bottom: 16px;
 }
 .mr-cap-body { font-size: 14px; line-height: 1.68; color: var(--body); }
@@ -226,7 +226,7 @@ body::before {
   gap: 40px;
 }
 .mr-cases-title {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
   font-size: clamp(36px, 5vw, 58px);
   font-weight: 400; letter-spacing: -0.04em; line-height: 1.05;
   color: var(--ink);
@@ -257,7 +257,7 @@ body::before {
 .mr-case:hover::before { opacity: 1; }
 .mr-case-tag {
   display: inline-flex; align-items: center; gap: 6px;
-  font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+  font-family: var(--font-m), monospace; font-size: 9.5px;
   color: var(--faint); letter-spacing: 0.14em; text-transform: uppercase;
   margin-bottom: 20px;
 }
@@ -266,7 +266,7 @@ body::before {
   background: var(--accent); opacity: 0.7;
 }
 .mr-case-headline {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
   font-size: 20px; font-weight: 500; letter-spacing: -0.02em;
   color: var(--ink); margin-bottom: 14px; line-height: 1.2;
 }
@@ -293,7 +293,7 @@ body::before {
   max-width: 1140px; margin: 0 auto;
 }
 .mr-strip-label {
-  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  font-family: var(--font-m), monospace; font-size: 11px;
   color: var(--faint); letter-spacing: 0.2em; text-transform: uppercase;
   white-space: nowrap; flex-shrink: 0;
 }
@@ -319,7 +319,7 @@ body::before {
   pointer-events: none;
 }
 .mr-quote {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
   font-size: clamp(26px, 4.2vw, 48px);
   font-weight: 400; line-height: 1.32; color: var(--ink);
   letter-spacing: -0.025em; max-width: 740px; margin: 0 auto 32px;
@@ -333,7 +333,7 @@ body::before {
   animation: gradient-flow 6s linear infinite;
 }
 .mr-cite {
-  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  font-family: var(--font-m), monospace; font-size: 11px;
   color: var(--faint); letter-spacing: 0.18em; font-style: normal;
   position: relative; z-index: 1;
 }
@@ -353,12 +353,12 @@ body::before {
   pointer-events: none; animation: orb-breathe 9s ease-in-out infinite;
 }
 .mr-cta-eyebrow {
-  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  font-family: var(--font-m), monospace; font-size: 11px;
   color: var(--faint); letter-spacing: 0.2em; text-transform: uppercase;
   margin-bottom: 28px; position: relative; z-index: 1;
 }
 .mr-cta-title {
-  font-family: 'EB Garamond', serif;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
   font-size: clamp(38px, 6vw, 72px);
   font-weight: 400; letter-spacing: -0.04em; line-height: 1.0;
   color: var(--ink); margin-bottom: 52px;
@@ -367,7 +367,7 @@ body::before {
 .mr-cta-title em { font-style: italic; }
 .mr-cta-actions { display: flex; align-items: center; justify-content: center; gap: 14px; position: relative; z-index: 1; }
 .mr-cta-fine {
-  margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  margin-top: 20px; font-family: var(--font-m), monospace; font-size: 11px;
   color: var(--faint); letter-spacing: 0.06em; position: relative; z-index: 1;
 }
 
@@ -378,7 +378,7 @@ body::before {
   display: flex; align-items: center; justify-content: space-between;
 }
 .mr-footer-brand {
-  font-family: 'EB Garamond', serif; font-size: 14px;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: 14px;
   color: var(--body); text-decoration: none; transition: color 0.2s;
 }
 .mr-footer-brand:hover { color: var(--ink); }
@@ -524,7 +524,7 @@ export default function MarrowPage() {
 
       {/* ── NAV ── */}
       <nav className="mr-nav">
-        <Link href="/" className="mr-nav-brand">Bad Theory Labs</Link>
+        <Link href="/" className="mr-nav-brand">BTL</Link>
         <Link href="/" className="mr-nav-back">← badtheorylabs.com</Link>
       </nav>
 
@@ -537,7 +537,7 @@ export default function MarrowPage() {
         <div className="mr-hero-content">
           <div className="mr-eyebrow">
             <span className="mr-eyebrow-dot" />
-            <span>Personal AGI · Bad Theory Labs</span>
+            <span>Personal AGI · BTL</span>
           </div>
 
           <h1 className="mr-wordmark">Marrow</h1>
@@ -638,7 +638,7 @@ export default function MarrowPage() {
           your context, your goals,<br />
           <em>and your moment.</em>
         </blockquote>
-        <cite className="mr-cite">— Bad Theory Labs</cite>
+        <cite className="mr-cite">— BTL</cite>
       </section>
 
       {/* ── BOTTOM CTA ── */}
@@ -658,7 +658,7 @@ export default function MarrowPage() {
 
       {/* ── FOOTER ── */}
       <footer className="mr-footer">
-        <Link href="/" className="mr-footer-brand">Bad Theory Labs</Link>
+        <Link href="/" className="mr-footer-brand">BTL</Link>
         <div className="mr-footer-right">
           <Link href="/contact">Contact</Link>
           <span>·</span>

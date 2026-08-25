@@ -144,14 +144,15 @@ export default function Home() {
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}><span />Independent AI lab · Lagos</p>
-          <h1>We ship the model,<br />the system, <em>and the proof.</em></h1>
+          <p className={styles.eyebrow}><span />Independent research lab · Lagos</p>
+          <h1>Every technology that mattered started out <em>too big to own.</em></h1>
           <p className={styles.lede}>
-            Bad Theory Labs builds open models, agent infrastructure, runtimes, and benchmarks.
-            The work is public, runnable, and measured against the thing it claims to do.
+            Intelligence is still at the room stage. The models that reliably finish difficult work run
+            inside datacentres, reached through a meter, on a roadmap you do not set. That is not physics.
+            It is a set of engineering choices, and engineering choices can change.
           </p>
           <div className={styles.actions}>
-            <Link className={styles.primaryButton} href="/papers/range-before-representation">Read BTL-4 <Arrow /></Link>
+            <Link className={styles.primaryButton} href="/thesis">Read the thesis <Arrow /></Link>
             <a className={styles.secondaryButton} href={githubUrl} target="_blank" rel="noreferrer">See the work</a>
           </div>
         </div>
@@ -196,7 +197,7 @@ export default function Home() {
         <div className={styles.sectionHead}>
           <div>
             <p className={styles.label}>Selected output</p>
-            <h2>The lab is already<br /><em>in production.</em></h2>
+            <h2>Already running on<br /><em>other people&apos;s hardware.</em></h2>
           </div>
           <p>Models are one layer. We also build the runtime, memory, agent scaffolding, evaluation, and deployment path around them.</p>
         </div>
@@ -266,9 +267,9 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <div>
-          <strong>Bad Theory Labs</strong>
-          <p>Models, systems, and research for agents that can actually do the work.</p>
-          <small>Lagos, Nigeria · Est. 2025</small>
+          <strong>BTL</strong>
+          <p>Intelligence efficient enough to own. We ship the model, the system, and the proof.</p>
+          <small>Bad Theory Labs · Lagos, Nigeria · Est. 2025</small>
         </div>
         <div className={styles.footerLinks}>
           <div><span>Build</span><Link href="/papers/range-before-representation">BTL-4</Link><Link href="/papers/behaviour-relearned-quantization">BRQ</Link><Link href="/btl-3">BTL-3</Link><Link href="/macaw">Macaw</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>

@@ -115,7 +115,7 @@ export default function Btl3Page() {
         </div>
       </section>
 
-      <footer className={styles.footer}><strong>BTL-3 · RL-0013 · 27B</strong><div><Link href="/">Bad Theory Labs</Link><a href={links.full}>Hugging Face</a><a href={links.github}>GitHub</a><a href={links.discord}>Discord</a></div></footer>
+      <footer className={styles.footer}><strong>BTL-3 · RL-0013 · 27B</strong><div><Link href="/">BTL</Link><a href={links.full}>Hugging Face</a><a href={links.github}>GitHub</a><a href={links.discord}>Discord</a></div></footer>
     </main>
   );
 }

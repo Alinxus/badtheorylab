@@ -41,7 +41,7 @@ export default function HackathonPage() {
 
       {/* ── NAV ── */}
       <nav className="h-nav">
-        <Link href="/" className="h-brand">Bad Theory Labs</Link>
+        <Link href="/" className="h-brand">BTL</Link>
         <div className="h-nav-links">
           <Link href="/#research">Research</Link>
           <Link href="/#products">Products</Link>
@@ -71,7 +71,7 @@ export default function HackathonPage() {
               48 hours, fully online, open to builders anywhere on Earth. Ship anything powered by the
               BTL runtime — our OpenAI-compatible LLM gateway. Registration is now closed, and eligible
               workspace signups receive 5M DeepSeek starter tokens for the event. $1,000+ in prizes.
-              Courtesy of Bad Theory Labs.
+              Courtesy of BTL.
             </p>
             <div className="h-actions">
               <a href={RUNTIME_SIGNUP_URL} target="_blank" rel="noreferrer" className="btn-p">Create runtime workspace</a>
@@ -319,7 +319,7 @@ export default function HackathonPage() {
           <a href={DISCORD_URL} target="_blank" rel="noreferrer" className="btn-g btn-g-lg">Join the Discord</a>
         </div>
         <p className="h-footer-note">
-          Courtesy of Bad Theory Labs ·{" "}
+          Courtesy of BTL ·{" "}
           <a href="mailto:hello@badtheorylabs.com">hello@badtheorylabs.com</a>
         </p>
       </section>

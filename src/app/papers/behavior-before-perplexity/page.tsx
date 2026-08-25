@@ -22,7 +22,7 @@ export default function BehaviorBeforePerplexityPage() {
   return (
     <main className={styles.page}>
       <nav className={styles.nav}>
-        <Link href="/" className={styles.brand}>Bad Theory Labs</Link>
+        <Link href="/" className={styles.brand}>BTL</Link>
         <div className={styles.navLinks}>
           <Link href="/btl-3">BTL-3</Link>
           <Link href="/papers">Papers</Link>
@@ -37,7 +37,7 @@ export default function BehaviorBeforePerplexityPage() {
           <p className={styles.deck}>
             A behavior-first compression recipe for agentic language models under an exact physical byte ceiling.
           </p>
-          <p className={styles.byline}>Al-ameen · Bad Theory Labs, Lagos</p>
+          <p className={styles.byline}>Al-ameen · BTL, Lagos</p>
           <div className={styles.actions}>
             <a className={styles.primary} href="/papers/behavior-before-perplexity/paper.pdf">Read the paper</a>
             <a href="/papers/behavior-before-perplexity/engineering-article.pdf">Engineering article</a>
@@ -126,7 +126,7 @@ export default function BehaviorBeforePerplexityPage() {
       </section>
 
       <footer className={styles.footer}>
-        <span>Bad Theory Labs · Lagos</span>
+        <span>BTL · Lagos</span>
         <Link href="/papers">All papers</Link>
       </footer>
     </main>

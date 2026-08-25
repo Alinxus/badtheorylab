@@ -15,7 +15,7 @@ export default function MacawPage() {
       <style>{styles}</style>
 
       <nav className="mw-nav">
-        <Link href="/" className="mw-brand">Bad Theory Labs</Link>
+        <Link href="/" className="mw-brand">BTL</Link>
         <div className="mw-nav-links">
           <Link href="/#products">Products</Link>
           <Link href="/runtime">Runtime</Link>

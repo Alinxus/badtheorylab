@@ -22,7 +22,7 @@ export default function RangeBeforeRepresentationPage() {
   return (
     <main className={styles.page}>
       <nav className={styles.nav}>
-        <Link href="/" className={styles.brand}>Bad Theory Labs</Link>
+        <Link href="/" className={styles.brand}>BTL</Link>
         <div className={styles.navLinks}>
           <Link href="/papers">Papers</Link>
           <a href={PDF}>PDF</a>
@@ -36,7 +36,7 @@ export default function RangeBeforeRepresentationPage() {
           <p className={styles.deck}>
             Behavior-gated two-bit quantization of a 35B mixture-of-experts model into a released 9.96 GB GGUF.
           </p>
-          <p className={styles.byline}>Bad Theory Labs, Lagos</p>
+          <p className={styles.byline}>BTL, Lagos</p>
           <div className={styles.actions}>
             <a className={styles.primary} href={PDF}>Read the paper</a>
             <Link href="/papers">All papers</Link>
@@ -123,7 +123,7 @@ export default function RangeBeforeRepresentationPage() {
       </section>
 
       <footer className={styles.footer}>
-        <span>Bad Theory Labs · Lagos</span>
+        <span>BTL · Lagos</span>
         <Link href="/papers">All papers</Link>
       </footer>
     </main>

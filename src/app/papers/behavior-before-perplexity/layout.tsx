@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const title = "Behavior Before Perplexity — BTL-3 Compression Research";
 const description =
-  "How Bad Theory Labs compressed BTL-3 into an 8.39 GB native GGUF while retaining 92.2% of teacher-correct tool behavior on a sealed gate.";
+  "How BTL compressed BTL-3 into an 8.39 GB native GGUF while retaining 92.2% of teacher-correct tool behavior on a sealed gate.";
 
 export const metadata: Metadata = {
   title,

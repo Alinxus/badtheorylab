@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# badtheorylabs.com
 
-## Getting Started
+The BTL site. Next.js App Router, TypeScript, CSS modules, deployed on Vercel.
 
-First, run the development server:
+## Running it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The site comes up at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Layout
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app` — routes. Each product, paper, and benchmark has its own directory with a `page.tsx`, an optional `layout.tsx` for metadata, and a scoped `.module.css`.
+- `src/components` — `SiteNav` is the only shared component with real logic. It holds the single source of truth for the navigation groups.
+- `src/app/api` — contact, hackathon, presence, and admin routes.
+- `public` — brand assets and paper PDFs.
 
-## Learn More
+## Brand
 
-To learn more about Next.js, take a look at the following resources:
+The mark is called The Hold: a level bar over a descending staircase. Precision drops, behaviour holds.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `btl-mark.svg`, `btl-mark-dark.svg` — two-colour, light and dark ground
+- `btl-mark-mono.svg` — single colour, inherits `currentColor`
+- `btl-favicon.svg` — redrawn at a heavier stroke, not a scaled-down mark
+- `btl-lockup*.svg` — mark plus wordmark, with and without the descriptor
+- `og-image.png` — 1200x630
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Type is Archivo for display and body, JetBrains Mono for labels and data, loaded through `next/font` in `src/app/layout.tsx` and exposed as `--font-d`, `--font-s`, and `--font-m`. Do not hardcode font families in page styles; use the variables.
 
-## Deploy on Vercel
+The palette lives at the top of each page's `.module.css`: `--ink` `#0b0c0d`, `--paper` `#edeeea`, `--signal` `#ff4d00`. The signal marks the value under measurement. One per screen.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Write "BTL" everywhere. "Bad Theory Labs" stays on the lockup descriptor, the copyright line, and email sender headers.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment
+
+Copy `.env.example` if present, or set `NEXT_PUBLIC_SITE_URL` plus the database and mail keys the API routes read. Without them the site renders but contact and stats will fail.

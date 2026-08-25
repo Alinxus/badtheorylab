@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Reasoning Gap — Bad Theory Labs",
+  title: "The Reasoning Gap — BTL",
   description:
     "Frontier LLMs (GPT-5.4, GPT-4o mini, Gemini 2.0 Flash) perform at random chance on interventional causal inference from probability tables — 25% on 840 four-choice questions.",
   openGraph: {
-    title: "The Reasoning Gap — Bad Theory Labs",
+    title: "The Reasoning Gap — BTL",
     description:
       "Frontier LLMs (GPT-5.4, GPT-4o mini, Gemini 2.0 Flash) perform at random chance on interventional causal inference from probability tables — 25% on 840 four-choice questions.",
     url: "https://www.badtheorylabs.com/reasoning-gap",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Reasoning Gap — Bad Theory Labs",
+    title: "The Reasoning Gap — BTL",
     description:
       "Frontier LLMs (GPT-5.4, GPT-4o mini, Gemini 2.0 Flash) perform at random chance on interventional causal inference from probability tables — 25% on 840 four-choice questions.",
   },

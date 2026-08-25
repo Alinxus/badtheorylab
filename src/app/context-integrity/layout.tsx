@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Context Integrity — Bad Theory Labs",
+  title: "Context Integrity — BTL",
   description:
-    "A Bad Theory Labs benchmark and paper for evaluating whether AI agents preserve, retrieve, update, and use evidence correctly across long-running workflows.",
+    "A BTL benchmark and paper for evaluating whether AI agents preserve, retrieve, update, and use evidence correctly across long-running workflows.",
   openGraph: {
-    title: "Context Integrity — Bad Theory Labs",
+    title: "Context Integrity — BTL",
     description:
       "A benchmark and paper for long-running AI agent memory, evidence retrieval, abstention, and action grounding.",
     url: "https://www.badtheorylabs.com/context-integrity",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Context Integrity — Bad Theory Labs",
+    title: "Context Integrity — BTL",
     description:
       "A benchmark and paper for long-running AI agent memory, evidence retrieval, abstention, and action grounding.",
   },

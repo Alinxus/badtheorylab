@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans, DM_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import PresenceBeacon from "@/components/PresenceBeacon";
 
-const cormorant = Cormorant_Garamond({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-d",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const archivoBody = Archivo({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["300", "400", "500"],
   variable: "--font-s",
   display: "swap",
 });
 
-const dmMono = DM_Mono({
+const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-m",
@@ -26,8 +25,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bad Theory Labs",
-  description: "An independent AI lab shipping open models, agent infrastructure, native runtimes, and reproducible research.",
+  title: "BTL",
+  description: "Intelligence efficient enough to own. BTL is an independent research lab building open models, native runtimes, agent infrastructure, and benchmarks you can run.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   icons: {
     icon: "/btl-favicon.svg",
@@ -35,21 +34,21 @@ export const metadata: Metadata = {
     apple: "/btl-favicon.svg",
   },
   openGraph: {
-    title: "Bad Theory Labs",
-    description: "Open models, agent infrastructure, native runtimes, and research you can run.",
+    title: "BTL",
+    description: "Intelligence efficient enough to own.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Bad Theory Labs",
+        alt: "BTL",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bad Theory Labs",
-    description: "Open models, agent infrastructure, native runtimes, and research you can run.",
+    title: "BTL",
+    description: "Intelligence efficient enough to own.",
     images: ["/og-image.png"],
   },
 };
@@ -60,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable} ${dmMono.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${archivoBody.variable} ${jetbrains.variable}`}>
       <body>
         {children}
         <PresenceBeacon />

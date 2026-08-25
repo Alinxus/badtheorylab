@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "BTL-3 — 27B Agentic Coding Model | Bad Theory Labs",
+  title: "BTL-3 — 27B Agentic Coding Model | BTL",
   description: "BTL-3 is an open 27B coding and tool-use model trained to act, verify, recover, and abstain.",
   openGraph: {
     title: "BTL-3 — 27B Agentic Coding Model",

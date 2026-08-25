@@ -36,7 +36,7 @@ export default function DonatePage() {
       <style>{styles}</style>
 
       <nav className="top-nav">
-        <Link href="/" className="brand">Bad Theory Labs</Link>
+        <Link href="/" className="brand">BTL</Link>
         <div className="nav-links">
           <Link href="/#research">Research</Link>
           <Link href="/#products">Products</Link>
@@ -72,7 +72,7 @@ export default function DonatePage() {
       )}
 
       <section className="hero">
-        <p className="eyebrow">Bad Theory Labs · Research Fund</p>
+        <p className="eyebrow">BTL · Research Fund</p>
         <h1>BTL Research Fund</h1>
         <p className="hero-subtitle">
           We need investment and donations to fund independent AI reasoning research.
@@ -233,7 +233,7 @@ export default function DonatePage() {
       </section>
 
       <footer className="fund-footer">
-        <p>Bad Theory Labs · Research Fund · 2026</p>
+        <p>BTL · Research Fund · 2026</p>
         <p className="footer-links">
           <Link href="/">Home</Link>
           <Link href="/reasoning-gap">Reasoning Gap</Link>
@@ -246,8 +246,8 @@ export default function DonatePage() {
 }
 
 const styles = `
-:root { --bg:#fafaf9; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0e0d0c; --body:#5c5954; --faint:#9c9890; }
-.fund-page { min-height:100vh; background:var(--bg); color:var(--ink); font-family:'DM Sans',sans-serif; }
+:root { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; }
+.fund-page { min-height:100vh; background:var(--bg); color:var(--ink); font-family:var(--font-s), Arial, sans-serif; }
 
 /* nav */
 .top-nav { position:sticky; top:0; z-index:20; height:58px; border-bottom:1px solid var(--border); background:rgba(250,250,249,.88); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }

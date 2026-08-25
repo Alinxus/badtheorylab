@@ -110,7 +110,7 @@ export default function ContextIntegrityPage() {
         <p className="ci-eyebrow">Research Paper · July 2026</p>
         <h1>Context Integrity</h1>
         <p className="ci-subtitle">A benchmark for long-running AI agent memory and action.</p>
-        <p className="ci-byline">Olajide Al-ameen · Bad Theory Labs, Lagos</p>
+        <p className="ci-byline">Olajide Al-ameen · BTL, Lagos</p>
         <div className="ci-actions">
           <a href="/context-integrity/paper.pdf" className="ci-btn ci-solid">Read Paper (PDF)</a>
           <a href={DISCORD_URL} target="_blank" rel="noreferrer" className="ci-btn ci-solid">Discuss in Discord</a>
@@ -122,7 +122,7 @@ export default function ContextIntegrityPage() {
       <section className="ci-paper-wrap">
         <article className="ci-paper">
           <header>
-            <p className="ci-paper-meta">Bad Theory Labs · CIB v0 · Paper v0.1</p>
+            <p className="ci-paper-meta">BTL · CIB v0 · Paper v0.1</p>
             <h2>The agent stack has a context integrity problem.</h2>
             <p className="ci-lede">
               Long context is capacity. Memory is continuity. Retrieval is access. Reasoning is use.
@@ -372,7 +372,7 @@ export default function ContextIntegrityPage() {
             Memory is not the ability to recall a sentence. It is the ability to maintain an auditable state that
             supports correct decisions over time.
           </blockquote>
-          <p className="ci-paper-meta">Bad Theory Labs, Lagos · July 2026</p>
+          <p className="ci-paper-meta">BTL, Lagos · July 2026</p>
         </article>
       </section>
     </main>
@@ -380,8 +380,8 @@ export default function ContextIntegrityPage() {
 }
 
 const styles = `
-:root { --bg:#fafaf9; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0e0d0c; --body:#5c5954; --faint:#9c9890; --accent:#2563eb; }
-.ci-page { min-height:100vh; background:var(--bg); color:var(--ink); font-family:'DM Sans',system-ui,sans-serif; }
+:root { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; --accent:#2563eb; }
+.ci-page { min-height:100vh; background:var(--bg); color:var(--ink); font-family:var(--font-s), Arial, sans-serif; }
 .ci-hero { max-width:1080px; margin:0 auto; padding:72px 28px 48px; border-bottom:1px solid var(--border); }
 .ci-eyebrow { font-family:var(--font-m); text-transform:uppercase; letter-spacing:.12em; color:var(--faint); font-size:11px; margin-bottom:10px; }
 .ci-hero h1 { font-family:var(--font-d); font-size:clamp(44px,7vw,84px); letter-spacing:-.03em; line-height:1; margin-bottom:8px; }

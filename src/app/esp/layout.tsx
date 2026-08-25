@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ESP: Echo-Skeleton Perception — Bad Theory Labs",
+  title: "ESP: Echo-Skeleton Perception — BTL",
   description:
-    "A Bad Theory Labs thesis paper: a small text-only language model operates a GUI with no images — sensing structure, text, and change through a skeleton and an event stream.",
+    "A BTL thesis paper: a small text-only language model operates a GUI with no images — sensing structure, text, and change through a skeleton and an event stream.",
   openGraph: {
-    title: "ESP: Echo-Skeleton Perception — Bad Theory Labs",
+    title: "ESP: Echo-Skeleton Perception — BTL",
     description:
       "Stateful, event-driven screen sensing for blind language models. Pre-registered thesis: architecture, four falsifiable hypotheses, fixed decision rule.",
     url: "https://www.badtheorylabs.com/esp",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ESP: Echo-Skeleton Perception — Bad Theory Labs",
+    title: "ESP: Echo-Skeleton Perception — BTL",
     description:
       "A small blind model drives a GUI through echoes, not screenshots. Pre-registered thesis paper.",
   },

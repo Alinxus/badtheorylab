@@ -33,8 +33,8 @@ export default function JudgeLogin({ configured }: { configured: boolean }) {
   return (
     <main style={wrap}>
       <form onSubmit={onSubmit} style={card}>
-        <div style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#9C9890" }}>
-          Bad Theory Labs · Judging
+        <div style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#62696D" }}>
+          BTL · Judging
         </div>
         <h1 style={{ fontFamily: "Georgia, serif", fontWeight: 500, letterSpacing: "-.03em", margin: "12px 0 4px", fontSize: 28 }}>Judge dashboard</h1>
         <p style={{ color: "#5C5954", fontSize: 14, margin: "0 0 18px" }}>
@@ -61,7 +61,7 @@ export default function JudgeLogin({ configured }: { configured: boolean }) {
 }
 
 const wrap: React.CSSProperties = {
-  minHeight: "100vh", background: "#FAFAF9", display: "flex",
+  minHeight: "100vh", background: "#EDEEEA", display: "flex",
   alignItems: "center", justifyContent: "center", fontFamily: "system-ui,-apple-system,sans-serif",
 };
 const card: React.CSSProperties = {
@@ -73,7 +73,7 @@ const input: React.CSSProperties = {
   padding: "12px 14px", fontSize: 15, outline: "none", fontFamily: "system-ui,-apple-system,sans-serif",
 };
 const button: React.CSSProperties = {
-  width: "100%", marginTop: 14, background: "#0E0D0C", color: "#fff", border: "none",
+  width: "100%", marginTop: 14, background: "#0B0C0D", color: "#fff", border: "none",
   borderRadius: 8, padding: "13px", fontSize: 15, fontWeight: 500, cursor: "pointer",
   fontFamily: "system-ui,-apple-system,sans-serif",
 };
