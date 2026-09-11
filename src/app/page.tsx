@@ -88,7 +88,7 @@ const evidence = [
     index: "Fig. 02",
     tag: "Representation",
     title: "Range Before Representation",
-    body: "Choosing the range before the representation changed the result while the byte budget stayed fixed.",
+    body: "We did not add anything to the model. We stopped wasting the bits it already had.",
     facts: ["77.1% → 95.8% retained", "same bytes", "no calibration corpus"],
     href: "/papers/range-before-representation",
     action: "Read the paper",
@@ -97,7 +97,7 @@ const evidence = [
     index: "Fig. 03",
     tag: "Architecture",
     title: "Behaviour Relearned Quantization",
-    body: "The size of a matrix was a poor guide to repairability. The granularity of the capacity mattered more.",
+    body: "A 3M-parameter expert recovered more than twice as much behaviour as a 190M dense matrix. Structure mattered more than size.",
     facts: ["3M experts → 49.4%", "190M dense → 23%", "published ablation"],
     href: "/papers/behaviour-relearned-quantization",
     action: "Read the paper",
@@ -134,11 +134,24 @@ export default function Home() {
             </p>
 
             <div className={styles.railLatest}>
+              <p className={styles.newsLabel}>BTL-4</p>
+              <a className={styles.newsCard} href="#stack">
+                <span className={styles.newsThumb} aria-hidden="true" />
+                <span className={styles.newsText}>
+                  Frontier-class agentic coding, with the weights published.
+                  <b>78.4% SWE-bench Verified · 35B</b>
+                </span>
+                <span className={styles.newsGo} aria-hidden="true">&#8599;</span>
+              </a>
+            </div>
+
+            <div className={styles.railLatest}>
               <p className={styles.newsLabel}>BTL-4 Compact</p>
               <a className={styles.newsCard} href="#stack">
                 <span className={styles.newsThumb} aria-hidden="true" />
                 <span className={styles.newsText}>
-                  35.1B parameters in 9.96 GB, holding 111 of 118 measured behaviours
+                  The same model, small enough to run on a laptop.
+                  <b>9.96 GB · 94.1% of measured behaviour kept</b>
                 </span>
                 <span className={styles.newsGo} aria-hidden="true">&#8599;</span>
               </a>
@@ -160,11 +173,8 @@ export default function Home() {
       <section className={styles.audience} id="why-btl" aria-labelledby="audience-title">
         <AudienceRouter>
           <div className={styles.audienceIntro}>
-            <p className={styles.label}>Why BTL</p>
-            <h2 id="audience-title">One company. <em>Four ways in.</em></h2>
-            <p>
-              Four groups ask different questions of the same work.
-            </p>
+            <p className={styles.label}>Who it is for</p>
+            <h2 id="audience-title">Four groups ask <em>different questions.</em></h2>
             <span className={styles.routerSource} data-router-source aria-hidden="true" />
           </div>
           <div className={styles.audienceGrid}>
@@ -182,8 +192,8 @@ export default function Home() {
             </article>
             <article className={styles.audienceCard} data-door="2">
               <span>03 / Investors</span>
-              <h3>Back the efficiency layer.</h3>
-              <p>A research programme with published measurements, and a commercial arm that funds it by taking harder problems.</p>
+              <h3>Back the efficiency thesis.</h3>
+              <p>Research that becomes models, systems and deployed capability.</p>
               <Link href="/thesis">Read the thesis <Arrow /></Link>
             </article>
             <article className={styles.audienceCard} data-door="3">
@@ -200,30 +210,30 @@ export default function Home() {
         <div className={styles.commercialHead}>
           <div>
             <p className={styles.label}>BTL Commercial</p>
-            <h2 id="commercial-title">Private Frontier <em>Intelligence.</em></h2>
+            <h2 id="commercial-title">Contract <em>the lab.</em></h2>
           </div>
           <p>
-            Contracted access to the lab. An institution brings a problem, and what comes back is a
-            research result, a model built for their conditions, or a system running inside their
-            walls. Every contract names the bar it has to clear.
+            Governments and enterprises bring us problems that need more than an API. What comes back
+            is research, a model built for their conditions, a system inside their infrastructure, or
+            a capability that did not exist yet. Every contract names the bar it has to clear.
           </p>
         </div>
         <div className={styles.commercialGrid}>
           <article className={styles.commercialCard}>
             <ContainmentField count={26} speed={0.72}>
-              <span>01 / Sovereign AI</span>
-              <h3>Research and systems for institutions that carry public responsibility.</h3>
-              <p>Models trained for local conditions, intelligence deployed on infrastructure you control, and the measurement to show what it actually does.</p>
-              <small>Governments · ministries · agencies</small>
+              <span>01 / Governments</span>
+              <h3>Research and AI systems for institutions with sovereign constraints.</h3>
+              <p>Models trained for local conditions, deployed on infrastructure you control, measured so you can see what they do.</p>
+              <small>Ministries · agencies · national programmes</small>
               <Link href="/contact">Talk to BTL <Arrow /></Link>
             </ContainmentField>
           </article>
           <article className={styles.commercialCard}>
             <ContainmentField count={44} speed={1.25}>
-              <span>02 / Enterprise Intelligence</span>
-              <h3>Research and systems for companies where knowledge is the work.</h3>
-              <p>Capability built against your data and your constraints, with a baseline, a target and an acceptance test agreed before anything starts.</p>
-              <small>Banks · telcos · insurers · large companies</small>
+              <span>02 / Enterprises</span>
+              <h3>Applied AI research for organisations with hard technical requirements.</h3>
+              <p>Built against your data and your constraints, with a baseline, a target and an acceptance test agreed before anything starts.</p>
+              <small>Banks · telcos · insurers · infrastructure operators</small>
               <Link href="/contact">Talk to BTL <Arrow /></Link>
             </ContainmentField>
           </article>
@@ -235,10 +245,10 @@ export default function Home() {
       <section className={styles.experiment} aria-labelledby="experiment-title">
         <div className={styles.experimentCopy}>
           <p className={styles.label}>One measured result</p>
-          <h2 id="experiment-title">Same capacity. <em>Better allocation.</em></h2>
+          <h2 id="experiment-title">We did not add anything. <em>We stopped wasting bits.</em></h2>
           <p>
-            On a real model weight tensor containing 1.05 million values, we changed only how the
-            available numerical range was allocated.
+            On a real weight tensor of 1.05 million values, the only thing we changed was how the
+            available numerical range got allocated.
           </p>
           <p>
             The model did not get larger. The byte budget did not change. No calibration dataset
@@ -317,15 +327,15 @@ export default function Home() {
 
       <section className={styles.densitySection} aria-labelledby="density-title">
         <div>
-          <p className={styles.label}>The common measure</p>
-          <h2 id="density-title">More behaviour per <em>unit spent.</em></h2>
+          <p className={styles.label}>The common question</p>
+          <h2 id="density-title">How much behaviour does each <em>unit of capacity buy?</em></h2>
         </div>
         <div>
           <p>
-            Capability density is the useful behaviour a model returns per unit of what it spends.
-            A model spends bits to represent weights, parameters to store behaviour, tokens to learn,
-            compute to reason, memory to retain information and hardware to run. Money is downstream
-            of all of them.
+            We are trying to get more intelligence out of every bit, parameter, token and FLOP. A
+            model spends bits to represent weights, parameters to store behaviour, tokens to learn,
+            compute to reason, memory to retain information and hardware to run. We study that across
+            seven forms and call the ratio capability density.
           </p>
           <CapacityField />
           <div className={styles.densityUnits}>
@@ -346,8 +356,8 @@ export default function Home() {
             <h2 id="evidence-title">What we have <em>actually</em> measured.</h2>
           </div>
           <p>
-            The thesis is larger than the evidence. These are the two results that exist today,
-            with their conditions attached.
+            The thesis is larger than the evidence. Two results exist today, with their conditions
+            attached.
           </p>
         </div>
 
@@ -377,8 +387,7 @@ export default function Home() {
             <h2 id="stack-title">Research should leave <em>systems behind.</em></h2>
           </div>
           <p>
-            BTL Commercial contracts the lab out to institutions. The systems below are what the research has produced so far,
-            infrastructure, memory and private frontier intelligence.
+            What survives the research becomes something we can build with.
           </p>
         </div>
 
@@ -389,10 +398,10 @@ export default function Home() {
         <p className={styles.label}>The operating principle</p>
         <h2 id="closing-title">Spend capacity where <em>behaviour needs it.</em></h2>
         <p>
-          The scaling era asks how much more capability we can obtain by spending more. BTL asks
-          how much was necessary in the first place. If the measurements survive, intelligence gets
-          cheaper, smaller, more local and easier to change. If they do not, we will know where the
-          floor begins.
+          The scaling era asks how much more capability we can obtain by spending more. BTL asks how
+          much was necessary in the first place. If the measurements survive, intelligence gets denser:
+          smaller, faster, easier to teach, easier to change and practical on far less hardware. Cost
+          falls as a consequence. If they do not, we will know where the floor begins.
         </p>
         <div className={styles.closingActions}>
           <Link className={styles.primaryButton} href="/papers">Read the research <Arrow /></Link>
