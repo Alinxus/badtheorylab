@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 
 const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
-const CAL_URL = "https://cal.com/alameenpd/quick-chat";
 
 // one source of truth for the nav. the home page used to spill 11 links across
 // the bar. folded into four dropdowns so it breathes again.
@@ -23,8 +22,9 @@ const GROUPS: Group[] = [
     ],
   },
   {
-    label: "Systems",
+    label: "Platform",
     items: [
+      { label: "Private Frontier Intelligence", href: "/#private-frontier" },
       { label: "Runtime", href: "/runtime" },
       { label: "RetainDB", href: "https://retaindb.com", external: true },
       { label: "Prism", href: "https://github.com/Badtheorylabs/Prism", external: true },
@@ -42,8 +42,9 @@ const GROUPS: Group[] = [
     ],
   },
   {
-    label: "Lab",
+    label: "Company",
     items: [
+      { label: "Why BTL", href: "/#why-btl" },
       { label: "Thesis", href: "/thesis" },
       { label: "GitHub", href: "https://github.com/Badtheorylabs", external: true },
       { label: "Contact", href: "/contact" },
@@ -67,14 +68,14 @@ function Mark() {
   );
 }
 
-export default function SiteNav() {
+export default function SiteNav({ dark = false }: { dark?: boolean }) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
   return (
     <>
       <style>{css}</style>
-      <nav className="sn">
+      <nav className={`sn${dark ? " sn-dark" : ""}`}>
         <Link href="/" className="sn-logo" onClick={close}>
           <span className="sn-mark"><Mark /></span>
           <span className="sn-name">Bad Theory <span className="sn-tag">LABS</span></span>
@@ -107,7 +108,7 @@ export default function SiteNav() {
         </div>
 
         <div className="sn-right">
-          <a className="sn-cta" href={CAL_URL} target="_blank" rel="noreferrer">Schedule call</a>
+          <Link className="sn-cta" href="/contact" onClick={close}>Talk to BTL</Link>
         </div>
 
         <button
@@ -121,7 +122,7 @@ export default function SiteNav() {
       </nav>
 
       {open && (
-        <div className="sn-drawer">
+        <div className={`sn-drawer${dark ? " sn-dark" : ""}`}>
           {GROUPS.map((g) => (
             <div key={g.label} className="sn-drawer-group">
               <div className="sn-drawer-head">{g.label}</div>
@@ -138,9 +139,7 @@ export default function SiteNav() {
               )}
             </div>
           ))}
-          <a href={CAL_URL} target="_blank" rel="noreferrer" className="sn-drawer-cta" onClick={close}>
-            Schedule call
-          </a>
+          <Link href="/contact" className="sn-drawer-cta" onClick={close}>Talk to BTL</Link>
         </div>
       )}
     </>
@@ -149,31 +148,31 @@ export default function SiteNav() {
 
 const css = `
 .sn {
-  position: sticky; top: 0; z-index: 1000; height: 58px; padding: 0 clamp(16px, 4vw, 52px);
-  display: flex; align-items: center; justify-content: space-between; gap: 24px;
-  background: rgba(250,250,249,0.85); backdrop-filter: blur(22px) saturate(1.4);
-  border-bottom: 1px solid var(--border, #E8E6E1);
+  position: sticky; top: 0; z-index: 1000; height: 54px; padding: 0;
+  display: flex; align-items: stretch; justify-content: space-between; gap: 0;
+  background: var(--paper, #fafaf9); backdrop-filter: blur(18px) saturate(1.2);
+  border-bottom: 1px solid var(--rule-2, var(--border, #E8E6E1));
   font-family: var(--font-s), Arial, sans-serif;
 }
-.sn-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink, #0B0C0D); }
+.sn-logo { display: flex; align-items: center; gap: 10px; padding: 0 clamp(16px, 4.4vw, 68px); padding-right: clamp(16px, 2.2vw, 32px); border-right: 1px solid var(--rule, var(--border, #E8E6E1)); text-decoration: none; color: var(--ink, #0B0C0D); }
 .sn-mark { display: flex; color: var(--ink, #0B0C0D); }
-.sn-name { font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+.sn-name { font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
 .sn-tag { font-family: var(--font-m), monospace; font-size: 9px; color: var(--faint, #62696D); letter-spacing: 0.18em; margin-left: 2px; }
 
-.sn-center { display: flex; align-items: center; gap: 6px; }
+.sn-center { display: flex; align-items: stretch; gap: 0; }
 .sn-group { position: relative; }
 .sn-group-btn {
   display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
-  background: none; border: none; font-family: inherit; font-size: 13px;
-  color: var(--body, #5C5954); padding: 8px 12px; border-radius: 7px; transition: color .15s, background .15s;
+  height: 54px; background: transparent; border: 0; border-right: 1px solid var(--rule, var(--border, #E8E6E1)); font-family: inherit; font-size: 13px;
+  color: var(--ink-2, var(--body, #5C5954)); padding: 0 clamp(13px, 1.5vw, 22px); transition: color .15s, background .15s;
 }
-.sn-group:hover .sn-group-btn { color: var(--ink, #0B0C0D); background: rgba(14,13,12,0.04); }
+.sn-group:hover .sn-group-btn { color: var(--ink, #0B0C0D); background: var(--sunk, rgba(14,13,12,0.04)); }
 .sn-caret { transition: transform .2s; opacity: .6; }
 .sn-group:hover .sn-caret { transform: rotate(180deg); }
 .sn-menu {
   position: absolute; top: calc(100% + 6px); left: 0; min-width: 184px;
-  background: rgba(252,252,251,0.97); backdrop-filter: blur(18px);
-  border: 1px solid var(--border, #E8E6E1); border-radius: 12px; padding: 7px;
+  background: var(--paper, rgba(252,252,251,0.97)); backdrop-filter: blur(18px);
+  border: 1px solid var(--rule, var(--border, #E8E6E1)); border-radius: 0; padding: 7px;
   box-shadow: 0 14px 40px rgba(14,13,12,0.10);
   opacity: 0; visibility: hidden; transform: translateY(-6px);
   transition: opacity .16s ease, transform .16s ease, visibility .16s;
@@ -182,10 +181,10 @@ const css = `
 .sn-group::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 10px; }
 .sn-group:hover .sn-menu, .sn-group:focus-within .sn-menu { opacity: 1; visibility: visible; transform: translateY(0); }
 .sn-menu-item {
-  display: block; padding: 9px 12px; border-radius: 7px; text-decoration: none;
-  font-size: 13.5px; color: var(--body, #5C5954); transition: color .12s, background .12s;
+  display: block; padding: 9px 12px; border-radius: 0; text-decoration: none;
+  font-size: 13.5px; color: var(--ink-2, var(--body, #5C5954)); transition: color .12s, background .12s;
 }
-.sn-menu-item:hover { color: var(--ink, #0B0C0D); background: rgba(14,13,12,0.045); }
+.sn-menu-item:hover { color: var(--ink, #0B0C0D); background: var(--sunk, rgba(14,13,12,0.045)); }
 
 .sn-stats {
   display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
@@ -204,15 +203,15 @@ const css = `
 
 .sn-right { display: flex; align-items: center; }
 .sn-cta {
-  font-size: 13px; font-weight: 500; color: var(--bg, #EDEEEA); background: var(--ink, #0B0C0D);
-  padding: 9px 18px; border-radius: 8px; text-decoration: none; white-space: nowrap;
+  display: flex; align-items: center; font-size: 13px; font-weight: 500; color: var(--paper, #EDEEEA); background: var(--ink, #0B0C0D);
+  padding: 0 clamp(16px, 2.2vw, 32px); border-radius: 0; text-decoration: none; white-space: nowrap;
   transition: opacity .12s;
 }
 .sn-cta:hover { opacity: 0.85; }
 
 .sn-burger {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
-  width: 38px; height: 38px; background: none; border: none; cursor: pointer; padding: 7px; border-radius: 6px;
+  width: 44px; height: 44px; margin: 5px 10px; background: none; border: none; cursor: pointer; padding: 7px; border-radius: 0;
 }
 .sn-burger:hover { background: var(--surface, #F3F2EF); }
 .sn-burger span { display: block; height: 1.5px; background: var(--ink, #0B0C0D); border-radius: 2px; transition: transform .22s, opacity .22s, width .22s; }
@@ -224,9 +223,9 @@ const css = `
 .sn-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 20px; }
 
 .sn-drawer {
-  position: fixed; top: 58px; left: 0; right: 0; z-index: 999; max-height: calc(100vh - 58px); overflow-y: auto;
-  background: rgba(250,250,249,0.98); backdrop-filter: blur(20px) saturate(1.4);
-  border-bottom: 1px solid var(--border, #E8E6E1); padding: 12px 0 22px;
+  position: fixed; top: 54px; left: 0; right: 0; z-index: 999; max-height: calc(100vh - 54px); overflow-y: auto;
+  background: var(--paper, rgba(250,250,249,0.98)); backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--rule-2, var(--border, #E8E6E1)); padding: 12px 0 22px;
   font-family: var(--font-s), Arial, sans-serif; animation: sn-drawer-in .2s ease;
 }
 @keyframes sn-drawer-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
@@ -245,6 +244,32 @@ const css = `
   display: block; margin: 14px 22px 0; padding: 13px 20px; border-radius: 9px; text-align: center;
   background: var(--ink, #0B0C0D); color: var(--bg, #EDEEEA); font-size: 14px; font-weight: 500; text-decoration: none;
 }
+
+/* dark ground. the home hero sits under a transparent bar until you scroll. */
+.sn-dark {
+  background: rgba(11,12,13,0.62);
+  border-bottom-color: rgba(237,238,234,0.10);
+}
+.sn-dark .sn-logo, .sn-dark .sn-mark { color: #EDEEEA; }
+.sn-dark .sn-tag { color: rgba(237,238,234,0.42); }
+.sn-dark .sn-group-btn { color: rgba(237,238,234,0.62); }
+.sn-dark .sn-group:hover .sn-group-btn { color: #EDEEEA; background: rgba(237,238,234,0.07); }
+.sn-dark .sn-menu {
+  background: rgba(14,16,19,0.97);
+  border-color: rgba(237,238,234,0.12);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+}
+.sn-dark .sn-menu-item { color: rgba(237,238,234,0.62); }
+.sn-dark .sn-menu-item:hover { color: #EDEEEA; background: rgba(237,238,234,0.07); }
+.sn-dark .sn-cta { background: #EDEEEA; color: #0B0C0D; }
+.sn-dark .sn-cta:hover { background: #FF4D00; color: #fff; opacity: 1; }
+.sn-dark .sn-burger span { background: #EDEEEA; }
+.sn-dark .sn-burger:hover { background: rgba(237,238,234,0.08); }
+.sn-dark.sn-drawer { background: rgba(11,12,13,0.98); border-bottom-color: rgba(237,238,234,0.12); }
+.sn-dark .sn-drawer-head { color: rgba(237,238,234,0.4); }
+.sn-dark .sn-drawer-item { color: rgba(237,238,234,0.66); }
+.sn-dark .sn-drawer-item:hover { color: #EDEEEA; background: rgba(237,238,234,0.06); }
+.sn-dark .sn-drawer-cta { background: #EDEEEA; color: #0B0C0D; }
 
 @media (max-width: 940px) {
   .sn-center, .sn-right { display: none; }

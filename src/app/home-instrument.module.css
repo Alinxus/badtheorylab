@@ -1,0 +1,348 @@
+.mono,
+.figureLabel,
+.formIndex,
+.formStatus,
+.formMeta,
+.controlValue,
+.conditions,
+.instrumentHint {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.instrument {
+  position: relative;
+  width: min(100%, 1100px);
+  margin: clamp(48px, 6vw, 88px) auto 0;
+  padding: clamp(18px, 2.4vw, 30px);
+  background: var(--plate);
+}
+
+.registration {
+  display: block;
+}
+
+.instrument::before,
+.instrument::after,
+.instrument > .registration::before,
+.instrument > .registration::after {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-color: var(--rule-2);
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.instrument::before {
+  top: 7px;
+  left: 7px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.instrument::after {
+  top: 7px;
+  right: 7px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.instrument > .registration::before {
+  bottom: 7px;
+  left: 7px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.instrument > .registration::after {
+  right: 7px;
+  bottom: 7px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.figureLabel {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: var(--ink-3);
+}
+
+.figureLabel b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.figureLabel i {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+.figureLabel strong {
+  color: var(--signal-ink);
+  font-weight: 500;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: ew-resize;
+  outline: none;
+  touch-action: none;
+}
+
+.chart:focus-visible {
+  outline: 1px solid var(--signal);
+  outline-offset: 4px;
+}
+
+.svgLabel,
+.svgValue {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 1.2px;
+}
+
+.svgValue {
+  font-size: 9px;
+  letter-spacing: 0;
+}
+
+.instrumentHint {
+  margin-top: 6px;
+  color: var(--ink-3);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+.controls {
+  display: grid;
+  gap: 13px;
+  margin-top: 16px;
+  padding-top: 15px;
+  border-top: 1px solid var(--rule);
+}
+
+.controlRow {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 76px;
+  gap: 14px;
+  align-items: center;
+}
+
+.controlRow > label,
+.controlRow > span:first-child {
+  color: var(--ink-3);
+}
+
+.controlValue {
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.controlRow input[type="range"] {
+  width: 100%;
+  height: 18px;
+  appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+.controlRow input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--rule-2);
+}
+
+.controlRow input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: var(--rule-2);
+}
+
+.controlRow input[type="range"]::-webkit-slider-thumb {
+  width: 3px;
+  height: 18px;
+  margin-top: -8px;
+  appearance: none;
+  border-radius: 0;
+  background: var(--signal);
+}
+
+.controlRow input[type="range"]::-moz-range-thumb {
+  width: 3px;
+  height: 18px;
+  border: 0;
+  border-radius: 0;
+  background: var(--signal);
+}
+
+.controlRow input[type="range"]:focus-visible {
+  outline: 1px solid var(--signal);
+  outline-offset: 3px;
+}
+
+.segment {
+  display: flex;
+  border: 1px solid var(--rule-2);
+}
+
+.segment button {
+  flex: 1;
+  padding: 7px 2px;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.segment button:last-child {
+  border-right: 0;
+}
+
+.segment button:hover {
+  background: var(--sunk);
+  color: var(--ink);
+}
+
+.segment button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.reset {
+  justify-self: end;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.reset:hover {
+  color: var(--signal-ink);
+}
+
+.readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 9px 12px;
+  margin-top: 16px;
+  padding-top: 15px;
+  border-top: 1px solid var(--rule);
+}
+
+.readoutBig,
+.readoutBigSignal {
+  font-family: var(--sans);
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.readoutBigSignal {
+  color: var(--signal-ink);
+}
+
+.readoutUnit {
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.conditions {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.conditions li {
+  position: relative;
+  padding: 3px 0 3px 20px;
+  color: var(--ink-2);
+  font-size: 10.5px;
+  letter-spacing: 0.035em;
+}
+
+.conditions li::before {
+  position: absolute;
+  top: 0;
+  bottom: 50%;
+  left: 2px;
+  width: 9px;
+  border-bottom: 1px solid var(--rule-2);
+  border-left: 1px solid var(--rule-2);
+  content: "";
+}
+
+.instrumentLoading,
+.instrumentError {
+  min-height: 314px;
+  display: grid;
+  place-items: center;
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.instrumentError {
+  color: var(--signal-ink);
+}
+
+@media (max-width: 960px) {
+  .instrument {
+    width: min(100%, 720px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .figureLabel {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+
+  .figureLabel i {
+    min-width: 30px;
+  }
+
+  .figureLabel strong {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .controlRow {
+    grid-template-columns: 56px minmax(0, 1fr) 60px;
+    gap: 9px;
+  }
+
+  .instrumentHint {
+    line-height: 1.4;
+  }
+}

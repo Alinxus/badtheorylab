@@ -1,0 +1,457 @@
+.label,
+.formIndex,
+.formStatus,
+.formMeta {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 46px;
+  padding: 0 20px;
+  border: 1px solid var(--rule-2);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.primaryButton {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.primaryButton:hover,
+.secondaryButton:hover {
+  border-color: var(--signal);
+  background: var(--signal);
+  color: #fff;
+}
+
+.section {
+  padding: clamp(48px, 6vw, 84px) var(--pad);
+  border-bottom: 1px solid var(--rule);
+}
+
+.sectionHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.75fr);
+  gap: clamp(20px, 3vw, 54px);
+  align-items: end;
+  margin-bottom: clamp(28px, 3.4vw, 44px);
+}
+
+.label {
+  margin-bottom: 18px;
+  color: var(--signal-ink);
+}
+
+.sectionHead h2,
+.closing h2,
+.densityLine,
+.evidenceCard h3,
+.stackName {
+  font-family: var(--sans);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+.sectionHead h2,
+.closing h2 {
+  max-width: 17ch;
+  margin: 0;
+  font-size: clamp(34px, 4.8vw, 66px);
+  line-height: 0.98;
+}
+
+.sectionHead h2 em,
+.densityLine em {
+  color: var(--signal-ink);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.sectionHead > p {
+  max-width: 43ch;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.62;
+}
+
+/* ---------- seven forms ---------- */
+
+.forms {
+  border-top: 1px solid var(--rule-2);
+}
+
+.form {
+  border-bottom: 1px solid var(--rule);
+}
+
+.form summary {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 210px) minmax(0, 1fr) 118px;
+  gap: clamp(10px, 1.8vw, 28px);
+  align-items: center;
+  padding: 15px 0;
+  cursor: pointer;
+  list-style: none;
+  transition: background 180ms ease, padding-left 220ms ease;
+}
+
+.form summary::-webkit-details-marker {
+  display: none;
+}
+
+.form summary:hover,
+.form[open] summary {
+  padding-left: 12px;
+  background: var(--sunk);
+}
+
+.formIndex {
+  color: var(--ink-3);
+  letter-spacing: 0.1em;
+}
+
+.formName {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+}
+
+.formQuestion {
+  color: var(--ink-2);
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.formStatus {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  color: var(--ink-3);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-align: right;
+}
+
+.formStatus i {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--ink-3);
+}
+
+.formStatus.measured {
+  color: var(--measured);
+}
+
+.formStatus.measured i {
+  border-color: var(--measured);
+  background: var(--measured);
+}
+
+.formBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.7fr);
+  gap: clamp(16px, 3vw, 46px);
+  padding: 0 0 20px 46px;
+}
+
+.formBody p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.formMeta {
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  color: var(--ink-3);
+  font-size: 10px;
+  line-height: 1.75;
+  letter-spacing: 0.05em;
+}
+
+.formMeta b {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.densityLine {
+  max-width: 30ch;
+  margin: 24px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-size: clamp(20px, 2.4vw, 30px);
+  line-height: 1.12;
+}
+
+/* ---------- evidence ---------- */
+
+.evidenceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 26px);
+}
+
+.evidenceCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  padding: clamp(20px, 2.6vw, 32px);
+  background: var(--plate);
+}
+
+.evidenceCard::before,
+.evidenceCard::after {
+  position: absolute;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-color: var(--rule-2);
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.evidenceCard::before {
+  left: 7px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.evidenceCard::after {
+  right: 7px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.evidenceCard h3 {
+  margin: 5px 0 0;
+  font-size: clamp(25px, 2.6vw, 37px);
+  line-height: 1;
+}
+
+.evidenceCard > p {
+  max-width: 48ch;
+  margin: 16px 0 0;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.evidenceCard ul {
+  display: grid;
+  gap: 6px;
+  margin: 24px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+}
+
+.evidenceCard li::before {
+  margin-right: 8px;
+  color: var(--signal-ink);
+  content: "—";
+}
+
+.cardLink {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 25px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.cardLink:hover {
+  color: var(--signal-ink);
+}
+
+/* ---------- the stack ---------- */
+
+.stack {
+  border-top: 1px solid var(--rule-2);
+}
+
+.stack > a {
+  display: grid;
+  grid-template-columns: minmax(0, 240px) minmax(0, 1fr) 22px;
+  gap: clamp(16px, 3vw, 44px);
+  align-items: baseline;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+  color: inherit;
+  text-decoration: none;
+  transition: background 180ms ease, padding-left 220ms ease;
+}
+
+.stack > a:hover {
+  padding-left: 14px;
+  background: var(--sunk);
+}
+
+.stackName {
+  font-size: clamp(23px, 2.5vw, 34px);
+}
+
+.stackName.proposed {
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.stackDescription {
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.stackArrow {
+  color: var(--ink-3);
+  text-align: right;
+}
+
+.stack > a:hover .stackArrow {
+  color: var(--signal-ink);
+}
+
+/* ---------- closing ---------- */
+
+.closing {
+  padding: clamp(68px, 9vw, 130px) var(--pad) clamp(76px, 9vw, 138px);
+  background: #101211;
+  color: #eceee9;
+}
+
+.closing .label {
+  color: var(--signal);
+}
+
+.closing h2 {
+  max-width: 14ch;
+  font-size: clamp(42px, 6.5vw, 94px);
+}
+
+.closing h2 em {
+  color: #a2a8a4;
+  font-style: italic;
+}
+
+.closing > p:not(.label) {
+  max-width: 61ch;
+  margin-top: 28px;
+  color: rgba(236, 238, 233, 0.65);
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.62;
+}
+
+.closingActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: clamp(24px, 2.8vw, 36px);
+}
+
+.closing .primaryButton {
+  border-color: #eceee9;
+  background: #eceee9;
+  color: #101211;
+}
+
+.closing .secondaryButton {
+  border-color: rgba(236, 238, 233, 0.4);
+  color: #eceee9;
+}
+
+.closing .primaryButton:hover,
+.closing .secondaryButton:hover {
+  border-color: var(--signal);
+  background: var(--signal);
+  color: #fff;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 960px) {
+  .sectionHead {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .form summary {
+    grid-template-columns: 34px minmax(0, 1fr) 112px;
+  }
+
+  .formQuestion {
+    grid-column: 2 / 4;
+  }
+
+  .formBody {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 34px;
+  }
+}
+
+@media (max-width: 720px) {
+  .evidenceGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .evidenceCard {
+    min-height: 330px;
+  }
+}
+
+@media (max-width: 560px) {
+  .form summary {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 4px 12px;
+  }
+
+  .formQuestion,
+  .formStatus {
+    grid-column: 2;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .formBody {
+    padding-left: 30px;
+  }
+
+  .stack > a {
+    grid-template-columns: minmax(0, 1fr) 20px;
+    gap: 12px;
+  }
+
+  .stackDescription {
+    grid-column: 1 / 3;
+  }
+}

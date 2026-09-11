@@ -1,0 +1,135 @@
+.signalRail {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.7fr) minmax(260px, 1.3fr) auto;
+  gap: clamp(22px, 4vw, 64px);
+  align-items: center;
+  padding: 22px var(--pad);
+  border-bottom: 1px solid rgba(236, 238, 233, 0.16);
+  background: #101211;
+  color: #eceee9;
+}
+
+.signalLead,
+.signalCopy,
+.signalControls {
+  min-width: 0;
+}
+
+.signalLead > span,
+.signalCopy > span,
+.signalPause,
+.signalDots button {
+  color: rgba(236, 238, 233, 0.46);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.signalLead strong {
+  display: block;
+  margin-top: 5px;
+  color: #ff5c14;
+  font-family: var(--sans);
+  font-size: clamp(25px, 3vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.signalLead b {
+  display: block;
+  margin-top: 7px;
+  color: rgba(236, 238, 233, 0.68);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.signalCopy > span {
+  color: #eceee9;
+}
+
+.signalCopy p {
+  max-width: 52ch;
+  margin-top: 6px;
+  color: rgba(236, 238, 233, 0.62);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.signalControls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.signalDots {
+  display: flex;
+  border: 1px solid rgba(236, 238, 233, 0.22);
+}
+
+.signalDots button {
+  min-width: 42px;
+  padding: 9px 11px;
+  border: 0;
+  border-right: 1px solid rgba(236, 238, 233, 0.16);
+  background: transparent;
+  cursor: pointer;
+}
+
+.signalDots button:last-child {
+  border-right: 0;
+}
+
+.signalDots button:hover,
+.signalDots button[aria-selected="true"] {
+  background: #eceee9;
+  color: #101211;
+}
+
+.signalPause {
+  padding: 9px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.signalPause:hover {
+  color: #eceee9;
+}
+
+@media (max-width: 860px) {
+  .signalRail {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .signalCopy {
+    grid-column: 1 / 2;
+  }
+
+  .signalControls {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .signalRail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+
+  .signalCopy,
+  .signalControls {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .signalControls {
+    justify-content: space-between;
+  }
+}

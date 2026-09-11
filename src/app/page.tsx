@@ -1,128 +1,106 @@
 import Link from "next/link";
+import CapacityField from "@/components/CapacityField";
+import HeroTrace from "@/components/HeroTrace";
+import HeroRail from "@/components/HeroRail";
+import AudienceRouter from "@/components/AudienceRouter";
+import ContainmentField from "@/components/ContainmentField";
+import SignalRail from "@/components/SignalRail";
 import SiteNav from "@/components/SiteNav";
-import styles from "./home.module.css";
+import SystemDeck from "@/components/SystemDeck";
+import WeightInstrument from "@/components/WeightInstrument";
+import shellStyles from "./home.module.css";
+import instrumentStyles from "./home-instrument.module.css";
+import sectionStyles from "./home-sections.module.css";
+import footerStyles from "./home-footer.module.css";
+import experimentStyles from "./home-experiment.module.css";
+import audienceStyles from "./home-audience.module.css";
+import signalStyles from "./home-signal.module.css";
+import systemStyles from "./home-systems.module.css";
+
+const styles = {
+  ...shellStyles,
+  ...instrumentStyles,
+  ...sectionStyles,
+  ...footerStyles,
+  ...experimentStyles,
+  ...audienceStyles,
+  ...signalStyles,
+  ...systemStyles,
+};
 
 const githubUrl = "https://github.com/Badtheorylabs";
+const discordUrl = "https://discord.gg/QJBCcB7bF";
+
+const forms = [
+  {
+    name: "Representation",
+    question: "How many bits are actually necessary to preserve behaviour?",
+    status: "Measured",
+    body: "The first form we measured. Selecting the numerical range before choosing the representation moved behavioural retention from 77.1% to 95.8% at an identical byte budget.",
+    meta: ["artifact", "Range Before Representation", "cost", "twelve GPU-seconds"],
+  },
+  {
+    name: "Architecture",
+    question: "How much parameter capacity does a behaviour require?",
+    status: "Measured",
+    body: "Small individually recoverable expert matrices regained more behaviour after compression than much larger dense matrices. The organisation of capacity changed how cheaply capability could be repaired.",
+    meta: ["artifact", "BRQ", "result", "49.4% vs 23% recovery"],
+  },
+  {
+    name: "Learning",
+    question: "How much data and optimisation are required to acquire it?",
+    status: "Open · next",
+    body: "This is where the cost of training is set. The question is whether behaviour-conditioned data selection can teach the same capability with fewer tokens and updates.",
+    meta: ["instrument", "not built", "status", "dossier opened"],
+  },
+  {
+    name: "Modification",
+    question: "How much of the system must change to alter one capability?",
+    status: "Open",
+    body: "A capability that can be located should be repairable, replaceable, or addable without a full backward pass. The experiment has not been built yet.",
+    meta: ["instrument", "not built", "status", "stage three design"],
+  },
+  {
+    name: "Inference",
+    question: "How much compute must activate to execute it?",
+    status: "Evidence only",
+    body: "BTL-4 Compact activates roughly 2.1B of 35.1B parameters per token. That is an architectural fact, not yet a measurement of the minimum compute a behaviour requires.",
+    meta: ["observation", "2.1B active of 35.1B", "status", "unstudied"],
+  },
+  {
+    name: "Knowledge",
+    question: "What belongs in weights, and what belongs in external memory?",
+    status: "Dossier opened",
+    body: "Retrieval has reached a large parameter reduction in published work. The open question is where external memory becomes the more efficient representation for a real system.",
+    meta: ["adjacent system", "RetainDB", "status", "open"],
+  },
+  {
+    name: "Deployment",
+    question: "What hardware is actually necessary to serve it?",
+    status: "Evidence only",
+    body: "A 35.1B model in a 9.96 GB artifact decoding at 31.9 tokens per second on a laptop says something about the floor. Nobody has measured where that floor is.",
+    meta: ["observation", "31.9 tok/s on an M4", "status", "unstudied"],
+  },
+] as const;
 
 const evidence = [
-  { value: "94.1%", label: "Behavior retention", note: "111 / 118 · BTL-4 Compact" },
-  { value: "9.96 GB", label: "35.1B MoE GGUF", note: "2.30 bpw · stock format" },
-  { value: "2.1B", label: "Active parameters", note: "per token · routed MoE" },
-  { value: "31.9 t/s", label: "MacBook decode", note: "M4 · full Metal offload" },
-];
-
-const coreOutputs = [
   {
-    number: "01",
-    kind: "Open-weight MoE",
-    name: "BTL-4 Compact",
-    title: "A 35.1B mixture-of-experts model released as a 9.96 GB stock GGUF.",
-    body: "BTL-4 Compact keeps the model in a standard llama.cpp-compatible format while preserving 111 of 118 teacher-correct behaviors on the release gate. The paper records the range-selection result, expert-level ablations, and the boundary of the claim.",
-    facts: ["35.1B MoE", "9.96 GB GGUF", "94.1% retention"],
+    index: "Fig. 02",
+    tag: "Representation",
+    title: "Range Before Representation",
+    body: "Choosing the range before the representation changed the result while the byte budget stayed fixed.",
+    facts: ["77.1% → 95.8% retained", "same bytes", "no calibration corpus"],
     href: "/papers/range-before-representation",
-    action: "Read BTL-4",
-    featured: true,
+    action: "Read the paper",
   },
   {
-    number: "02",
-    kind: "Open-weight model",
-    name: "BTL-3",
-    title: "A 27B model trained to act, verify, recover, and know when to stop.",
-    body: "The frozen RL-0013 release combines agentic coding with structured tool use. It ships with complete evaluation evidence, a full-quality adapter, and a native compact edition.",
-    facts: ["88.5% BFCL v4", "95.12% HumanEval", "262K architecture"],
-    href: "/btl-3",
-    action: "Explore BTL-3",
-  },
-  {
-    number: "03",
-    kind: "Inference infrastructure",
-    name: "Runtime",
-    title: "One production API for models across providers.",
-    body: "OpenAI-compatible chat and responses APIs with provider routing, usage accounting, billing, caching, rate limits, and self-serve workspace keys.",
-    facts: ["Multi-provider", "Streaming + tools", "Usage ledger"],
-    href: "https://rntm.sh",
-    action: "Open Runtime",
-    external: true,
-  },
-  {
-    number: "04",
-    kind: "Agent memory",
-    name: "RetainDB",
-    title: "Persistent context with evidence, scope, and retrieval built in.",
-    body: "A memory layer for agents that need to remember across sessions without turning every old fact into current truth.",
-    facts: ["79% LongMemEval", "0% stored-fact hallucination", "Managed API"],
-    href: "https://retaindb.com",
-    action: "Open RetainDB",
-    external: true,
-  },
-];
-
-const research = [
-  {
-    index: "R/01",
-    name: "Context Integrity",
-    state: "Benchmark + paper",
-    body: "CIB tests whether long-running agents preserve, update, retrieve, and act on the right evidence across sessions. The v0 release contains 250 deterministic tasks and an auditable evaluation pipeline.",
-    href: "/context-integrity",
-  },
-  {
-    index: "R/02",
-    name: "ESP",
-    state: "Runtime + thesis",
-    body: "Echo-Skeleton Perception lets a text-only model operate a graphical interface through persistent structure, OCR, affordance probes, and typed change events instead of screenshots.",
-    href: "/esp",
-  },
-  {
-    index: "R/03",
-    name: "Low-bit model systems",
-    state: "Papers + artifact",
-    body: "BTL-4 Compact ships a 35.1B MoE as a 9.96 GB stock GGUF, while BRQ records the one-bit recovery lane and its non-promoted boundary.",
-    href: "/papers/range-before-representation",
-  },
-  {
-    index: "R/04",
-    name: "The Reasoning Gap",
-    state: "Benchmark",
-    body: "Controlled evaluations that separate observational pattern completion from interventional causal reasoning, with exact baselines and reproducible tasks.",
-    href: "/reasoning-gap",
-  },
-];
-
-const systems = [
-  {
-    status: "Open source",
-    name: "Prism",
-    body: "A local-first exoskeleton that gives small models explicit context, planning, tools, verification, critique, traces, and memory.",
-    href: "https://github.com/Badtheorylabs/Prism",
-  },
-  {
-    status: "Deployed system",
-    name: "Maya",
-    body: "An always-on lab operator with event ingestion, approvals, business loops, durable memory, founder briefs, and safe action boundaries.",
-  },
-  {
-    status: "Open source",
-    name: "Talos",
-    body: "A privacy-first general agent with browser automation, files, shell, Python, scheduling, plugins, and messaging integrations.",
-    href: "https://github.com/Badtheorylabs/talos",
-  },
-  {
-    status: "Open model",
-    name: "BTL-2 Coder",
-    body: "Our 7B code-review model produces structured security and correctness findings with file evidence and numeric confidence.",
-    href: "/btl-2-coder",
-  },
-  {
-    status: "Experimental runtime",
-    name: "ESP Runtime",
-    body: "A reusable Playwright and Tesseract implementation with stable screen nodes, event deltas, guarded actions, and external task verification.",
-    href: "/esp",
-  },
-  {
-    status: "In development",
-    name: "Marrow",
-    body: "A local, ambient desktop agent built around selective attention, persistent context, permissioned action, and restraint.",
-    href: "/marrow",
+    index: "Fig. 03",
+    tag: "Architecture",
+    title: "Behaviour Relearned Quantization",
+    body: "The size of a matrix was a poor guide to repairability. The granularity of the capacity mattered more.",
+    facts: ["3M experts → 49.4%", "190M dense → 23%", "published ablation"],
+    href: "/papers/behaviour-relearned-quantization",
+    action: "Read the paper",
   },
 ];
 
@@ -130,154 +108,330 @@ function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
-function ProjectLink({ href, external, children }: { href: string; external?: boolean; children: React.ReactNode }) {
-  if (external) {
-    return <a href={href} target="_blank" rel="noreferrer">{children}</a>;
-  }
-  return <Link href={href}>{children}</Link>;
-}
-
 export default function Home() {
   return (
     <main className={styles.page}>
       <SiteNav />
 
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}><span />Independent research lab · Lagos</p>
-          <h1>We build frontier models <em>efficient enough to own.</em></h1>
-          <p className={styles.lede}>
-            Most of the field treats efficiency as something you do to a model after it is finished. We
-            train for it. What breaks when a model gets cheaper to run is rarely knowledge, it is
-            behaviour, and it breaks quietly while the usual numbers keep looking fine. So we gate on
-            behaviour and publish what the gate measured.
+      <section className={styles.hero} aria-labelledby="hero-title">
+        <div className={styles.heroStage} data-hero-stage>
+        <div className={styles.heroGrid}>
+          {/* top left: the claim, bottom-aligned and tight to the edge */}
+          <div className={styles.qClaim}>
+            <div className={styles.stamp}>
+              <span>AI research + deployment</span>
+              <i />
+              <span>Built for ownership</span>
+            </div>
+            <h1 id="hero-title">Frontier AI. <em>Efficient enough to own.</em></h1>
+          </div>
+
+          {/* right rail: two panels, walked through by the scroll */}
+          <HeroRail>
+            <p className={styles.lede}>
+              We build frontier models and systems around capability efficiency, for organizations
+              that need to run advanced intelligence on infrastructure they control.
+            </p>
+
+            <div className={styles.railLatest}>
+              <p className={styles.newsLabel}>BTL-4 Compact</p>
+              <a className={styles.newsCard} href="#stack">
+                <span className={styles.newsThumb} aria-hidden="true" />
+                <span className={styles.newsText}>
+                  35.1B parameters in 9.96 GB, holding 111 of 118 measured behaviours
+                </span>
+                <span className={styles.newsGo} aria-hidden="true">&#8599;</span>
+              </a>
+            </div>
+          </HeroRail>
+
+          {/* bottom left: the trace, full bleed */}
+          <div className={styles.qField}>
+            <HeroTrace />
+          </div>
+        </div>
+        </div>
+
+        <WeightInstrument />
+      </section>
+
+      <SignalRail />
+
+      <section className={styles.audience} id="why-btl" aria-labelledby="audience-title">
+        <AudienceRouter>
+          <div className={styles.audienceIntro}>
+            <p className={styles.label}>Why BTL</p>
+            <h2 id="audience-title">One company. <em>Four ways in.</em></h2>
+            <p>
+              Four groups ask different questions of the same work.
+            </p>
+            <span className={styles.routerSource} data-router-source aria-hidden="true" />
+          </div>
+          <div className={styles.audienceGrid}>
+            <article className={styles.audienceCard} data-door="0">
+              <span>01 / Organizations</span>
+              <h3>Deploy AI you can control.</h3>
+              <p>Run capable models with your data, infrastructure and operating constraints in view.</p>
+              <Link href="/contact">Talk to BTL <Arrow /></Link>
+            </article>
+            <article className={styles.audienceCard} data-door="1">
+              <span>02 / Developers</span>
+              <h3>Build on models you can inspect.</h3>
+              <p>Open-weight releases, native inference and systems that expose how the work gets done.</p>
+              <Link href="/btl-3">Explore the models <Arrow /></Link>
+            </article>
+            <article className={styles.audienceCard} data-door="2">
+              <span>03 / Investors</span>
+              <h3>Back the efficiency layer.</h3>
+              <p>A research programme with published measurements, and a commercial arm that funds it by taking harder problems.</p>
+              <Link href="/thesis">Read the thesis <Arrow /></Link>
+            </article>
+            <article className={styles.audienceCard} data-door="3">
+              <span>04 / Researchers</span>
+              <h3>Measure what scale leaves out.</h3>
+              <p>Measurements you can reproduce, the conditions they were taken under, and the runs that failed.</p>
+              <Link href="/papers">See the research <Arrow /></Link>
+            </article>
+          </div>
+        </AudienceRouter>
+      </section>
+
+      <section className={styles.commercial} id="private-frontier" aria-labelledby="commercial-title">
+        <div className={styles.commercialHead}>
+          <div>
+            <p className={styles.label}>BTL Commercial</p>
+            <h2 id="commercial-title">Private Frontier <em>Intelligence.</em></h2>
+          </div>
+          <p>
+            Contracted access to the lab. An institution brings a problem, and what comes back is a
+            research result, a model built for their conditions, or a system running inside their
+            walls. Every contract names the bar it has to clear.
           </p>
-          <div className={styles.actions}>
-            <Link className={styles.primaryButton} href="/thesis">Read the thesis <Arrow /></Link>
-            <a className={styles.secondaryButton} href={githubUrl} target="_blank" rel="noreferrer">See the work</a>
-          </div>
         </div>
-
-        <div className={styles.releasePanel}>
-          <div className={styles.panelTop}>
-            <span className={styles.liveDot} />
-            <span>Latest release · August 2026</span>
-            <span>2.30 bpw</span>
-          </div>
-          <div className={styles.panelModel}>BTL<span>–</span>4</div>
-          <p>35.1B MoE in a 9.96 GB stock GGUF</p>
-          <div className={styles.panelRows}>
-            <div><span>Full model</span><b>35.1B MoE</b></div>
-            <div><span>Active path</span><b>~2.1B / token</b></div>
-            <div><span>Compact artifact</span><b>9.96 GB</b></div>
-            <div><span>Evidence</span><b>111 / 118 retained</b></div>
-          </div>
-          <Link href="/papers/range-before-representation" className={styles.panelLink}>Release dossier <Arrow /></Link>
+        <div className={styles.commercialGrid}>
+          <article className={styles.commercialCard}>
+            <ContainmentField count={26} speed={0.72}>
+              <span>01 / Sovereign AI</span>
+              <h3>Research and systems for institutions that carry public responsibility.</h3>
+              <p>Models trained for local conditions, intelligence deployed on infrastructure you control, and the measurement to show what it actually does.</p>
+              <small>Governments · ministries · agencies</small>
+              <Link href="/contact">Talk to BTL <Arrow /></Link>
+            </ContainmentField>
+          </article>
+          <article className={styles.commercialCard}>
+            <ContainmentField count={44} speed={1.25}>
+              <span>02 / Enterprise Intelligence</span>
+              <h3>Research and systems for companies where knowledge is the work.</h3>
+              <p>Capability built against your data and your constraints, with a baseline, a target and an acceptance test agreed before anything starts.</p>
+              <small>Banks · telcos · insurers · large companies</small>
+              <Link href="/contact">Talk to BTL <Arrow /></Link>
+            </ContainmentField>
+          </article>
         </div>
       </section>
 
-      <div className={styles.ticker}>
-        <span>OPEN WEIGHTS</span><i />
-        <span>NATIVE INFERENCE</span><i />
-        <span>AGENT RUNTIMES</span><i />
-        <span>EXECUTION-VERIFIED EVALS</span><i />
-        <span>REPRODUCIBLE RESEARCH</span>
-      </div>
+      <div className={styles.scale} aria-hidden="true" />
 
-      <section className={styles.evidence} aria-label="Measured results">
-        {evidence.map((item) => (
-          <div key={item.label} className={styles.evidenceCell}>
-            <strong>{item.value}</strong>
-            <span>{item.label}</span>
-            <small>{item.note}</small>
+      <section className={styles.experiment} aria-labelledby="experiment-title">
+        <div className={styles.experimentCopy}>
+          <p className={styles.label}>One measured result</p>
+          <h2 id="experiment-title">Same capacity. <em>Better allocation.</em></h2>
+          <p>
+            On a real model weight tensor containing 1.05 million values, we changed only how the
+            available numerical range was allocated.
+          </p>
+          <p>
+            The model did not get larger. The byte budget did not change. No calibration dataset
+            was used. The intervention took twelve GPU-seconds.
+          </p>
+          <p>
+            Behavioural retention moved from 77.1% to 95.8%. The companion instrument above lets
+            you inspect the same failure directly in the tensor.
+          </p>
+          <Link href="/papers/range-before-representation" className={styles.cardLink + " " + styles.experimentLink}>
+            Read Range Before Representation <Arrow />
+          </Link>
+        </div>
+        <div className={styles.proofCard}>
+          <div className={styles.figureLabel}>
+            <b>Fig. 01A</b>
+            <i />
+            <span>conditions attached</span>
           </div>
-        ))}
+          <div className={styles.proofLarge}>
+            <span>Behaviour retention</span>
+            <strong>77.1 → 95.8</strong>
+            <span>identical byte budget</span>
+          </div>
+          <div className={styles.proofFacts}>
+            <div><span>Tensor</span><b>1.05M values</b></div>
+            <div><span>Intervention</span><b>12 GPU-seconds</b></div>
+            <div><span>Calibration</span><b>none</b></div>
+            <div><span>Error reduction</span><b>82.3%</b></div>
+          </div>
+        </div>
       </section>
 
-      <section className={styles.section} id="products">
+      <section className={styles.section} id="forms" aria-labelledby="forms-title">
         <div className={styles.sectionHead}>
           <div>
-            <p className={styles.label}>Selected output</p>
-            <h2>Already running on<br /><em>other people&apos;s hardware.</em></h2>
+            <p className={styles.label}>The research map</p>
+            <h2 id="forms-title">We study <em>capability efficiency.</em></h2>
           </div>
-          <p>Models are one layer. We also build the runtime, memory, agent scaffolding, evaluation, and deployment path around them.</p>
+          <p>
+            It has seven forms. Each asks how much capacity a behaviour needs at a different point
+            in the system. Two are measured. Five are not.
+          </p>
         </div>
 
-        <div className={styles.outputGrid}>
-          {coreOutputs.map((output) => (
-            <article key={output.name} className={`${styles.outputCard} ${output.featured ? styles.featured : ""}`}>
-              <div className={styles.outputMeta}><span>{output.number}</span><span>{output.kind}</span></div>
-              <h3>{output.name}</h3>
-              <h4>{output.title}</h4>
-              <p>{output.body}</p>
-              <ul>{output.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
-              <ProjectLink href={output.href} external={output.external}>{output.action} <Arrow /></ProjectLink>
+        <div className={styles.forms}>
+          {forms.map((form, index) => (
+            <details className={styles.form} key={form.name} open={index === 0}>
+              <summary>
+                <span className={styles.formIndex}>{String(index + 1).padStart(2, "0")}</span>
+                <span className={styles.formName}>{form.name}</span>
+                <span className={styles.formQuestion}>{form.question}</span>
+                <span className={styles.formStatus + (form.status.startsWith("Measured") ? " " + styles.measured : "")}>
+                  <i />
+                  {form.status}
+                </span>
+              </summary>
+              <div className={styles.formBody}>
+                <p>{form.body}</p>
+                <div className={styles.formMeta}>
+                  {form.meta.map((item, itemIndex) => (
+                    <span key={item}>
+                      {itemIndex % 2 === 0 ? item + " " : <b>{item}</b>}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <p className={styles.densityLine}>
+          Capability density is efficiency across <em>all seven</em>, measured in behaviour per unit spent.
+        </p>
+      </section>
+
+      <section className={styles.densitySection} aria-labelledby="density-title">
+        <div>
+          <p className={styles.label}>The common measure</p>
+          <h2 id="density-title">More behaviour per <em>unit spent.</em></h2>
+        </div>
+        <div>
+          <p>
+            Capability density is the useful behaviour a model returns per unit of what it spends.
+            A model spends bits to represent weights, parameters to store behaviour, tokens to learn,
+            compute to reason, memory to retain information and hardware to run. Money is downstream
+            of all of them.
+          </p>
+          <CapacityField />
+          <div className={styles.densityUnits}>
+            <div className={styles.densityUnit}><strong>behaviour / bit</strong><span>representation</span></div>
+            <div className={styles.densityUnit}><strong>behaviour / token</strong><span>learning</span></div>
+            <div className={styles.densityUnit}><strong>behaviour / FLOP</strong><span>inference</span></div>
+            <div className={styles.densityUnit}><strong>behaviour / joule</strong><span>deployment</span></div>
+            <div className={styles.densityUnit}><strong>behaviour / parameter</strong><span>architecture</span></div>
+            <div className={styles.densityUnit}><strong>behaviour / change</strong><span>modification</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section} id="evidence" aria-labelledby="evidence-title">
+        <div className={styles.sectionHead}>
+          <div>
+            <p className={styles.label}>Receipts</p>
+            <h2 id="evidence-title">What we have <em>actually</em> measured.</h2>
+          </div>
+          <p>
+            The thesis is larger than the evidence. These are the two results that exist today,
+            with their conditions attached.
+          </p>
+        </div>
+
+        <div className={styles.evidenceGrid}>
+          {evidence.map((item) => (
+            <article className={styles.evidenceCard} key={item.title}>
+              <div className={styles.figureLabel}>
+                <b>{item.index}</b>
+                <i />
+                <span>{item.tag}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <ul>
+                {item.facts.map((fact) => <li key={fact}>{fact}</li>)}
+              </ul>
+              <Link href={item.href} className={styles.cardLink}>{item.action} <Arrow /></Link>
             </article>
           ))}
         </div>
       </section>
 
-      <section className={`${styles.section} ${styles.darkSection}`} id="research">
+      <section className={styles.section} id="stack" aria-labelledby="stack-title">
         <div className={styles.sectionHead}>
           <div>
-            <p className={styles.label}>Research with artifacts</p>
-            <h2>No hand-waving.<br /><em>Build the test.</em></h2>
+            <p className={styles.label}>The stack</p>
+            <h2 id="stack-title">Research should leave <em>systems behind.</em></h2>
           </div>
-          <p>Our research produces papers, datasets, environments, runtimes, model artifacts, and explicit failure reports—not just a thesis page.</p>
+          <p>
+            BTL Commercial contracts the lab out to institutions. The systems below are what the research has produced so far,
+            infrastructure, memory and private frontier intelligence.
+          </p>
         </div>
 
-        <div className={styles.researchList}>
-          {research.map((item) => (
-            <Link href={item.href} className={styles.researchRow} key={item.name}>
-              <span className={styles.researchIndex}>{item.index}</span>
-              <div><span className={styles.researchState}>{item.state}</span><h3>{item.name}</h3></div>
-              <p>{item.body}</p>
-              <Arrow />
-            </Link>
-          ))}
-        </div>
+        <SystemDeck />
       </section>
 
-      <section className={styles.section} id="open-source">
-        <div className={styles.sectionHead}>
-          <div>
-            <p className={styles.label}>Models, agents, infrastructure</p>
-            <h2>A lab should leave<br /><em>working systems behind.</em></h2>
-          </div>
-          <p>Each project attacks a different failure mode: weak tool mechanics, forgotten context, unsafe autonomy, expensive inference, or perception that starts over every frame.</p>
-        </div>
-
-        <div className={styles.systemGrid}>
-          {systems.map((system) => {
-            const body = <><span>{system.status}</span><h3>{system.name}</h3><p>{system.body}</p>{system.href ? <b>Open project <Arrow /></b> : <b>Running inside BTL</b>}</>;
-            return system.href ? <ProjectLink key={system.name} href={system.href} external={system.href.startsWith("http")}>{body}</ProjectLink> : <article key={system.name}>{body}</article>;
-          })}
-        </div>
-      </section>
-
-      <section className={styles.manifesto}>
-        <p>THE OPERATING PRINCIPLE</p>
-        <blockquote>
-          Build ambitious systems.<br />Measure them without mercy.<br /><em>Ship what survives.</em>
-        </blockquote>
-        <div>
+      <section className={styles.closing} aria-labelledby="closing-title">
+        <p className={styles.label}>The operating principle</p>
+        <h2 id="closing-title">Spend capacity where <em>behaviour needs it.</em></h2>
+        <p>
+          The scaling era asks how much more capability we can obtain by spending more. BTL asks
+          how much was necessary in the first place. If the measurements survive, intelligence gets
+          cheaper, smaller, more local and easier to change. If they do not, we will know where the
+          floor begins.
+        </p>
+        <div className={styles.closingActions}>
           <Link className={styles.primaryButton} href="/papers">Read the research <Arrow /></Link>
-          <a className={styles.secondaryButton} href="https://discord.gg/QJBCcB7bF" target="_blank" rel="noreferrer">Join the lab</a>
+          <a className={styles.secondaryButton} href={githubUrl} target="_blank" rel="noreferrer">See the work <Arrow /></a>
         </div>
       </section>
 
       <footer className={styles.footer}>
-        <div>
-          <strong>BTL</strong>
-          <p>Intelligence efficient enough to own. We ship the model, the system, and the proof.</p>
-          <small>Bad Theory Labs · Lagos, Nigeria · Est. 2025</small>
+        <div className={styles.footerTop}>
+          <div>
+            <strong>BTL</strong>
+            <p>Capability accounting for neural networks.</p>
+            <small>Bad Theory Labs · built in Lagos</small>
+          </div>
+          <div className={styles.footerLinks}>
+            <div>
+              <span>Research</span>
+              <Link href="/thesis">Thesis</Link>
+              <Link href="/papers">Papers</Link>
+              <Link href="/context-integrity">Benchmarks</Link>
+            </div>
+            <div>
+              <span>Platform</span>
+              <Link href="/runtime">Runtime</Link>
+              <a href="https://retaindb.com" target="_blank" rel="noreferrer">RetainDB</a>
+              <Link href="/btl-3">Models</Link>
+            </div>
+            <div>
+              <span>Lab</span>
+              <a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+              <a href={discordUrl} target="_blank" rel="noreferrer">Discord</a>
+              <Link href="/contact">Contact</Link>
+            </div>
+          </div>
         </div>
-        <div className={styles.footerLinks}>
-          <div><span>Build</span><Link href="/papers/range-before-representation">BTL-4</Link><Link href="/papers/behaviour-relearned-quantization">BRQ</Link><Link href="/btl-3">BTL-3</Link><Link href="/macaw">Macaw</Link><Link href="/runtime">Runtime</Link><a href="https://retaindb.com">RetainDB</a><Link href="/marrow">Marrow</Link></div>
-          <div><span>Research</span><Link href="/context-integrity">Context Integrity</Link><Link href="/esp">ESP</Link><Link href="/reasoning-gap">Reasoning Gap</Link><Link href="/papers">Papers</Link></div>
-          <div><span>Lab</span><a href={githubUrl}>GitHub</a><a href="https://discord.gg/QJBCcB7bF">Discord</a><Link href="/contact">Contact</Link><a href="https://cal.com/alameenpd/quick-chat">Schedule a call</a></div>
+        <div className={styles.footerBottom}>
+          <span>© 2026 Bad Theory Labs</span>
+          <span>Capability efficiency · measured, published, and applied</span>
         </div>
-        <div className={styles.footerBottom}><span>© 2026 Bad Theory Labs</span><span>Built in Lagos. Open to the world.</span></div>
       </footer>
     </main>
   );

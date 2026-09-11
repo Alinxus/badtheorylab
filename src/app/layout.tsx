@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "BTL",
-  description: "BTL is an independent research lab in Lagos. We build frontier models efficient enough to own, plus the runtimes, memory, and benchmarks around them.",
+  description: "Bad Theory Labs is an AI research and deployment company building frontier models and systems around capability efficiency.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   icons: {
     icon: "/btl-favicon.svg",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     apple: "/btl-favicon.svg",
   },
   openGraph: {
-    title: "BTL",
-    description: "Intelligence efficient enough to own.",
+    title: "BTL · Frontier AI. Efficient enough to own.",
+    description: "Open-weight models and deployable AI systems built for organizations that need control.",
     images: [
       {
         url: "/og-image.png",
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTL",
-    description: "Intelligence efficient enough to own.",
+    title: "BTL · Frontier AI. Efficient enough to own.",
+    description: "Open-weight models and deployable AI systems built for organizations that need control.",
     images: ["/og-image.png"],
   },
 };
