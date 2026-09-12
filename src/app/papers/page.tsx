@@ -94,7 +94,7 @@ export default function PapersPage() {
             <time>{paper.date}</time>
             <ul>{paper.artifacts.map((artifact) => <li key={artifact}>{artifact}</li>)}</ul>
             <div className={styles.links}>
-              <Link href={paper.href}>Open dossier ↗</Link>
+              <Link href={paper.href}>Open dossier ↗︎</Link>
               {paper.pdf ? <a href={paper.pdf}>PDF ↓</a> : null}
             </div>
           </article>

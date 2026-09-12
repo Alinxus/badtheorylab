@@ -39,7 +39,7 @@ export default function ContainmentField({
     const rand = rng(count * 7919);
 
     // the card inverts with the theme, so take the ink from the card itself
-    let fg = "236,238,233";
+    let fg = "247,247,240";
     const readFg = () => {
       const m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(getComputedStyle(box).color);
       if (m) fg = `${m[1]},${m[2]},${m[3]}`;

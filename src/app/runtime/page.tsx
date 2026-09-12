@@ -234,8 +234,8 @@ const styles = `
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
 
 .rt-page {
-  --bg:#EDEEEA; --surface:#F3F2EF; --border:#E8E6E1; --border2:#D6D3CC;
-  --ink:#0B0C0D; --body:#5C5954; --faint:#62696D;
+  --bg:#F1F1F3; --surface:#E7E7EA; --border:#DCDCE1; --border2:#D6D3CC;
+  --ink:#0E0F13; --body:#52545C; --faint:#82848E;
   background:var(--bg); color:var(--ink);
   font-family:var(--font-s), Arial, sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh;
 }
@@ -275,7 +275,7 @@ const styles = `
 .rt-btn-solid { background:var(--ink); color:var(--bg); }
 .rt-btn-solid:hover { opacity:.85; }
 .rt-btn-outline { border:1px solid var(--border); color:var(--body); }
-.rt-btn-outline:hover { border-color:var(--ink); color:var(--ink); background:rgba(14,13,12,0.025); }
+.rt-btn-outline:hover { border-color:var(--ink); color:var(--ink); background:rgba(14,15,19,0.025); }
 
 /* hero code panel */
 .rt-hero-code { background:var(--ink); padding:clamp(32px,4vw,52px); display:flex; flex-direction:column; justify-content:center; }
@@ -326,7 +326,7 @@ const styles = `
 .rt-route:hover { background:var(--surface); }
 .rt-method { font-family:var(--font-m), monospace; font-size:10px; font-weight:500; letter-spacing:0.06em; padding:3px 8px; border-radius:5px; width:52px; text-align:center; flex-shrink:0; }
 .rt-post { background:rgba(168,94,26,0.12); color:#A85E1A; }
-.rt-get { background:rgba(14,13,12,0.06); color:var(--body); }
+.rt-get { background:rgba(14,15,19,0.06); color:var(--body); }
 .rt-path { font-family:var(--font-m), monospace; font-size:14px; color:var(--ink); }
 .rt-route-note { font-size:12.5px; font-weight:300; color:var(--faint); margin-left:auto; }
 

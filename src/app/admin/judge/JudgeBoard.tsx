@@ -165,10 +165,10 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
               <p className="jb-desc">{e.description}</p>
 
               <div className="jb-links">
-                <a href={e.repoUrl} target="_blank" rel="noreferrer" className="jb-link repo">Repo ↗</a>
-                {e.liveUrl && <a href={e.liveUrl} target="_blank" rel="noreferrer" className="jb-link">Live ↗</a>}
-                {e.demoVideoUrl && <a href={e.demoVideoUrl} target="_blank" rel="noreferrer" className="jb-link">Video ↗</a>}
-                {e.socialPostUrl && <a href={e.socialPostUrl} target="_blank" rel="noreferrer" className="jb-link">Social post ↗</a>}
+                <a href={e.repoUrl} target="_blank" rel="noreferrer" className="jb-link repo">Repo ↗︎</a>
+                {e.liveUrl && <a href={e.liveUrl} target="_blank" rel="noreferrer" className="jb-link">Live ↗︎</a>}
+                {e.demoVideoUrl && <a href={e.demoVideoUrl} target="_blank" rel="noreferrer" className="jb-link">Video ↗︎</a>}
+                {e.socialPostUrl && <a href={e.socialPostUrl} target="_blank" rel="noreferrer" className="jb-link">Social post ↗︎</a>}
                 {e.members && <span className="jb-members">👥 {e.members}</span>}
               </div>
 
@@ -234,7 +234,7 @@ export default function JudgeBoard({ entries: initial }: { entries: JudgeEntry[]
 }
 
 const page: React.CSSProperties = {
-  minHeight: "100vh", background: "#EDEEEA", color: "#0B0C0D",
+  minHeight: "100vh", background: "#F1F1F3", color: "#0E0F13",
   fontFamily: "var(--font-s), Arial, sans-serif",
   padding: "0 0 80px",
 };
@@ -244,53 +244,53 @@ const css = `
 .jb-eyebrow,.jb-badge,.jb-total em,.jb-bigtotal em{font-family:var(--font-m), monospace}
 .jb-head h1,.jb-title h2{font-family:var(--font-d), 'Helvetica Neue', Arial, sans-serif;font-weight:700;letter-spacing:-.03em}
 .jb-head{max-width:920px;margin:0 auto;padding:26px 24px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.jb-eyebrow{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#62696D}
+.jb-eyebrow{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#82848E}
 .jb-total,.jb-bigtotal{font-family:var(--font-d), 'Helvetica Neue', Arial, sans-serif;letter-spacing:-.03em}
 .jb-head h1{margin:6px 0 2px;font-size:28px;letter-spacing:-.02em}
-.jb-muted{color:#62696D;font-size:13px;margin:0}
+.jb-muted{color:#82848E;font-size:13px;margin:0}
 .jb-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.jb-toggle{display:flex;gap:7px;align-items:center;font-size:13px;color:#4a4540;background:#fff;border:1px solid #E8E6E1;border-radius:8px;padding:8px 11px}
+.jb-toggle{display:flex;gap:7px;align-items:center;font-size:13px;color:#4a4540;background:#fff;border:1px solid #DCDCE1;border-radius:8px;padding:8px 11px}
 .jb-controls select{border:1px solid #D6D3CC;border-radius:8px;padding:8px 11px;font-size:13px;background:#fff}
 .jb-logout{border:1px solid #D6D3CC;background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;cursor:pointer}
-.jb-empty{max-width:920px;margin:40px auto;padding:0 24px;color:#62696D}
+.jb-empty{max-width:920px;margin:40px auto;padding:0 24px;color:#82848E}
 .jb-list{max-width:920px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:14px}
-.jb-card{background:#fff;border:1px solid #E8E6E1;border-radius:14px;padding:18px 20px}
+.jb-card{background:#fff;border:1px solid #DCDCE1;border-radius:14px;padding:18px 20px}
 .jb-card.verified{border-color:#bcd6bf;box-shadow:0 0 0 1px #d6ead8 inset}
 .jb-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;cursor:pointer}
 .jb-title h2{margin:0;font-size:19px}
-.jb-team{font-size:12.5px;color:#62696D}
+.jb-team{font-size:12.5px;color:#82848E}
 .jb-badges{display:flex;gap:8px;align-items:center;flex-shrink:0}
 .jb-badge{font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600}
 .jb-badge.ok{background:#e5f3e6;color:#2f6b34}
 .jb-badge.warn{background:#f6ece0;color:#9a6a2e}
-.jb-badge.star{background:#0B0C0D;color:#fff}
+.jb-badge.star{background:#0E0F13;color:#fff}
 .jb-total{font-size:18px;font-weight:700}
-.jb-total em{font-size:12px;color:#62696D;font-style:normal;font-weight:400}
-.jb-caret{color:#62696D;font-size:11px}
+.jb-total em{font-size:12px;color:#82848E;font-style:normal;font-weight:400}
+.jb-caret{color:#82848E;font-size:11px}
 .jb-desc{color:#4a4540;font-size:14.5px;line-height:1.55;margin:12px 0}
 .jb-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13.5px}
-.jb-link{color:#0B0C0D;text-decoration:none;font-weight:600;border-bottom:1px solid #D6D3CC}
-.jb-link.repo{background:#0B0C0D;color:#fff;padding:5px 11px;border-radius:7px;border:none}
-.jb-members{color:#62696D;font-size:12.5px}
-.jb-clone{display:flex;gap:8px;align-items:center;margin-top:12px;background:#F3F2EF;border:1px solid #E8E6E1;border-radius:8px;padding:8px 10px}
+.jb-link{color:#0E0F13;text-decoration:none;font-weight:600;border-bottom:1px solid #D6D3CC}
+.jb-link.repo{background:#0E0F13;color:#fff;padding:5px 11px;border-radius:7px;border:none}
+.jb-members{color:#82848E;font-size:12.5px}
+.jb-clone{display:flex;gap:8px;align-items:center;margin-top:12px;background:#E7E7EA;border:1px solid #DCDCE1;border-radius:8px;padding:8px 10px}
 .jb-clone code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#4a4540;flex:1;overflow:auto;white-space:nowrap}
-.jb-clone button{border:none;background:#0B0C0D;color:#fff;border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer}
-.jb-body{margin-top:16px;border-top:1px solid #F3F2EF;padding-top:16px;display:flex;flex-direction:column;gap:16px}
-.jb-runtime{font-size:13.5px;color:#4a4540;display:flex;flex-direction:column;gap:6px;background:#F3F2EF;border-radius:8px;padding:11px 13px}
-.jb-runtime code{font-family:ui-monospace,monospace;font-size:12px;background:#E8E6E1;padding:1px 6px;border-radius:4px}
+.jb-clone button{border:none;background:#0E0F13;color:#fff;border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer}
+.jb-body{margin-top:16px;border-top:1px solid #E7E7EA;padding-top:16px;display:flex;flex-direction:column;gap:16px}
+.jb-runtime{font-size:13.5px;color:#4a4540;display:flex;flex-direction:column;gap:6px;background:#E7E7EA;border-radius:8px;padding:11px 13px}
+.jb-runtime code{font-family:ui-monospace,monospace;font-size:12px;background:#DCDCE1;padding:1px 6px;border-radius:4px}
 .jb-video{position:relative;padding-top:56.25%;border-radius:10px;overflow:hidden;background:#000}
 .jb-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.jb-readme summary{cursor:pointer;font-size:13px;font-weight:600;color:#5C5954}
-.jb-readme pre{margin-top:10px;background:#0B0C0D;color:#e8e6e1;border-radius:10px;padding:14px;font-size:12px;line-height:1.5;overflow:auto;max-height:340px;white-space:pre-wrap;word-break:break-word}
-.jb-score{background:#EDEEEA;border:1px solid #E8E6E1;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:11px}
+.jb-readme summary{cursor:pointer;font-size:13px;font-weight:600;color:#52545C}
+.jb-readme pre{margin-top:10px;background:#0E0F13;color:#DCDCE1;border-radius:10px;padding:14px;font-size:12px;line-height:1.5;overflow:auto;max-height:340px;white-space:pre-wrap;word-break:break-word}
+.jb-score{background:#F1F1F3;border:1px solid #DCDCE1;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:11px}
 .jb-slider{display:flex;flex-direction:column;gap:4px;font-size:13px;color:#4a4540}
-.jb-slider b{color:#0B0C0D}
-.jb-slider input[type=range]{width:100%;accent-color:#0B0C0D}
+.jb-slider b{color:#0E0F13}
+.jb-slider input[type=range]{width:100%;accent-color:#0E0F13}
 .jb-flags{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#4a4540;margin-top:4px}
 .jb-flags label{display:flex;gap:6px;align-items:center;cursor:pointer}
 .jb-score textarea{border:1px solid #D6D3CC;border-radius:8px;padding:9px 11px;font-size:13.5px;font-family:inherit;resize:vertical}
 .jb-save-row{display:flex;justify-content:space-between;align-items:center;margin-top:2px}
 .jb-bigtotal{font-size:22px;font-weight:700}
-.jb-bigtotal em{font-size:13px;color:#62696D;font-style:normal;font-weight:400}
-.jb-save{background:#0B0C0D;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer}
+.jb-bigtotal em{font-size:13px;color:#82848E;font-style:normal;font-weight:400}
+.jb-save{background:#0E0F13;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer}
 `;

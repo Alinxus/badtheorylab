@@ -1,4 +1,4 @@
-.page { --ink:#0a0b0b; --paper:#f3f1eb; --line:rgba(10,11,11,.16); --muted:#666760; --signal:#ff4d00; min-height:100vh; background:var(--paper); color:var(--ink); font-family:var(--font-s),Arial,sans-serif; }
+.page { --ink:#0E0F13; --paper:#F1F1F3; --line:rgba(10,11,11,.16); --muted:#666760; --signal:#FF4D00; min-height:100vh; background:var(--paper); color:var(--ink); font-family:var(--font-s),Arial,sans-serif; }
 .hero { min-height:calc(100vh - 58px); display:grid; grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr); border-bottom:1px solid var(--line); }
 .heroCopy { display:flex; flex-direction:column; justify-content:center; padding:clamp(70px,8vw,120px) clamp(24px,6vw,90px); }
 .eyebrow,.label { font-family:var(--font-m),monospace; font-size:10px; letter-spacing:.13em; text-transform:uppercase; }
@@ -12,7 +12,7 @@
 .primary { background:var(--ink); color:var(--paper); }
 .primary:hover,.secondary:hover,.lightButton:hover { transform:translateY(-2px); }
 .secondary:hover { background:var(--ink); color:var(--paper); }
-.readout { display:flex; flex-direction:column; justify-content:center; padding:clamp(38px,5vw,72px); background:var(--ink); color:#edeeea; }
+.readout { display:flex; flex-direction:column; justify-content:center; padding:clamp(38px,5vw,72px); background:var(--ink); color:#F1F1F3; }
 .readoutHead { display:flex; align-items:center; gap:10px; padding-bottom:18px; border-bottom:1px solid rgba(255,255,255,.14); color:rgba(255,255,255,.45); font-family:var(--font-m),monospace; font-size:9px; letter-spacing:.11em; }
 .readoutHead > span { width:7px; height:7px; border-radius:50%; background:#5cf38b; box-shadow:0 0 14px rgba(92,243,139,.55); }
 .readoutHead b { margin-left:auto; color:#fff; font-weight:500; }
@@ -44,7 +44,7 @@
 .scoreTable i span { display:block; height:100%; background:var(--ink); }
 .scoreTable .total { color:var(--signal); font-weight:500; }
 .scoreTable .total i span { background:var(--signal); }
-.dark { --line:rgba(255,255,255,.14); background:var(--ink); color:#edeeea; }
+.dark { --line:rgba(255,255,255,.14); background:var(--ink); color:#F1F1F3; }
 .dark .sectionHead > p { color:rgba(255,255,255,.48); }
 .changeGrid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line); }
 .changeGrid article { min-height:300px; padding:34px; display:flex; flex-direction:column; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
@@ -61,7 +61,7 @@
 .editionCallout > div > p:last-child { max-width:680px; margin-top:24px; color:var(--muted); line-height:1.7; }
 .lightButton { background:var(--ink); color:var(--paper); white-space:nowrap; }
 .integrity { display:grid; grid-template-columns:.6fr 1.4fr; gap:70px; padding:clamp(70px,8vw,120px) clamp(24px,6vw,90px); border-bottom:1px solid var(--line); }
-.integrity > div:last-child { min-width:0; padding:28px; background:var(--ink); color:#edeeea; }
+.integrity > div:last-child { min-width:0; padding:28px; background:var(--ink); color:#F1F1F3; }
 .integrity span,.integrity small { display:block; color:rgba(255,255,255,.45); font-family:var(--font-m),monospace; font-size:8px; letter-spacing:.08em; text-transform:uppercase; }
 .integrity code { display:block; margin:24px 0; overflow-wrap:anywhere; font-family:var(--font-m),monospace; font-size:11px; line-height:1.7; }
 .boundaries { padding:70px clamp(24px,6vw,90px); background:#eae6dc; }
@@ -69,7 +69,7 @@
 .boundaries > div { display:grid; grid-template-columns:repeat(2,1fr); gap:22px 50px; margin-top:34px; }
 .boundaries p { color:var(--muted); font-size:12px; line-height:1.65; }
 .boundaries b { color:var(--ink); }
-.footer { display:flex; justify-content:space-between; gap:30px; padding:38px clamp(24px,6vw,90px); background:var(--ink); color:#edeeea; }
+.footer { display:flex; justify-content:space-between; gap:30px; padding:38px clamp(24px,6vw,90px); background:var(--ink); color:#F1F1F3; }
 .footer strong { font-family:var(--font-m),monospace; font-size:10px; letter-spacing:.08em; }
 .footer div { display:flex; flex-wrap:wrap; gap:24px; }
 .footer a { color:rgba(255,255,255,.58); text-decoration:none; font-size:11px; }

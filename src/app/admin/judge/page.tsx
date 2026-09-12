@@ -52,7 +52,7 @@ export default async function JudgePage() {
   const supabase = getSupabase();
   if (!supabase) {
     return (
-      <main style={{ padding: 40, fontFamily: "system-ui", color: "#0B0C0D", background: "#EDEEEA", minHeight: "100vh" }}>
+      <main style={{ padding: 40, fontFamily: "system-ui", color: "#0E0F13", background: "#F1F1F3", minHeight: "100vh" }}>
         <h1>Judge dashboard</h1>
         <p>Supabase isn&rsquo;t configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.</p>
       </main>

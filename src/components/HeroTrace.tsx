@@ -90,7 +90,7 @@ export default function HeroTrace() {
       step = (hi - lo) / (nLevels - 1);
 
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = "#101211";
+      ctx.fillStyle = "#0E0F13";
       ctx.fillRect(0, 0, w, h);
 
       for (let i = 0; i < nLevels; i++) {
@@ -98,7 +98,7 @@ export default function HeroTrace() {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(w, y);
-        ctx.strokeStyle = i === (nLevels - 1) / 2 ? "rgba(255,77,0,.28)" : "rgba(236,238,233,.13)";
+        ctx.strokeStyle = i === (nLevels - 1) / 2 ? "rgba(255,77,0,.28)" : "rgba(247,247,240,.13)";
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -137,11 +137,11 @@ export default function HeroTrace() {
         ctx.beginPath();
         ctx.moveTo(cx, yq);
         ctx.lineTo(cx, yr);
-        ctx.strokeStyle = out ? "rgba(236,238,233,.42)" : "rgba(255,77,0,.34)";
+        ctx.strokeStyle = out ? "rgba(247,247,240,.42)" : "rgba(255,77,0,.34)";
         ctx.lineWidth = out ? 1.4 : 1;
         ctx.stroke();
 
-        ctx.fillStyle = out ? "#eceee9" : "rgba(236,238,233,.72)";
+        ctx.fillStyle = out ? "#F1F1F3" : "rgba(247,247,240,.72)";
         ctx.fillRect(cx - 1.5, yr - 1.5, 3, 3);
       }
 
@@ -150,15 +150,15 @@ export default function HeroTrace() {
         ctx.beginPath();
         ctx.moveTo(Math.round(px) + 0.5, 0);
         ctx.lineTo(Math.round(px) + 0.5, h);
-        ctx.strokeStyle = "rgba(236,238,233,.55)";
+        ctx.strokeStyle = "rgba(247,247,240,.55)";
         ctx.setLineDash([2, 5]);
         ctx.lineWidth = 1;
         ctx.stroke();
         ctx.setLineDash([]);
         const v = W[idxAt(px)];
-        ctx.fillStyle = "#eceee9";
+        ctx.fillStyle = "#F1F1F3";
         ctx.fillRect(px - 2.5, yOf(v) - 2.5, 5, 5);
-        ctx.fillStyle = "#ff4d00";
+        ctx.fillStyle = "#FF4D00";
         ctx.fillRect(px - 2.5, yOf(snap(v)) - 2.5, 5, 5);
       }
 

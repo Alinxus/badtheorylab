@@ -346,8 +346,8 @@
 
 .closing {
   padding: clamp(68px, 9vw, 130px) var(--pad) clamp(76px, 9vw, 138px);
-  background: #101211;
-  color: #eceee9;
+  background: #0E0F13;
+  color: #F1F1F3;
 }
 
 .closing .label {
@@ -360,14 +360,14 @@
 }
 
 .closing h2 em {
-  color: #a2a8a4;
+  color: #A3A4AC;
   font-style: italic;
 }
 
 .closing > p:not(.label) {
   max-width: 61ch;
   margin-top: 28px;
-  color: rgba(236, 238, 233, 0.65);
+  color: rgba(247, 247, 240, 0.65);
   font-size: clamp(16px, 1.4vw, 18px);
   line-height: 1.62;
 }
@@ -380,14 +380,14 @@
 }
 
 .closing .primaryButton {
-  border-color: #eceee9;
-  background: #eceee9;
-  color: #101211;
+  border-color: #F1F1F3;
+  background: #F1F1F3;
+  color: #0E0F13;
 }
 
 .closing .secondaryButton {
-  border-color: rgba(236, 238, 233, 0.4);
-  color: #eceee9;
+  border-color: rgba(247, 247, 240, 0.4);
+  color: #F1F1F3;
 }
 
 .closing .primaryButton:hover,

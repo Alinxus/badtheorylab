@@ -1,10 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap");
-
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { width: 100%; scroll-behavior: smooth; }
-body { width: 100%; overflow-x: clip; }
+/* The page background used to live only on the .page wrapper, so html and body
+   were transparent. iOS shows that bare canvas when you rubber-band past the
+   top or bottom, and tints the status bar from it, which made a dark page flash
+   white on a phone. Paint it here too, and tell the browser which schemes we
+   actually support so it renders controls and the overscroll area to match. */
+html {
+  width: 100%;
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+  background: #F1F1F3;
+}
+
+body {
+  width: 100%;
+  overflow-x: clip;
+  background: #F1F1F3;
+  color: #0E0F13;
+}
+
+@media (prefers-color-scheme: dark) {
+  html { background: #0E0F13; }
+  body { background: #0E0F13; color: #F7F7F0; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+}
+
+/* iOS falls back to Apple Color Emoji for codepoints like U+2197, and an emoji
+   glyph ignores `color`, so arrows turned into coloured icons on phones. The
+   glyphs carry U+FE0E individually; this catches anything added later. */
+body, button, input, select, textarea {
+  font-variant-emoji: text;
 }

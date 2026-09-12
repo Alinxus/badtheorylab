@@ -1,0 +1,417 @@
+.page {
+  --paper: #F1F1F3;
+  --plate: #E7E7EA;
+  --sunk: #DCDCE1;
+  --ink: #0E0F13;
+  --ink-2: #52545C;
+  --ink-3: #82848E;
+  --rule: rgba(14, 15, 19, 0.16);
+  --rule-2: rgba(14, 15, 19, 0.42);
+  --signal: #FF4D00;
+  --signal-ink: #C43900;
+  --measured: #1c6b47;
+  --sans: var(--font-s), "Helvetica Neue", Arial, sans-serif;
+  --mono: var(--font-m), ui-monospace, "SF Mono", Menlo, monospace;
+  --pad: clamp(18px, 4.4vw, 68px);
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --paper: #0E0F13;
+    --plate: #17181D;
+    --sunk: #1E1F25;
+    --ink: #F7F7F0;
+    --ink-2: #A3A4AC;
+    --ink-3: #70727C;
+    --rule: rgba(247, 247, 240, 0.16);
+    --rule-2: rgba(247, 247, 240, 0.4);
+    --signal: #FF4D00;
+    --signal-ink: #FF7A3D;
+  --signal-ink: #C43900;
+    --measured: #4fbb85;
+  }
+}
+
+.head {
+  padding: clamp(48px, 7vw, 92px) var(--pad) clamp(30px, 4vw, 48px);
+  border-bottom: 1px solid var(--rule);
+  max-width: 1560px;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 22px;
+}
+
+.title {
+  font-size: clamp(38px, 5.4vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  max-width: 15ch;
+}
+
+.lede {
+  margin-top: 20px;
+  max-width: 54ch;
+  color: var(--ink-2);
+  font-size: clamp(15px, 1.2vw, 17px);
+}
+
+/* two columns: the selector on the left, whatever it opens on the right */
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 330px) minmax(0, 1fr) minmax(0, 310px);
+  max-width: 1560px;
+}
+
+.main { min-width: 0; }
+
+.aside {
+  background: var(--plate);
+  padding: 34px 0 60px;
+  align-self: start;
+  position: sticky;
+  top: 54px;
+}
+
+.asideHead {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 0 var(--pad) 16px;
+}
+
+.switch { padding-bottom: 4px; }
+
+.switchRow {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-left: 2px solid transparent;
+  padding: 14px var(--pad);
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--ink-2);
+  transition: background 0.14s, color 0.14s, border-color 0.14s;
+}
+
+.switchRow:hover { background: var(--sunk); color: var(--ink); }
+.switchRow:focus-visible { outline: 2px solid var(--signal); outline-offset: -2px; }
+
+.switchRow[data-on="1"] {
+  background: var(--paper);
+  border-left-color: var(--signal);
+  color: var(--ink);
+}
+
+.switchLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.switchMark {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  background: transparent;
+  border: 1px solid var(--rule-2);
+}
+
+.switchRow[data-on="1"] .switchMark { background: var(--signal); border-color: var(--signal); }
+
+.switchNote {
+  display: block;
+  margin-top: 5px;
+  padding-left: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.direct {
+  margin-top: 34px;
+  padding: 0 var(--pad);
+}
+
+.directHead {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: 14px;
+}
+
+.directRow {
+  display: block;
+  padding: 0 0 16px;
+  font-size: 14px;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 0.14s;
+}
+
+.directRow:hover { color: var(--signal-ink); }
+
+.directRow span:last-child {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.directRow:hover span:last-child { color: var(--signal-ink); }
+
+/* the form */
+.form {
+  padding: 34px var(--pad) clamp(60px, 8vw, 120px);
+  max-width: 720px;
+}
+
+.formNote {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 34px;
+  max-width: 58ch;
+}
+
+.fields { display: flex; flex-direction: column; gap: 26px; }
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.field { display: flex; flex-direction: column; gap: 7px; }
+
+.flabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.opt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.fhint {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin-top: -3px;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule-2);
+  border-radius: 0;
+  padding: 9px 2px;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  transition: border-color 0.14s, background 0.14s;
+}
+
+.textarea { resize: vertical; min-height: 76px; }
+
+.input:hover,
+.textarea:hover { background: var(--plate); }
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-bottom-color: var(--signal);
+  background: var(--plate);
+}
+
+/* how much of the bar has actually been named */
+.ledger {
+  margin-top: 38px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ticks { display: flex; gap: 4px; }
+
+.tick {
+  width: 22px;
+  height: 5px;
+  background: var(--sunk);
+  transition: background 0.2s;
+}
+
+.tick[data-on="1"] { background: var(--signal); }
+
+.ledgerText {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.foot {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.submit {
+  border: 0;
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 14px 30px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.14s;
+}
+
+.submit:hover:not(:disabled) { background: var(--signal); color: #0E0F13; }
+.submit:disabled { opacity: 0.55; cursor: wait; }
+
+.status { font-size: 14px; color: var(--ink-2); }
+.status[data-kind="error"] { color: var(--signal-ink); }
+
+.done {
+  padding: 34px var(--pad) clamp(60px, 8vw, 120px);
+  max-width: 620px;
+}
+
+.doneMark {
+  width: 10px;
+  height: 10px;
+  background: var(--measured);
+  margin-bottom: 22px;
+}
+
+.doneTitle {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.doneBody { margin-top: 14px; color: var(--ink-2); font-size: 16px; }
+
+.again {
+  margin-top: 26px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule-2);
+  padding: 4px 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.again:hover { border-bottom-color: var(--signal); color: var(--signal-ink); }
+
+/* the right rail answers the one question a form never does: and then what */
+.rail {
+  padding: 34px var(--pad) 60px;
+  align-self: start;
+  position: sticky;
+  top: 54px;
+}
+
+.railHead {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: 16px;
+}
+
+.steps { list-style: none; }
+
+.step {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  column-gap: 10px;
+  padding: 0 0 22px;
+}
+
+.stepNo {
+  grid-row: 1 / 3;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  padding-top: 4px;
+}
+
+.stepLabel { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+.stepBody {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin-top: 3px;
+}
+
+@media (max-width: 1320px) {
+  .body { grid-template-columns: minmax(0, 310px) minmax(0, 1fr); }
+  .rail {
+    grid-column: 1 / -1;
+    position: static;
+    padding-top: 8px;
+  }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0 34px; }
+}
+
+@media (max-width: 1000px) {
+  .body { grid-template-columns: minmax(0, 1fr); }
+  .aside { position: static; padding-bottom: 34px; }
+  .pair { grid-template-columns: 1fr; }
+  .form { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switchRow, .input, .textarea, .tick, .submit, .directRow { transition: none; }
+}

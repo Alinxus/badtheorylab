@@ -30,7 +30,7 @@ export default function CompactPage() {
           <p className={styles.heroLead}>BTL-3 Compact puts the complete 27B text model in one native artifact.</p>
           <p className={styles.heroBody}>Decoder, vocabulary matrices, output correction, and behavior repair are all packed. The runtime consumes the representation directly—without downloading or reconstructing the BF16 checkpoint.</p>
           <div className={styles.actions}>
-            <a className={styles.primary} href={links.compact} target="_blank" rel="noreferrer">Download Compact ↗</a>
+            <a className={styles.primary} href={links.compact} target="_blank" rel="noreferrer">Download Compact ↗︎</a>
             <Link className={styles.secondary} href="/btl-3">View full BTL-3</Link>
             <a className={styles.secondary} href={links.github} target="_blank" rel="noreferrer">Runtime source</a>
           </div>
@@ -106,7 +106,7 @@ export default function CompactPage() {
 
       <section className={styles.editionCallout}>
         <div><p className={styles.label}>Measured performance</p><h2>43.16 tok/s<br /><em>on RTX PRO 6000.</em></h2><p>Exact GGUF, full CUDA offload, 128 generated tokens, mean of three runs with 0.29 tok/s standard deviation. Apple M2 compatibility smoke measured 2.48 tok/s generation.</p></div>
-        <a className={styles.lightButton} href={links.compact} target="_blank" rel="noreferrer">Get the 8.39 GB model ↗</a>
+        <a className={styles.lightButton} href={links.compact} target="_blank" rel="noreferrer">Get the 8.39 GB model ↗︎</a>
       </section>
 
       <section className={styles.integrity}>

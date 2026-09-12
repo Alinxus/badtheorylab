@@ -246,7 +246,7 @@ export default function DonatePage() {
 }
 
 const styles = `
-:root { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; }
+:root { --bg:#F1F1F3; --surface:#E7E7EA; --border:#DCDCE1; --ink:#0E0F13; --body:#52545C; --faint:#82848E; }
 .fund-page { min-height:100vh; background:var(--bg); color:var(--ink); font-family:var(--font-s), Arial, sans-serif; }
 
 /* nav */

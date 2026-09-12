@@ -13,8 +13,8 @@ export async function GET() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#edeeea",
-          color: "#0b0c0d",
+          background: "#F1F1F3",
+          color: "#0E0F13",
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
         }}
       >
@@ -22,7 +22,7 @@ export async function GET() {
         <div
           style={{
             fontSize: 22,
-            color: "#5c5954",
+            color: "#52545C",
             marginTop: 16,
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
             fontWeight: 300,
@@ -36,7 +36,7 @@ export async function GET() {
             display: "flex",
             gap: 24,
             fontSize: 16,
-            color: "#62696d",
+            color: "#82848E",
             fontFamily: "ui-monospace, Menlo, monospace",
           }}
         >

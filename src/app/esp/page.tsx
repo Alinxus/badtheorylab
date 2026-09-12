@@ -222,7 +222,7 @@ export default function EspPage() {
 }
 
 const styles = `
-.esp-page { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; min-height:100vh; background:var(--bg); color:var(--ink); }
+.esp-page { --bg:#F1F1F3; --surface:#E7E7EA; --border:#DCDCE1; --ink:#0E0F13; --body:#52545C; --faint:#82848E; min-height:100vh; background:var(--bg); color:var(--ink); }
 .esp-nav { position:sticky; top:0; z-index:20; height:58px; border-bottom:1px solid var(--border); background:rgba(250,250,249,.88); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }
 .esp-brand { font-family:var(--font-d); font-size:22px; color:var(--ink); text-decoration:none; }
 .esp-nav-links, .esp-nav-cta { display:flex; gap:16px; align-items:center; }
@@ -256,7 +256,7 @@ const styles = `
 
 .esp-session-note { color:var(--body); line-height:1.7; font-size:14px; margin-bottom:16px; max-width:760px; }
 .esp-session-note code, .esp-code { font-family:var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace); }
-.esp-code { background:#0b0c0d; color:#e8e6e1; border-radius:12px; padding:20px; font-size:12.5px; line-height:1.65; overflow-x:auto; }
+.esp-code { background:#0E0F13; color:#DCDCE1; border-radius:12px; padding:20px; font-size:12.5px; line-height:1.65; overflow-x:auto; }
 
 .esp-hyp-note { color:var(--body); font-size:14px; margin:-8px 0 18px; }
 .esp-hyp-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }

@@ -207,7 +207,7 @@ async function sendConfirmation(firstName: string, to: string): Promise<boolean>
       <p>One rule: your project runs on the BTL runtime, our OpenAI-compatible gateway.
          We'll email your scoped API key and free credits before kickoff.</p>
       <p style="margin: 22px 0;">
-        <a href="${discord}" style="background:#0B0C0D;color:#fff;text-decoration:none;padding:11px 20px;border-radius:8px;display:inline-block;">Join the Discord →</a>
+        <a href="${discord}" style="background:#0E0F13;color:#fff;text-decoration:none;padding:11px 20px;border-radius:8px;display:inline-block;">Join the Discord →</a>
       </p>
       <p style="color:#555;font-size:14px;">Kickoff stream and team formation happen in Discord — that's where everything runs.
          Questions? Just reply to this email.</p>

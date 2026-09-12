@@ -1,7 +1,7 @@
 .footer {
   padding: clamp(48px, 6vw, 84px) var(--pad) 0;
-  background: #101211;
-  color: #eceee9;
+  background: #0E0F13;
+  color: #F1F1F3;
 }
 
 .footerTop {
@@ -22,14 +22,14 @@
 
 .footer p {
   margin-top: 17px;
-  color: rgba(236, 238, 233, 0.65);
+  color: rgba(247, 247, 240, 0.65);
   font-size: 15px;
 }
 
 .footer small {
   display: block;
   margin-top: 24px;
-  color: rgba(236, 238, 233, 0.38);
+  color: rgba(247, 247, 240, 0.38);
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.08em;
@@ -51,7 +51,7 @@
 
 .footerLinks > div > span {
   margin-bottom: 6px;
-  color: rgba(236, 238, 233, 0.4);
+  color: rgba(247, 247, 240, 0.4);
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 500;
@@ -60,14 +60,14 @@
 }
 
 .footer a {
-  color: rgba(236, 238, 233, 0.68);
+  color: rgba(247, 247, 240, 0.68);
   font-size: 13px;
   text-decoration: none;
   transition: color 140ms ease;
 }
 
 .footer a:hover {
-  color: #eceee9;
+  color: #F1F1F3;
 }
 
 .footerBottom {
@@ -76,8 +76,8 @@
   justify-content: space-between;
   gap: 14px;
   padding: 22px 0;
-  border-top: 1px solid rgba(236, 238, 233, 0.16);
-  color: rgba(236, 238, 233, 0.4);
+  border-top: 1px solid rgba(247, 247, 240, 0.16);
+  color: rgba(247, 247, 240, 0.4);
   font-family: var(--mono);
   font-size: 9px;
   font-weight: 500;

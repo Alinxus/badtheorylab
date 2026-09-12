@@ -252,8 +252,8 @@ const styles = `
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
 
 .md-page {
-  --bg:#EDEEEA; --surface:#F3F2EF; --border:#E8E6E1; --border2:#D6D3CC;
-  --ink:#0B0C0D; --body:#5C5954; --faint:#62696D; --gold:#A85E1A;
+  --bg:#F1F1F3; --surface:#E7E7EA; --border:#DCDCE1; --border2:#D6D3CC;
+  --ink:#0E0F13; --body:#52545C; --faint:#82848E; --gold:#A85E1A;
   background:var(--bg); color:var(--ink);
   font-family:var(--font-s), Arial, sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh;
 }
@@ -288,7 +288,7 @@ const styles = `
 .md-btn-solid { background:var(--ink); color:var(--bg); }
 .md-btn-solid:hover { opacity:.85; }
 .md-btn-outline { border:1px solid var(--border); color:var(--body); }
-.md-btn-outline:hover { border-color:var(--ink); color:var(--ink); background:rgba(14,13,12,0.025); }
+.md-btn-outline:hover { border-color:var(--ink); color:var(--ink); background:rgba(14,15,19,0.025); }
 
 .md-hero-code { background:var(--ink); padding:clamp(32px,4vw,52px); display:flex; flex-direction:column; justify-content:center; }
 .md-code-head { display:flex; align-items:center; gap:7px; margin-bottom:22px; }
@@ -318,7 +318,7 @@ const styles = `
 
 .md-table-wrap { border:1px solid var(--border); border-radius:12px; overflow:hidden; overflow-x:auto; }
 .md-table { width:100%; border-collapse:collapse; min-width:560px; }
-.md-table th { font-family:var(--font-m), monospace; font-size:9.5px; color:var(--faint); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:13px 18px; text-align:right; border-bottom:1px solid var(--border); background:rgba(14,13,12,0.02); }
+.md-table th { font-family:var(--font-m), monospace; font-size:9.5px; color:var(--faint); font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:13px 18px; text-align:right; border-bottom:1px solid var(--border); background:rgba(14,15,19,0.02); }
 .md-table th:first-child { text-align:left; }
 .md-table td { padding:15px 18px; font-family:var(--font-m), monospace; font-size:13px; color:var(--body); text-align:right; border-bottom:1px solid var(--border); }
 .md-table tr:last-child td { border-bottom:none; }

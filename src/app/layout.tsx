@@ -1,23 +1,34 @@
 import type { Metadata } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import { Martian_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import PresenceBeacon from "@/components/PresenceBeacon";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+// Switzer is self-hosted. Fontshare's CDN is fine but one less third party
+// on the critical path is one less thing that can be slow.
+const switzer = localFont({
+  src: [
+    { path: "./fonts/Switzer-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Switzer-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/Switzer-600.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-d",
   display: "swap",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
-const archivoBody = Archivo({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
+const switzerBody = localFont({
+  src: [
+    { path: "./fonts/Switzer-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Switzer-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/Switzer-600.woff2", weight: "600", style: "normal" },
+  ],
   variable: "--font-s",
   display: "swap",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
 });
 
-const jetbrains = JetBrains_Mono({
+const martian = Martian_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-m",
@@ -59,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${archivoBody.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${switzer.variable} ${switzerBody.variable} ${martian.variable}`}>
       <body>
         {children}
         <PresenceBeacon />

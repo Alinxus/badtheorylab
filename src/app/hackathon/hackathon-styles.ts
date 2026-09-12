@@ -6,8 +6,8 @@ export const pageCss = `
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #EDEEEA; --surface: #F3F2EF; --border: #E8E6E1;
-  --border2: #D6D3CC; --ink: #0B0C0D; --body: #5C5954; --faint: #62696D;
+  --bg: #F1F1F3; --surface: #E7E7EA; --border: #DCDCE1;
+  --border2: #D6D3CC; --ink: #0E0F13; --body: #52545C; --faint: #82848E;
 }
 
 .hack-page {
@@ -120,7 +120,7 @@ export const pageCss = `
   transition: border-color .15s, color .15s, background .15s;
   cursor: pointer; background: transparent; font-family: var(--font-s), Arial, sans-serif;
 }
-.btn-g:hover { border-color: var(--ink); color: var(--ink); background: rgba(14,13,12,.025); }
+.btn-g:hover { border-color: var(--ink); color: var(--ink); background: rgba(14,15,19,.025); }
 .btn-g-lg { padding: 14px 32px; font-size: 15px; }
 
 .h-meta-row {
@@ -163,7 +163,7 @@ export const pageCss = `
 
 .h-hero-overlay {
   position: relative; z-index: 2; padding: 40px 44px;
-  background: linear-gradient(to top, rgba(14,13,12,.97) 0%, rgba(14,13,12,.55) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(14,15,19,.97) 0%, rgba(14,15,19,.55) 55%, transparent 100%);
 }
 .h-live-chip {
   display: inline-flex; align-items: center; gap: 7px;

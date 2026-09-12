@@ -1,9 +1,9 @@
 .page {
-  --ink: #0b0c0d;
-  --paper: #edeeea;
+  --ink: #0E0F13;
+  --paper: #F1F1F3;
   --line: rgba(11, 12, 13, 0.18);
-  --muted: #62696d;
-  --signal: #ff4d00;
+  --muted: #82848E;
+  --signal: #FF4D00;
   min-height: 100vh;
   background: var(--paper);
   color: var(--ink);

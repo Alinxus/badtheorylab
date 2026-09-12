@@ -1,8 +1,8 @@
 .page {
-  --paper: #f5f1e8;
-  --ink: #171613;
+  --paper: #F1F1F3;
+  --ink: #0E0F13;
   --quiet: #68645b;
-  --rule: #d8d1c3;
+  --rule: #DCDCE1;
   min-height: 100vh;
   color: var(--ink);
   background: var(--paper);

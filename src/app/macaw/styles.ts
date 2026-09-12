@@ -6,8 +6,8 @@ export const styles = `
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
 
 .mw {
-  --bg:#EDEEEA; --surface:#F3F2EF; --ink:#0B0C0D; --body:#5C5954; --faint:#62696D;
-  --border:#E8E6E1; --border2:#D6D3CC; --accent:#1F7A4D; --accent-soft:#2bb673;
+  --bg:#F1F1F3; --surface:#E7E7EA; --ink:#0E0F13; --body:#52545C; --faint:#82848E;
+  --border:#DCDCE1; --border2:#D6D3CC; --accent:#1F7A4D; --accent-soft:#4FBB85;
   --warn:#B26A1B; --crit:#B23A28;
   background:var(--bg); color:var(--ink);
   font-family:var(--font-s), Arial, sans-serif; -webkit-font-smoothing:antialiased; min-height:100vh;

@@ -181,7 +181,7 @@ export default function ReasoningGapPage() {
 }
 
 const styles = `
-:root { --bg:#edeeea; --surface:#f3f2ef; --border:#e8e6e1; --ink:#0b0c0d; --body:#5c5954; --faint:#62696d; --accent:#2563eb; }
+:root { --bg:#F1F1F3; --surface:#E7E7EA; --border:#DCDCE1; --ink:#0E0F13; --body:#52545C; --faint:#82848E; --accent:#2563eb; }
 .rg-page { min-height:100vh; background:var(--bg); color:var(--ink); }
 .top-nav { position:sticky; top:0; z-index:20; height:58px; border-bottom:1px solid var(--border); background:rgba(250,250,249,.88); backdrop-filter:blur(18px); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }
 .brand { font-family:var(--font-d); font-size:22px; color:var(--ink); text-decoration:none; }

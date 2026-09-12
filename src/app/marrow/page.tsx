@@ -10,10 +10,10 @@ const css = `
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #070508;
-  --surface: #0D0B12;
+  --bg: #0E0F13;
+  --surface: #17181D;
   --border: #1C1824;
-  --ink: #EDE9E0;
+  --ink: #E7E7EA;
   --body: #8A8596;
   --faint: #3D3A48;
   --accent: #C08040;
@@ -115,7 +115,7 @@ body::before {
   font-size: clamp(76px, 14vw, 164px);
   font-weight: 400; letter-spacing: -0.055em; line-height: 0.88;
   margin-bottom: 36px;
-  background: linear-gradient(138deg, #EDE9E0 0%, #C9BC9E 28%, #EDE9E0 52%, #B8A880 76%, #EDE9E0 100%);
+  background: linear-gradient(138deg, #E7E7EA 0%, #C9BC9E 28%, #E7E7EA 52%, #B8A880 76%, #E7E7EA 100%);
   background-size: 220% auto;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradient-flow 8s linear infinite, fadeUp 0.8s ease 0.18s both;
@@ -327,7 +327,7 @@ body::before {
 }
 .mr-quote em {
   font-style: italic;
-  background: linear-gradient(120deg, #EDE9E0 0%, #C4A874 38%, #EDE9E0 68%, #B89860 100%);
+  background: linear-gradient(120deg, #E7E7EA 0%, #C4A874 38%, #E7E7EA 68%, #B89860 100%);
   background-size: 210% auto;
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: gradient-flow 6s linear infinite;

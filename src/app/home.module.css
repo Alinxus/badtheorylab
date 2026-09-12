@@ -1,17 +1,17 @@
 .page {
-  --paper: #eceee9;
-  --plate: #e4e6e0;
-  --sunk: #dcdfd8;
-  --ink: #101211;
-  --ink-2: #4e5451;
-  --ink-3: #868c88;
-  --rule: rgba(16, 18, 17, 0.16);
-  --rule-2: rgba(16, 18, 17, 0.42);
-  --signal: #ff4d00;
-  --signal-ink: #d13e00;
+  --paper: #F1F1F3;
+  --plate: #E7E7EA;
+  --sunk: #DCDCE1;
+  --ink: #0E0F13;
+  --ink-2: #52545C;
+  --ink-3: #82848E;
+  --rule: rgba(14, 15, 19, 0.16);
+  --rule-2: rgba(14, 15, 19, 0.42);
+  --signal: #FF4D00;
+  --signal-ink: #C43900;
   --measured: #1c6b47;
-  --serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --sans: "Instrument Sans", var(--font-s), "Helvetica Neue", Arial, sans-serif;
+  --serif: var(--font-d), "Helvetica Neue", Arial, sans-serif;
+  --sans: var(--font-s), "Helvetica Neue", Arial, sans-serif;
   --mono: var(--font-m), ui-monospace, "SF Mono", Menlo, monospace;
   --pad: clamp(18px, 4.4vw, 68px);
   min-height: 100vh;
@@ -25,16 +25,16 @@
 
 @media (prefers-color-scheme: dark) {
   .page {
-    --paper: #0d0f0e;
-    --plate: #141716;
-    --sunk: #191d1b;
-    --ink: #eceee9;
-    --ink-2: #a2a8a4;
-    --ink-3: #767c78;
-    --rule: rgba(236, 238, 233, 0.16);
-    --rule-2: rgba(236, 238, 233, 0.4);
-    --signal: #ff5c14;
-    --signal-ink: #ff6a28;
+    --paper: #0E0F13;
+    --plate: #17181D;
+    --sunk: #1E1F25;
+    --ink: #F7F7F0;
+    --ink-2: #A3A4AC;
+    --ink-3: #70727C;
+    --rule: rgba(247, 247, 240, 0.16);
+    --rule-2: rgba(247, 247, 240, 0.4);
+    --signal: #FF4D00;
+    --signal-ink: #FF7A3D;
     --measured: #4fbb85;
   }
 }
@@ -391,7 +391,7 @@
 .traceKey span { display: inline-flex; align-items: center; gap: 7px; }
 .traceKey i { width: 14px; height: 2px; }
 
-.keyRaw { width: 4px !important; height: 4px !important; background: rgba(236, 238, 233, 0.78); }
+.keyRaw { width: 4px !important; height: 4px !important; background: rgba(247, 247, 240, 0.78); }
 .keyQ { background: rgba(255, 77, 0, 0.85); }
 .keyGap { width: 2px !important; height: 13px !important; background: rgba(255, 77, 0, 0.55); }
 
@@ -417,7 +417,7 @@
   position: absolute;
   width: 9px;
   height: 9px;
-  border: 0 solid rgba(236, 238, 233, 0.42);
+  border: 0 solid rgba(247, 247, 240, 0.42);
   pointer-events: none;
 }
 
@@ -455,18 +455,18 @@
 .mosaicText,
 .mosaicTextBright,
 .mosaicPointer {
-  fill: rgba(236, 238, 233, 0.52);
+  fill: rgba(247, 247, 240, 0.52);
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 1.4px;
 }
 
 .mosaicTextBright {
-  fill: #ff4d00;
+  fill: #FF4D00;
 }
 
 .mosaicPointer {
-  fill: #eceee9;
+  fill: #F1F1F3;
   font-size: 9px;
   letter-spacing: 1px;
   text-transform: uppercase;

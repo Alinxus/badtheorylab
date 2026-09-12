@@ -35,7 +35,7 @@ export default function Btl3Page() {
           <p className={styles.heroLead}>A 27B agentic coding and tool-use model trained to act, inspect, recover, and stop when no action is needed.</p>
           <p className={styles.heroBody}>Post-trained from a pinned Qwen3.6-27B revision. Every result below belongs to the frozen RL-0013 adapter and carries its actual protocol and denominator.</p>
           <div className={styles.actions}>
-            <a className={styles.primary} href={links.full} target="_blank" rel="noreferrer">Download weights ↗</a>
+            <a className={styles.primary} href={links.full} target="_blank" rel="noreferrer">Download weights ↗︎</a>
             <Link className={styles.secondary} href="/btl-3-compact">Explore Compact</Link>
             <a className={styles.secondary} href={links.github} target="_blank" rel="noreferrer">Runtime source</a>
           </div>
@@ -97,7 +97,7 @@ export default function Btl3Page() {
 
       <section className={styles.editionCallout}>
         <div><p className={styles.label}>Local edition</p><h2>Need the whole 27B model<br />in <em>8.39 GB?</em></h2><p>BTL-3 Compact is a separate native artifact with its own runtime, retention profile, speed measurements, and deployment contract.</p></div>
-        <Link className={styles.lightButton} href="/btl-3-compact">Open the Compact dossier ↗</Link>
+        <Link className={styles.lightButton} href="/btl-3-compact">Open the Compact dossier ↗︎</Link>
       </section>
 
       <section className={styles.integrity}>

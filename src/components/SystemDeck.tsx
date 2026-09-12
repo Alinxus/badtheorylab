@@ -52,7 +52,7 @@ const PATTERNS = [
 ] as const;
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <span aria-hidden="true">↗︎</span>;
 }
 
 function SystemVisual({ active }: { active: number }) {
@@ -60,14 +60,14 @@ function SystemVisual({ active }: { active: number }) {
   return (
     <svg viewBox="0 0 500 420" role="img" aria-label={SYSTEMS[active].name + " system map"}>
       <rect width="500" height="420" fill="#171a19" />
-      <g stroke="rgba(236,238,233,.11)" strokeWidth="1" shapeRendering="crispEdges">
+      <g stroke="rgba(247,247,240,.11)" strokeWidth="1" shapeRendering="crispEdges">
         {[50, 150, 250, 350, 450].map((x) => <line key={"x" + x} x1={x} x2={x} y1="0" y2="420" />)}
         {[70, 170, 270, 370].map((y) => <line key={"y" + y} x1="0" x2="500" y1={y} y2={y} />)}
       </g>
       {pattern.map((tone, index) => {
         const col = index % 5;
         const row = Math.floor(index / 5);
-        const color = tone === 2 ? "#ff5c14" : tone === 1 ? "#65706a" : "#252b28";
+        const color = tone === 2 ? "#FF4D00" : tone === 1 ? "#65706a" : "#252b28";
         return (
           <rect
             className={styles.systemTile}
@@ -80,7 +80,7 @@ function SystemVisual({ active }: { active: number }) {
           />
         );
       })}
-      <path d="M32 390H468" stroke="#ff5c14" strokeWidth="2" />
+      <path d="M32 390H468" stroke="#FF4D00" strokeWidth="2" />
       <text className={styles.systemVisualLabel} x="24" y="32">{SYSTEMS[active].kind.toUpperCase()}</text>
       <text className={styles.systemVisualSignal} x="468" y="390" textAnchor="end">BTL / 0{active + 1}</text>
     </svg>

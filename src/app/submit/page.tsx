@@ -241,7 +241,7 @@ function Field({ label, required, hint, children }: {
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
 
-.sub-page{--bg:#EDEEEA;--surface:#F3F2EF;--border:#E8E6E1;--border2:#D6D3CC;--ink:#0B0C0D;--body:#5C5954;--faint:#62696D;--amber:rgba(168,94,26,1);
+.sub-page{--bg:#F1F1F3;--surface:#E7E7EA;--border:#DCDCE1;--border2:#D6D3CC;--ink:#0E0F13;--body:#52545C;--faint:#82848E;--amber:rgba(168,94,26,1);
   min-height:100vh;background:var(--bg);color:var(--ink);font-family:var(--font-s), Arial, sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:96px;position:relative;overflow-x:hidden}
 .sub-page::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px;animation:sub-grain .18s steps(1) infinite}
 @keyframes sub-grain{0%{background-position:0 0}25%{background-position:-14% 4%}50%{background-position:-4% 23%}75%{background-position:14% 0}100%{background-position:0 0}}
@@ -272,7 +272,7 @@ const css = `
 .sub-hint{font-size:12.5px;font-weight:300;line-height:1.55;color:var(--faint)}
 .sub-field input,.sub-field textarea{border:1px solid var(--border2);border-radius:8px;padding:12px 14px;font-size:15px;background:#fff;color:var(--ink);font-family:var(--font-s), Arial, sans-serif;outline:none;transition:border-color .15s,box-shadow .15s}
 .sub-field input::placeholder,.sub-field textarea::placeholder{color:var(--faint)}
-.sub-field input:focus,.sub-field textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(14,13,12,.05)}
+.sub-field input:focus,.sub-field textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(14,15,19,.05)}
 .sub-check-row{display:flex;gap:12px;align-items:flex-start;font-size:14px;font-weight:300;color:var(--body);line-height:1.55;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
 .sub-check-row input{margin-top:2px;width:16px;height:16px;flex:none;accent-color:var(--ink)}
 .sub-check-row em{color:var(--amber);font-style:normal;font-weight:500}
@@ -282,7 +282,7 @@ const css = `
 .btn-p:hover{opacity:.85}
 .btn-p:disabled{opacity:.5;cursor:default}
 .btn-g{font-family:var(--font-s), Arial, sans-serif;background:transparent;color:var(--body);border:1px solid var(--border2);border-radius:8px;padding:13px 26px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s,background .15s}
-.btn-g:hover{border-color:var(--ink);color:var(--ink);background:rgba(14,13,12,.025)}
+.btn-g:hover{border-color:var(--ink);color:var(--ink);background:rgba(14,15,19,.025)}
 .sub-submit{margin-top:6px;align-self:flex-start;padding:15px 34px}
 .sub-fine{font-family:var(--font-m), monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0}
 

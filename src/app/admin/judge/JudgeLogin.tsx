@@ -33,11 +33,11 @@ export default function JudgeLogin({ configured }: { configured: boolean }) {
   return (
     <main style={wrap}>
       <form onSubmit={onSubmit} style={card}>
-        <div style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#62696D" }}>
+        <div style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace", fontSize: 10.5, letterSpacing: ".1em", textTransform: "uppercase", color: "#82848E" }}>
           BTL · Judging
         </div>
         <h1 style={{ fontFamily: "Georgia, serif", fontWeight: 500, letterSpacing: "-.03em", margin: "12px 0 4px", fontSize: 28 }}>Judge dashboard</h1>
-        <p style={{ color: "#5C5954", fontSize: 14, margin: "0 0 18px" }}>
+        <p style={{ color: "#52545C", fontSize: 14, margin: "0 0 18px" }}>
           {configured
             ? "Enter the judge password to review submissions."
             : "Set ADMIN_JUDGE_PASSWORD in the environment to enable access."}
@@ -61,11 +61,11 @@ export default function JudgeLogin({ configured }: { configured: boolean }) {
 }
 
 const wrap: React.CSSProperties = {
-  minHeight: "100vh", background: "#EDEEEA", display: "flex",
+  minHeight: "100vh", background: "#F1F1F3", display: "flex",
   alignItems: "center", justifyContent: "center", fontFamily: "system-ui,-apple-system,sans-serif",
 };
 const card: React.CSSProperties = {
-  background: "#fff", border: "1px solid #E8E6E1", borderRadius: 14,
+  background: "#fff", border: "1px solid #DCDCE1", borderRadius: 14,
   padding: 28, width: 360, boxShadow: "0 4px 24px rgba(0,0,0,.04)",
 };
 const input: React.CSSProperties = {
@@ -73,7 +73,7 @@ const input: React.CSSProperties = {
   padding: "12px 14px", fontSize: 15, outline: "none", fontFamily: "system-ui,-apple-system,sans-serif",
 };
 const button: React.CSSProperties = {
-  width: "100%", marginTop: 14, background: "#0B0C0D", color: "#fff", border: "none",
+  width: "100%", marginTop: 14, background: "#0E0F13", color: "#fff", border: "none",
   borderRadius: 8, padding: "13px", fontSize: 15, fontWeight: 500, cursor: "pointer",
   fontFamily: "system-ui,-apple-system,sans-serif",
 };

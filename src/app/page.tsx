@@ -105,7 +105,7 @@ const evidence = [
 ];
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return <span aria-hidden="true">↗︎</span>;
 }
 
 export default function Home() {
@@ -135,25 +135,35 @@ export default function Home() {
 
             <div className={styles.railLatest}>
               <p className={styles.newsLabel}>BTL-4</p>
-              <a className={styles.newsCard} href="#stack">
+              <a
+                className={styles.newsCard}
+                href="https://huggingface.co/badtheorylabs/BTL-4"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className={styles.newsThumb} aria-hidden="true" />
                 <span className={styles.newsText}>
                   Frontier-class agentic coding, with the weights published.
                   <b>78.4% SWE-bench Verified · 35B</b>
                 </span>
-                <span className={styles.newsGo} aria-hidden="true">&#8599;</span>
+                <span className={styles.newsGo} aria-hidden="true">&#8599;&#65038;</span>
               </a>
             </div>
 
             <div className={styles.railLatest}>
               <p className={styles.newsLabel}>BTL-4 Compact</p>
-              <a className={styles.newsCard} href="#stack">
+              <a
+                className={styles.newsCard}
+                href="https://huggingface.co/badtheorylabs/BTL-4-Compact"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <span className={styles.newsThumb} aria-hidden="true" />
                 <span className={styles.newsText}>
                   The same model, small enough to run on a laptop.
                   <b>9.96 GB · 94.1% of measured behaviour kept</b>
                 </span>
-                <span className={styles.newsGo} aria-hidden="true">&#8599;</span>
+                <span className={styles.newsGo} aria-hidden="true">&#8599;&#65038;</span>
               </a>
             </div>
           </HeroRail>
