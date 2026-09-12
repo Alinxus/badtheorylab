@@ -16,6 +16,7 @@ import experimentStyles from "./home-experiment.module.css";
 import audienceStyles from "./home-audience.module.css";
 import signalStyles from "./home-signal.module.css";
 import systemStyles from "./home-systems.module.css";
+import releaseStyles from "./home-release.module.css";
 
 const styles = {
   ...shellStyles,
@@ -26,6 +27,7 @@ const styles = {
   ...audienceStyles,
   ...signalStyles,
   ...systemStyles,
+  ...releaseStyles,
 };
 
 const githubUrl = "https://github.com/Badtheorylabs";
@@ -128,10 +130,20 @@ export default function Home() {
 
           {/* right rail: two panels, walked through by the scroll */}
           <HeroRail>
-            <p className={styles.lede}>
-              We build frontier models and systems around capability efficiency, for organizations
-              that need to run advanced intelligence on infrastructure they control.
-            </p>
+            <div className={styles.heroIntro}>
+              <p className={styles.lede}>
+                We build frontier models and systems around capability efficiency, for organizations
+                that need to run advanced intelligence on infrastructure they control.
+              </p>
+              <Link className={styles.heroRelease} href="/blog/btl-commercial-launch">
+                <span className={styles.heroReleaseImage} aria-hidden="true" />
+                <span className={styles.heroReleaseCopy}>
+                  <small>Company release · 12 September 2026</small>
+                  <b>Bad Theory Labs launches BTL Commercial for government and enterprise AI</b>
+                </span>
+                <span className={styles.heroReleaseGo} aria-hidden="true">&#8594;</span>
+              </Link>
+            </div>
 
             <div className={styles.railLatest}>
               <p className={styles.newsLabel}>BTL-4</p>
