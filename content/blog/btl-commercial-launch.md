@@ -1,46 +1,61 @@
 ---
-title: "BTL Commercial is open"
+title: "Bad Theory Labs Launches BTL Commercial to Put Its Research Inside Institutions"
 date: 2026-09-12
 tag: Company
 author: Bad Theory Labs
-excerpt: "Governments and enterprises can now contract us directly. We write the bar down before the work starts, and we will tell you when your problem is not ready for one."
+excerpt: "New unit lets governments, banks and infrastructure operators contract the research lab directly, against a measurable bar agreed before the work starts."
 ---
 
-We have opened BTL Commercial. Governments, enterprises and institutions can now contract us
-directly instead of waiting on whatever we decide to publish.
+Bad Theory Labs, the AI research lab studying how much compute, memory and data a behaviour actually
+requires, today announced BTL Commercial, a unit that lets institutions contract the lab directly
+rather than buy access to a finished product.
 
-The shape of the work changes every time. Sometimes what comes back is a research finding and the
-measurements behind it. Sometimes it is a model trained against a constraint nobody else has reason
-to care about, or a system running on hardware the client owns and we never touch again. We have
-also taken briefs where the thing being asked for does not exist yet and somebody has to go and make
-it. That last kind is the one we want most.
+A large share of the organisations that most need advanced AI cannot use a hosted API to get it.
+Regulated records, sovereign information and operationally critical workflows have to stay inside
+infrastructure the institution controls. Others are bounded by the hardware they already own, a
+latency ceiling they cannot breach, or a language the field serves badly. For those organisations the
+constraint is not model quality. It is that nobody has built the version of the model that survives
+their conditions.
 
-What stays the same is that we write the bar down first. Four things go in writing before serious
-work starts: what happens today, measured before we change anything; what has to become true, as a
-number or a behaviour or an operating condition; how both sides will tell whether it happened; and
-what counts as finished. If we cannot agree those with you, your problem is not ready for a research
-contract, and we would rather say so than bill you while we find out.
-
-That is a measurement lab talking. We study capability efficiency, which means working out how much
-compute, memory and data a behaviour actually needs and then not spending the rest. We think capacity
-gets wasted in seven places. Two of them are now measured and published. In the first, choosing the
+Bad Theory Labs has published two measured results against that problem so far. Selecting the
 numerical range before choosing the representation moved behavioural retention from 77.1% to 95.8%
-on an identical byte budget, and cost twelve GPU-seconds. In the second, small recoverable expert
-matrices got back to 49.4% of their behaviour after aggressive compression while much larger dense
-matrices stalled near 23%.
+at an identical byte budget, at a cost of twelve GPU-seconds. Separately, small recoverable expert
+matrices regained 49.4% of their behaviour after aggressive compression while much larger dense
+matrices stalled near 23%. The lab's open-weight releases were downloaded more than 140,000 times
+in the last thirty days, almost all of it BTL-4 Compact.
 
-We are taking commercial work because the hard version of those questions is already sitting inside
-banks, ministries and infrastructure operators, attached to hardware we do not own and to failure
-conditions we would never have thought to write down ourselves. A lab can invent a constraint. It
-cannot invent the one an operator has been living with for six years.
+BTL Commercial extends that work on contract. Engagements run from applied research against a
+question nobody has answered, through models trained for a specific operating environment, to
+systems deployed on infrastructure the client owns and operates. Where the capability being asked
+for does not exist yet, the engagement becomes a research programme with a defined objective rather
+than a deployment.
 
-Everything we learn on contract goes back into the same body of work. Our models are open weight,
-and the methods behind them are published with the runs that failed. BTL-4 is a 35.1B-parameter
-mixture-of-experts model scoring 78.4% on SWE-bench Verified. BTL-4 Compact is the same model in a
-9.96 GB artifact that holds 94.1% of measured behaviour, activates about 2.1B parameters per token,
-and decodes at 31.9 tokens per second on an M4 laptop.
+Every contract names a bar before serious work begins. Four things go in writing: what happens today,
+measured before anything changes; what has to become true, as a number, a behaviour or an operating
+condition; how both sides will decide whether it happened; and what counts as finished. Where those
+cannot be agreed, the lab declines the contract.
 
-We are a small team and we would rather talk than exchange documents. Bring the problem to
-[hello@badtheorylabs.com](mailto:hello@badtheorylabs.com), or book a call at
-[badtheorylabs.com/contact](/contact). Tell us what you are trying to change, what cannot move, and
-how you would know it had worked.
+"Research stays the centre of this lab, and the commercial arm does not slow it down. It feeds it,"
+said Al-ameen, founder of Bad Theory Labs. "The hardest versions of the questions we care about are
+already sitting inside banks and ministries and infrastructure operators, attached to hardware we do
+not own and to constraints we would never have thought to invent. We are hiring into both sides of
+the work."
+
+The unit will serve government and enterprise clients, with work scoped per contract. Enquiries go
+to [hello@badtheorylabs.com](mailto:hello@badtheorylabs.com) or through
+[badtheorylabs.com/contact](/contact).
+
+## About Bad Theory Labs
+
+Bad Theory Labs is an AI research lab studying capability efficiency, the question of how much
+capacity a behaviour requires at each point in a system. The lab has identified seven places where
+that capacity is spent and has measured two of them.
+
+Its models are released with open weights, and the methods behind them are published together with
+the runs that failed. BTL-4 is a 35.1B-parameter mixture-of-experts model scoring 78.4% on SWE-bench
+Verified. BTL-4 Compact is the same model in a 9.96 GB artifact that holds 94.1% of measured
+behaviour, activates roughly 2.1B parameters per token, and decodes at 31.9 tokens per second on an
+M4 laptop.
+
+Bad Theory Labs works with governments, enterprises and research institutions. For more information,
+visit [badtheorylabs.com](https://www.badtheorylabs.com).
