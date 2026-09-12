@@ -1,20 +1,30 @@
 'use client';
 
-import { FormEvent, Suspense, useMemo, useState } from "react";
+import { FormEvent, Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SiteNav from "@/components/SiteNav";
 import s from "./contact.module.css";
-import { INTENTS, Intent, composeMessage, findIntent } from "./intents";
 
 const CAL_URL = "https://cal.com/alameenpd/quick-chat";
 const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
 const EMAIL = "hello@badtheorylabs.com";
 
-type Answers = Record<string, string>;
+// the reason only picks the subject line and the prompt in the box. it used to
+// swap the whole field set, which was more machinery than a contact form earns.
+const REASONS = [
+  {
+    id: "contract",
+    label: "Contract the lab",
+    hint: "What are you trying to change? What cannot move, in data, hardware or latency? And how would you know it had worked?",
+  },
+  { id: "research", label: "Research", hint: "Which paper or result, and what do you want to know?" },
+  { id: "press", label: "Press", hint: "Your outlet, what you need, and by when." },
+  { id: "other", label: "Something else", hint: "Investors, hiring, the Discord, anything else." },
+];
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<Contact prefill={{}} />}>
+    <Suspense fallback={<Contact org="" />}>
       <WithParams />
     </Suspense>
   );
@@ -22,75 +32,42 @@ export default function ContactPage() {
 
 function WithParams() {
   const q = useSearchParams();
-  const prefill = useMemo(
-    () => ({
-      intent: q.get("intent") ?? undefined,
-      company: q.get("company")?.trim() || undefined,
-      message: q.get("message")?.trim() || undefined,
-    }),
-    [q]
-  );
-  return <Contact prefill={prefill} />;
+  return <Contact org={q.get("company")?.trim() ?? ""} />;
 }
 
-type Prefill = { intent?: string; company?: string; message?: string };
-
-function Contact({ prefill }: { prefill: Prefill }) {
-  const [intent, setIntent] = useState<Intent>(() => findIntent(prefill.intent));
-  const [who, setWho] = useState(() => ({
-    name: "",
-    email: "",
-    org: prefill.company ?? "",
-  }));
-  const [answers, setAnswers] = useState<Answers>(() =>
-    prefill.message ? { [findIntent(prefill.intent).fields[0].key]: prefill.message } : {}
-  );
+function Contact({ org }: { org: string }) {
+  const [reason, setReason] = useState(REASONS[0]);
+  const [form, setForm] = useState({ name: "", email: "", org, message: "" });
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
-  const named = intent.bar ? intent.bar.filter((k) => (answers[k] ?? "").trim().length > 0) : [];
+  const set = (k: keyof typeof form) => (v: string) => setForm((p) => ({ ...p, [k]: v }));
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
     setError("");
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: who.name,
-          email: who.email,
-          company: who.org,
-          subject: intent.label,
-          message: composeMessage(intent, answers),
+          name: form.name,
+          email: form.email,
+          company: form.org,
+          subject: reason.label,
+          message: form.message,
         }),
       });
-
       const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) throw new Error(data.error || "That did not send. Try again, or email us directly.");
-
+      if (!res.ok) throw new Error(data.error || "That did not send. Email us directly instead.");
       setSent(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "That did not send. Try again, or email us directly.");
+      setError(err instanceof Error ? err.message : "That did not send. Email us directly instead.");
     } finally {
       setSending(false);
     }
-  };
-
-  const reset = () => {
-    setAnswers({});
-    setWho({ name: "", email: "", org: "" });
-    setSent(false);
-    setError("");
-  };
-
-  const pick = (next: Intent) => {
-    setIntent(next);
-    setAnswers({});
-    setError("");
   };
 
   return (
@@ -101,175 +78,99 @@ function Contact({ prefill }: { prefill: Prefill }) {
         <p className={s.eyebrow}>Contact</p>
         <h1 className={s.title}>Bring the problem.</h1>
         <p className={s.lede}>
-          Pick the line that fits. The questions change with it, because a government
-          contracting a research programme and a reporter checking a number do not
-          need the same blank box.
+          Tell us what you are trying to change and how you would know it had worked. We will tell
+          you whether it is a product problem, an engineering problem or a research problem.
         </p>
       </header>
 
       <div className={s.body}>
-        <aside className={s.aside}>
-          <p className={s.asideHead}>Reason for writing</p>
-          <div className={s.switch} role="tablist" aria-label="Reason for writing">
-            {INTENTS.map((it) => (
-              <button
-                key={it.id}
-                type="button"
-                role="tab"
-                aria-selected={it.id === intent.id}
-                data-on={it.id === intent.id ? "1" : "0"}
-                className={s.switchRow}
-                onClick={() => pick(it)}
-              >
-                <span className={s.switchLabel}>
-                  <span className={s.switchMark} aria-hidden />
-                  {it.label}
-                </span>
-                <span className={s.switchNote}>{it.note}</span>
-              </button>
-            ))}
-          </div>
+        {sent ? (
+          <section className={s.done}>
+            <div className={s.doneMark} aria-hidden="true" />
+            <h2 className={s.doneTitle}>Sent.</h2>
+            <p className={s.doneBody}>
+              It reached {EMAIL}, and the reply comes from the same address. If it is urgent, book a
+              call instead.
+            </p>
+            <a className={s.primary} href={CAL_URL} target="_blank" rel="noreferrer">
+              Book a call
+            </a>
+          </section>
+        ) : (
+          <form className={s.form} onSubmit={submit}>
+            <fieldset className={s.reasons}>
+              <legend className={s.legend}>Reason for writing</legend>
+              {REASONS.map((r) => (
+                <button
+                  key={r.id}
+                  type="button"
+                  className={s.chip}
+                  data-on={r.id === reason.id ? "1" : "0"}
+                  onClick={() => setReason(r)}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </fieldset>
 
-          <div className={s.direct}>
-            <p className={s.directHead}>Or go direct</p>
-            <a className={s.directRow} href={`mailto:${EMAIL}`}>
+            <div className={s.pair}>
+              <Field label="Name" required value={form.name} onChange={set("name")} />
+              <Field label="Email" type="email" required value={form.email} onChange={set("email")} />
+            </div>
+
+            <Field label="Organisation" value={form.org} onChange={set("org")} />
+
+            <div className={s.field}>
+              <label className={s.label} htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                className={s.textarea}
+                rows={7}
+                required
+                placeholder={reason.hint}
+                value={form.message}
+                onChange={(e) => set("message")(e.target.value)}
+              />
+            </div>
+
+            <div className={s.foot}>
+              <button className={s.primary} type="submit" disabled={sending}>
+                {sending ? "Sending" : "Send"}
+              </button>
+              <p className={s.status} data-kind={error ? "error" : "idle"}>
+                {error || "Goes straight to the lab, not a queue."}
+              </p>
+            </div>
+          </form>
+        )}
+
+        <aside className={s.aside}>
+          <h2 className={s.asideTitle}>Rather talk it through?</h2>
+          <p className={s.asideBody}>
+            Thirty minutes with someone who would actually run the work. Often faster than writing
+            the whole thing down.
+          </p>
+          <a className={s.callBtn} href={CAL_URL} target="_blank" rel="noreferrer">
+            Book a call
+          </a>
+
+          <div className={s.links}>
+            <a href={`mailto:${EMAIL}`}>
               <span>Email</span>
               <span>{EMAIL}</span>
             </a>
-            <a className={s.directRow} href={CAL_URL} target="_blank" rel="noreferrer">
-              <span>Book a call</span>
-              <span>cal.com/alameenpd</span>
-            </a>
-            <a className={s.directRow} href={DISCORD_URL} target="_blank" rel="noreferrer">
+            <a href={DISCORD_URL} target="_blank" rel="noreferrer">
               <span>Discord</span>
               <span>discord.gg</span>
             </a>
           </div>
-        </aside>
-
-        <div className={s.main}>
-        {sent ? (
-          <section className={s.done}>
-            <div className={s.doneMark} aria-hidden />
-            <h2 className={s.doneTitle}>Sent.</h2>
-            <p className={s.doneBody}>
-              It went to {EMAIL}, and the reply comes from the same address. If it is
-              urgent, the call link on the left is faster than we are.
-            </p>
-            <button type="button" className={s.again} onClick={reset}>
-              Write another
-            </button>
-          </section>
-        ) : (
-          <form className={s.form} onSubmit={submit}>
-            {intent.lead ? <p className={s.formNote}>{intent.lead}</p> : null}
-
-            <div className={s.fields}>
-              <div className={s.pair}>
-                <Line
-                  label="Name"
-                  required
-                  value={who.name}
-                  onChange={(v) => setWho((p) => ({ ...p, name: v }))}
-                />
-                <Line
-                  label="Email"
-                  type="email"
-                  required
-                  value={who.email}
-                  onChange={(v) => setWho((p) => ({ ...p, email: v }))}
-                />
-              </div>
-
-              <Line
-                label="Organisation"
-                value={who.org}
-                onChange={(v) => setWho((p) => ({ ...p, org: v }))}
-              />
-
-              {intent.fields.map((f) => (
-                <div className={s.field} key={f.key}>
-                  <label className={s.flabel} htmlFor={`f-${f.key}`}>
-                    {f.label}
-                    {f.required ? null : <span className={s.opt}>Optional</span>}
-                  </label>
-                  {f.hint ? <p className={s.fhint}>{f.hint}</p> : null}
-                  {f.lines && f.lines > 1 ? (
-                    <textarea
-                      id={`f-${f.key}`}
-                      className={s.textarea}
-                      rows={f.lines}
-                      required={f.required}
-                      value={answers[f.key] ?? ""}
-                      onChange={(e) =>
-                        setAnswers((p) => ({ ...p, [f.key]: e.target.value }))
-                      }
-                    />
-                  ) : (
-                    <input
-                      id={`f-${f.key}`}
-                      className={s.input}
-                      required={f.required}
-                      value={answers[f.key] ?? ""}
-                      onChange={(e) =>
-                        setAnswers((p) => ({ ...p, [f.key]: e.target.value }))
-                      }
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {intent.bar ? (
-              <div className={s.ledger}>
-                <div className={s.ticks} aria-hidden>
-                  {intent.bar.map((k) => (
-                    <span
-                      key={k}
-                      className={s.tick}
-                      data-on={(answers[k] ?? "").trim() ? "1" : "0"}
-                    />
-                  ))}
-                </div>
-                <p className={s.ledgerText}>
-                  {named.length} of {intent.bar.length} named
-                  {named.length === intent.bar.length ? " · that is a brief" : ""}
-                </p>
-              </div>
-            ) : null}
-
-            <div className={s.foot}>
-              <button className={s.submit} type="submit" disabled={sending}>
-                {sending ? "Sending" : "Send"}
-              </button>
-              {error ? (
-                <p className={s.status} data-kind="error">{error}</p>
-              ) : (
-                <p className={s.status}>Goes straight to the lab, not a queue.</p>
-              )}
-            </div>
-          </form>
-        )}
-        </div>
-
-        <aside className={s.rail}>
-          <p className={s.railHead}>After you send</p>
-          <ol className={s.steps}>
-            {intent.after.map((a, i) => (
-              <li key={a.step} className={s.step}>
-                <span className={s.stepNo}>{String(i + 1).padStart(2, "0")}</span>
-                <span className={s.stepLabel}>{a.step}</span>
-                <span className={s.stepBody}>{a.body}</span>
-              </li>
-            ))}
-          </ol>
         </aside>
       </div>
     </main>
   );
 }
 
-function Line({
+function Field({
   label,
   value,
   onChange,
@@ -282,10 +183,10 @@ function Line({
   type?: string;
   required?: boolean;
 }) {
-  const id = `w-${label.toLowerCase()}`;
+  const id = `f-${label.toLowerCase()}`;
   return (
     <div className={s.field}>
-      <label className={s.flabel} htmlFor={id}>
+      <label className={s.label} htmlFor={id}>
         {label}
         {required ? null : <span className={s.opt}>Optional</span>}
       </label>
