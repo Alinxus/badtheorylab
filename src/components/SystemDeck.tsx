@@ -36,10 +36,10 @@ const SYSTEMS = [
   {
     name: "BTL Commercial",
     kind: "Commercial arm",
-    state: "In design",
-    title: "Private Frontier Intelligence.",
-    body: "Contracted access to the lab for sovereign and enterprise work, drawing on BTL models, instruments and methods.",
-    facts: [["paths", "sovereign + enterprise"], ["mode", "private deployment"], ["input", "BTL research"]],
+    state: "Open",
+    title: "Contract the lab for a defined AI problem.",
+    body: "Applied research, model development and deployment for governments and enterprises working under hard operating constraints.",
+    facts: [["clients", "government + enterprise"], ["deployment", "client-controlled"], ["scope", "measured outcome"]],
     href: "/contact",
   },
 ] as const;
