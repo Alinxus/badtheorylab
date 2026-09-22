@@ -4,6 +4,15 @@ import styles from "./papers.module.css";
 
 const papers = [
   {
+    date: "September 2026",
+    type: "Research paper · released",
+    title: "Where a Hybrid MoE Spends Its Bytes",
+    summary: "A measured compression allocation for a 176.94B-parameter hybrid model: byte traffic, engram ablations, exact weight edits, and a 34.67 GiB GPU-resident core.",
+    artifacts: ["61.5 GiB GGUF", "34.67 GiB GPU core", "Engram ablations", "llama.cpp kernels"],
+    href: "/papers/where-a-hybrid-moe-spends-its-bytes",
+    pdf: "/papers/where-a-hybrid-moe-spends-its-bytes/paper.pdf",
+  },
+  {
     date: "August 2026",
     type: "Technical report · research lane",
     title: "Behaviour-Relearned Quantization",
@@ -75,7 +84,7 @@ export default function PapersPage() {
         <h1>Research should end in<br /><em>something you can run.</em></h1>
         <div>
           <p>We publish the question, the method, the artifacts, the failures, and the code needed to reproduce the result.</p>
-          <span>Updated July 2026</span>
+          <span>Updated September 2026</span>
         </div>
       </header>
 
