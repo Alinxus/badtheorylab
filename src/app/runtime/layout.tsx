@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 const desc =
-  "BTL Runtime is a drop-in, OpenAI-compatible inference gateway. Route across OpenAI, Anthropic, Bedrock, Vertex, and OpenRouter, cut token waste, and watch the savings — without rewriting your app.";
+  "Run Tinfield 1, Bad Theory Labs' open-weight flagship, through Runtime's OpenAI-compatible API at $0.15/M input tokens and $0.60/M output tokens.";
 
 export const metadata: Metadata = {
-  title: "BTL Runtime — Inference Gateway · BTL",
+  title: "Tinfield 1 on Runtime · BTL",
   description: desc,
   openGraph: {
-    title: "BTL Runtime — Inference Gateway · BTL",
+    title: "Tinfield 1 on Runtime · BTL",
     description: desc,
     url: "https://www.badtheorylabs.com/runtime",
     images: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTL Runtime — Inference Gateway · BTL",
+    title: "Tinfield 1 on Runtime · BTL",
     description: desc,
   },
 };

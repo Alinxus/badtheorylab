@@ -14,6 +14,8 @@ const GROUPS: Group[] = [
   {
     label: "Models",
     items: [
+      { label: "Tinfield 1 on Runtime", href: "https://rntm.sh/models/tinfield-1", external: true },
+      { label: "Tinfield 1 weights", href: "https://huggingface.co/badtheorylabs/Tinfield-1", external: true },
       { label: "BTL-4", href: "https://huggingface.co/badtheorylabs/BTL-4", external: true },
       { label: "BTL-4 Compact", href: "https://huggingface.co/badtheorylabs/BTL-4-Compact", external: true },
       { label: "BTL-3", href: "/btl-3" },
@@ -26,7 +28,7 @@ const GROUPS: Group[] = [
     label: "Platform",
     items: [
       { label: "Private Frontier Intelligence", href: "/#private-frontier" },
-      { label: "Runtime", href: "/runtime" },
+      { label: "Runtime", href: "https://rntm.sh", external: true },
       { label: "RetainDB", href: "https://retaindb.com", external: true },
       { label: "Prism", href: "https://github.com/Badtheorylabs/Prism", external: true },
       { label: "Marrow", href: "/marrow" },

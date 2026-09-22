@@ -146,6 +146,23 @@ export default function Home() {
             </div>
 
             <div className={styles.railLatest}>
+              <p className={styles.newsLabel}>Tinfield 1 on Runtime</p>
+              <a
+                className={styles.newsCard}
+                href="https://rntm.sh/models/tinfield-1"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className={styles.newsThumb} aria-hidden="true" />
+                <span className={styles.newsText}>
+                  Our open-weight flagship for terminal work and long-horizon software engineering.
+                  <b>$0.15/M input · $0.60/M output</b>
+                </span>
+                <span className={styles.newsGo} aria-hidden="true">&#8599;&#65038;</span>
+              </a>
+            </div>
+
+            <div className={styles.railLatest}>
               <p className={styles.newsLabel}>BTL-4</p>
               <a
                 className={styles.newsCard}
@@ -447,7 +464,7 @@ export default function Home() {
             </div>
             <div>
               <span>Platform</span>
-              <Link href="/runtime">Runtime</Link>
+              <a href="https://rntm.sh" target="_blank" rel="noreferrer">Runtime</a>
               <a href="https://retaindb.com" target="_blank" rel="noreferrer">RetainDB</a>
               <Link href="/btl-3">Models</Link>
             </div>

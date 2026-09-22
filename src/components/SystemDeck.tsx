@@ -8,11 +8,12 @@ const SYSTEMS = [
   {
     name: "Tinfield",
     kind: "Model family",
-    state: "Proposed",
-    title: "Open-weight models built around capability density.",
-    body: "The model family where the seven efficiency questions become design constraints from the beginning of training.",
-    facts: [["status", "not built"], ["purpose", "frontier capability"], ["shape", "open weights"]],
-    href: "/thesis",
+    state: "Live on Runtime",
+    title: "The open-weight flagship model on Runtime.",
+    body: "Tinfield 1 is built for terminal work and long-horizon software engineering. Call it through the same OpenAI-compatible Runtime API used by every other route.",
+    facts: [["Terminal-Bench 4.0", "33.0"], ["DeepSWE v1.1", "62.0"], ["price", "$0.15 in · $0.60 out / M"]],
+    href: "https://rntm.sh/models/tinfield-1",
+    external: true,
   },
   {
     name: "Runtime",

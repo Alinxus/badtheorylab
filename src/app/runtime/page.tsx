@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const CAL_URL = "https://cal.com/alameenpd/quick-chat";
 const DISCORD_URL = "https://discord.gg/QJBCcB7bF";
-const ACCESS_URL = "https://runtime.badtheorylabs.com";
+const ACCESS_URL = "https://rntm.sh";
 
 // the four moves the gateway makes to send fewer billable tokens upstream.
 // pulled straight from the token-efficiency pipeline — order matters, caching first.
@@ -84,16 +84,16 @@ export default function RuntimePage() {
 
       <section className="rt-hero">
         <div className="rt-hero-copy">
-          <p className="rt-eyebrow">Product · Inference gateway</p>
-          <h1 className="rt-h1">BTL <em>Runtime</em></h1>
+          <p className="rt-eyebrow">Product · Tinfield 1 + inference gateway</p>
+          <h1 className="rt-h1">Tinfield 1 <em>on Runtime</em></h1>
           <p className="rt-lede">
-            One API in front of every model provider. Lower effective AI spend and
-            lower latency — <em>without rewriting your app.</em>
+            Our open-weight flagship for terminal work and long-horizon software engineering.
           </p>
           <p className="rt-sub">
-            For teams shipping across OpenAI, Anthropic, Bedrock, Vertex, OpenRouter,
-            and the long tail. BTL Runtime is the drop-in gateway that keeps working
-            when provider economics change underneath you.
+            The BF16 reference scored 33.0 on Terminal-Bench 4.0 and 62.0 on DeepSWE v1.1
+            across the full task sets at k=5. Runtime serves Tinfield 1 Compact at
+            $0.15/M input tokens and $0.60/M output tokens. The served Compact build
+            has not yet been rerun on those full benchmark suites.
           </p>
           <div className="rt-hero-actions">
             <a href={ACCESS_URL} className="rt-btn rt-btn-solid">Launch Runtime →</a>
@@ -110,13 +110,12 @@ export default function RuntimePage() {
 {`from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://api.badtheorylabs.com/v1",
+    base_url="https://api.rntm.sh/v1",
     api_key=BTL_KEY,
 )
 
-# same call. same shape. less spend.
 client.chat.completions.create(
-    model="btl-frontier",
+    model="tinfield-1",
     messages=[{"role": "user",
                "content": "ship it"}],
 )`}
@@ -126,10 +125,10 @@ client.chat.completions.create(
 
       <section className="rt-strip">
         {[
-          { k: "Drop-in", v: "OpenAI-compatible" },
-          { k: "Providers", v: "Multi-vendor routing" },
-          { k: "Billing", v: "1 credit = $1 spend" },
-          { k: "Proof", v: "Ledgered + metered" },
+          { k: "Model", v: "Tinfield 1" },
+          { k: "Terminal-Bench 4.0", v: "33.0 · BF16 reference" },
+          { k: "DeepSWE v1.1", v: "62.0 · BF16 reference" },
+          { k: "Runtime price", v: "$0.15 in · $0.60 out / M" },
         ].map((s) => (
           <div key={s.k} className="rt-strip-cell">
             <div className="rt-strip-k">{s.k}</div>

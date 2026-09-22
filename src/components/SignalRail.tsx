@@ -22,6 +22,12 @@ const SIGNALS = [
     unit: "tokens / second",
     detail: "BTL-4 Compact decoding on an M4 with the full model offloaded to Metal.",
   },
+  {
+    label: "Tinfield 1",
+    value: "33.0 / 62.0",
+    unit: "TB4 / DeepSWE",
+    detail: "Full-suite k=5 scores for the BF16 reference. Runtime serves Compact; its full-suite rerun is still pending.",
+  },
 ] as const;
 
 export default function SignalRail() {
