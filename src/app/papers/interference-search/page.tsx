@@ -117,10 +117,11 @@ export default function InterferenceSearchPage() {
         <p className={styles.kicker}>Read the paper</p>
         <h2>The complete paper is available as a PDF.</h2>
         <p>
-          The paper includes the method, the redundancy measurements, judge training and generalization, the frontier against the line, the language model and code experiments, token consumption, the negative results, and the limits of every claim. Code, the trained judge and raw results will be released under Apache 2.0.
+          The paper includes the method, the redundancy measurements, judge training and generalization, the frontier against the line, the language model and code experiments, token consumption, the negative results, and the limits of every claim. The code, the trained judge and every raw result are public under Apache 2.0.
         </p>
         <div className={styles.actions}>
           <a className={styles.primary} href={PDF}>Paper · PDF</a>
+          <a href="https://github.com/Badtheorylabs/interference-search">Code · GitHub</a>
           <Link href="/papers">Research index</Link>
         </div>
       </section>
