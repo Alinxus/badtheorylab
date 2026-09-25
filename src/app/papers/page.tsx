@@ -6,6 +6,15 @@ const papers = [
   {
     date: "September 2026",
     type: "Research paper · released",
+    title: "Interference Search",
+    summary: "Reasoning over merged states, many branches at once. With the same judge and budget, a frontier of states solves 30 of 30 hard Countdown problems where a single line of thought solves 21, in 3 sequential steps instead of 24.",
+    artifacts: ["30 vs 21 solved", "63× paths per state", "Negative results", "PDF"],
+    href: "/papers/interference-search",
+    pdf: "/papers/interference-search/paper.pdf",
+  },
+  {
+    date: "September 2026",
+    type: "Research paper · released",
     title: "Where a Hybrid MoE Spends Its Bytes",
     summary: "A measured compression allocation for a 176.94B-parameter hybrid model: byte traffic, engram ablations, exact weight edits, and a 34.67 GiB GPU-resident core.",
     artifacts: ["61.5 GiB GGUF", "34.67 GiB GPU core", "Engram ablations", "llama.cpp kernels"],
