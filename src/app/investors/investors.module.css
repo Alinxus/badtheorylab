@@ -1,0 +1,80 @@
+.page {
+  --ink: #0E0F13;
+  --paper: #F1F1F3;
+  --line: rgba(11, 12, 13, 0.18);
+  --muted: #82848E;
+  --signal: #FF4D00;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-s), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 78px); }
+
+.hero { padding: clamp(76px, 11vw, 150px) 0 clamp(40px, 5vw, 70px); border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-m), monospace;
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.eyebrow span { width: 18px; height: 1px; background: var(--signal); }
+
+.hero h1 {
+  margin: 30px 0 0;
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(36px, 6.2vw, 84px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.042em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+.hero h1 em { font-style: normal; color: var(--signal); }
+
+.body { padding: clamp(48px, 7vw, 92px) 0 clamp(60px, 8vw, 110px); display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 0 clamp(32px, 5vw, 72px); }
+.rail { font-family: var(--font-m), monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); line-height: 1.6; }
+.prose { max-width: 46rem; min-width: 0; }
+
+.prose p { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.58; letter-spacing: -0.008em; margin: 0 0 1.15em; }
+.prose h2 {
+  font-family: var(--font-d), 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700; font-size: clamp(23px, 2.6vw, 32px); line-height: 1.16; letter-spacing: -0.03em;
+  margin: 2.2em 0 0.8em; padding-top: 1.2em; border-top: 1px solid var(--line);
+}
+.prose h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.prose a { color: var(--ink); text-decoration-color: var(--signal); text-underline-offset: 3px; }
+.prose ul { margin: 0 0 1.15em; padding-left: 1.2em; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.58; }
+.prose li { margin-bottom: 0.35em; }
+.prose .lift { color: var(--signal); font-weight: 600; }
+.prose .sign { margin-top: 1.6em; padding-top: 1.4em; border-top: 1px solid var(--line); color: var(--muted); }
+
+.tableWrap { overflow-x: auto; margin: 0 0 1.4em; border-top: 1px solid var(--ink); }
+.tableWrap table { width: 100%; border-collapse: collapse; font-size: 14.5px; line-height: 1.45; }
+.tableWrap th {
+  text-align: left; font-family: var(--font-m), monospace; font-weight: 400;
+  font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  padding: 12px 14px 10px 0; border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+.tableWrap td { padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tableWrap td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tableWrap tr.win td { font-weight: 600; }
+.tableWrap td.name { font-weight: 600; white-space: nowrap; }
+.wide { min-width: 760px; }
+
+.note { font-size: 14px !important; color: var(--muted); }
+
+.after { border-top: 1px solid var(--line); padding: clamp(44px, 6vw, 80px) 0 clamp(76px, 9vw, 130px); display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.after p { font-family: var(--font-m), monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 auto 0 0; }
+.btn { display: inline-flex; align-items: center; gap: 9px; padding: 13px 24px; border-radius: 2px; background: var(--ink); color: var(--paper); text-decoration: none; font-size: 14px; font-weight: 500; }
+.btnGhost { display: inline-flex; align-items: center; gap: 9px; padding: 13px 24px; border-radius: 2px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500; }
+.btn:hover { opacity: 0.85; }
+.btnGhost:hover { background: #e2e4de; }
+
+@media (max-width: 860px) {
+  .body { grid-template-columns: minmax(0, 1fr); }
+  .rail { margin-bottom: 26px; }
+}

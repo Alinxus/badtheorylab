@@ -50,6 +50,7 @@ const GROUPS: Group[] = [
     items: [
       { label: "Why BTL", href: "/#why-btl" },
       { label: "Thesis", href: "/thesis" },
+      { label: "Investors", href: "/investors" },
       { label: "GitHub", href: "https://github.com/Badtheorylabs", external: true },
       { label: "Contact", href: "/contact" },
       { label: "Join Discord", href: DISCORD_URL, external: true },
